@@ -3,7 +3,7 @@
 }
 
 .img-carousel {
-    height: 100vh;
+    height: 80vh;
     width: 100%;
 }
 
@@ -14,11 +14,6 @@
 #about .subtitle {
     font-size: 20px;
 }
-
-.carousel-item {
-    height: 550px;
-}
-
 
 #kajian-home {
     padding-top: 50px;
@@ -34,7 +29,10 @@
     font-size: 24px;
 }
 
-
+.tokoh {
+    width: 500px;
+    height: 500px;
+}
 
 
 

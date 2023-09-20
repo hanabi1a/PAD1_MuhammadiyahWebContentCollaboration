@@ -119,27 +119,28 @@
 		<div class="container">
 			<div class="row featurette">
 				<div class="col-md-6 order-md-2">
-					<h1>Nama Tokoh</h1>
+					<h1>Kiai Ahmad Dahlan</h1>
 					<p class="subtitle">
-						Deskripsi tokoh : Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero nobis provident
-						sit et beatae totam ab labore? Voluptate, laborum blanditiis qui numquam quam odit rerum facilis
-						cum corporis sapiente assumenda pariatur quia, ducimus magnam. Optio sed qui incidunt ea, totam
-						dolores itaque eligendi nemo recusandae accusantium eaque soluta dicta quaerat quia, velit
-						cupiditate. Totam incidunt deserunt culpa quam. Sequi assumenda explicabo quibusdam tempora
-						possimus, illo numquam aliquam exercitationem officiis et odit, sunt animi dignissimos
-						repellendus sapiente, temporibus non ea tenetur eum accusamus officia nostrum! Eaque, dicta,
-						libero, ducimus beatae possimus exercitationem quam est quod fugit vitae reiciendis ut delectus
-						eveniet?
+						MUHAMMADIYAH.OR.ID, JAKARTA – Ketika Persyarikatan Muhammadiyah berdiri pada 18 November 1912,
+						ada delapan nama yang tercatat sebagai pengurusnya. Antara lain KH. Ahmad Dahlan (Ketua Umum),
+						Abd Siratj (Sekretaris), dan anggotanya: Haji Akhmad, H. Abdurrahman, R. Haji Sarkawi, H.
+						Muhammad, R.H. Jaelani, H. Anies, dan H. Muhammad Hakih.
+
+						Jelang KH Ahmad Dahlan wafat di usia 54 tahun pada 23 Februari 1923, Muhammadiyah yang telah
+						berusia 10 tahun berkembang ke beberapa daerah Karesidenan seperti Yogyakarta, Surakarta,
+						Pekalongan, dan Pekajangan.
+
+						Hingga tahun 1922 Muhammadiyah telah memiliki 15 Cabang di seluruh Indonesia. Pimpinan Pusat
+						(hoofdbestuur) Muhammadiyah sendiri mengurusi 1.230 anggota resmi yang di daerahnya belum
+						memiliki cabang.
+
+						Sebelum wafat, KH. Ahmad Dahlan tetap bergerak aktif mendakwahkan Islam dan Muhammadiyah.
+						Sejarah Kebangkitan Nasional Daerah Jawa Tengah (1977) mencatat secara lengkap agenda dakwah
+						pendiri Muhammadiyah pada tahun 1922.
 					</p>
 				</div>
 				<div class="col-md-6 order-md-1">
-					<svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-						height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title>
-						<rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-							dy=".3em">500x500</text>
-					</svg>
+					<img class="tokoh" src="assets/img/ahmadDahlan.jpg" alt="">
 				</div>
 			</div>
 		</div>
