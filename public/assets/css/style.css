@@ -1,0 +1,60 @@
+.navbar {
+    padding: 0 25px;
+}
+
+.img-carousel {
+    height: 100vh;
+    width: 100%;
+}
+
+#about {
+    padding-top: 50px;
+}
+
+#about .subtitle {
+    font-size: 20px;
+}
+
+.carousel-item {
+    height: 550px;
+}
+
+
+#kajian-home {
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.card-title {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 24px;
+}
+
+
+
+
+
+
+/* Contact Section */
+.contact-title {
+    color: #000;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+
+.contact-subtitle {
+    color: #3B3B3B;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
