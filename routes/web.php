@@ -18,6 +18,19 @@ Route::get('/', function () {
 });
 
 Route::get('/homepage', function () {
-    return view('homepage', [
-    ]);
+    return view('homepage');
 });
+
+Route::get('/sign_in', function () {
+    return view('sign_in');
+});
+Route::get('/sign_up', function () {
+    return view('sign_up');
+});
+
+// Route::get('/sign_up', function () {
+//     return view('sign_up', [
+//     ]);
+// });
+
+// Route::get('/homepage', [WCCController::class, 'homepage']);
