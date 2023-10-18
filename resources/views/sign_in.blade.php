@@ -12,8 +12,6 @@
 </head>
 
 <body>
-
-
   <div class="container1">
     <div class="d-lg-flex half">
       <div class="bg order-1 order-md-2" style="background-image: url('assets/img/bg-1.png');"></div>
@@ -41,7 +39,6 @@
                 </div>
 
                 <input type="submit" value="Sign In" class="btn btn-block btn-primary">
-
               </form>
               <p class="text-center">Not a member? <a href="sign_up.blade.php">Sign Up</a></p>
             </div>

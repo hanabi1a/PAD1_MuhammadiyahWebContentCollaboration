@@ -27,10 +27,18 @@ Route::get('/sign_in', function () {
 Route::get('/sign_up', function () {
     return view('sign_up');
 });
-
+Route::get('/index', function () {
+    return view('index');
+});
+Route::get('/kajian', function () {
+    return view('kajian');
+});
+Route::get('/about', function () {
+    return view('about');
+});
 // Route::get('/sign_up', function () {
 //     return view('sign_up', [
 //     ]);
 // });
 
-// Route::get('/homepage', [WCCController::class, 'homepage']);
+Route::get('/homepage', [WCCController::class, 'homepage']);
