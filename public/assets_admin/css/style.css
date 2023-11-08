@@ -22289,3 +22289,83 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease;
 }
+
+
+#kalender-button {
+    background-color: #04454D;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* CSS untuk tema kustom kalender */
+.ui-datepicker {
+    font-size: 14px;
+}
+
+.ui-datepicker-header {
+    background-color: #04454D;
+    color: white;
+    border: none;
+}
+
+.ui-datepicker-title {
+    margin: 0;
+}
+
+.ui-datepicker-calendar {
+    border: none;
+}
+
+.ui-datepicker-calendar th {
+    background-color: #04454D;
+    color: white;
+}
+
+.ui-datepicker-calendar td {
+    border: 1px solid #e1e1e1;
+}
+
+.ui-datepicker-calendar a {
+    color: #04454D;
+}
+
+.ui-datepicker-calendar a:hover {
+    background-color: #04454D;
+    color: white;
+}
+
+.text-upload-foto {
+    color: #999999;
+    font-size: 12px;
+}
+
+/* CSS untuk elemen drop area */
+.drop-area {
+    border: 2px dashed #04454D;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    color: #04454D;
+}
+
+.drop-area.hidden {
+    display: none;
+}
+
+/* CSS untuk elemen drop area saat sedang di-drag */
+.drop-area.drag-over {
+    background-color: #E0E0E0;
+    /* Warna abu-abu */
+    border: 2px dashed gray;
+}
+
+/* CSS untuk tombol "Browse" */
+.custom-file-label::after {
+    background-color: #04454D;
+    color: white;
+    content: "Browse Files";
+    border-radius: 3px;
+}

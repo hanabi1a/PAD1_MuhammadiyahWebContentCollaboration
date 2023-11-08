@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginRegister;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +22,9 @@ Route::get('/', function () {
 Route::get('/homepage', function () {
     return view('user/homepage');
 });
-Route::get('/sign_in', function () {
-    return view('user/sign_in');
-});
+// Route::get('/sign_in', function () {
+//     return view('user/sign_in');
+// });
 Route::get('/sign_up', function () {
     return view('user/sign_up');
 });
@@ -61,15 +62,18 @@ Route::get('/history_upload', function () {
     return view('admin/history_upload');
 });
 
-
-Route::controller(LoginRegister::class)->group(function () {
-    Route::get('/register', 'register')->name('register');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/login', 'login')->name('login');
-    Route::post('/authenticate', 'authenticate')->name('authenticate');
-    Route::get('/homepage', 'homepage')->name('homepage');
-    Route::post('/logout', 'logout')->name('logout');
+Route::get('/form_admin', function () {
+    return view('admin/form_admin');
 });
+
+// Route::controller(LoginRegister::class)->group(function () {
+//     Route::get('/register', 'register')->name('register');
+//     Route::post('/store', 'store')->name('store');
+//     Route::get('/login', 'login')->name('login');
+//     Route::post('/authenticate', 'authenticate')->name('authenticate');
+//     Route::get('/homepage', 'homepage')->name('homepage');
+//     Route::post('/logout', 'logout')->name('logout');
+// });
 // Route::get('/sign_up', function () {
 //     return view('sign_up', [
 //     ]);

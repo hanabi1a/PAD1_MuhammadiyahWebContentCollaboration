@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class loginregis extends Controller
+class LoginRegister extends Controller
 {
     public function __construct()
     {
@@ -17,7 +17,7 @@ class loginregis extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        return view('user.sign_up');
     }
 
     public function Store(Request $request)
@@ -43,7 +43,7 @@ class loginregis extends Controller
 
     public function login()
     {
-        return view('auth.login');
+        return view('user.sign_in');
     }
 
     public function authenticate(Request $request)

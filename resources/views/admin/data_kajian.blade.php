@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-right mb-2">
-                        <a href="" class="btn btn-danger">Create</a>
+                        <a href="form_admin" class="btn btn-danger">Create</a>
                     </div>
                     <div class="card">
                         <div class="bootstrap-data-table-panel">
