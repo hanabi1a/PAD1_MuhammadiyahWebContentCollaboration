@@ -11,13 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+        Schema::create('users', function(Blueprint $table){
+            $table->id();  // Ini akan membuat kolom id yang otomatis bertambah
+            $table->string('username')->unique();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('nama');
+            $table->string('nomor_keanggotaan');
+            $table->string('foto_kta');
+            $table->string('foto_profile');
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
+            $table->string('jenis_kelamin');
+            $table->string('pekerjaan');
+            $table->string('alamat');
+            $table->string('cabang');
+            $table->string('daerah');
+            $table->string('wilayah');
             $table->timestamps();
         });
     }

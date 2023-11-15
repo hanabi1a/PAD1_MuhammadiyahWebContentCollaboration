@@ -1,130 +1,115 @@
 @extends('admin.layout')
+
 @section('content')
-<!--**********************************
-            Sidebar start
-        ***********************************-->
-        <div class="nk-sidebar">
-            <div class="nk-nav-scroll">
-                <ul class="metismenu" id="menu">
-                    <li class="nav-label"></li>
-                    <li>
-                        <a class="has-arrow" href="dashboard" aria-expanded="false">
-                            <i class="fa fa-home menu-icon"></i><span class="nav-text">Dashboard</span>
-                        </a>
-                    </li>
-                    
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="data_kajian" aria-expanded="false">
-                            <i class="icon-grid menu-icon"></i><span class="nav-text">Data Kajian</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="data_user" aria-expanded="false">
-                            <i class="fa fa-user menu-icon"></i> <span class="nav-text">Data User</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow active" href="history_login" aria-expanded="false">
-                            <i class="fa fa-bar-chart menu-icon"></i><span class="nav-text">History Login</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="history_download" aria-expanded="false">
-                            <i class="fa fa-download menu-icon"></i> <span class="nav-text">History Download</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="history_upload" aria-expanded="false">
-                            <i class="fa fa-upload menu-icon"></i><span class="nav-text">History Upload</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="sign_out" aria-expanded="false">
-                            <i class="fa fa-arrow-right menu-icon"></i><span class="nav-text">Sign Out</span>
-                        </a>
-                    </li>
-                </ul>
+<main> <div class="container-fluid px-4"> <h1 class="mt-5">History Login</h1> <ol class="breadcrumb mt-2"> <li
+    class="text_page breadcrumb"><a href="dashboard">Dashboard /</a><a href="history_login" class="active_title">
+    History Login</a>
+    </li>
+    </ol>
+    <div class="d-flex align-items-center">
+            <div class="me-2">
+                <label for="startDate" class="me-1">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" class="form-control form-control-sm">
             </div>
-        </div>
-        <!--**********************************
-            Sidebar end
-        ***********************************-->
-
-<!--**********************************
-            Content body start
-        ***********************************-->
-<div class="content-body">
-
-    <div class="container-fluid mt-3">
-        <p class="text_page">Dashboard / History Login</p>
-        <h2 class="text_title">History Login</h2>
-        <!-- row -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-right mb-2">
-                        <div class="date-filter">
-                            <label for="startDate" class="date-label">From:</label>
-                            <input type="date" id="startDate" class="date-input">
-                            <label for="endDate" class="date-label">To:</label>
-                            <input type="date" id="endDate" class="date-input">
-                            <button id="filterButton" class="btn btn-primary"><i
-                                    class="fa fa-filter menu-icon"></i></button>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="bootstrap-data-table-panel">
-                            <table id="row-select" class="display table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>User ID</th>
-                                        <th>Username</th>
-                                        <th>Waktu/Tanggal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>234567</td>
-                                        <td>Aisa Selvira</td>
-                                        <td>05/19/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>234567</td>
-                                        <td>Aisa Selvira</td>
-                                        <td>05/20/2023</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /# card -->
+            <div class="me-2">
+                <label for="endDate" class="me-1">End Date:</label>
+                <input type="date" id="endDate" name="endDate" class="form-control form-control-sm">
             </div>
-            <!-- /# column -->
+            <button class="btn btn-primary btn-sm" title="Filter">
+                <i class="fas fa-filter"></i>
+            </button>
         </div>
-        <!-- #/ container -->
+        <br><br>
+    <div class="card mb-4">
+        <div class="card-body">
+            <table id="datatablesSimple" class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Waktu/Tanggal</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Waktu/Tanggal</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>492345</td>
+                        <td>Aisa Selvira</td>
+                        <td>14/02/2023</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-</div>
-<script>
-    $(document).ready(function () {
-        // Inisialisasi DataTable
-        var table = $('#row-select').DataTable();
-
-        // Filter Tabel Berdasarkan Tanggal
-        $('#filterButton').on('click', function () {
-            var startDate = $('#startDate').val();
-            var endDate = $('#endDate').val();
-
-            table.columns(3).search(startDate + '|' + endDate, true, false).draw();
-        });
-    });
-</script>
-
-
-
-
-@endsection
+    </div>
+    </main>
+    @endsection

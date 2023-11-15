@@ -18,10 +18,19 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'username',
         'password',
+        'photo',
+        'alamat',
+        'nomor_keanggotaan',
+        'cabang',
+        'tempat_lahir',
+        'wilayah',
+        'daerah',
+        'tanggal_lahir',
     ];
+
+    protected $table = 'users';
 
     /**
      * The attributes that should be hidden for serialization.
@@ -40,6 +49,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 }

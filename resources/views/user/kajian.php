@@ -1,5 +1,5 @@
-@extends('user/layout')
-@section('user/content')
+@extends('user.layout')
+@section('content')
 <section id="kajian-hero">
     <div class="container">
         <div id="kajianCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -292,6 +292,4 @@
         </div>
     </div>
 </section>
-
-@endsection('user/content')
-@include('user/footer')
+@endsection

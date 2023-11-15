@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\loginregis;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginRegister;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +18,18 @@ use App\Http\Controllers\LoginRegister;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/layout', function () {
+    return view('admin/layout');
+});
 Route::get('/homepage', function () {
     return view('user/homepage');
 });
-// Route::get('/sign_in', function () {
-//     return view('user/sign_in');
-// });
+Route::get('/homepage2', function () {
+    return view('user/homepage');
+});
+Route::get('/sign_in', function () {
+    return view('user/sign_in');
+});
 Route::get('/sign_up', function () {
     return view('user/sign_up');
 });
@@ -61,22 +66,55 @@ Route::get('/history_download', function () {
 Route::get('/history_upload', function () {
     return view('admin/history_upload');
 });
-
-Route::get('/form_admin', function () {
-    return view('admin/form_admin');
+Route::get('/form_create_admin', function () {
+    return view('admin/form_create_admin');
+});
+Route::get('/detail_kajian', function () {
+    return view('admin/detail_kajian');
 });
 
-// Route::controller(LoginRegister::class)->group(function () {
-//     Route::get('/register', 'register')->name('register');
+// Route::controller(loginregis::class)->group(function () {
+//     Route::get('/sign_up', 'register')->name('register');
 //     Route::post('/store', 'store')->name('store');
-//     Route::get('/login', 'login')->name('login');
-//     Route::post('/authenticate', 'authenticate')->name('authenticate');
+//     Route::get('/sign_in', 'login')->name('login');
+//     Route::post('/authenticate', 'authenticate')->name('auth');
 //     Route::get('/homepage', 'homepage')->name('homepage');
 //     Route::post('/logout', 'logout')->name('logout');
 // });
+
+
 // Route::get('/sign_up', function () {
 //     return view('sign_up', [
 //     ]);
 // });
 
 // Route::get('/homepage', [WCCController::class, 'homepage']);
+
+
+
+// Route::get('/beranda', 'AuthController@beranda')->name('beranda');
+// Route::get('/register', 'AuthController@showRegistrationForm');
+// Route::post('/register', 'AuthController@register');
+// Route::get('/login', 'AuthController@showLoginForm')->name('login');
+// Route::post('/login', 'AuthController@login');
+// Route::post('/logout', 'AuthController@logout');
+
+
+// Route::controller(AuthController::class)->group(function () {
+//     Route::get('/beranda', 'AuthController@beranda')->name('beranda');
+//     Route::get('/register', 'AuthController@showRegistrationForm');
+//     Route::post('/register', 'AuthController@register');
+//     Route::get('/login', 'AuthController@showLoginForm')->name('login');
+//     Route::post('/login', 'AuthController@login');
+//     Route::post('/logout', 'AuthController@logout');
+// });
+
+// Route::middleware(['web'])->group(function () {
+//     Route::get('/sign_up', [loginregis::class, 'register'])->name('register');
+//     Route::post('/store', [loginregis::class, 'store'])->name('store');
+//     Route::get('/sign_in', [loginregis::class, 'login'])->name('login');
+//     Route::post('/authenticate', [loginregis::class, 'authenticate'])->name('auth');
+//     Route::get('/homepage', [loginregis::class, 'homepage'])->name('homepage');
+//     Route::post('/logout', [loginregis::class, 'logout'])->name('logout');
+
+// });

@@ -20,14 +20,21 @@
           <div class="row align-items-center justify-content-center">
             <div class="col-md-7">
               <h3><strong>Sign In</strong></h3>
-              <form action="#" method="post">
+              <form action="{{ route('auth') }}" method="post">
+              @csrf
                 <div class="form-group first">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" placeholder="Username" id="username">
+                  <input type="text" class="form-control" placeholder="username" id="username" name="username">
+                  @if ($errors->has('username'))
+                                <span class="text-danger">{{ $errors->first('username') }}</span>
+                            @endif
                 </div>
                 <div class="form-group last mb-3">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" placeholder="Password" id="password">
+                  <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+                  @if ($errors->has('password'))
+                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
                 </div>
 
                 <div class="d-flex mb-5 align-items-center">
@@ -38,9 +45,9 @@
                   <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
                 </div>
 
-                <input type="submit" value="Sign In" class="btn btn-block btn-primary">
+                <input type="submit" value="login" class="btn btn-block btn-primary">
               </form>
-              <p class="text-center">Not a member? <a href="sign_up.blade.php">Sign Up</a></p>
+              <p class="text-center">Not a member? <a href="sign_up">Sign Up</a></p>
             </div>
           </div>
         </div>
