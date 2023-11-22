@@ -39,10 +39,10 @@
                 </form>
 
                 <div class="d-flex akun">
-                    <button class="sign-up me-3 fw-bolder" type="submit">
+                    <button class="sign-up me-3 fw-bolder" onclick="window.location.href='{{ route('register') }}'">
                         Sign Up
                     </button>
-                    <button class="sign-in fw-bolder me-3" type="submit">
+                    <button class="sign-in fw-bolder me-3" onclick="window.location.href='{{ route('login') }}'">
                         Sign In
                     </button>
                 </div>

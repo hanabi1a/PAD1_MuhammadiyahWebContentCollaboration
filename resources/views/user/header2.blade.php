@@ -39,14 +39,14 @@
                 </form>
 
                 <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle btn-login" type="button" id="dropdownMenu2"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Aisa Selvira
-                        <img src="assets/img/account-profile.png" alt="" width="30px" height="30px">
-                    </button>
+                <button class="btn btn-light dropdown-toggle btn-login" type="button" id="dropdownMenu2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Aisa Selvira
+                    <img src="assets/img/account-profile.png" alt="" width="30px" height="30px">
+                </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li>
-                            <button class="dropdown-item" type="button">
+                            <button action="{{ route('logout') }}" class="dropdown-item" type="button">
                                 <span class="fs-14">Account</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                     class="bi bi-person-check icon-akun" viewBox="0 0 16 16">
