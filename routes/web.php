@@ -104,7 +104,6 @@ Route::get('/detail_akun_user', function () {
 //     Route::post('/authenticate', 'authenticate')->name('auth');
 //     Route::get('/homepage', 'homepage')->name('homepage');
 //     Route::post('/logout', 'logout')->name('logout');
-=======
 
 // Route::get('/layout', function () {
 //     return view('admin/layout');
@@ -117,7 +116,6 @@ Route::get('/detail_akun_user', function () {
 // });
 // Route::get('/sign_in', function () {
 //     return view('user/sign_in');
->>>>>>> 09605ace09c06fc794eff90e7c4b290821ca638a
 // });
 // Route::get('/sign_up', function () {
 //     return view('user/sign_up');
