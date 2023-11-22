@@ -8,7 +8,7 @@
     --bs-red: #dc3545;
     --bs-orange: #fd7e14;
     --bs-yellow: #ffc107;
-    --bs-green: #198754;
+    --bs-green: #04454D;
     --bs-teal: #20c997;
     --bs-cyan: #0dcaf0;
     --bs-black: #000;
@@ -87,7 +87,7 @@ body {
     line-height: var(--bs-body-line-height);
     color: var(--bs-body-color);
     text-align: var(--bs-body-text-align);
-    background-color: var(--bs-body-bg);
+    background-color: #fafafa;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -232,7 +232,6 @@ h6,
 
 p {
     margin-top: 0;
-    margin-bottom: 1rem;
 }
 
 abbr[title] {
@@ -409,6 +408,8 @@ th {
     border-color: inherit;
     border-style: solid;
     border-width: 0;
+    text-align: center;
+
 }
 
 label {
@@ -1267,7 +1268,8 @@ progress {
 
     .col-md-1 {
         flex: 0 0 auto;
-        width: 8.33333333%;
+        width: 5%;
+        float: right;
     }
 
     .col-md-2 {
@@ -1282,12 +1284,12 @@ progress {
 
     .col-md-4 {
         flex: 0 0 auto;
-        width: 33.33333333%;
+        width: 32%;
     }
 
     .col-md-5 {
         flex: 0 0 auto;
-        width: 41.66666667%;
+        width: 38%;
     }
 
     .col-md-6 {
@@ -1302,7 +1304,7 @@ progress {
 
     .col-md-8 {
         flex: 0 0 auto;
-        width: 66.66666667%;
+        width: 65%;
     }
 
     .col-md-9 {
@@ -1312,12 +1314,12 @@ progress {
 
     .col-md-10 {
         flex: 0 0 auto;
-        width: 83.33333333%;
+        width: 80%;
     }
 
     .col-md-11 {
         flex: 0 0 auto;
-        width: 91.66666667%;
+        width: 85%;
     }
 
     .col-md-12 {
@@ -3363,7 +3365,7 @@ textarea.is-invalid.datatable-input {
     font-size: var(--bs-btn-font-size);
     font-weight: var(--bs-btn-font-weight);
     line-height: var(--bs-btn-line-height);
-    color: var(--bs-btn-color);
+    color: white;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
@@ -3371,9 +3373,9 @@ textarea.is-invalid.datatable-input {
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
-    border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+    border: var(--bs-green);
     border-radius: var(--bs-btn-border-radius);
-    background-color: var(--bs-btn-bg);
+    background-color: var(--bs-green);
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -4910,7 +4912,6 @@ fieldset:disabled .btn {
     --bs-card-cap-padding-x: 1rem;
     --bs-card-cap-bg: rgba(0, 0, 0, 0.03);
     --bs-card-cap-color: ;
-    --bs-card-height: ;
     --bs-card-color: ;
     --bs-card-bg: #fff;
     --bs-card-img-overlay-padding: 1rem;
@@ -4919,7 +4920,6 @@ fieldset:disabled .btn {
     display: flex;
     flex-direction: column;
     min-width: 0;
-    height: var(--bs-card-height);
     word-wrap: break-word;
     background-color: var(--bs-card-bg);
     background-clip: border-box;
@@ -4984,7 +4984,6 @@ fieldset:disabled .btn {
     padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
     margin-bottom: 0;
     color: var(--bs-card-cap-color);
-    background-color: var(--bs-card-cap-bg);
     border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
 }
 
@@ -8774,6 +8773,10 @@ fieldset:disabled .btn {
     margin-top: 3rem !important;
 }
 
+.mt-6 {
+    margin-top: 7rem !important;
+}
+
 .mt-auto {
     margin-top: auto !important;
 }
@@ -8914,6 +8917,11 @@ fieldset:disabled .btn {
 .px-5 {
     padding-right: 3rem !important;
     padding-left: 3rem !important;
+}
+
+.px-6 {
+    padding-right: 6rem !important;
+    padding-left: 6rem !important;
 }
 
 .py-0 {
@@ -13159,7 +13167,7 @@ body {
 
 .datatable-table>thead>tr>th {
     vertical-align: bottom;
-    text-align: left;
+    text-align: center;
     border-bottom: none;
     background-color: #e8e8e8;
 }
@@ -13167,12 +13175,12 @@ body {
 
 .datatable-table>tfoot>tr>th {
     vertical-align: bottom;
-    text-align: left;
+    text-align: center;
 }
 
 .datatable-table th {
     vertical-align: bottom;
-    text-align: left;
+    text-align: center;
 }
 
 .datatable-table th a {
@@ -13687,4 +13695,170 @@ textarea.form-control {
 thead {
     background-color: #E6E6E6;
     border-radius: 8px;
+}
+
+.commit {
+    border: 1px solid black;
+    padding: 30px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.commit-message {
+    color: red;
+}
+
+.desc-kajian {
+    margin-top: 20px;
+}
+
+.name-account {
+    margin-top: 10px;
+}
+
+.name-account {
+    margin-top: 10px;
+    float: right;
+}
+
+.account-detail {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.edit-down-share {
+    margin-top: 30px;
+    float: right;
+}
+
+.edit-down-share .col-md-3,
+.edit-down-share .col-md-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 20px;
+    /* Sesuaikan dengan kebutuhan jarak horizontal */
+}
+
+.edit-down-share .col-md-4:last-child {
+    margin-right: 0;
+    /* Menghapus margin-right pada elemen terakhir agar tidak ada jarak ekstra */
+}
+
+.edit-down-share img {
+    margin-bottom: 5px;
+    /* Sesuaikan dengan kebutuhan jarak antara ikon dan teks */
+}
+
+.text-editdownshare {
+    font-size: 14px;
+}
+
+.content {
+    margin-left: 2%;
+    margin-right: 5%;
+}
+
+.bungkus {
+    width: 100%;
+}
+
+.text-edit {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.edit-by {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.text-commit {
+    color: #B03D3D;
+    margin-bottom: 10px;
+    margin-top: 40px;
+}
+
+.text-commit2 {
+    margin-bottom: 10px;
+}
+
+.li-commit {
+    margin-left: 20px;
+}
+
+.content-kajian {
+    margin-top: 40px;
+}
+
+.kajian-muh {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#filterBtn {
+    margin-top: 30px;
+    padding: 10px;
+}
+
+#filterBtn:hover {
+    background-color: #12707c;
+}
+
+#startDate,
+#endDate {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 14px;
+    background-color: var(--bs-green);
+    color: white;
+}
+
+.datatable-pagination .datatable-active a,
+.datatable-pagination .datatable-active a:focus,
+.datatable-pagination .datatable-active a:hover {
+    background-color: var(--bs-primary);
+    cursor: default;
+    color: white;
+}
+
+.me-1 {
+    margin-bottom: 10px;
+}
+
+
+/* detail akun user */
+#detail_akun_user {
+    margin-top: 50px;
+    margin-left: 55px;
+}
+
+#detail_akun_user .user {
+    color: var(--Black, #121314);
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+#detail_akun_user .pribadi {
+    margin-top: -300px;
+}
+
+#detail_akun_user .pirul {
+    border: 1px solid var(--Extra, #04454D);
+}
+
+
+@media screen and (max-width:768px) {
+    #detail_akun_user .pribadi {
+        margin-top: 0;
+    }
+
 }

@@ -21,20 +21,20 @@
             <div class="col-md-7">
               <h3><strong>Sign In</strong></h3>
               <form action="{{ route('auth') }}" method="post">
-              @csrf
+                @csrf
                 <div class="form-group first">
                   <label for="username">Username</label>
                   <input type="text" class="form-control" placeholder="username" id="username" name="username">
                   @if ($errors->has('username'))
-                                <span class="text-danger">{{ $errors->first('username') }}</span>
-                            @endif
+                  <span class="text-danger">{{ $errors->first('username') }}</span>
+                  @endif
                 </div>
                 <div class="form-group last mb-3">
                   <label for="password">Password</label>
                   <input type="password" class="form-control" placeholder="Password" id="password" name="password">
                   @if ($errors->has('password'))
-                                <span class="text-danger">{{ $errors->first('password') }}</span>
-                            @endif
+                  <span class="text-danger">{{ $errors->first('password') }}</span>
+                  @endif
                 </div>
 
                 <div class="d-flex mb-5 align-items-center">
