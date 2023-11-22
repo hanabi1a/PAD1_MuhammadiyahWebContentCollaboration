@@ -48,12 +48,12 @@ class loginregis extends Controller
 
         $path = null;
 
-        if ($request->hasFile('photo')) {
-            $filenameWithExt = $request->file('photo')->getClientOriginalName();
+        if ($request->hasFile('foto_kta_kta')) {
+            $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('photo')->getClientOriginalExtension();
+            $extension = $request->file('foto_kta')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            $path = $request->file('photo')->storeAs('public/photos', $fileNameToStore);
+            $path = $request->file('foto_kta')->storeAs('public/photos', $fileNameToStore);
         }
 
     User::create([
@@ -87,28 +87,33 @@ class loginregis extends Controller
    } 
 
    public function authenticate(Request $request)
-   {
-    // dd($request->all()); 
-            $credentials = $request->validate([
-                'username' => 'required',
-                'password' => 'required',
-            ]);
-    
-            // dd(Auth::attempt($credentials)); 
-         if(Auth::attempt($credentials)){
-              $request->session()->regenerate();
-              return redirect()->route('homepage');
-         }
-         return back()->withErrors([
-              'username' => 'The provided credentials do not match our records',
-         ])->onlyInput('username');
-   }
+    {
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            if ($user->username === 'admint') {
+                return view('admin.dashboard'); // Ganti 'admin.dashboard' dengan nama view untuk dashboard admin
+            }
+
+            return redirect()->route('homepage'); // Ganti 'homepage' dengan rute untuk halaman beranda umum
+        }
+
+        return back()->withErrors([
+            'username' => 'The provided credentials do not match our records',
+        ])->onlyInput('username');
+    }
+
 
     public function homepage()
     {   
         if (Auth::check()) {
             $user = Auth::user(); 
-            return view('user.homepage', compact('user'));
+            return view('user.homepage2', compact('user'));
         }
         return redirect()->route('login')
         ->withErrors(['You are not allowed to access',])->onlyInput('email');

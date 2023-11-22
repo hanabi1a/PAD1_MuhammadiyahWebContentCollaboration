@@ -30,16 +30,26 @@ class AuthController extends Controller
             'Username' => 'required',
             'Password' => 'required',
         ]);
-
+    
         // Coba melakukan proses login
         if (Auth::attempt(['Username' => $request->input('Username'), 'password' => $request->input('Password')])) {
-            // Jika login berhasil
+            // Periksa jika pengguna adalah admin
+            $user = Auth::user();
+            if ($user->Username === 'admint') {
+                // Jika pengguna adalah admin, arahkan ke view admin.dashboard
+                return redirect('/adminhome');
+            }
+            
+            // Jika bukan admin, arahkan ke halaman beranda
             return redirect('/beranda');
         }
-
+    
         // Jika login gagal, arahkan kembali ke halaman login
         return redirect('/login')->with('loginError', 'Login gagal. Silakan coba lagi.');
     }
+
+   
+
 
     public function showRegistrationForm()
     {
@@ -92,6 +102,17 @@ public function beranda()
             return redirect('/login'); // Gantilah '/login' dengan rute login yang sesuai
         }
     }
+public function adminhome()
+    {
+        // Pastikan hanya pengguna yang sudah login yang dapat mengakses halaman beranda
+        if (auth()->check()) {
+            // Tampilkan halaman beranda
+            return view('admin.dashboard'); // Gantilah 'beranda' dengan nama tampilan yang sesuai
+        } else {
+            // Jika pengguna belum login, arahkan kembali ke halaman login
+            return redirect('/login'); // Gantilah '/login' dengan rute login yang sesuai
+        }
+    }
 
     public function authenticate(Request $request){
         $credentials = $request->validate([
@@ -108,5 +129,9 @@ public function beranda()
           'username' => 'The provided credentials do not match our records',
      ])->onlyInput('username');
 }
+
+
+
+
 
 }
