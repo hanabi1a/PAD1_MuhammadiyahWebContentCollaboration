@@ -20,7 +20,7 @@
                                         <img src="assets_admin/assets/img/three-dots.svg" alt="Menu Icon">
                                     </div>
                                 </div>
-                                <img src="assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
+                                <img src="{{ asset('storage/'.$kajian->foto_kajian) }}" alt="" class="img-fluid">
                             </div>
                             <div class="desc-kajian col-md-12">
                                 <div class="mb-3 mt-2">
@@ -29,7 +29,7 @@
                                             <strong>Judul :</strong>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>Muktamar Muhammadiyah</p>
+                                            <p>{{$kajian->judul_kajian}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                             <strong>Pemateri :</strong>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>Drs. H. Marpuji Ali, M.SI </p>
+                                            <p>{{$kajian->pemateri}} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                                             <strong>Tanggal :</strong>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>Senin, 17 Oktober 2022</p>
+                                            <p>{{$kajian->tanggal_postingan}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -72,12 +72,7 @@
                                             <strong>Deskripsi:</strong>
                                         </div>
                                         <div class="col-md-12">
-                                            <p>Pengajian Milad Universitas Muhammadiyah Kudus ke-24 dan Muktamar
-                                                Muhammadiyah ‘ Aisyiyah ke-48. Pengajian Milad Universitas Muhammadiyah
-                                                Kudus ke-24 dan Muktamar Muhammadiyah ‘ Aisyiyah ke-48. Pengajian Milad
-                                                Universitas Muhammadiyah Kudus ke-24 dan Muktamar Muhammadiyah ‘
-                                                Aisyiyah ke-48. Pengajian Milad Universitas Muhammadiyah Kudus ke-24 dan
-                                                Muktamar Muhammadiyah ‘ Aisyiyah ke-48. </p>
+                                            <p>{{$kajian->deskripsi_kajian}} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -91,9 +86,12 @@
                     <div class="col-md-5 order-md-2">
                         <div class="edit-down-share row">
                             <div class="col-md-3">
-                                <img src="assets_admin/assets/img/pencil-square.svg" alt="Menu Icon">
-                                <p class="text-editdownshare">Edit</p>
+                                <a href="{{ route('edit_kajian', ['id' => $kajian->id]) }}">
+                                    <img src="assets_admin/assets/img/pencil-square.svg" alt="Menu Icon">
+                                    <p class="text-editdownshare">Edit</p>
+                                </a>
                             </div>
+
                             <div class="col-md-3">
                                 <img src="assets_admin/assets/img/download.svg" alt="Menu Icon">
                                 <p class="text-editdownshare">Download</p>

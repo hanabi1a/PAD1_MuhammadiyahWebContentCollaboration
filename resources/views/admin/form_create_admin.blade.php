@@ -18,18 +18,20 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="form-validation">
-                    <form class="form-valide" action="{{ route('storekajian') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                    <form class="form-valide" action="{{ route('storekajian') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
                         <!-- Judul -->
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val_judul">Judul
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default @error('judul') is-invalid @enderror"" id="val_judul" name="val_judul"
-                                    placeholder="Judul">
-                                    @if ($errors->has('name'))
-                                        <span class="text-danger">{{ $errors->first('judul') }}</span>
-                                    @endif
+                                <input type="text"
+                                    class="form-control input-default @error('judul') is-invalid @enderror"" id="
+                                    val_judul" name="val_judul" placeholder="Judul">
+                                @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('judul') }}</span>
+                                @endif
                             </div>
                         </div>
 
@@ -43,7 +45,7 @@
                             </div>
                         </div>
 
-                        <!-- Tempat --> 
+                        <!-- Tempat -->
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-tempat">Tempat
                             </label>
@@ -56,14 +58,12 @@
                         <!-- Tanggal -->
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val_tanggal">Tanggal</label>
-                            <div class="col-lg-6" style="display: flex; align-items: center;">
-                                <input type="text" class="form-control input-default" id="val-tanggal"
-                                    name="val_tanggal" placeholder="Tanggal">
-                                <button type="button" id="kalender-button">
-                                    <i class="fa fa-calendar menu-icon" style="color: white;"></i>
-                                </button>
+                            <div class="col-lg-6">
+                                <input type="date" class="form-control input-default" id="val-tanggal"
+                                    name="val_tanggal">
                             </div>
                         </div>
+
 
                         <!-- Deskripsi -->
                         <div class="form-group row">
@@ -80,7 +80,8 @@
                             <div class="col-lg-6">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="file-input" name="val_foto_kajian">
+                                        <input type="file" class="custom-file-input" id="file-input"
+                                            name="val_foto_kajian">
                                         <label class="custom-file-label" for="file-input">Choose
                                             file</label>
                                     </div>
@@ -100,7 +101,7 @@
                             <div class="col-lg-6">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="file-input">
+                                        <input type="file" class="custom-file-input" id="file-input" name="val_dokumen">
                                         <label class="custom-file-label" for="file-input">Choose
                                             file</label>
                                     </div>

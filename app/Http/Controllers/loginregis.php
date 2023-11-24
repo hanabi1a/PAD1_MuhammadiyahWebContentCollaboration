@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\historylogin;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
@@ -86,27 +87,56 @@ class loginregis extends Controller
          return view('user.sign_in');
    } 
 
-   public function authenticate(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+//    public function authenticate(Request $request)
+//     {
+//         $credentials = $request->validate([
+//             'username' => 'required',
+//             'password' => 'required',
+//         ]);
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+//         if (Auth::attempt($credentials)) {
+//             $user = Auth::user();
 
-            if ($user->username === 'admint') {
-                return view('admin.dashboard'); // Ganti 'admin.dashboard' dengan nama view untuk dashboard admin
-            }
+//             if ($user->username === 'admint') {
+//                 return view('admin.dashboard'); // Ganti 'admin.dashboard' dengan nama view untuk dashboard admin
+//             }
 
-            return redirect()->route('homepage'); // Ganti 'homepage' dengan rute untuk halaman beranda umum
+//             return redirect()->route('homepage'); // Ganti 'homepage' dengan rute untuk halaman beranda umum
+//         }
+
+//         return back()->withErrors([
+//             'username' => 'The provided credentials do not match our records',
+//         ])->onlyInput('username');
+//     }
+public function authenticate(Request $request)
+{
+    $credentials = $request->validate([
+        'username' => 'required',
+        'password' => 'required',
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $user = Auth::user();
+
+        // Menyimpan history login setelah autentikasi berhasil
+        $historyLogin = new historylogin();
+        $historyLogin->user_id = $user->id;
+        $historyLogin->timestamp = now(); // Gunakan waktu sekarang
+        $historyLogin->user_agent = $request->header('User-Agent');
+        $historyLogin->save();
+
+        if ($user->username === 'admint') {
+            return view('admin.dashboard'); // Ganti 'admin.dashboard' dengan nama view untuk dashboard admin
         }
 
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records',
-        ])->onlyInput('username');
+        return redirect()->route('homepage'); // Ganti 'homepage' dengan rute untuk halaman beranda umum
     }
+
+    return back()->withErrors([
+        'username' => 'The provided credentials do not match our records',
+    ])->onlyInput('username');
+}
+
 
 
     public function homepage()

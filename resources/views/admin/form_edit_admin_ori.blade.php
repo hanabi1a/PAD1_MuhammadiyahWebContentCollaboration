@@ -14,8 +14,9 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="form-validation">
-                    <form class="form-valide" action="#" method="post">
-                        <div class="form-group row">
+                    <form class="form-valide" action="{{ route('update_kajian', ['id' => $kajian->id]) }}" method="post">
+                    @csrf   
+                    <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-judul">Judul
                             </label>
                             <div class="col-lg-6">
@@ -40,13 +41,10 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label" for="val-tanggal">Tanggal</label>
-                            <div class="col-lg-6" style="display: flex; align-items: center;">
-                                <input type="text" class="form-control input-default" id="val-tanggal"
-                                    name="val-tanggal" placeholder="Tanggal">
-                                <button type="button" id="kalender-button">
-                                    <i class="fa fa-calendar menu-icon" style="color: white;"></i>
-                                </button>
+                            <label class="col-lg-4 col-form-label" for="val_tanggal">Tanggal</label>
+                            <div class="col-lg-6">
+                                <input type="date" class="form-control input-default" id="val-tanggal"
+                                    name="val_tanggal">
                             </div>
                         </div>
 

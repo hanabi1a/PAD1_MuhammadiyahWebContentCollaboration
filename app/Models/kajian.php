@@ -14,6 +14,7 @@ class kajian extends Model
         'judul_kajian',
         'pemateri',
         'lokasi_kajian',
+        'id_user',
         'tanggal_postingan',
         'deskripsi_kajian',
         'foto_kajian',
