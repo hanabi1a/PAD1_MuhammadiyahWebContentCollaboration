@@ -9,17 +9,14 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="assets_admin/css/styles.css" rel="stylesheet" />
+    <link href="{{ asset('vendor/simple-datatables/style.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets_admin/css/styles.css') }}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/css/pikaday.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.15.0/font/bootstrap-icons.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/pikaday/1.8.0/css/pikaday.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_admin/bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <link rel="stylesheet" href="assets_admin\css\css_detail_kajian\style.css">
+    <link rel="stylesheet" href="{{ asset('assets_admin/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_admin/css/css_detail_kajian/style.css') }}">
 </head>
 
 <body class="sb-nav-fixed">
@@ -79,6 +76,18 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            <a class="nav-link" href="#"
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </div>Log Out
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+                            </a>
+                            @csrf
+                        </form>
                     </div>
                 </div>
             </nav>
@@ -87,23 +96,21 @@
             @yield('content')
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script src="assets_admin/js/scripts.js"></script>
+    <script src="{{ asset('assets_admin/bootstrap-5.3.2-dist/js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets_admin/assets/demo/chart-area-demo.js"></script>
-    <script src="assets_admin/assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-        crossorigin="anonymous"></script>
-    <script src="assets_admin\js\date-picker\datepicker.js"></script>
-    <script src="assets_admin/js/upload/drag-and-drop.js"></script>
-    <script src="assets_admin/plugins/common/common.min.js"></script>
-    <script src="assets_admin/plugins/summernote/dist/summernote.min.js"></script>
-    <script src="assets_admin/plugins/summernote/dist/summernote-init.js"></script>
+    <script src="{{ asset('assets_admin/assets/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('assets_admin/assets/demo/chart-bar-demo.js') }}"></script>
+    <script src="{{ asset('vendor/simple-datatables/simple-datatables.min.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets_admin/js/date-picker/datepicker.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/upload/drag-and-drop.js') }}"></script>
+    <script src="{{ asset('assets_admin/plugins/common/common.min.js') }}"></script>
+    <script src="{{ asset('assets_admin/plugins/summernote/dist/summernote.min.js') }}"></script>
+    <script src="{{ asset('assets_admin/plugins/summernote/dist/summernote-init.js') }}"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/pikaday.min.js"></script>
-    <script src="assets_admin\js\datatables-simple-demo.js"></script>
+    <script src="{{ asset('vendor/pikaday/1.8.0/pikaday.min.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/datatables-simple-demo.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <!-- FILTER TANGGAL HISTORY -->

@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="row">
+        
                 <div class="col-md-2">
                     <img src="assets_admin/assets/img/user.png" alt="" class="img-fluid" width="200">
                 </div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        
             <br>
             <div class="card mb-4 rounded-3 shadow-sm">
                 <div class="card-header py-3">

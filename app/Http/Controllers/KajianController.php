@@ -7,10 +7,12 @@ use App\Models\Kajian;
 
 class KajianController extends Controller
 {
-    public function create(){
+    public function create()
+    {
         return view('admin.form_create_admin');
     }
-    public function storekajian(Request $request){
+    public function storekajian(Request $request)
+    {
         // dd($request->all());
 
         $request->validate([
@@ -22,14 +24,14 @@ class KajianController extends Controller
             'val_foto_kajian' => 'image|nullable|max:1999'
         ]);
 
-        if($request->hasFile('val_foto_kajian')){
+        if ($request->hasFile('val_foto_kajian')) {
             $filenameWithExt = $request->file('val_foto_kajian')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('val_foto_kajian')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             $path = $request->file('val_foto_kajian')->storeAs('storage/photos/', $fileNameToStore);
-        }else{
-           //
+        } else {
+            //
         }
 
         Kajian::create([
@@ -44,7 +46,7 @@ class KajianController extends Controller
 
         $request->session()->regenerate();
         return redirect()->route('dashboard')
-        ->withSuccess("Thanks! data inserted successfully");
+            ->withSuccess("Thanks! data inserted successfully");
     }
 
     public function deleteKajian($id)
@@ -62,21 +64,23 @@ class KajianController extends Controller
     }
 
 
-    
 
-    public function kajian(){
-        return view('user.kajian');
-        
+
+    public function kajian()
+    {
+        return view('admin.detail_kajian_ori');
+
     }
 
-    public function data_kajian(){
+    public function data_kajian()
+    {
 
         $dataKajian = Kajian::all(); // Retrieve all kajian data from the database
 
         return view('admin.data_kajian', compact('dataKajian'));
     }
 
-    
+
 
 
 }
