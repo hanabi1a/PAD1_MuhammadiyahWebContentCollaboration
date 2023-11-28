@@ -7,7 +7,7 @@
         <ol class="breadcrumb mt-2">
             <li class="text_page breadcrumb"><a href="dashboard">Dashboard /</a><a href="history_login"
                     class="active_title">
-                     History Login</a>
+                    History Login</a>
             </li>
         </ol>
         <div class="d-flex align-items-center">
@@ -29,88 +29,24 @@
                 <table id="datatablesSimple" class="table">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            
                             <th>User ID</th>
                             <th>Username</th>
                             <th>Waktu/Tanggal</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>User ID</th>
-                            <th>Username</th>
-                            <th>Waktu/Tanggal</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
+                        @foreach($historis as $hl)
                         <tr>
-                            <td>1</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/14/2023</td>
+                            
+                            <td>{{ $hl->user_id }}</td>
+                            <td>{{ $hl->user->username }}</td>
+                            <td>{{ $hl->timestamp }}</td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/14/2023</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/14/2023</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/14/2023</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/15/2023</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/16/2023</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/17/2023</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/18/2023</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/19/2023</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/20/2023</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>02/14/2023</td>
-                        </tr>
+                        @endforeach
                     </tbody>
+
+
                 </table>
             </div>
         </div>

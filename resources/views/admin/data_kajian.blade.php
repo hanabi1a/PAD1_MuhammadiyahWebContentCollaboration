@@ -34,7 +34,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <img src="{{ asset('storage/'.$kajian->foto_kajian) }}" alt="Profile Image" width="150">
+                                <img src="{{ asset('path/ke/gambar/'.$kajian->gambar) }}" alt="Profile Image"
+                                    width="150">
                             </td>
                             <td>{{ $kajian->id_user }}</td>
                             <td>{{ $kajian->pemateri }}</td>

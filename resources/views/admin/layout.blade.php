@@ -27,7 +27,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading"></div>
-                        <a class="nav-link" href="admin_dashboard">
+                        <a class="nav-link" href="{{ route('dashboard')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-home"></i>
                             </div>Dashboard
@@ -35,7 +35,7 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <a class="nav-link" href="data_kajian">
+                        <a class="nav-link" href="{{ route('data_kajian')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-columns"></i>
                             </div>Data Kajian
@@ -43,7 +43,7 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <a class="nav-link" href="data_user">
+                        <a class="nav-link" href="{{ route('data_user')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-user"></i>
                             </div>Data User
@@ -52,7 +52,7 @@
                             </div>
                         </a>
                         </a>
-                        <a class="nav-link" href="history_login">
+                        <a class="nav-link" href="{{ route('history_login')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-bar-chart"></i>
                             </div>History Login
