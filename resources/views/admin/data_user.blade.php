@@ -41,7 +41,7 @@
                             <td>{{ $user->username }}</td>
                             <td class="text-center">
                                 <form action="{{ route('deleteUser', $user->id) }}" method="post">
-                                    <a href="user/kajian" class="text-info me-2" title="View"><i
+                                    <a href="{{ route('detail_user', $user->id) }}" class="text-info me-2" title="View"><i
                                             class="fa fa-eye fa-lg"></i></a>
                                     @csrf
                                     @method('delete')
