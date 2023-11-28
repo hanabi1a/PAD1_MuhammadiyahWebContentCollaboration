@@ -2,8 +2,8 @@
 
 @section('content')
 <main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-5">Edit Kajian</h1>
+    <div class="container-fluid px-5 px-5 mt-sm-2 mb-sm-2">
+        <h1 class="mt-2">Edit Kajian</h1>
         <ol class="breadcrumb mt-2">
             <li class="text_page breadcrumb"><a href="dashboard">Dashboard / </a>
                 <a href="data_kajian" class="active_title">
@@ -14,9 +14,10 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="form-validation">
-                    <form class="form-valide" action="{{ route('update_kajian', ['id' => $kajian->id]) }}" method="post">
-                    @csrf   
-                    <div class="form-group row">
+                    <form class="form-valide" action="{{ route('update_kajian', ['id' => $kajian->id]) }}"
+                        method="post">
+                        @csrf
+                        <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-judul">Judul
                             </label>
                             <div class="col-lg-6">
@@ -96,8 +97,8 @@
 
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label"></label>
-                            <div class="col-lg-6">
-                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            <div class="col-md-6 mt-2">
+                                <button type="submit" class="btn-green-submit btn-block">Submit</button>
                             </div>
                         </div>
                     </form>

@@ -2,8 +2,8 @@
 
 @section('content')
 <main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-5">History Upload</h1>
+    <div class="container-fluid px-5 px-5 mt-sm-2 mb-sm-2">
+        <h1 class="mt-2">History Upload</h1>
         <ol class="breadcrumb mt-2">
             <li class="text_page breadcrumb"><a href="dashboard">Dashboard /</a><a href="history_upload"
                     class="active_title">

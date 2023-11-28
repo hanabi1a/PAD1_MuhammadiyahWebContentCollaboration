@@ -205,7 +205,7 @@ body {
     line-height: var(--bs-body-line-height);
     color: var(--bs-body-color);
     text-align: var(--bs-body-text-align);
-    background-color: #fafafa;
+    background-color: #eeeeee;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -789,8 +789,7 @@ progress {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     width: 100%;
-    padding-right: calc(var(--bs-gutter-x) * .5);
-    padding-left: calc(var(--bs-gutter-x) * .5);
+    padding: 35px;
     margin-right: auto;
     margin-left: auto
 }
@@ -1343,7 +1342,8 @@ progress {
 
     .col-md-1 {
         flex: 0 0 auto;
-        width: 8.33333333%
+        width: 8.33333333%;
+        margin-bottom: 0;
     }
 
     .col-md-2 {
@@ -1393,7 +1393,8 @@ progress {
 
     .col-md-11 {
         flex: 0 0 auto;
-        width: 91.66666667%
+        width: 91.66666667%;
+        margin-bottom: 0;
     }
 
     .col-md-12 {
@@ -5000,8 +5001,6 @@ fieldset:disabled .btn {
     --bs-card-subtitle-color: ;
     --bs-card-border-width: var(--bs-border-width);
     --bs-card-border-radius: var(--bs-border-radius);
-    --bs-card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Tambahkan box shadow di sini */
     --bs-card-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
     --bs-card-cap-padding-y: 0.5rem;
     --bs-card-cap-padding-x: 1rem;
@@ -5024,7 +5023,7 @@ fieldset:disabled .btn {
     border: var(--bs-card-border-width) solid var(--bs-card-border-color);
     border-radius: var(--bs-card-border-radius);
     border: none;
-    --bs-card-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    --bs-card-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     box-shadow: var(--bs-card-box-shadow);
 }
 

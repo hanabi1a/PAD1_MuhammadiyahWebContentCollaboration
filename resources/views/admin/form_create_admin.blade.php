@@ -2,8 +2,8 @@
 
 @section('content')
 <main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-5">Create Kajian</h1>
+    <div class="container-fluid px-5 px-5 mt-sm-2 mb-sm-2">
+        <h1 class="mt-2">Create Kajian</h1>
         <ol class="breadcrumb mt-2">
             <li class="text_page breadcrumb"><a href="dashboard">Dashboard / </a>
                 <a href="data_kajian" class="active_title">
@@ -118,8 +118,8 @@
 
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label"></label>
-                            <div class="col-lg-6">
-                                <input type="submit" class="btn btn-primary btn-block" value="Submit">
+                            <div class="col-md-6 mt-2">
+                                <button type="submit" class="btn-green-submit btn-block">Submit</button>
                             </div>
                         </div>
                     </form>

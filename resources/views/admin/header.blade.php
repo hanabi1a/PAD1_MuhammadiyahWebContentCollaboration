@@ -9,10 +9,6 @@
         <li class="nav-item dropdown">
             <a class="nav-link" href="#" role="button"
                 aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-            <!-- <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"> -->
-            <!-- <form action="{{ route('logout') }}" method="POST">
-                <button type="submit">Logout</button>
-            </form> -->
             </ul>
         </li>
     </ul>

@@ -1,10 +1,10 @@
 @extends('admin.layout')
 @section('content')
 <main>
-    <div class="container-fluid px-4"> 
-        <h1 class="mt-5">Main Dashboard</h1> 
+    <div class="container-fluid px-5 px-5 mt-sm-2 mb-sm-2">
+        <h1 class="mt-2">Main Dashboard</h1>
         <ol class="breadcrumb mt-2">
-        <li class="text_page"><a href="dashboard" class="active_title">Dashboard</a></li>
+            <li class="text_page"><a href="dashboard" class="active_title">Dashboard</a></li>
         </ol>
         <div class="row mt-4">
             <div class="col-xl-3 col-md-6 mt-3">

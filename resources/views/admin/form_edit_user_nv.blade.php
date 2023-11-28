@@ -2,8 +2,8 @@
 
 @section('content')
 <main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-5">Edit Kajian</h1>
+    <div class="container-fluid px-5 px-5 mt-sm-2 mb-sm-2">
+        <h1 class="mt-2">Edit Kajian</h1>
         <ol class="breadcrumb mt-2">
             <li class="text_page breadcrumb"><a href="dashboard">Dashboard / </a>
                 <a href="data_kajian" class="active_title">
@@ -100,24 +100,16 @@
                             <label class="col-lg-4 col-form-label" for="val-pemateri">Commit Message
                             </label>
                             <div class="col-lg-6">
-                                <div class="commit">
-                                    <p class="commit-message"><strong>Commit Message</strong></p>
-                                    <p>Diubah bagian</p>
-                                    <li>
-                                        <p>Judul</p>
-                                    </li>
-                                    <li>
-                                        <p>Narasi paragraf 2</p>
-                                    </li>
-                                </div>
+                                <textarea class="form-control" id="val-commit-message" name="val-commit-message"
+                                    placeholder="Commit Message"></textarea>
                             </div>
                         </div>
 
 
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label"></label>
-                            <div class="col-lg-6">
-                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            <div class="col-md-6 mt-2">
+                                <button type="submit" class="btn-green-submit btn-block">Submit</button>
                             </div>
                         </div>
                     </form>

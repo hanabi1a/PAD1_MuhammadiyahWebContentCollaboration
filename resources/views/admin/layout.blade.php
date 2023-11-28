@@ -14,9 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/pikaday/1.8.0/css/pikaday.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_admin/bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_admin\bootstrap-5.3.2-dist\css\bootstrap-grid.css.map') }}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="{{ asset('assets_admin/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets_admin/css/css_detail_kajian/style.css') }}">
 </head>
 
 <body class="sb-nav-fixed">
@@ -98,7 +98,11 @@
     </div>
     <script src="{{ asset('assets_admin/bootstrap-5.3.2-dist/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('assets_admin/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets_admin\js\datatables-simple-demo.js') }}"></script>
+    <script src="{{ asset('assets_admin\js\data-table\datatables.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
     <script src="{{ asset('assets_admin/assets/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('assets_admin/assets/demo/chart-bar-demo.js') }}"></script>
     <script src="{{ asset('vendor/simple-datatables/simple-datatables.min.js') }}" crossorigin="anonymous"></script>
@@ -110,7 +114,6 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="{{ asset('vendor/pikaday/1.8.0/pikaday.min.js') }}"></script>
-    <script src="{{ asset('assets_admin/js/datatables-simple-demo.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <!-- FILTER TANGGAL HISTORY -->

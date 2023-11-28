@@ -2,8 +2,8 @@
 
 @section('content')
 <main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-5">History Login</h1>
+    <div class="container-fluid px-5 px-5 mt-sm-2 mb-sm-2">
+        <h1 class="mt-2">History Login</h1>
         <ol class="breadcrumb mt-2">
             <li class="text_page breadcrumb"><a href="dashboard">Dashboard /</a><a href="history_login"
                     class="active_title">
@@ -29,21 +29,79 @@
                 <table id="datatablesSimple" class="table">
                     <thead>
                         <tr>
-                            
+
                             <th>User ID</th>
                             <th>Username</th>
                             <th>Waktu/Tanggal</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($historis as $hl)
                         <tr>
-                            
-                            <td>{{ $hl->user_id }}</td>
-                            <td>{{ $hl->user->username }}</td>
-                            <td>{{ $hl->timestamp }}</td>
+                            <td>1</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
                         </tr>
-                        @endforeach
+                        <tr>
+                            <td>2</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>492345</td>
+                            <td>Aisa Selvira</td>
+                            <td>14/02/2023</td>
+                        </tr>
                     </tbody>
 
 
