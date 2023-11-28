@@ -65,6 +65,13 @@ class admincon extends Controller
         // return view('admin.history_upload', ['historis' => $historis]);
         return view('admin.history_upload');
     }
+
+    public function showDetailUser($id)
+    {
+        $user = User::find($id);
+    
+        return view('admin.detail_akun_user', ['user' => $user]);
+    }
     
 
 
