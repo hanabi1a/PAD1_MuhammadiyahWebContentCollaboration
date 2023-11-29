@@ -174,7 +174,7 @@ Route::controller(admincon::class)->group(function () {
     Route::get('/history_login', 'showHistoryLogin')->name('history_login');
     Route::get('/history_download', 'showHistoryDownload')->name('history_download');
     Route::get('/history_upload', 'showHistoryUpload')->name('history_upload');
-    
+    Route::get('/detailUser/{id}', 'showDetailUser')->name('showDetailUser');
 
 });
 
