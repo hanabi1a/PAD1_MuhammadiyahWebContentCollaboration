@@ -1,53 +1,97 @@
-// Fungsi untuk mencegah default drag-and-drop
-function preventDefault(e) {
+// For Photo
+function preventDefaultFoto(e) {
     e.preventDefault();
     e.stopPropagation();
 }
 
-// Menambahkan event listener ke elemen drop area
-const dropArea = document.getElementById("drop-area");
-dropArea.addEventListener("dragenter", function (e) {
-    preventDefault(e);
-    dropArea.classList.add("drag-over");
+const dropAreaFoto = document.getElementById("drop-area-foto");
+dropAreaFoto.addEventListener("dragenter", function (e) {
+    preventDefaultFoto(e);
+    dropAreaFoto.classList.add("drag-over");
 }, false);
 
-dropArea.addEventListener("dragleave", function (e) {
-    preventDefault(e);
-    dropArea.classList.remove("drag-over");
+dropAreaFoto.addEventListener("dragleave", function (e) {
+    preventDefaultFoto(e);
+    dropAreaFoto.classList.remove("drag-over");
 }, false);
 
-dropArea.addEventListener("dragover", preventDefault, false);
+dropAreaFoto.addEventListener("dragover", preventDefaultFoto, false);
 
-// Menangani drop event
-dropArea.addEventListener("drop", function (e) {
-    preventDefault(e);
+dropAreaFoto.addEventListener("drop", function (e) {
+    preventDefaultFoto(e);
 
-    const fileInput = document.getElementById("file-input");
-    const files = e.dataTransfer.files;
+    const fileInputFoto = document.getElementById("foto-input");
+    const filesFoto = e.dataTransfer.files;
 
-    if (files.length > 0) {
-        fileInput.files = files;
-        updateFileLabel(files[0].name);
-        hideDropArea();
+    if (filesFoto.length > 0) {
+        fileInputFoto.files = filesFoto;
+        updateFileLabelFoto(filesFoto[0].name);
+        hideDropAreaFoto();
     }
 }, false);
 
-// Mengubah label file ketika file dipilih
-function updateFileLabel(fileName) {
-    const fileLabel = document.querySelector(".custom-file-label");
-    fileLabel.textContent = fileName;
+function updateFileLabelFoto(fileName) {
+    const fileLabelFoto = document.querySelector(".custom-file-label-foto");
+    fileLabelFoto.textContent = fileName;
 }
 
-// Sembunyikan elemen drop area
-function hideDropArea() {
-    const dropArea = document.getElementById("drop-area");
-    dropArea.classList.add("hidden");
+function hideDropAreaFoto() {
+    const dropAreaFoto = document.getElementById("drop-area-foto");
+    dropAreaFoto.classList.add("hidden");
 }
 
-// Event listener untuk memantau perubahan pada input file
-document.getElementById("file-input").addEventListener("change", function() {
-    const fileInput = document.getElementById("file-input");
-    const fileName = fileInput.files[0].name;
-    updateFileLabel(fileName);
-    hideDropArea();
+document.getElementById("foto-input").addEventListener("change", function () {
+    const fileInputFoto = document.getElementById("foto-input");
+    const fileNameFoto = fileInputFoto.files[0].name;
+    updateFileLabelFoto(fileNameFoto);
+    hideDropAreaFoto();
+});
+
+// For Document
+function preventDefaultDokumen(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+const dropAreaDokumen = document.getElementById("drop-area-dokumen");
+dropAreaDokumen.addEventListener("dragenter", function (e) {
+    preventDefaultDokumen(e);
+    dropAreaDokumen.classList.add("drag-over");
+}, false);
+
+dropAreaDokumen.addEventListener("dragleave", function (e) {
+    preventDefaultDokumen(e);
+    dropAreaDokumen.classList.remove("drag-over");
+}, false);
+
+dropAreaDokumen.addEventListener("dragover", preventDefaultDokumen, false);
+
+dropAreaDokumen.addEventListener("drop", function (e) {
+    preventDefaultDokumen(e);
+
+    const fileInputDokumen = document.getElementById("dokumen-input");
+    const filesDokumen = e.dataTransfer.files;
+
+    if (filesDokumen.length > 0) {
+        fileInputDokumen.files = filesDokumen;
+        updateFileLabelDokumen(filesDokumen[0].name);
+        hideDropAreaDokumen();
+    }
+}, false);
+
+function updateFileLabelDokumen(fileName) {
+    const fileLabelDokumen = document.querySelector(".custom-file-label-dokumen");
+    fileLabelDokumen.textContent = fileName;
+}
+
+function hideDropAreaDokumen() {
+    const dropAreaDokumen = document.getElementById("drop-area-dokumen");
+    dropAreaDokumen.classList.add("hidden");
+}
+
+document.getElementById("dokumen-input").addEventListener("change", function () {
+    const fileInputDokumen = document.getElementById("dokumen-input");
+    const fileNameDokumen = fileInputDokumen.files[0].name;
+    updateFileLabelDokumen(fileNameDokumen);
+    hideDropAreaDokumen();
 });

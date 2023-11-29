@@ -88,22 +88,24 @@
                         <div class="col-md-5 order-md-2">
                             <div class="edit-down-share row">
                                 <div class="col-md-3">
-                                    <button class="btn d-flex flex-column align-items-center">
+                                    <a href="form_edit_user_upload" class="btn d-flex flex-column align-items-center">
                                         <img src="assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
                                         <span class="text-editdownshare">Edit</span>
-                                    </button>
+                                    </a>
                                 </div>
+
                                 <div class="col-md-3">
-                                    <button class="btn d-flex flex-column align-items-center">
+                                    <a href="your_download_url" class="btn d-flex flex-column align-items-center">
                                         <img src="assets_admin/assets/img/download.svg" alt="Download Icon">
                                         <span class="text-editdownshare">Download</span>
-                                    </button>
+                                    </a>
                                 </div>
+
                                 <div class="col-md-3">
-                                    <button class="btn d-flex flex-column align-items-center">
+                                    <a href="your_share_url" class="btn d-flex flex-column align-items-center">
                                         <img src="assets_admin/assets/img/share.svg" alt="Share Icon">
                                         <span class="text-editdownshare">Share</span>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

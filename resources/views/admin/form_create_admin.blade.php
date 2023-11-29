@@ -75,45 +75,48 @@
                         </div>
 
 
+                        <!-- Photo Section -->
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-foto">Foto</label>
                             <div class="col-lg-6">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="file-input"
-                                            name="val_foto_kajian">
-                                        <label class="custom-file-label" for="file-input">Choose
+                                        <input type="file" class="custom-file-input" id="foto-input"
+                                            name="val_foto_kajian" accept=".png, .jpg, .jpeg">
+                                        <label class="custom-file-label-foto custom-file-label" for="foto-input">Choose
                                             file</label>
                                     </div>
                                 </div>
-                                <p class="text-upload-foto">Pastikan untuk mengunggah foto Anda dalam salah
-                                    satu format berikut: PNG, JPG, JPEG.</p>
-                                <div class="drop-area" id="drop-area">
+                                <p class="text-upload-foto">Pastikan untuk mengunggah foto Anda dalam salah satu format:
+                                    PNG, JPG, JPEG.</p>
+                                <div class="drop-area" id="drop-area-foto">
                                     <i class="fa fa-cloud" style="color: #04454D;"></i><br>
                                     Drag & Drop Gambar Disini
                                 </div>
                             </div>
                         </div>
 
-
+                        <!-- Document Section -->
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label" for="val-tanggal">File</label>
+                            <label class="col-lg-4 col-form-label" for="val-dokumen">File</label>
                             <div class="col-lg-6">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="file-input" name="val_dokumen">
-                                        <label class="custom-file-label" for="file-input">Choose
-                                            file</label>
+                                        <input type="file" class="custom-file-input" id="dokumen-input"
+                                            name="val_dokumen" accept=".pdf, .doc, .docx">
+                                        <label class="custom-file-label-dokumen custom-file-label"
+                                            for="dokumen-input">Choose file</label>
                                     </div>
                                 </div>
-                                <p class="text-upload-foto">Pastikan untuk mengunggah file Anda dalam salah
-                                    satu format berikut: PDF, DOC, DOCX.</p>
-                                <div class="drop-area" id="drop-area">
+                                <p class="text-upload-foto">Pastikan untuk mengunggah file Anda dalam salah satu format:
+                                    PDF, DOC, DOCX.</p>
+                                <div class="drop-area" id="drop-area-dokumen">
                                     <i class="fa fa-cloud" style="color: #04454D;"></i><br>
                                     Drag & Drop File Di Sini
                                 </div>
                             </div>
                         </div>
+
 
 
                         <div class="form-group row">

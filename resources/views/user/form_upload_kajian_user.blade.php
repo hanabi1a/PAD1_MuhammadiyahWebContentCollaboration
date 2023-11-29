@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('user.layout2')
 
 @section('content')
 <main>
@@ -14,9 +14,7 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="form-validation">
-                    <form class="form-valide" action="{{ route('update_kajian', ['id' => $kajian->id]) }}"
-                        method="post">
-                        @csrf
+                    <form class="form-valide" action="#" method="post">
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-judul">Judul
                             </label>
@@ -42,10 +40,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label" for="val_tanggal">Tanggal</label>
-                            <div class="col-lg-6">
-                                <input type="date" class="form-control input-default" id="val-tanggal"
-                                    name="val_tanggal">
+                            <label class="col-lg-4 col-form-label" for="val-tanggal">Tanggal</label>
+                            <div class="col-lg-6" style="display: flex; align-items: center;">
+                                <input type="text" class="form-control input-default" id="val-tanggal"
+                                    name="val-tanggal" placeholder="Tanggal">
+                                <button type="button" id="kalender-button">
+                                    <i class="fa fa-calendar menu-icon" style="color: white;"></i>
+                                </button>
                             </div>
                         </div>
 
@@ -98,6 +99,16 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-4 col-form-label" for="val-pemateri">Commit Message
+                            </label>
+                            <div class="col-lg-6">
+                                <textarea class="form-control" id="val-commit-message" name="val-commit-message"
+                                    placeholder="Commit Message"></textarea>
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label"></label>
