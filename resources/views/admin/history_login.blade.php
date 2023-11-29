@@ -36,72 +36,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($historis as $hs)
                         <tr>
-                            <td>1</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
+                            <td>{{ $hs->user_id }}</td>
+                            <td>{{ $hs->user->username }}</td>
+                            <td>{{ $hs->timestamp }}</td>
+                            <!-- Isi kolom lainnya -->
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>492345</td>
-                            <td>Aisa Selvira</td>
-                            <td>14/02/2023</td>
-                        </tr>
+                        @endforeach
                     </tbody>
 
 

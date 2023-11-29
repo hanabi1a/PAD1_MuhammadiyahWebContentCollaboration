@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\historylogin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\HistoryDownload;
 
 class admincon extends Controller
 {
@@ -50,12 +51,26 @@ class admincon extends Controller
     }
 
     public function showHistoryDownload()
-    {
-        // $historis = historylogin::with('user')->get();
-    
-        // return view('admin.history_download', ['historis' => $historis]);
-        return view('admin.history_download');
-    }
+        {
+            // // Logika unduhan kajian
+
+            // // Catat log download ke dalam history_downloads
+            // $historyDownload = new HistoryDownload();
+            // $historyDownload->user_id = auth()->id(); // ID pengguna yang sedang login
+            // $historyDownload->kajian_id = $kajianId; // ID kajian yang diunduh
+            // $historyDownload->downloaded_at = now(); // Waktu unduh
+            // $historyDownload->save();
+
+            // // Logika unduhan kajian lainnya dan pengalihan ke file unduhan
+
+            // // Ambil data history downloads setelah pencatatan
+            // $historyDownloads = HistoryDownload::with(['user', 'kajian'])->get();
+
+            // return view('admin.history_download', ['historyDownloads' => $historyDownloads]);
+            $historyDownloads = HistoryDownload::with(['user', 'kajian'])->get();
+
+            return view('admin.history_download', ['historyDownloads' => $historyDownloads]);
+        }
 
 
     public function showHistoryUpload()

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kajian;
+use App\Models\HistoryDownload;
+use Illuminate\Support\Facades\Storage;
 
 class KajianController extends Controller
 {
@@ -140,6 +142,7 @@ class KajianController extends Controller
 
     public function update_kajian(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'val_judul' => 'required',
             'val_pemateri' => 'required',
@@ -161,7 +164,7 @@ class KajianController extends Controller
             $pathFoto = $request->file('val_foto_kajian')->storeAs('storage/photos/', $fileNameToStore);
 
             // Hapus foto lama jika diperlukan
-            // Storage::delete($kajian->foto_kajian); // Pastikan path foto sudah benar di model
+            Storage::delete($kajian->foto_kajian); // Pastikan path foto sudah benar di model
 
             $kajian->foto_kajian = $pathFoto;
         }
@@ -175,7 +178,7 @@ class KajianController extends Controller
             $pathDokumen = $request->file('val_dokumen')->storeAs('storage/documents/', $fileNameToStore);
 
             // Hapus dokumen lama jika diperlukan
-            // Storage::delete($kajian->file_kajian); // Pastikan path dokumen sudah benar di model
+            Storage::delete($kajian->file_kajian); // Pastikan path dokumen sudah benar di model
 
             $kajian->file_kajian = $pathDokumen;
         }
@@ -190,6 +193,26 @@ class KajianController extends Controller
 
         return redirect()->route('data_kajian')->withSuccess("Data berhasil diperbarui");
     }
+
+    public function downloadKajian($kajianId)
+    {
+        // Logika unduhan kajian
+
+        // Catat log download ke dalam history_downloads
+        $historyDownload = new HistoryDownload();
+        $historyDownload->user_id = auth()->id(); // ID pengguna yang sedang login
+        $historyDownload->kajian_id = $kajianId; // ID kajian yang diunduh
+        $historyDownload->downloaded_at = now(); // Waktu unduh
+        $historyDownload->save();
+
+        // Logika unduhan kajian lainnya dan pengalihan ke file unduhan
+
+        // Ambil data history downloads setelah pencatatan
+        $historyDownloads = HistoryDownload::with(['user', 'kajian'])->get();
+
+        return view('admin.history_download', ['historyDownloads' => $historyDownloads]);
+    }
+
 
 
 }

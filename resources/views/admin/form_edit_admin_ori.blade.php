@@ -21,7 +21,7 @@
                             <label class="col-lg-4 col-form-label" for="val-judul">Judul
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" id="val-judul" name="val-judul"
+                                <input type="text" class="form-control input-default" id="val-judul" name="val_judul"
                                     placeholder="Judul">
                             </div>
                         </div>
@@ -29,22 +29,22 @@
                             <label class="col-lg-4 col-form-label" for="val-pemateri">Pemateri
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" id="val-pemateri"
-                                    name="val-pemateri" placeholder="Pemateri">
+                                <input type="text" class="form-control input-default" id="val_pemateri"
+                                    name="val_pemateri" placeholder="Pemateri">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-tempat">Tempat
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" id="val-tempat" name="val-tempat"
+                                <input type="text" class="form-control input-default" id="val-tempat" name="val_tempat"
                                     placeholder="Tempat">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val_tanggal">Tanggal</label>
                             <div class="col-lg-6">
-                                <input type="date" class="form-control input-default" id="val-tanggal"
+                                <input type="date" class="form-control input-default" id="val_tanggal"
                                     name="val_tanggal">
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-tanggal">Deskripsi</label>
                             <div class="col-lg-6">
-                                <textarea class="form-control" id="val-deskripsi" name="val-deskripsi"
+                                <textarea class="form-control" id="val-deskripsi" name="val_deskripsi"
                                     placeholder="Deskripsi"></textarea>
                             </div>
                         </div>

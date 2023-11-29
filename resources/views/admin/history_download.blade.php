@@ -48,94 +48,16 @@
                         </tr>
                     </tfoot>
                     <tbody>
+                        @foreach($historyDownloads as $index => $historyDownload)
                         <tr>
-                            <td>1</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $historyDownload->user->name }}</td>
+                            <td>{{ $historyDownload->user_id }}</td>
+                            <td>{{ $historyDownload->kajian->judul }}</td>
+                            <td>{{ $historyDownload->kajian_id }}</td>
+                            <td>{{ $historyDownload->downloaded_at }}</td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>14/02/2023</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

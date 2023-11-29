@@ -11,6 +11,7 @@ class kajian extends Model
     protected $table = 'kajian';
 
     protected $fillable = [
+        'id',
         'judul_kajian',
         'pemateri',
         'lokasi_kajian',
