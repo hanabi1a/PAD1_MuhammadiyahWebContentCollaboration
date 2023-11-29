@@ -16,14 +16,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="d-flex flex-row-reverse bd-highlight">
-                                <img src="assets/img/kajian/kajian-hero.png" alt="" class="img-fluid">
+                                <img src="/assets/img/kajian/kajian-hero.png" alt="" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-md-6 text-light mt-2 detail">
                             <div class="title">Muktamar Muhammadiyah</div>
                             <div class="subtitle">Drs. H. Marpuji Ali, M.SI </div>
                             <div class="subtitle">Monday | October 17, 2022</div>
-                            <div class="subtitle"><img src="assets/img/clock-putih.png" alt="" class="me-3">07.30
+                            <div class="subtitle"><img src="/assets/img/clock-putih.png" alt="" class="me-3">07.30
                                 WIB - End</div>
                             <div class="subtitle">Pengajian Milad Universitas Muhammadiyah Kudus ke-24 dan Muktamar
                                 Muhammadiyah ‘ Aisyiyah ke-48</div>
@@ -36,14 +36,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="d-flex flex-row-reverse bd-highlight">
-                                <img src="assets/img/kajian/kajian-hero.png" alt="" class="img-fluid">
+                                <img src="/assets/img/kajian/kajian-hero.png" alt="" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-md-6 text-light mt-2 detail">
                             <div class="title">Muktamar Muhammadiyah</div>
                             <div class="subtitle">Drs. H. Marpuji Ali, M.SI </div>
                             <div class="subtitle">Monday | October 17, 2022</div>
-                            <div class="subtitle"><img src="assets/img/clock-putih.png" alt="" class="me-3">07.30
+                            <div class="subtitle"><img src="/assets/img/clock-putih.png" alt="" class="me-3">07.30
                                 WIB - End</div>
                             <div class="subtitle">Pengajian Milad Universitas Muhammadiyah Kudus ke-24 dan Muktamar
                                 Muhammadiyah ‘ Aisyiyah ke-48</div>
@@ -74,7 +74,7 @@
         <div class="row">
             <div class="col-4">
                 <div class="image-container">
-                    <img src="assets/img/kajian/kajian1.png" alt="" class="img-fluid">
+                    <img src="/assets/img/kajian/kajian1.png" alt="" class="img-fluid">
                     <div class="overlay">
                         <button class="btn btn-info btn-poster">Kajian Umum</button>
                         <div class="title">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus</div>
@@ -84,7 +84,7 @@
             </div>
             <div class="col-4">
                 <div class="image-container">
-                    <img src="assets/img/kajian/kajian1.png" alt="" class="img-fluid">
+                    <img src="/assets/img/kajian/kajian1.png" alt="" class="img-fluid">
                     <div class="overlay">
                         <button class="btn btn-info btn-poster">Kajian Umum</button>
                         <div class="title">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus</div>
@@ -94,7 +94,7 @@
             </div>
             <div class="col-4">
                 <div class="image-container">
-                    <img src="assets/img/kajian/kajian1.png" alt="" class="img-fluid">
+                    <img src="/assets/img/kajian/kajian1.png" alt="" class="img-fluid">
                     <div class="overlay">
                         <button class="btn btn-info btn-poster">Kajian Umum</button>
                         <div class="title">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus</div>
@@ -115,7 +115,7 @@
             <div class="col-md-9 order-md-1">
                 <div class="row mb-3 ">
                     <div class="col-md-3">
-                        <img src="assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
+                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="col-md-9">
                         <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
@@ -136,7 +136,7 @@
 
                 <div class="row mb-3 mt-5">
                     <div class="col-md-3">
-                        <img src="assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
+                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="col-md-9">
                         <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
@@ -157,7 +157,7 @@
 
                 <div class="row mb-3 mt-5">
                     <div class="col-md-3">
-                        <img src="assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
+                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="col-md-9">
                         <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
@@ -178,7 +178,7 @@
 
                 <div class="row mb-3 mt-5">
                     <div class="col-md-3">
-                        <img src="assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
+                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="col-md-9">
                         <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
@@ -199,7 +199,7 @@
 
                 <div class="row mb-3 mt-5">
                     <div class="col-md-3">
-                        <img src="assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
+                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="col-md-9">
                         <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
@@ -222,14 +222,14 @@
             <div class="col-md-3 order-md-2">
                 <div class="card mt-5">
                     <div class="row">
-                        <img src="assets/img/kajian/highest.png" alt="" class="img-fluid">
+                        <img src="/assets/img/kajian/highest.png" alt="" class="img-fluid">
                     </div>
 
                     <div class="bungkus">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img src="assets/img/account-profile.png" alt="">
+                                    <img src="/assets/img/account-profile.png" alt="">
                                 </div>
                                 <div class="col-md-9">
                                     <div class="nama-setor">Aisa Selvira</div>
@@ -239,7 +239,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="assets/img/account-profile.png" alt=""></div>
+                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
                                 <div class="col-md-9">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
@@ -248,7 +248,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="assets/img/account-profile.png" alt=""></div>
+                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
                                 <div class="col-md-9">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
@@ -257,7 +257,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="assets/img/account-profile.png" alt=""></div>
+                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
                                 <div class="col-md-9">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
@@ -281,10 +281,10 @@
                     <div class="title mt-5">
                         Follow Us :
                         <div class="d-flex justify-content-between mt-3">
-                            <img src="assets/img/icon/fb.png" alt="">
-                            <img src="assets/img/icon/twt.png" alt="">
-                            <img src="assets/img/icon/google.png" alt="">
-                            <img src="assets/img/icon/yt.png" alt="">
+                            <img src="/assets/img/icon/fb.png" alt="">
+                            <img src="/assets/img/icon/twt.png" alt="">
+                            <img src="/assets/img/icon/google.png" alt="">
+                            <img src="/assets/img/icon/yt.png" alt="">
                         </div>
                     </div>
                 </div>

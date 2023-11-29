@@ -12,13 +12,13 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/img/slider/slider-about1.png" alt="Slide 1" class="img-hero-about">
+                <img src="/assets/img/slider/slider-about1.png" alt="Slide 1" class="img-hero-about">
             </div>
             <div class="carousel-item">
-                <img src="assets/img/slider/slider-about2.png" alt="Slide 2" class="img-hero-about">
+                <img src="/assets/img/slider/slider-about2.png" alt="Slide 2" class="img-hero-about">
             </div>
             <div class="carousel-item">
-                <img src="assets/img/slider/slider-about3.png" alt="Slide 3" class="img-hero-about">
+                <img src="/assets/img/slider/slider-about3.png" alt="Slide 3" class="img-hero-about">
             </div>
         </div>
 
@@ -64,7 +64,7 @@
                     Islam yang sebenar-benarnya”.
                 </p>
 
-                <img src="assets/img/bendera-about.png" alt="" class="img-fluid">
+                <img src="/assets/img/bendera-about.png" alt="" class="img-fluid">
                 <div class="subtitle mt-4">DASAR DAN AMAL USAHA MUHAMMADIYAH</div>
                 <p class="paragraf mt-4">
                     Dalam perjuangan melaksanakan usahanya menuju tujuan terwujudnya masyarakat Islam yang
@@ -115,7 +115,7 @@
             <div class="col-md-4 order-md-2">
                 <div class="card">
                     <div class="card-header">
-                        <img src="assets/img/article.png" alt="" width="24px" height="24px">
+                        <img src="/assets/img/article.png" alt="" width="24px" height="24px">
                         Artikel
                     </div>
                     <div class="card-body">
@@ -141,7 +141,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="judul">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                                <p class="subjudul mt-3"><img src="assets/img/clock.png" alt="" width="25px"
+                                <p class="subjudul mt-3"><img src="/assets/img/clock.png" alt="" width="25px"
                                         height="25px">August 2, 2023
                                 </p>
                             </div>
@@ -157,7 +157,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="judul">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                                <p class="subjudul mt-3"><img src="assets/img/clock.png" alt="" width="25px"
+                                <p class="subjudul mt-3"><img src="/assets/img/clock.png" alt="" width="25px"
                                         height="25px">August 2, 2023
                                 </p>
                             </div>
@@ -173,7 +173,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="judul">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                                <p class="subjudul mt-3"><img src="assets/img/clock.png" alt="" width="25px"
+                                <p class="subjudul mt-3"><img src="/assets/img/clock.png" alt="" width="25px"
                                         height="25px">August 2, 2023
                                 </p>
                             </div>
@@ -189,7 +189,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="judul">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                                <p class="subjudul mt-3"><img src="assets/img/clock.png" alt="" width="25px"
+                                <p class="subjudul mt-3"><img src="/assets/img/clock.png" alt="" width="25px"
                                         height="25px">August 2, 2023
                                 </p>
                             </div>
@@ -205,7 +205,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="judul">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                                <p class="subjudul mt-3"><img src="assets/img/clock.png" alt="" width="25px"
+                                <p class="subjudul mt-3"><img src="/assets/img/clock.png" alt="" width="25px"
                                         height="25px">August 2, 2023
                                 </p>
                             </div>
@@ -220,7 +220,7 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-4">
-                <img src="assets/img/kajian/1.png" alt="" class="img-fluid">
+                <img src="/assets/img/kajian/1.png" alt="" class="img-fluid">
                 <h2 class="kajian mt-3">Pengajian Bulanan</h2>
                 <p>Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan</p>
                 <div class="button text-light">
@@ -229,7 +229,7 @@
             </div>
 
             <div class="col-lg-4">
-                <img src="assets/img/kajian/1.png" alt="" class="img-fluid">
+                <img src="/assets/img/kajian/1.png" alt="" class="img-fluid">
                 <h2 class="kajian mt-3">Pengajian Bulanan</h2>
                 <p>Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan</p>
                 <div class="button text-light">
@@ -238,7 +238,7 @@
             </div>
 
             <div class="col-lg-4">
-                <img src="assets/img/kajian/1.png" alt="" class="img-fluid">
+                <img src="/assets/img/kajian/1.png" alt="" class="img-fluid">
                 <h2 class="kajian mt-3">Pengajian Bulanan</h2>
                 <p>Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan</p>
                 <div class="button text-light">

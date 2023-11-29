@@ -13,7 +13,7 @@
                                     <h1 class="kajian-muh">Kajian Muhammadiyah</h1>
                                 </strong>
                                 <div class="col-md-11">
-                                    <img src="assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
+                                    <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
                                 </div>
                                 <div class="desc-kajian col-md-12">
                                     <div class="mb-3 mt-2">
@@ -89,21 +89,21 @@
                             <div class="edit-down-share row">
                                 <div class="col-md-3">
                                     <a href="form_edit_user_upload" class="btn d-flex flex-column align-items-center">
-                                        <img src="assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
+                                        <img src="/assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
                                         <span class="text-editdownshare">Edit</span>
                                     </a>
                                 </div>
 
                                 <div class="col-md-3">
                                     <a href="your_download_url" class="btn d-flex flex-column align-items-center">
-                                        <img src="assets_admin/assets/img/download.svg" alt="Download Icon">
+                                        <img src="/assets_admin/assets/img/download.svg" alt="Download Icon">
                                         <span class="text-editdownshare">Download</span>
                                     </a>
                                 </div>
 
                                 <div class="col-md-3">
                                     <a href="your_share_url" class="btn d-flex flex-column align-items-center">
-                                        <img src="assets_admin/assets/img/share.svg" alt="Share Icon">
+                                        <img src="/assets_admin/assets/img/share.svg" alt="Share Icon">
                                         <span class="text-editdownshare">Share</span>
                                     </a>
                                 </div>

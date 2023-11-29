@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-lg navbar-light p-3">
         <div class="container">
             <a class="navbar-brand text-light" href="#">
-                <img src="assets/img/logo.png" alt="" class="logo-navbar">
+                <img src="/assets/img/logo.png" alt="" class="logo-navbar">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
                 <form class="d-flex">
                     <input class="form-control-sm me-2 small-placeholder" type="search" placeholder="Search"
                         aria-label="Search">
-                    <img src="assets/img/search.png" alt="" class="me-3" width="30px" height="30px">
+                    <img src="/assets/img/search.png" alt="" class="me-3" width="30px" height="30px">
                 </form>
 
                 <div class="d-flex akun">

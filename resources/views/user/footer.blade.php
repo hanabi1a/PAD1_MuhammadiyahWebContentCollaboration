@@ -3,7 +3,7 @@
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div class="col">
                 <center>
-                    <img src="assets/img/icon/home.svg" alt="" width="45px" height="45px">
+                    <img src="/assets/img/icon/home.svg" alt="" width="45px" height="45px">
                 </center>
                 <div class="contact-title mb-3">Kantor</div>
                 <div class="contact-subtitle">Yogyakarta: Jalan Cik Ditiro 23 <br> Yogyakarta 55262</div>
@@ -12,7 +12,7 @@
 
             <div class="col">
                 <center>
-                    <img src="assets/img/icon/email.svg" alt="" width="45px" height="45px">
+                    <img src="/assets/img/icon/email.svg" alt="" width="45px" height="45px">
                 </center>
                 <div class="contact-title mb-3">Email</div>
                 <a href="">
@@ -22,7 +22,7 @@
 
             <div class="col">
                 <center>
-                    <img src="assets/img/icon/phone.svg" alt="" width="45px" height="45px">
+                    <img src="/assets/img/icon/phone.svg" alt="" width="45px" height="45px">
                 </center>
                 <div class="contact-title mb-3">Telp/Fax</div>
                 <div class="contact-subtitle">Telpon : 0274 553132 Ext 300 <br> Fax : 0274 553134</div>
@@ -38,16 +38,16 @@
     <footer>
         <div class="row">
             <div class="col-md-4">
-                <img src="assets/img/logo.png" alt="" class="logo">
+                <img src="/assets/img/logo.png" alt="" class="logo">
             </div>
 
             <div class="col-md-4">
                 <div class="follow">Follow Us :</div>
                 <div class="">
-                    <img src="assets/img/icon/Facebook.svg" alt="" width="35px" height="35px">
-                    <img src="assets/img/icon/Twitter.svg" alt="" width="35px" height="35px">
-                    <img src="assets/img/icon/Instagram.svg" alt="" width="35px" height="35px">
-                    <img src="assets/img/icon/YouTube.svg" alt="" width="35px" height="35px">
+                    <img src="/assets/img/icon/Facebook.svg" alt="" width="35px" height="35px">
+                    <img src="/assets/img/icon/Twitter.svg" alt="" width="35px" height="35px">
+                    <img src="/assets/img/icon/Instagram.svg" alt="" width="35px" height="35px">
+                    <img src="/assets/img/icon/YouTube.svg" alt="" width="35px" height="35px">
                 </div>
             </div>
 

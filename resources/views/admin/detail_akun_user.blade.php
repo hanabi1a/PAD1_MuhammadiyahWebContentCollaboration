@@ -14,7 +14,7 @@
                             <div class="col-md-1 btn-end">
                                 <button class="btn d-flex flex-column align-items-center"
                                     onclick="window.location.href='form_edit_akun_user'">
-                                    <img src="assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
+                                    <img src="/assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
                                     <span class="text-editdownshare">Edit</span>
                                 </button>
 
@@ -22,7 +22,7 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-md-3">
-                                <img src="assets_admin/assets/img/user.png" alt="" class="img-fluid profile-user">
+                                <img src="/assets_admin/assets/img/user.png" alt="" class="img-fluid profile-user">
                             </div>
                             <div class="col-md-9">
                                 <div class="row">
@@ -79,7 +79,7 @@
                                         <div class="row">
                                             <div class="col col-md-4">
                                                 <img class="card-muhammadiyah"
-                                                    src="assets_admin\assets\img\card-muhammadiyah.png">
+                                                    src="/assets_admin\assets\img\card-muhammadiyah.png">
                                             </div>
                                             <div class="col col-md-8">
                                                 <button class="btn-green mb-3">Anggota</button><br>

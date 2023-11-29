@@ -35,14 +35,14 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <img src="assets\img\kajian1.jpg" alt="Profile Image" width="150">
+                                <img src="\assets\img\kajian1.jpg" alt="Profile Image" width="150">
                             </td>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->username }}</td>
                             <td class="text-center">
                                 <form action="{{ route('deleteUser', $user->id) }}" method="post">
-                                    <a href="{{ route('showDetailUser', $user->id) }}" class="text-info me-2" title="View"><i
-                                            class="fa fa-eye fa-lg"></i></a>
+                                    <a href="{{ route('showDetailUser', $user->id) }}" class="text-info me-2"
+                                        title="View"><i class="fa fa-eye fa-lg"></i></a>
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="text-info" title="Delete"

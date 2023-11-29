@@ -7,14 +7,14 @@
     <title>Kajian Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light p-3">
         <div class="container">
             <a class="navbar-brand text-light" href="#">
-                <img src="assets/img/logo.png" alt="" class="logo-navbar">
+                <img src="/assets/img/logo.png" alt="" class="logo-navbar">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,15 +35,15 @@
                 <form class="d-flex">
                     <input class="form-control-sm me-2 small-placeholder" type="search" placeholder="Search"
                         aria-label="Search">
-                    <img src="assets/img/search.png" alt="" class="me-3" width="30px" height="30px">
+                    <img src="/assets/img/search.png" alt="" class="me-3" width="30px" height="30px">
                 </form>
 
                 <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle btn-login" type="button" id="dropdownMenu2"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Aisa Selvira
-                    <img src="assets/img/account-profile.png" alt="" width="30px" height="30px">
-                </button>
+                    <button class="btn btn-light dropdown-toggle btn-login" type="button" id="dropdownMenu2"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Aisa Selvira
+                        <img src="/assets/img/account-profile.png" alt="" width="30px" height="30px">
+                    </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li>
                             <button action="{{ route('logout') }}" class="dropdown-item" type="button">

@@ -12,16 +12,16 @@
                                 <div class="col-md-11">
                                     <div class="account-detail row">
                                         <div class="col-md-2">
-                                            <img src="assets/img/account-profile.png" alt="">
+                                            <img src="/assets/img/account-profile.png" alt="">
                                         </div>
                                         <div class="name-account col-md-8">
                                             <div class="nama">Karthi Madesh</div>
                                         </div>
                                         <div class="name-account col-md-2 text-end">
-                                            <img src="assets_admin/assets/img/three-dots.svg" alt="Menu Icon">
+                                            <img src="/assets_admin/assets/img/three-dots.svg" alt="Menu Icon">
                                         </div>
                                     </div>
-                                    <img src="assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
+                                    <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
                                 </div>
                                 <div class="desc-kajian col-md-12">
                                     <div class="mb-3 mt-2">
@@ -98,21 +98,21 @@
                             <div class="edit-down-share row">
                                 <div class="col-md-3">
                                     <a href="form_edit_admin_ori" class="btn d-flex flex-column align-items-center">
-                                        <img src="assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
+                                        <img src="/assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
                                         <span class="text-editdownshare">Edit</span>
                                     </a>
                                 </div>
 
                                 <div class="col-md-3">
                                     <a href="your_download_url" class="btn d-flex flex-column align-items-center">
-                                        <img src="assets_admin/assets/img/download.svg" alt="Download Icon">
+                                        <img src="/assets_admin/assets/img/download.svg" alt="Download Icon">
                                         <span class="text-editdownshare">Download</span>
                                     </a>
                                 </div>
 
                                 <div class="col-md-3">
                                     <a href="your_share_url" class="btn d-flex flex-column align-items-center">
-                                        <img src="assets_admin/assets/img/share.svg" alt="Share Icon">
+                                        <img src="/assets_admin/assets/img/share.svg" alt="Share Icon">
                                         <span class="text-editdownshare">Share</span>
                                     </a>
                                 </div>
@@ -122,7 +122,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9">
                                                 <strong>
@@ -133,7 +133,7 @@
                                                         <p>Karthi Madhes Taehyung</p>
                                                     </div>
                                                     <div class="col-md-1">
-                                                        <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                        <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,20 +142,20 @@
                                         <h1 class="text-edit">Edit by</h1>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
                                                     <p class="mb-0">Karthi Madhes</p>
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
@@ -163,13 +163,13 @@
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
 
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
@@ -177,13 +177,13 @@
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
 
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
@@ -191,13 +191,13 @@
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
 
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
@@ -205,13 +205,13 @@
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
 
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
@@ -219,13 +219,13 @@
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
 
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
@@ -233,13 +233,13 @@
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
 
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
@@ -247,13 +247,13 @@
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
 
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
@@ -261,13 +261,13 @@
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
 
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <img src="assets/img/account-profile.png" alt="">
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
                                                 <strong>
@@ -275,7 +275,7 @@
                                                 </strong>
                                                 <div class="col-md-5 text-center ml-2">
 
-                                                    <img src="assets_admin/assets/img/arrow-right-square.svg">
+                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                 </div>
                                             </div>
                                         </div>
