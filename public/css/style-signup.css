@@ -38,7 +38,7 @@ h2 {
 
 .half,
 .half .container>.row {
-    height: 130vh;
+    height: 160vh;
 }
 
 .container1 {
@@ -61,7 +61,7 @@ h2 {
     }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
 
     .half,
     .half .container>.row {
