@@ -170,6 +170,8 @@ Route::controller(KajianController::class)->group(function () {
     Route::post('/update_kajian/{id}', 'update_kajian')->name('update_kajian');
 });
 
+
+
 Route::controller(admincon::class)->group(function () {
     Route::get('/admin_dashboard', 'dashboard')->name('dashboard');
     Route::delete('/deleteUser/{id}', 'deleteUser')->name('deleteUser');

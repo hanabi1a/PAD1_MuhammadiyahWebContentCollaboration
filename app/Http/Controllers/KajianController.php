@@ -62,6 +62,8 @@ class KajianController extends Controller
             'val_dokumen' => 'required|mimes:pdf,doc,docx|max:2048'
         ]);
 
+        $userId = auth()->id(); 
+
         $pathFoto = null;
         if ($request->hasFile('val_foto_kajian')) {
             $filenameWithExt = $request->file('val_foto_kajian')->getClientOriginalName();
@@ -88,6 +90,7 @@ class KajianController extends Controller
             'deskripsi_kajian' => $request->val_deskripsi,
             'foto_kajian' => $pathFoto,
             'file_kajian' => $pathDokumen,
+            'id_user' => $userId,
         ]);
 
         $request->session()->regenerate();
@@ -108,7 +111,7 @@ class KajianController extends Controller
         // Delete the kajian
         $Kajian->delete();
 
-        return redirect()->route('dashboard')->withSuccess('Kajian deleted successfully');
+        return redirect()->route('data_kajian')->withSuccess('Kajian deleted successfully');
     }
 
 
@@ -119,7 +122,9 @@ class KajianController extends Controller
 
         $kajian = Kajian::find($id); // Contoh pengambilan data dari model Kajian
 
-        return view('admin.detail_kajian_ori', ['kajian' => $kajian]);
+        $uploaderUsername = $kajian->user->username; // Ganti 'username' dengan nama kolom yang menyimpan nama pengguna pada tabel User
+
+        return view('admin.detail_kajian_ori', ['kajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
 
     }
 
@@ -143,15 +148,15 @@ class KajianController extends Controller
     public function update_kajian(Request $request, $id)
     {
         // dd($request->all());
-        $request->validate([
-            'val_judul' => 'required',
-            'val_pemateri' => 'required',
-            'val_tempat' => 'required',
-            'val_tanggal' => 'required',
-            'val_deskripsi' => 'required',
-            'val_foto_kajian' => 'image|nullable|max:1999',
-            'val_dokumen' => 'required|mimes:pdf,doc,docx|max:2048'
-        ]);
+        // $request->validate([
+        //     'val_judul' => 'required',
+        //     'val_pemateri' => 'required',
+        //     'val_tempat' => 'required',
+        //     'val_tanggal' => 'required',
+        //     'val_deskripsi' => 'required',
+        //     'val_foto_kajian' => 'image|nullable|max:1999',
+        //     'val_dokumen' => 'required|mimes:pdf,doc,docx|max:2048'
+        // ]);
 
         $kajian = Kajian::find($id);
 

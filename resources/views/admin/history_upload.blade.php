@@ -52,117 +52,37 @@
                         </tr>
                     </tfoot>
                     <tbody>
+
+                        @if($uploadHistory->isNotEmpty())
+                        <!-- Ubah $user menjadi $uploadHistory -->
+
+                        @foreach($uploadHistory as $index => $kajian)
+                        <!-- Ubah $user menjadi $uploadHistory -->
+
                         <tr>
-                            <td>1</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $kajian->user->username }}</td>
+                            <td>{{ $kajian->id_user }}</td>
+                            <td>{{ $kajian->judul_kajian }}</td>
+                            <td>{{ $kajian->id }}</td>
+                            <td>{{ $kajian->judul_kajian_nv }}</td>
+                            <td>{{ $kajian->id_kajian_nv }}</td>
+                            <td>{{ $kajian->created_at }}</td>
                         </tr>
+
+                        @endforeach
+
+                        @else
+
                         <tr>
-                            <td>2</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
+                            <td colspan="8">Belum ada riwayat upload</td>
+                            <!-- Menampilkan pesan jika tidak ada riwayat upload -->
                         </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Aisa Selvira</td>
-                            <td>485678</td>
-                            <td>Rindu Ramadhan</td>
-                            <td>493854</td>
-                            <td>Berkah Bulan Ramadhan</td>
-                            <td>678534</td>
-                            <td>14/02/2023</td>
-                        </tr>
+
+                        @endif
+
                     </tbody>
+
                 </table>
             </div>
         </div>

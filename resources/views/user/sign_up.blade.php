@@ -87,8 +87,7 @@
                   </div> -->
 
                                 <div class="mb-3 row">
-                                    <label for="photo"
-                                        class="col-md-4 col-form-label text-md-end ">Photo</label>
+                                    <label for="photo" class="col-md-4 col-form-label text-md-end ">Photo</label>
                                     <div class="col-md-6">
                                         <input type="file" class="form-control @error('foto_kta') is-invalid @enderror"
                                             id="photo" name="foto_kta" value="{{ old('foto_kta') }}">

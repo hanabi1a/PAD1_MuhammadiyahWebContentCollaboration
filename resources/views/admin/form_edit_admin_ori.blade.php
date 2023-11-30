@@ -18,10 +18,10 @@
                         method="post">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label" for="val-judul">Judul
+                            <label class="col-lg-4 col-form-label"  for="val-judul">Judul
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" id="val-judul" name="val_judul"
+                                <input type="text" value="{{$kajian->judul_kajian}}" class="form-control input-default" id="val-judul" name="val_judul"
                                     placeholder="Judul">
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                             <label class="col-lg-4 col-form-label" for="val-pemateri">Pemateri
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" id="val_pemateri"
+                                <input type="text" value="{{$kajian->pemateri}}" class="form-control input-default" id="val_pemateri"
                                     name="val_pemateri" placeholder="Pemateri">
                             </div>
                         </div>
@@ -37,14 +37,14 @@
                             <label class="col-lg-4 col-form-label" for="val-tempat">Tempat
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" id="val-tempat" name="val_tempat"
+                                <input type="text" class="form-control input-default" value="{{$kajian->lokasi_kajian}}" id="val-tempat" name="val_tempat"
                                     placeholder="Tempat">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val_tanggal">Tanggal</label>
                             <div class="col-lg-6">
-                                <input type="date" class="form-control input-default" id="val_tanggal"
+                                <input type="date" value="{{$kajian->tanggal_postingan}}" class="form-control input-default" id="val_tanggal"
                                     name="val_tanggal">
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-tanggal">Deskripsi</label>
                             <div class="col-lg-6">
-                                <textarea class="form-control" id="val-deskripsi" name="val_deskripsi"
+                                <textarea class="form-control" id="val-deskripsi" value="{{$kajian->deskripsi_kajian}}" name="val_deskripsi"
                                     placeholder="Deskripsi"></textarea>
                             </div>
                         </div>

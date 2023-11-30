@@ -22,4 +22,9 @@ class kajian extends Model
         'file_kajian',
         // tambahkan nama-nama atribut lain jika ada
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user'); // Sesuaikan nama kolom foreign key yang sesuai dengan model User
+    }
 }

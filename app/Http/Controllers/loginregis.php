@@ -49,12 +49,12 @@ class loginregis extends Controller
 
         $path = null;
 
-        if ($request->hasFile('foto_kta_kta')) {
+        if ($request->hasFile('foto_kta')) {
             $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto_kta')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            $path = $request->file('foto_kta')->storeAs('public/photos', $fileNameToStore);
+            $path = $request->file('foto_kta')->storeAs('/photos', $fileNameToStore);
         }
 
     User::create([

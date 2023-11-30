@@ -12,11 +12,22 @@
                                 <div class="col-md-11">
                                     <div class="account-detail row">
                                         <div class="col-md-2">
-                                            <img src="/assets/img/account-profile.png" alt="">
+                                            @if($kajian->user)
+                                            <img src="{{ $kajian->user->foto_profile }}" alt="Foto ga ketemu">
+                                            @else
+                                            <img src="/assets/img/account-profile.png" alt="Foto Profil Default">
+                                            @endif
                                         </div>
+                                        @if($kajian->user)
                                         <div class="name-account col-md-8">
-                                            <div class="nama">Karthi Madesh</div>
+                                            <div class="nama">{{ $kajian->user->username }}</div>
                                         </div>
+                                        @else
+                                        <!-- Handle jika pengguna tidak ditemukan -->
+                                        <div class="name-account col-md-8">
+                                            <div class="nama">Pengguna tidak ditemukan</div>
+                                        </div>
+                                        @endif
                                         <div class="name-account col-md-2 text-end">
                                             <img src="/assets_admin/assets/img/three-dots.svg" alt="Menu Icon">
                                         </div>
@@ -111,7 +122,7 @@
 
 
                                 <div class="col-md-3">
-                                    <a href="your_share_url" class="btn d-flex flex-column align-items-center">
+                                    <a id="shareid" href="#" class="btn d-flex flex-column align-items-center">
                                         <img src="/assets_admin/assets/img/share.svg" alt="Share Icon">
                                         <span class="text-editdownshare">Share</span>
                                     </a>
@@ -287,5 +298,18 @@
                 </div>
             </div>
         </section>
+        <script>
+        document.getElementById('shareid').addEventListener('click', function() {
+            // Buat URL yang ingin Anda bagikan
+            var urlToShare = 'https://www.instagram.com/ey_kean/'; // Ganti dengan URL yang sesuai
+
+            // Salin URL ke clipboard
+            navigator.clipboard.writeText(urlToShare).then(function() {
+                alert('Link telah disalin ke clipboard!');
+            }).catch(function(err) {
+                console.error('Tidak dapat menyalin teks: ', err);
+            });
+        });
+        </script>
 </main>
 @endsection

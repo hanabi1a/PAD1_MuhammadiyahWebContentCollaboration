@@ -6,11 +6,22 @@ use App\Models\historylogin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\HistoryDownload;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Kajian;
 
 class admincon extends Controller
 {
     public function dashboard(){
-        return view('admin.dashboard');
+
+        $totalKajian = Kajian::count();
+        $totalUser = User::count();
+
+        return view('admin.dashboard', 
+        [
+            'totalKajian' => $totalKajian,
+            'totalUser' => $totalUser,
+        ]);
     }
 
     
@@ -73,19 +84,30 @@ class admincon extends Controller
         }
 
 
-    public function showHistoryUpload()
-    {
-        // $historis = historylogin::with('user')->get();
-    
-        // return view('admin.history_upload', ['historis' => $historis]);
-        return view('admin.history_upload');
-    }
+        public function showHistoryUpload()
+        {
+            $user = Auth::user(); // Mendapatkan pengguna yang terautentikasi
+        
+            $uploadHistory = []; // Menyiapkan variabel untuk riwayat upload
+        
+            if ($user) {
+                $uploadHistory = $user->kajians; // Mengambil riwayat upload pengguna
+            }
+        
+            return view('admin.history_upload', ['uploadHistory' => $uploadHistory]);
+        }
+        
 
     public function showDetailUser($id)
     {
         $user = User::find($id);
     
         return view('admin.detail_akun_user', ['user' => $user]);
+    }
+
+    public function showUploadHistory()
+    {
+        
     }
     
 

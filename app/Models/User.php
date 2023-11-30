@@ -20,7 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'password',
-        'photo',
+        'foto_profile',
+        'foto_kta',
         'alamat',
         'nomor_keanggotaan',
         'cabang',
@@ -54,5 +55,9 @@ class User extends Authenticatable
     public function getAuthPassword()
     {
         return $this->password;
+    }
+    public function kajians()
+    {
+        return $this->hasMany(Kajian::class, 'id_user'); // Pastikan 'id_user' sesuai dengan nama kolom di tabel 'kajian'
     }
 }
