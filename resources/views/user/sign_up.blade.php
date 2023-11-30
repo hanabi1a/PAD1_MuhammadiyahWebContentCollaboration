@@ -27,9 +27,9 @@
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="username">Nama Lengkap</label>
+                                        <label for="fullname">Nama Lengkap</label>
                                         <input type="text" class="form-control" placeholder="Nama Lengkap"
-                                            id="nama-lengkap" name="nama-lengkap">
+                                            id="nama-lengkap" name="nama">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="pekerjaan">Pekerjaan</label>
@@ -78,14 +78,14 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="tanggal-lahir">Tanggal Lahir</label>
-                                        <input type="tanggal-lahir" class="form-control" placeholder="Tanggal Lahir"
+                                        <input type="date" class="form-control" placeholder="Tanggal Lahir"
                                             id="tanggal-lahir" name="tanggal_lahir">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="foto_kta">Foto Profil</label>
-                                        <input type="file" class="form-control" id="foto_kta" name="foto_kta">
-                                        @if ($errors->has('foto_kta'))
-                                        <span class="text-danger">{{ $errors->first('foto_kta') }}</span>
+                                        <label for="foto_profile">Foto Profil</label>
+                                        <input type="file" class="form-control" id="foto_profile" name="foto_profile">
+                                        @if ($errors->has('foto_profile'))
+                                        <span class="text-danger">{{ $errors->first('foto_profile') }}</span>
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">

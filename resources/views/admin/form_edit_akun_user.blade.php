@@ -14,13 +14,13 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="form-validation">
-                    <form class="form-valide" action="" method="post">
+                    <form class="form-valide" action="{{ route('UpdateUser', ['id' => $datauser->id]) }}" method="post">
                         @csrf
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-nama">Nama
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" id="val-nama" name="val-nama"
+                                <input type="text" class="form-control input-default" value="{{$datauser->nama}}" id="val-nama" name="username"
                                     placeholder="Nama">
                             </div>
                         </div>
@@ -28,43 +28,43 @@
                             <label class="col-lg-4 col-form-label" for="val-tempat_lahir">Tempat Lahir
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" id="val-tempat_lahir"
-                                    name="val-tempat_lahir" placeholder="Tempat Lahir">
+                                <input type="text" class="form-control input-default" value="{{$datauser->tempat_lahir}}" id="val-tempat_lahir"
+                                    name="tempat_lahir" placeholder="Tempat Lahir">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val_tanggal">Tanggal Lahir</label>
                             <div class="col-lg-6">
-                                <input type="date" class="form-control input-default" id="val-tanggal"
-                                    name="val_tanggal">
+                                <input type="date" class="form-control input-default" value="{{$datauser->tanggal_lahir}}" id="val-tanggal"
+                                    name="tanggal_lahir">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-alamat">Alamat</label>
                             <div class="col-lg-6">
-                                <textarea class="form-control" id="val-alamat" name="val-alamat"
+                                <textarea class="form-control" id="val-alamat" value="{{$datauser->alamat}}" name="alamat"
                                     placeholder="Alamat"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-cabang">Cabang</label>
                             <div class="col-lg-6">
-                                <textarea class="form-control" id="val-cabang" name="val-cabang"
+                                <textarea class="form-control" id="val-cabang" value="{{$datauser->cabang}}" name="cabang"
                                     placeholder="Cabang"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-daerah">Daerah</label>
                             <div class="col-lg-6">
-                                <textarea class="form-control" id="val-daerah" name="val-daerah"
+                                <textarea class="form-control" id="val-daerah" name="daerah"
                                     placeholder="Daerah"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-wilayah">Wilayah</label>
                             <div class="col-lg-6">
-                                <textarea class="form-control" id="val-wilayah" name="val-wilayah"
+                                <textarea class="form-control" id="val-wilayah" name="wilayah"
                                     placeholder="Wilayah"></textarea>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="foto-input"
-                                            name="val_foto_kajian" accept=".png, .jpg, .jpeg">
+                                            name="foto_kta" accept=".png, .jpg, .jpeg">
                                         <label class="custom-file-label-foto custom-file-label" for="foto-input">Choose
                                             file</label>
                                     </div>

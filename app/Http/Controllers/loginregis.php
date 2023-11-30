@@ -31,9 +31,11 @@ class loginregis extends Controller
 
         $rule = [
             'pekerjaan' => 'required',
+            'nama' => 'required',
             'username' => 'required|username|unique:users,username',
             'password' => 'required|min:4',
             'foto_kta' => 'image|nullable|max:1999',
+            'foto_profile' => 'image|nullable|max:1999',
             'alamat' => 'required',
             'nomor_keanggotaan' => 'required',
             'daerah' => 'required',
@@ -48,6 +50,7 @@ class loginregis extends Controller
         }
 
         $path = null;
+        $fppath = null;
 
         if ($request->hasFile('foto_kta')) {
             $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
@@ -56,12 +59,21 @@ class loginregis extends Controller
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             $path = $request->file('foto_kta')->storeAs('/photos', $fileNameToStore);
         }
+        if ($request->hasFile('foto_profile')) {
+            $filenameWithExt = $request->file('foto_profile')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto_profile')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fppath = $request->file('foto_profile')->storeAs('/photos', $fileNameToStore);
+        }
 
     User::create([
             'username' => $request->username,
+            'nama' => $request->nama,
             'pekerjaan' => $request->pekerjaan,
             'password' => Hash::make($request->password),
             'foto_kta' => $path,
+            'foto_profile' => $fppath,
             'alamat' => $request->alamat,
             'nomor_keanggotaan' => $request->nomor_keanggotaan,
             'cabang' => $request->cabang,
