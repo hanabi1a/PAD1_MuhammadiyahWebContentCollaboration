@@ -119,36 +119,36 @@ Route::get('/', function () {
 // Route::get('/history_upload', function () {
 //     return view('admin/history_upload');
 // });
-Route::get('/form_create_admin', function () {
-    return view('admin/form_create_admin');
-});
-Route::get('/form_edit_admin_ori', function () {
-    return view('admin/form_edit_admin_ori');
-});
-Route::get('/form_edit_user_nv', function () {
-    return view('admin/form_edit_user_nv');
-});
-Route::get('/form_edit_user_ori', function () {
-    return view('admin/form_edit_user_ori');
-});
-Route::get('/detail_kajian_ori', function () {
-    return view('admin/detail_kajian_ori');
-});
-Route::get('/detail_kajian_nv', function () {
-    return view('admin/detail_kajian_nv');
-});
-Route::get('/detail_kajian_upload', function () {
-    return view('admin/detail_kajian_upload');
-});
-Route::get('/detail_akun_user', function () {
-    return view('admin/detail_akun_user');
-});
-Route::get('/form_edit_akun_user', function () {
-    return view('admin/form_edit_akun_user');
-});
-Route::get('/header1', function () {
-    return view('user/header1');
-});
+// Route::get('/form_create_admin', function () {
+//     return view('admin/form_create_admin');
+// });
+// Route::get('/form_edit_admin_ori', function () {
+//     return view('admin/form_edit_admin_ori');
+// });
+// Route::get('/form_edit_user_nv', function () {
+//     return view('admin/form_edit_user_nv');
+// });
+// Route::get('/form_edit_user_ori', function () {
+//     return view('admin/form_edit_user_ori');
+// });
+// Route::get('/detail_kajian_ori', function () {
+//     return view('admin/detail_kajian_ori');
+// });
+// Route::get('/detail_kajian_nv', function () {
+//     return view('admin/detail_kajian_nv');
+// });
+// Route::get('/detail_kajian_upload', function () {
+//     return view('admin/detail_kajian_upload');
+// });
+// Route::get('/detail_akun_user', function () {
+//     return view('admin/detail_akun_user');
+// });
+// Route::get('/form_edit_akun_user', function () {
+//     return view('admin/form_edit_akun_user');
+// });
+// Route::get('/header1', function () {
+//     return view('user/header1');
+// });
 
 Route::controller(loginregis::class)->group(function () {
     Route::get('/sign_up', 'register')->name('register');

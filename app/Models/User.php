@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'username',
         'password',
         'foto_profile',
@@ -58,6 +59,7 @@ class User extends Authenticatable
     }
     public function kajians()
     {
-        return $this->hasMany(Kajian::class, 'id_user'); // Pastikan 'id_user' sesuai dengan nama kolom di tabel 'kajian'
+        return $this->hasMany(Kajian::class, 'id_user'); // Sesuaikan 'user_id' dengan nama kolom foreign key di tabel 'kajian'
     }
+
 }

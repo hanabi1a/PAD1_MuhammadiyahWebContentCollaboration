@@ -118,15 +118,16 @@ class KajianController extends Controller
 
 
     public function kajian($id)
-    {
+{
+    $kajian = Kajian::find($id);
 
-        $kajian = Kajian::find($id); // Contoh pengambilan data dari model Kajian
+    // Periksa apakah relasi user ada dan tidak kosong
+    $uploaderUsername = ($kajian->user) ? $kajian->user->username : null;
 
-        $uploaderUsername = $kajian->user->username; // Ganti 'username' dengan nama kolom yang menyimpan nama pengguna pada tabel User
+    return view('admin.detail_kajian_ori', ['kajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
+}
 
-        return view('admin.detail_kajian_ori', ['kajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
-
-    }
+    
 
     public function data_kajian()
     {

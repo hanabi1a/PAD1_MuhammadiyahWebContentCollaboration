@@ -25,6 +25,7 @@ class kajian extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user'); // Sesuaikan nama kolom foreign key yang sesuai dengan model User
+        return $this->belongsTo(User::class, 'id_user'); // Sesuaikan 'id_user' dengan nama kolom foreign key di tabel 'kajian'
     }
+
 }
