@@ -165,7 +165,7 @@ Route::controller(KajianController::class)->group(function () {
     Route::post('/storekajian', 'storekajian')->name('storekajian');
     Route::get('/kajian/{id}', 'kajian')->name('kajian');
     Route::get('/data_kajian', 'data_kajian')->name('data_kajian');
-    Route::get('/deleteKajian/{id}', 'deleteKajian')->name('deleteKajian');
+    Route::delete('/deleteKajian/{id}', 'deleteKajian')->name('deleteKajian');
     Route::get('/edit_kajian/{id}', 'edit_kajian')->name('edit_kajian');
     Route::post('/update_kajian/{id}', 'update_kajian')->name('update_kajian');
 });

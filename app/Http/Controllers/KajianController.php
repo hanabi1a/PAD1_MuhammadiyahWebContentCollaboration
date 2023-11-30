@@ -102,13 +102,13 @@ class KajianController extends Controller
         $Kajian = Kajian::find($id);
 
         if (!$Kajian) {
-            return redirect()->route('admin_dashboard')->withError('Kajian not found');
+            return redirect()->route('dashboard')->withError('Kajian not found');
         }
 
         // Delete the kajian
         $Kajian->delete();
 
-        return redirect()->route('admin_dashboard')->withSuccess('Kajian deleted successfully');
+        return redirect()->route('dashboard')->withSuccess('Kajian deleted successfully');
     }
 
 
