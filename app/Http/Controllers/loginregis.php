@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class loginregis extends Controller
 {
-    public  function __construct()
+    public function __construct()
     {
         $this->middleware('web')->except(['logout', 'homepage']);
     }
@@ -32,7 +32,7 @@ class loginregis extends Controller
         $rule = [
             'pekerjaan' => 'required',
             'nama' => 'required',
-            'username' => 'required|username|unique:users,username',
+            'username' => 'required',
             'password' => 'required|min:4',
             'foto_kta' => 'image|nullable|max:1999',
             'foto_profile' => 'image|nullable|max:1999',
@@ -44,8 +44,8 @@ class loginregis extends Controller
             'wilayah' => 'required',
             'tanggal_lahir' => 'required',
         ];
-        $validator = Validator::make($request->all(),$rule);
-        if($validator->fails()) {
+        $validator = Validator::make($request->all(), $rule);
+        if ($validator->fails()) {
             return Redirect::back()->withErrors($validator);
         }
 
@@ -67,7 +67,7 @@ class loginregis extends Controller
             $fppath = $request->file('foto_profile')->storeAs('/photos', $fileNameToStore);
         }
 
-    User::create([
+        User::create([
             'username' => $request->username,
             'nama' => $request->nama,
             'pekerjaan' => $request->pekerjaan,
@@ -89,76 +89,76 @@ class loginregis extends Controller
             return redirect()->route('homepage');
         }
 
-        
+
         return back()->withErrors(['username' => 'The provided credentials do not match our records'])->onlyInput('username');
     }
 
 
-   public function login()
-   {
-         return view('user.sign_in');
-   } 
+    public function login()
+    {
+        return view('user.sign_in');
+    }
 
-//    public function authenticate(Request $request)
+    //    public function authenticate(Request $request)
 //     {
 //         $credentials = $request->validate([
 //             'username' => 'required',
 //             'password' => 'required',
 //         ]);
 
-//         if (Auth::attempt($credentials)) {
+    //         if (Auth::attempt($credentials)) {
 //             $user = Auth::user();
 
-//             if ($user->username === 'admint') {
+    //             if ($user->username === 'admint') {
 //                 return view('admin.dashboard'); // Ganti 'admin.dashboard' dengan nama view untuk dashboard admin
 //             }
 
-//             return redirect()->route('homepage'); // Ganti 'homepage' dengan rute untuk halaman beranda umum
+    //             return redirect()->route('homepage'); // Ganti 'homepage' dengan rute untuk halaman beranda umum
 //         }
 
-//         return back()->withErrors([
+    //         return back()->withErrors([
 //             'username' => 'The provided credentials do not match our records',
 //         ])->onlyInput('username');
 //     }
-public function authenticate(Request $request)
-{
-    $credentials = $request->validate([
-        'username' => 'required',
-        'password' => 'required',
-    ]);
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
 
-    if (Auth::attempt($credentials)) {
-        $user = Auth::user();
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
 
-        // Menyimpan history login setelah autentikasi berhasil
-        $historyLogin = new historylogin();
-        $historyLogin->user_id = $user->id;
-        $historyLogin->timestamp = now(); // Gunakan waktu sekarang
-        $historyLogin->user_agent = $request->header('User-Agent');
-        $historyLogin->save();
+            // Menyimpan history login setelah autentikasi berhasil
+            $historyLogin = new historylogin();
+            $historyLogin->user_id = $user->id;
+            $historyLogin->timestamp = now(); // Gunakan waktu sekarang
+            $historyLogin->user_agent = $request->header('User-Agent');
+            $historyLogin->save();
 
-        if ($user->username === 'admint') {
-            return view('admin.dashboard'); // Ganti 'admin.dashboard' dengan nama view untuk dashboard admin
+            if ($user->username === 'admint') {
+                return view('admin.dashboard'); // Ganti 'admin.dashboard' dengan nama view untuk dashboard admin
+            }
+
+            return redirect()->route('homepage'); // Ganti 'homepage' dengan rute untuk halaman beranda umum
         }
 
-        return redirect()->route('homepage'); // Ganti 'homepage' dengan rute untuk halaman beranda umum
+        return back()->withErrors([
+            'username' => 'The provided credentials do not match our records',
+        ])->onlyInput('username');
     }
-
-    return back()->withErrors([
-        'username' => 'The provided credentials do not match our records',
-    ])->onlyInput('username');
-}
 
 
 
     public function homepage()
-    {   
+    {
         if (Auth::check()) {
-            $user = Auth::user(); 
+            $user = Auth::user();
             return view('user.homepage2', compact('user'));
         }
         return redirect()->route('login')
-        ->withErrors(['You are not allowed to access',])->onlyInput('email');
+            ->withErrors(['You are not allowed to access',])->onlyInput('email');
 
     }
 
@@ -168,7 +168,7 @@ public function authenticate(Request $request)
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login')
-        ->withSuccess("You have logged out");
+            ->withSuccess("You have logged out");
     }
-    
+
 }

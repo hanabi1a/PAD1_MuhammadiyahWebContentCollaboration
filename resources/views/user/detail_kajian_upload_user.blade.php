@@ -1,45 +1,21 @@
-@extends('admin.layout')
+@extends('user.layout2')
 
+<head>
+    <link href="{{ asset('assets_admin/css/styles.css') }}" rel="stylesheet" />
+</head>
 @section('content')
 <main>
-    <div class="container-fluid px-5 px-5 mt-sm-2 mb-sm-2">
+    <div class="container-fluid px-5 mt-sm-2 mb-sm-2 justify-content-center">
         <section id="kajian">
-            <div class="card">
+            <div class="card justify-content-center">
                 <div class="container">
                     <div class="row">
-                        <div class="content col-md-6 order-md-1">
+                        <div class="content col-md-6 order-md-1 me-">
                             <div class="row mb-3 ">
+                                <strong>
+                                    <h1 class="kajian-muh">Kajian Muhammadiyah</h1>
+                                </strong>
                                 <div class="col-md-11">
-                                    <div class="account-detail row">
-                                        <div class="col-md-2">
-                                            <a href="profile_user">
-                                                <img class="pp-account" src="/assets/img/account-profile.png"
-                                                    alt="Foto tidak ada" style="border-radius: 50%; width: 50px;">
-                                            </a>
-                                        </div>
-                                        <div class=" name-account col-md-8">
-                                            <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                <div class="nama">cccccc</div>
-                                            </a>
-                                        </div>
-                                        <div class="name-account col-md-2 text-end">
-                                            <div class="dropdown">
-                                                <button class="btn" type="button" id="dropdownMenuButton"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <img src="/assets_admin/assets/img/three-dots.svg" alt="Menu Icon">
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <button type="submit" class="btn btn-link text-danger"
-                                                        title="Delete" onclick="return confirm('Apakah anda yakin?')"
-                                                        style="text-decoration: none;">
-                                                        <i class="fa fa-trash fa-lg"
-                                                            style="color: red; margin-right: 10px;"></i> Delete
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
                                 </div>
                                 <div class="desc-kajian col-md-12">
@@ -49,7 +25,7 @@
                                                 <strong>Judul :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Muktamar Muhammadiyah</p>
+                                                <p>Judul Kajian</p>
                                             </div>
                                         </div>
                                     </div>
@@ -60,7 +36,7 @@
                                                 <strong>Pemateri :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Drs. H. Marpuji Ali, M.SI </p>
+                                                <p>Pemateri Kajian</p>
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +47,7 @@
                                                 <strong>Tanggal :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Senin, 17 Oktober 2022</p>
+                                                <p>Tanggal</p>
                                             </div>
                                         </div>
                                     </div>
@@ -82,7 +58,7 @@
                                                 <strong>Lokasi:</strong>
                                             </div>
                                             <div class="col-md-9">
-                                                <p>Universitas Muhammadiyah Kudus | Via Zoom</p>
+                                                <p>Lokasi</p>
                                             </div>
                                         </div>
                                     </div>
@@ -93,75 +69,47 @@
                                                 <strong>Deskripsi:</strong>
                                             </div>
                                             <div class="col-md-12">
-                                                <p>Pengajian Milad Universitas Muhammadiyah Kudus ke-24 dan Muktamar
-                                                    Muhammadiyah ‘ Aisyiyah ke-48. Pengajian Milad Universitas
-                                                    Muhammadiyah
-                                                    Kudus ke-24 dan Muktamar Muhammadiyah ‘ Aisyiyah ke-48. Pengajian
-                                                    Milad
-                                                    Universitas Muhammadiyah Kudus ke-24 dan Muktamar Muhammadiyah ‘
-                                                    Aisyiyah ke-48. Pengajian Milad Universitas Muhammadiyah Kudus ke-24
-                                                    dan
-                                                    Muktamar Muhammadiyah ‘ Aisyiyah ke-48. </p>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
+                                                    impedit recusandae, esse corrupti iusto maxime sequi itaque
+                                                    laboriosam quam, eveniet accusantium officia rem! Non dignissimos
+                                                    nostrum reiciendis maxime, architecto aperiam.</p>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="desc">
-                                        <div class="row">
-                                            <div class="text-commit col-md-9">
-                                                <strong>Commit Message :</strong>
-                                            </div>
-                                            <div class="text-commit2 col-md-9">
-                                                <strong>Diubah bagian</strong>
-                                            </div>
-                                            <div class="li-commit col-md-10">
-                                                <li>
-                                                    <p>Judul</p>
-                                                </li>
-                                                <li>
-                                                    <p>Narasi paragraf 2</p>
-                                                </li>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
-
-
                         </div>
 
                         <div class="col-md-5 order-md-2">
                             <div class="edit-down-share row">
                                 <div class="col-md-3">
-                                    <a href="form_edit_user_nv" class="btn d-flex flex-column align-items-center">
-                                        <img src="/assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
-                                        <span class="text-editdownshare">Edit</span>
+                                    <a href="" class="btn d-flex flex-column align-items-center">
+                                        <img src="/assets/img/btn-upload.png" alt="Edit Icon" width="21">
+                                        <span class="text-editdownshare">Upload</span>
                                     </a>
                                 </div>
 
                                 <div class="col-md-3">
-                                    <a href="your_download_url" class="btn d-flex flex-column align-items-center">
+                                    <a href="" class="btn d-flex flex-column align-items-center" download>
                                         <img src="/assets_admin/assets/img/download.svg" alt="Download Icon">
                                         <span class="text-editdownshare">Download</span>
                                     </a>
                                 </div>
 
+
                                 <div class="col-md-3">
-                                    <a href="your_share_url" class="btn d-flex flex-column align-items-center">
+                                    <a id="shareid" href="#" class="btn d-flex flex-column align-items-center">
                                         <img src="/assets_admin/assets/img/share.svg" alt="Share Icon">
                                         <span class="text-editdownshare">Share</span>
                                     </a>
                                 </div>
                             </div>
                             <div class="card mt-6 col-md-12">
-                                <div class="bungkus">
-                                    <div class="card-body">
+                                <div class="bungkus-card">
+                                    <div class="card-body-user">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
+                                                <img src="/assets/img/account-profile.png" alt="">
                                             </div>
                                             <div class="postingan col-md-9">
                                                 <a style="text-decoration:none; color: #000;" href="profile_user">
@@ -360,4 +308,32 @@
             </div>
         </section>
 </main>
+<script>
+    $(document).ready(function () {
+        $(".dropdown").on("click", function (event) {
+            // Mencegah default behavior dari anchor tag
+            event.preventDefault();
+
+            // Menampilkan atau menyembunyikan dropdown
+            $(this).find(".dropdown-menu").toggle();
+        });
+    });
+
+    document.getElementById('shareid').addEventListener('click', function () {
+        // Buat URL yang ingin Anda bagikan
+        var urlToShare = 'https://www.instagram.com/ey_kean/'; // Ganti dengan URL yang sesuai
+
+        // Salin URL ke clipboard
+        navigator.clipboard.writeText(urlToShare).then(function () {
+            alert('Link telah disalin ke clipboard!');
+        }).catch(function (err) {
+            console.error('Tidak dapat menyalin teks: ', err);
+        });
+    });
+
+    function showDeleteConfirmation() {
+        // Implement your delete logic here
+        alert("Delete option clicked!");
+    }
+</script>
 @endsection

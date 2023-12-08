@@ -13,13 +13,13 @@
         <div class="d-flex align-items-center">
             <div class="me-2">
                 <label for="startDate" class="me-1">Start Date:</label>
-                <input type="date" id="startDate" name="startDate" class="form-control form-control-sm">
+                <input type="date" id="startDate" name="startDate" class="form-control form-control-sm date-input">
             </div>
             <div class="me-2">
                 <label for="endDate" class="me-1">End Date:</label>
-                <input type="date" id="endDate" name="endDate" class="form-control form-control-sm">
+                <input type="date" id="endDate" name="endDate" class="form-control form-control-sm date-input">
             </div>
-            <button id="filterBtn" class="btn btn-primary btn-sm" title="Filter">
+            <button id="filterBtn" class="btn btn-sm" title="Filter">
                 <i class="fas fa-filter"></i>
             </button>
         </div>
@@ -53,11 +53,7 @@
                     </tfoot>
                     <tbody>
 
-                        @if($uploadHistory->isNotEmpty())
-                        <!-- Ubah $user menjadi $uploadHistory -->
-
                         @foreach($uploadHistory as $index => $kajian)
-                        <!-- Ubah $user menjadi $uploadHistory -->
 
                         <tr>
                             <td>{{ $index + 1 }}</td>
@@ -71,15 +67,6 @@
                         </tr>
 
                         @endforeach
-
-                        @else
-
-                        <tr>
-                            <td colspan="8">Belum ada riwayat upload</td>
-                            <!-- Menampilkan pesan jika tidak ada riwayat upload -->
-                        </tr>
-
-                        @endif
 
                     </tbody>
 

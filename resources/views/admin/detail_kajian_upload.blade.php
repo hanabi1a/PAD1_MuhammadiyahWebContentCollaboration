@@ -16,7 +16,7 @@
                                     <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
                                 </div>
                                 <div class="desc-kajian col-md-12">
-                                    <div class="mb-3 mt-2">
+                                    <div class="mt-4">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <strong>Judul :</strong>
@@ -27,7 +27,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="desc mb-3 mt-2">
+                                    <div class="desc">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <strong>Pemateri :</strong>
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="desc mb-3 mt-2">
+                                    <div class="desc">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <strong>Tanggal :</strong>
@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="desc mb-3 mt-2">
+                                    <div class="desc">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <strong>Lokasi:</strong>
@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="desc mb-3 mt-2">
+                                    <div class="desc">
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <strong>Deskripsi:</strong>

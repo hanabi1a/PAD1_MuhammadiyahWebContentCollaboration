@@ -42,10 +42,11 @@
                             <td class="text-center">
                                 <form action="{{ route('deleteUser', $user->id) }}" method="post">
                                     <a href="{{ route('showDetailUser', $user->id) }}" class="text-info me-2"
-                                        title="View"><i class="fa fa-eye fa-lg"></i></a>
+                                        title="View"><i class="fa fa-eye fa-lg"></i>
+                                    </a>
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="text-info" title="Delete"
+                                    <button type="submit" class="btn btn-lin text-info" title="Delete"
                                         onclick="return confirm('Apakah anda yakin?')">
                                         <i class="fa fa-trash fa-lg"></i>
                                     </button>

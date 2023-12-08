@@ -15,8 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/pikaday/1.8.0/css/pikaday.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_admin/bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_admin\bootstrap-5.3.2-dist\css\bootstrap-grid.css.map') }}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets_admin/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_admin/css/style.css') }}" rel=" stylesheet">
 </head>
 
 <body class="sb-nav-fixed">
@@ -27,7 +26,8 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading"></div>
-                        <a class="nav-link" href="{{ route('dashboard')}}">
+                        <a class="nav-link {{ request()->is('admin_dashboard*') ? 'active' : '' }}" href=" {{
+                            route('dashboard')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-home"></i>
                             </div>Dashboard
@@ -35,7 +35,8 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <a class="nav-link" href="{{ route('data_kajian')}}">
+                        <a class="nav-link {{ request()->is('data_kajian*') ? 'active' : '' }}"
+                            href="{{ route('data_kajian')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-columns"></i>
                             </div>Data Kajian
@@ -43,7 +44,8 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <a class="nav-link" href="{{ route('data_user')}}">
+                        <a class="nav-link {{ request()->is('data_user*') ? 'active' : '' }}"
+                            href="{{ route('data_user')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-user"></i>
                             </div>Data User
@@ -52,7 +54,8 @@
                             </div>
                         </a>
                         </a>
-                        <a class="nav-link" href="{{ route('history_login')}}">
+                        <a class="nav-link {{ request()->is('history_login*') ? 'active' : '' }}"
+                            href="{{ route('history_login')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-bar-chart"></i>
                             </div>History Login
@@ -60,7 +63,8 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <a class="nav-link" href="history_download">
+                        <a class="nav-link {{ request()->is('history_download*') ? 'active' : '' }}"
+                            href="history_download">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-download"></i>
                             </div>History Download
@@ -68,7 +72,8 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <a class="nav-link" href="history_upload">
+                        <a class="nav-link {{ request()->is('history_upload*') ? 'active' : '' }}"
+                            href="history_upload">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-upload"></i>
                             </div>History Upload
@@ -96,6 +101,7 @@
             @yield('content')
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ asset('assets_admin/bootstrap-5.3.2-dist/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('assets_admin/js/scripts.js') }}"></script>
     <script src="{{ asset('assets_admin\js\datatables-simple-demo.js') }}"></script>

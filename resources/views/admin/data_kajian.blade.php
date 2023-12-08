@@ -34,8 +34,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <img src="{{ asset('storage/'.$kajian->foto_kajian) }}" alt="Profile Image"
-                                    width="150">
+                                <img src="{{ asset('storage/'.$kajian->foto_kajian) }}" alt="Profile Image" width="150">
                             </td>
                             <td>{{ $kajian->id_user }}</td>
                             <td>{{ $kajian->pemateri }}</td>
@@ -43,12 +42,12 @@
                             <td>{{ $kajian->tanggal_postingan }}</td>
                             <td class="text-center">
                                 <form action="{{ route('deleteKajian', $kajian->id) }}" method="post">
-                                    <a href="{{ route('kajian', $kajian->id) }}" class="text-info me-2" title="View">
-                                        <i class="fa fa-eye fa-lg"></i>
+                                    <a href="{{ route('kajian', $kajian->id) }}" class="text-info me-2"
+                                        title="View"><i class="fa fa-eye fa-lg"></i>
                                     </a>
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-link text-info" title="Delete"
+                                    <button type="submit" class="btn btn-lin text-info" title="Delete"
                                         onclick="return confirm('Apakah anda yakin?')">
                                         <i class="fa fa-trash fa-lg"></i>
                                     </button>

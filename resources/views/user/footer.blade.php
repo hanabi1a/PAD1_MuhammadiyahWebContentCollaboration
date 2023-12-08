@@ -3,16 +3,16 @@
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div class="col">
                 <center>
-                    <img src="/assets/img/icon/home.svg" alt="" width="45px" height="45px">
+                    <img src="/assets/img/icon/home.svg" alt="" width="35px" height="35px">
                 </center>
-                <div class="contact-title mb-3">Kantor</div>
+                <div class="contact-title mb-3">Office</div>
                 <div class="contact-subtitle">Yogyakarta: Jalan Cik Ditiro 23 <br> Yogyakarta 55262</div>
                 <div class="contact-subtitle">Jakarta: Jalan Menteng Raya No. 62 <br> Jakarta 10340</div>
             </div>
 
             <div class="col">
                 <center>
-                    <img src="/assets/img/icon/email.svg" alt="" width="45px" height="45px">
+                    <img src="/assets/img/icon/email.svg" alt="" width="35px" height="35px">
                 </center>
                 <div class="contact-title mb-3">Email</div>
                 <a href="">
@@ -22,7 +22,7 @@
 
             <div class="col">
                 <center>
-                    <img src="/assets/img/icon/phone.svg" alt="" width="45px" height="45px">
+                    <img src="/assets/img/icon/phone.svg" alt="" width="35px" height="35px">
                 </center>
                 <div class="contact-title mb-3">Telp/Fax</div>
                 <div class="contact-subtitle">Telpon : 0274 553132 Ext 300 <br> Fax : 0274 553134</div>
@@ -38,18 +38,27 @@
     <footer>
         <div class="row">
             <div class="col-md-4">
-                <img src="/assets/img/logo.png" alt="" class="logo">
+                <img src="/assets/img/logo.png" alt="" class="logo-footer">
             </div>
 
             <div class="col-md-4">
-                <div class="follow">Follow Us :</div>
-                <div class="">
-                    <img src="/assets/img/icon/Facebook.svg" alt="" width="35px" height="35px">
-                    <img src="/assets/img/icon/Twitter.svg" alt="" width="35px" height="35px">
-                    <img src="/assets/img/icon/Instagram.svg" alt="" width="35px" height="35px">
-                    <img src="/assets/img/icon/YouTube.svg" alt="" width="35px" height="35px">
+                <div class="heading6">Follow Us :</div>
+                <div class="icon-sosmed">
+                    <a href="https://web.facebook.com/PeryarikatanMuhammadiyah?_rdc=1&_rdr">
+                        <img class="sosmed" src="/assets/img/icon/Facebook.svg" alt="" width="30px" height="30px">
+                    </a>
+                    <a href="https://twitter.com/muhammadiyah">
+                        <img class="sosmed" src="/assets/img/icon/Twitter.svg" alt="" width="30px" height="30px">
+                    </a>
+                    <a href="https://www.instagram.com/lensamu/">
+                        <img class="sosmed" src="/assets/img/icon/Instagram.svg" alt="" width="30px" height="30px">
+                    </a>
+                    <a href="https://www.youtube.com/user/mchannel1912">
+                        <img class="sosmed" src="/assets/img/icon/YouTube.svg" alt="" width="30px" height="30px">
+                    </a>
                 </div>
             </div>
+
 
             <div class="col-md-4">
                 <iframe
@@ -61,10 +70,3 @@
         </div>
     </footer>
 </section>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>

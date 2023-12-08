@@ -13,13 +13,13 @@
         <div class="d-flex align-items-center">
             <div class="me-2">
                 <label for="startDate" class="me-1">Start Date:</label>
-                <input type="date" id="startDate" name="startDate" class="form-control form-control-sm">
+                <input type="date" id="startDate" name="startDate" class="form-control form-control-sm date-input">
             </div>
             <div class="me-2">
                 <label for="endDate" class="me-1">End Date:</label>
-                <input type="date" id="endDate" name="endDate" class="form-control form-control-sm">
+                <input type="date" id="endDate" name="endDate" class="form-control form-control-sm date-input">
             </div>
-            <button id="filterBtn" class="btn btn-primary btn-sm" title="Filter">
+            <button id="filterBtn" class="btn btn-sm" title="Filter">
                 <i class="fas fa-filter"></i>
             </button>
         </div>

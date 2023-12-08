@@ -112,7 +112,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 order-md-2">
+            <div class="col-md-3 order-md-2">
                 <div class="card">
                     <div class="card-header">
                         <img src="/assets/img/article.png" alt="" width="24px" height="24px">

@@ -13716,6 +13716,7 @@ thead {
 
 .nama {
     margin-top: 10px;
+    text-decoration: none;
 }
 
 .name-account {
@@ -13815,14 +13816,19 @@ thead {
 
 #startDate,
 #endDate {
-    padding-top: 10px;
-    padding-bottom: 30px;
+    padding-top: 21px;
+    padding-bottom: 21px;
     padding-left: 20px;
     padding-right: 20px;
     font-size: 14px;
     background-color: var(--bs-green);
     color: white;
 }
+
+.date-input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
 
 .datatable-pagination .datatable-active a,
 .datatable-pagination .datatable-active a:focus,
@@ -14030,4 +14036,32 @@ thead {
     background-color: white;
     color: var(--bs-success);
     border: 2px solid var(--bs-success);
+}
+
+
+.user-profile-pp {
+    width: 125px;
+    height: 125px;
+}
+
+.posts {
+    text-align: center;
+}
+
+.custom-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--bs-accordion-bg);
+    background-clip: border-box;
+    border-radius: var(--bs-card-border-radius);
+    border: 2px solid var(--bs-green);
+}
+
+.post-img {
+    width: 170px;
+    height: 170px;
+    border-radius: 5px;
 }
