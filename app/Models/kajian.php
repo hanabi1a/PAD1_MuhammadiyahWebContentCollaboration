@@ -27,5 +27,9 @@ class kajian extends Model
     {
         return $this->belongsTo(User::class, 'id_user'); // Sesuaikan 'id_user' dengan nama kolom foreign key di tabel 'kajian'
     }
+    public function versions()
+    {
+        return $this->hasMany(version_history::class, 'kajian_id');
+    }
 
 }

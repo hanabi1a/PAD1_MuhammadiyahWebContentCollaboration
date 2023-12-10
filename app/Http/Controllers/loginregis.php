@@ -18,7 +18,7 @@ class loginregis extends Controller
 {
     public function __construct()
     {
-        $this->middleware('web')->except(['logout', 'homepage']);
+        $this->middleware('guest')->except(['logout', 'homepage']);
     }
 
     public function register()

@@ -15,14 +15,21 @@
                                 <div class="col-md-11">
                                     <div class="account-detail row align-items-center">
                                         <div class="col-md-2">
+                                            @if($userkajian->user)
                                             <a href="profile_user">
-                                                <img class="pp-account" src="/assets/img/account-profile.png" alt="Foto"
-                                                    style="border-radius: 50%; width: 50px;">
+                                                <img class="pp-account"
+                                                    src="{{ asset('storage/' . $userkajian->user->foto_profile) }}"
+                                                    alt="Foto tidak ada" style="border-radius: 50%; width: 50px;">
                                             </a>
+                                            @else
+                                            <a href=" profile_user">
+                                                <img src="/assets/img/account-profile.png" alt="Foto Profil Default">
+                                            </a>
+                                            @endif
                                         </div>
                                         <div class="name-account col-md-9 mb-5 align-self-center mt-4">
                                             <a style="text-decoration:none; color: #000;" href="profile_user_2">
-                                                <div class="nama">Karthi Madesh</div>
+                                                <div class="nama">{{ $userkajian->user->username }}</div>
                                             </a>
                                         </div>
                                         <div class="name-account col-md-1 text-end align-self-center mb-4">
@@ -43,7 +50,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
+                                    <img src="{{ asset('storage/'.$userkajian->foto_kajian) }}" alt="" class="img-fluid">
                                 </div>
                                 <div class="desc-kajian col-md-12">
                                     <div class="mt-4">
@@ -52,7 +59,7 @@
                                                 <strong>Judul :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Judul Kajian</p>
+                                                <p>{{ $userkajian->judul_kajian }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +70,7 @@
                                                 <strong>Pemateri :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Pemateri Kajian</p>
+                                                <p>{{ $userkajian->pemateri }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -74,7 +81,7 @@
                                                 <strong>Tanggal :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Tanggal</p>
+                                                <p>{{ $userkajian->tanggal_postingan }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +92,7 @@
                                                 <strong>Lokasi:</strong>
                                             </div>
                                             <div class="col-md-9">
-                                                <p>Lokasi</p>
+                                                <p>{{ $userkajian->lokasi_kajian }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -96,10 +103,7 @@
                                                 <strong>Deskripsi:</strong>
                                             </div>
                                             <div class="col-md-12">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-                                                    impedit recusandae, esse corrupti iusto maxime sequi itaque
-                                                    laboriosam quam, eveniet accusantium officia rem! Non dignissimos
-                                                    nostrum reiciendis maxime, architecto aperiam.</p>
+                                                <p>{{ $userkajian->deskripsi_kajian }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -110,14 +114,14 @@
                         <div class="col-md-5 order-md-2">
                             <div class="edit-down-share row">
                                 <div class="col-md-3">
-                                    <a href="" class="btn d-flex flex-column align-items-center">
+                                    <a href="{{ route('upnv', $userkajian->id) }}" class="btn d-flex flex-column align-items-center">
                                         <img src="/assets/img/btn-upload.png" alt="Edit Icon" width="21">
                                         <span class="text-editdownshare">Upload</span>
                                     </a>
                                 </div>
 
                                 <div class="col-md-3">
-                                    <a href="" class="btn d-flex flex-column align-items-center" download>
+                                    <a href="{{ asset('storage/'.$userkajian->file_kajian) }}" class="btn d-flex flex-column align-items-center" download>
                                         <img src="/assets_admin/assets/img/download.svg" alt="Download Icon">
                                         <span class="text-editdownshare">Download</span>
                                     </a>
@@ -125,7 +129,7 @@
 
 
                                 <div class="col-md-3">
-                                    <a id="shareid" href="#" class="btn d-flex flex-column align-items-center">
+                                    <a id="sharesid" href="#" class="btn d-flex flex-column align-items-center">
                                         <img src="/assets_admin/assets/img/share.svg" alt="Share Icon">
                                         <span class="text-editdownshare">Share</span>
                                     </a>
@@ -346,7 +350,7 @@
         });
     });
 
-    document.getElementById('shareid').addEventListener('click', function () {
+    document.getElementById('sharesid').addEventListener('click', function () {
         // Buat URL yang ingin Anda bagikan
         var urlToShare = 'https://www.instagram.com/ey_kean/'; // Ganti dengan URL yang sesuai
 

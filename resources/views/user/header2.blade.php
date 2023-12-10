@@ -14,7 +14,7 @@
             <div class="dropdown order-lg-last">
                 <button class=" btn btn-light dropdown-toggle btn-login" type="button" id="dropdownMenu2"
                     data-bs-toggle="dropdown" aria-expanded="true">
-                    Username
+                    {{ Auth::user()->username }}
                     <img src="/assets/img/account-profile.png" alt="" width="30px" height="30px">
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -31,7 +31,7 @@
                         </button>
                     </li>
                     <li>
-                        <button class="dropdown-item" type="button">
+                        <button class="dropdown-item" onclick="window.location.href = '{{ route('gotoProfile') }}';">
                             <span class="heading7">Profile</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-person icon-profile" viewBox="0 0 16 16">
@@ -40,8 +40,9 @@
                             </svg>
                         </button>
                     </li>
+
                     <li>
-                        <button class="dropdown-item logout" type="button">
+                        <button class="dropdown-item logout" type="button" action="{{ route('logout') }}">
                             <span class="heading7">Log Out</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-person-x icon-logout" viewBox="0 0 16 16">
@@ -65,8 +66,8 @@
                             href="{{ url('homepage') }}" class="nav-link">Home</a></li>
                     <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('about') }}"
                             class="nav-link">About</a></li>
-                    <li class="nav-item {{ request()->is('kajian2') ? 'active' : '' }}"><a href="{{ url('kajian') }}"
-                            class="nav-link">Kajian</a></li>
+                    <li class="nav-item {{ request()->is('kajian2') ? 'active' : '' }}"><a
+                            href="{{ route('vw_kajian') }}" class="nav-link">Kajian</a></li>
                 </ul>
             </div>
         </div>

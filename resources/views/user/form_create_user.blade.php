@@ -10,7 +10,7 @@
                     <hr>
                     <div class="card-body">
                         <div class="form-validation">
-                            <form class="form-valide" action="{{ route('storekajian') }}" method="POST"
+                            <form class="form-valide" action="{{ route('storekajianuser') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <!-- Judul -->
@@ -124,4 +124,22 @@
         </section>
     </div>
 </main>
+<script>
+    document.getElementById('shareid').addEventListener('click', function () {
+        // Buat URL yang ingin Anda bagikan
+        var urlToShare = 'https://www.instagram.com/ey_kean/'; // Ganti dengan URL yang sesuai
+
+        // Salin URL ke clipboard
+        navigator.clipboard.writeText(urlToShare).then(function () {
+            alert('Link telah disalin ke clipboard!');
+        }).catch(function (err) {
+            console.error('Tidak dapat menyalin teks: ', err);
+        });
+    });
+
+    function showDeleteConfirmation() {
+        // Implement your delete logic here
+        alert("Delete option clicked!");
+    }
+</script>
 @endsection

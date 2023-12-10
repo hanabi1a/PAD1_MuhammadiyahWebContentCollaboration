@@ -10,7 +10,10 @@
                     <hr>
                     <div class="card-body">
                         <div class="form-validation">
-                            <form class="form-valide" action="{{ route('storekajian') }}" method="POST"
+                        <body> @if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+    @endif
+                        <form class="form-valide" action="{{ route('storeNewVersion', ['kajianid' => $kajian->id]) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <!-- Judul -->
@@ -19,31 +22,30 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text"
-                                            class="form-control input-default @error('judul') is-invalid @enderror"" id="
-                                            val_judul" name="val_judul" placeholder="Judul">
+                                            class="form-control input-default @error('judul_kajian') is-invalid @enderror"" id="
+                                            val_judul" name="val_judul" placeholder="Judul" value="{{ $kajian->judul_kajian }}">
                                         @if ($errors->has('name'))
-                                        <span class="text-danger">{{ $errors->first('judul') }}</span>
+                                        <span class="text-danger">{{ $errors->first('judul_kajian') }}</span>
                                         @endif
                                     </div>
                                 </div>
 
                                 <!-- Pemateri -->
+                                <!-- Pemateri -->
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-pemateri">Pemateri
-                                    </label>
+                                    <label class="col-lg-4 col-form-label" for="val-pemateri">Pemateri</label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control input-default" id="val-pemateri"
-                                            name="val_pemateri" placeholder="Pemateri">
+                                            name="val_pemateri" placeholder="Pemateri" value="{{ $kajian->pemateri }}">
                                     </div>
                                 </div>
 
                                 <!-- Tempat -->
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-tempat">Tempat
-                                    </label>
+                                    <label class="col-lg-4 col-form-label" for="val-tempat">Tempat</label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control input-default" id="val-tempat"
-                                            name="val_tempat" placeholder="Tempat">
+                                            name="val_tempat" placeholder="Tempat" value="{{ $kajian->lokasi_kajian }}">
                                     </div>
                                 </div>
 
@@ -52,17 +54,16 @@
                                     <label class="col-lg-4 col-form-label" for="val_tanggal">Tanggal</label>
                                     <div class="col-lg-6">
                                         <input type="date" class="form-control input-default" id="val-tanggal"
-                                            name="val_tanggal">
+                                            name="val_tanggal" value="{{ $kajian->tanggal_postingan }}">
                                     </div>
                                 </div>
 
-
                                 <!-- Deskripsi -->
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val_deskripsi">Deskripsi</label>
+                                    <label class="col-lg-4 col-form-label" for="val-deskripsi">Deskripsi</label>
                                     <div class="col-lg-6">
                                         <textarea class="form-control" id="val-deskripsi" name="val_deskripsi"
-                                            placeholder="Deskripsi"></textarea>
+                                            placeholder="Deskripsi">{{ $kajian->deskripsi_kajian }}</textarea>
                                     </div>
                                 </div>
 
@@ -116,7 +117,7 @@
                                     <label class="col-lg-4 col-form-label" for="val-pemateri">Commit Message
                                     </label>
                                     <div class="col-lg-6">
-                                        <textarea class="form-control" id="val-commit-message" name="val-commit-message"
+                                        <textarea class="form-control" id="val-commit-message" name="val_commit_massage"
                                             placeholder="Commit Message"></textarea>
                                     </div>
                                 </div>

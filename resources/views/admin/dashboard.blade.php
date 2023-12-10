@@ -11,7 +11,7 @@
                 <div class="card bg-primary text-white gradient-1">
                     <div class="card-body">Jumlah Postingan</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">{{ $totalKajian }} Postingan</a>
+                        <a class="small text-white stretched-link" href="#"> Postingan</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="card bg-danger text-white gradient-2">
                     <div class="card-body">Jumlah User</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">{{ $totalUser }} User</a>
+                        <a class="small text-white stretched-link" href="#"> User</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>

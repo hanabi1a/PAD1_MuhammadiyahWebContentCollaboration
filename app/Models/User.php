@@ -62,4 +62,8 @@ class User extends Authenticatable
         return $this->hasMany(Kajian::class, 'id_user'); // Sesuaikan 'user_id' dengan nama kolom foreign key di tabel 'kajian'
     }
 
+    public function versions()
+    {
+        return $this->hasMany(version_history::class, 'user_id');
+    }
 }
