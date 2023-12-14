@@ -64,6 +64,50 @@ class usercon extends Controller
         $user = User::find($userId); // Mengambil data pengguna
         return view('user.form_edit_akun_user_2', ['user' => $user]);
     }
+    public function storeupdateuser(Request $request)
+    {
+        // Validasi data yang diterima dari formulir
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'alamat' => 'required|string',
+            'cabang' => 'required|string',
+            'daerah' => 'required|string',
+            'wilayah' => 'required|string',
+            'foto_kta' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Contoh validasi untuk gambar
+        ]);
+
+        // Mengambil ID pengguna yang sedang login
+        $userId = auth()->id();
+        
+        // Mengambil data pengguna yang akan diperbarui
+        $user = User::find($userId);
+        
+        // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
+        $user->nama = $validatedData['username'];
+        $user->tempat_lahir = $validatedData['tempat_lahir'];
+        $user->tanggal_lahir = $validatedData['tanggal_lahir'];
+        $user->alamat = $validatedData['alamat'];
+        $user->cabang = $validatedData['cabang'];
+        $user->daerah = $validatedData['daerah'];
+        $user->wilayah = $validatedData['wilayah'];
+        
+        // Mengelola unggahan foto jika ada
+        if ($request->hasFile('foto_kta')) {
+            $image = $request->file('foto_kta');
+            $fileNameToStore = time() . '_' . $image->getClientOriginalName(); // Atur nama unik untuk file
+            $fppath = $image->storeAs('photos', $fileNameToStore); // Menyimpan file ke dalam storage/app/photos
+            $user->foto_kta = $fileNameToStore; // Simpan nama file ke dalam model pengguna
+        }
+
+        // Menyimpan perubahan data pengguna
+        $user->save();
+
+        // Redirect atau tampilkan respons sesuai kebutuhan
+        return redirect()->route('gotoProfile')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
+    }
+
 
 
     public function storekajianuser(Request $request)

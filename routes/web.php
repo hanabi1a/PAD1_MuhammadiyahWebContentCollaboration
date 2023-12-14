@@ -229,6 +229,7 @@ Route::controller(usercon::class)->group(function () {
     Route::get('/account', 'gotoAccount')->name('gotoAccount');
     Route::get('/createUser', 'createUser')->name('createUser');
     Route::get('/editProfile', 'editProfile')->name('editProfile');
+    Route::post('/storeupdateuser', 'storeupdateuser')->name('storeupdateuser');
     Route::post('/storekajianuser', 'storekajianuser')->name('storekajianuser');
     Route::get('/userkajian/{id}', 'userkajian')->name('userkajian');
     Route::get('/userdata_kajian', 'data_kajian')->name('userdata_kajian');

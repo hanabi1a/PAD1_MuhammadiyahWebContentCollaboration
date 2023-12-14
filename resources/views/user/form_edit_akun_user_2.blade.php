@@ -8,10 +8,12 @@
                 <div class="container">
                     <h1 class="mt-2 heading3"><strong>Edit User Account</strong></h1>
                     <hr>
-
+                    <body> @if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+    @endif
                     <div class="card-body">
                         <div class="form-validation">
-                            <form class="form-valide" action="" method="post">
+                            <form class="form-valide" action="{{ route('storeupdateuser') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" for="val-nama">Nama
