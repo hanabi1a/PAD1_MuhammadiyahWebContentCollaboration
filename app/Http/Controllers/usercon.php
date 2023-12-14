@@ -55,7 +55,7 @@ class usercon extends Controller
     {
         $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
         $user = User::find($userId); // Mengambil data pengguna
-        return view('user.form_edit_user', ['user' => $user]);
+        return view('user.form_edit_akun_user_2', ['user' => $user]);
     }
 
 
