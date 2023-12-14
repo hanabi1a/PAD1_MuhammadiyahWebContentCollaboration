@@ -8,8 +8,8 @@
                 <div class="container">
                     <div class="row mb-5 justify-content-center align-items-center">
                         <div class="col-md-2">
-                            <img class="user-profile-pp" src="{{ asset('storage/' . $user->foto_profile) }}" alt="" 
-                            style="border-radius: 50%; width: 100px; height: 100px;">
+                            <img class="user-profile-pp" src="{{ asset('storage/' . $user->foto_profile) }}" alt=""
+                                style="border-radius: 50%; width: 100px; height: 100px;">
                         </div>
                         <div class="col-md-4 mt-2">
                             <div class="Username"><strong>{{ Auth::user()->username }}</strong></div>
@@ -103,22 +103,22 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 <script>
-                                        document.getElementById('shareid').addEventListener('click', function() {
-                                            // Buat URL yang ingin Anda bagikan
-                                            var urlToShare =
-                                            'https://www.instagram.com/ey_kean/'; // Ganti dengan URL yang sesuai
+document.getElementById('shareid').addEventListener('click', function() {
+    // Buat URL yang ingin Anda bagikan
+    var urlToShare =
+        'https://www.instagram.com/ey_kean/'; // Ganti dengan URL yang sesuai
 
-                                            // Salin URL ke clipboard
-                                            navigator.clipboard.writeText(urlToShare).then(function() {
-                                                alert('Link telah disalin ke clipboard!');
-                                            }).catch(function(err) {
-                                                console.error('Tidak dapat menyalin teks: ', err);
-                                            });
-                                        });
+    // Salin URL ke clipboard
+    navigator.clipboard.writeText(urlToShare).then(function() {
+        alert('Link telah disalin ke clipboard!');
+    }).catch(function(err) {
+        console.error('Tidak dapat menyalin teks: ', err);
+    });
+});
 
-                                        function showDeleteConfirmation() {
-                                            // Implement your delete logic here
-                                            alert("Delete option clicked!");
-                                        }
-                                        </script>
+function showDeleteConfirmation() {
+    // Implement your delete logic here
+    alert("Delete option clicked!");
+}
+</script>
 @endsection

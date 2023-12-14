@@ -154,13 +154,19 @@ class KajianController extends Controller
     $kajian = Kajian::find($id);
 
     // Validasi form (harap diaktifkan kembali setelah debugging selesai)
-    // $request->validate([
-    //     Validasi di sini...
-    // ]);
+    $request->validate([
+        'val_judul' => 'required',
+        'val_pemateri' => 'required',
+        'val_tempat' => 'required',
+        'val_tanggal' => 'required',
+        'val_deskripsi' => 'required',
+        'val_ed_foto' => 'image|nullable',
+        'val_ed_dokumen' => 'required|mimes:pdf,doc,docx|max:2048'
+    ]);
 
-    if ($request->hasFile('val_foto_kajian')) {
+    if ($request->hasFile('val_ed_foto')) {
         // Proses update foto jika ada perubahan
-        $fotoKajian = $request->file('val_foto_kajian');
+        $fotoKajian = $request->file('val_ed_foto');
         $fileName = pathinfo($fotoKajian->getClientOriginalName(), PATHINFO_FILENAME);
         $extension = $fotoKajian->getClientOriginalExtension();
         $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
@@ -174,9 +180,9 @@ class KajianController extends Controller
         $kajian->foto_kajian = $pathFoto;
     }
 
-    if ($request->hasFile('val_dokumen')) {
+    if ($request->hasFile('val_ed_dokumen')) {
         // Proses update dokumen jika ada perubahan
-        $dokumen = $request->file('val_dokumen');
+        $dokumen = $request->file('val_ed_dokumen');
         $fileName = pathinfo($dokumen->getClientOriginalName(), PATHINFO_FILENAME);
         $extension = $dokumen->getClientOriginalExtension();
         $fileNameToStore = $fileName . '_' . time() . '.' . $extension;

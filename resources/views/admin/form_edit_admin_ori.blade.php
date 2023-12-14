@@ -10,11 +10,15 @@
                     Data Kajian /</a><a href="data_kajian" class="active_title"> Edit Kajian</a>
             </li>
         </ol>
+        <body> @if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+    @endif
 
         <div class="card mb-4">
             <div class="card-body">
                 <div class="form-validation">
                     <form class="form-valide" action="{{ route('update_kajian', ['id' => $kajian->id]) }}"
+                        enctype="multipart/form-data"
                         method="post">
                         @csrf
                         <div class="form-group row">
@@ -64,7 +68,7 @@
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="foto-input"
-                                            name="val_foto_kajian" accept=".png, .jpg, .jpeg">
+                                            name=" val_ed_foto" accept=".png, .jpg, .jpeg">
                                         <label class="custom-file-label-foto custom-file-label" for="foto-input">Choose
                                             file</label>
                                     </div>
@@ -85,7 +89,7 @@
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="dokumen-input"
-                                            name="val_dokumen" accept=".pdf, .doc, .docx">
+                                            name="val_ed_dokumen" accept=".pdf, .doc, .docx">
                                         <label class="custom-file-label-dokumen custom-file-label"
                                             for="dokumen-input">Choose file</label>
                                     </div>
