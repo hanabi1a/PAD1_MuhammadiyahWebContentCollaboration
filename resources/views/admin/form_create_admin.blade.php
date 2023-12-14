@@ -70,7 +70,7 @@
                             <label class="col-lg-4 col-form-label" for="val_deskripsi">Deskripsi</label>
                             <div class="col-lg-6">
                                 <textarea class="form-control" id="val-deskripsi" name="val_deskripsi"
-                                    placeholder="Deskripsi"></textarea>
+                                    placeholder="Deskripsi" style="resize: vertical; min-height: 100px;"></textarea>
                             </div>
                         </div>
 

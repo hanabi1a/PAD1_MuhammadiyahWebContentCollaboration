@@ -24,7 +24,7 @@
                 @csrf
                 <div class="form-group first">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" placeholder="username" id="username" name="username">
+                  <input type="text" class="form-control" placeholder="Username" id="username" name="username">
                   @if ($errors->has('username'))
                   <span class="text-danger">{{ $errors->first('username') }}</span>
                   @endif
