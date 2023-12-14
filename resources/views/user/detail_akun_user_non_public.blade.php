@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-md-1 btn-end">
                                 <button class="btn d-flex flex-column align-items-center"
-                                    onclick="window.location.href=''">
+                                    onclick="window.location.href='{{ route('editProfile') }}'">
                                     <img src="/assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
                                     <span class="text-editdownshare">Edit</span>
                                 </button>
@@ -36,12 +36,12 @@
                                         <h3 class="heading6">Wilayah</h3>
                                     </div>
                                     <div class="col col-md-8">
-                                        <h3 class="heading6">: Username</h3>
-                                        <h3 class="heading6">: Tempat, Tanggal Lahir</h3>
-                                        <h3 class="heading6">: Alamat</h3>
-                                        <h3 class="heading6">: Cabang</h3>
-                                        <h3 class="heading6">: Daerah</h3>
-                                        <h3 class="heading6">: Wilayah</h3>
+                                        <h3 class="heading6">: {{$user->username}}</h3>
+                                        <h3 class="heading6">: {{$user->tempat_lahir}}, {{$user->tanggal_lahir}}</h3>
+                                        <h3 class="heading6">: {{$user->alamat}}</h3>
+                                        <h3 class="heading6">: {{$user->cabang}}</h3>
+                                        <h3 class="heading6">: {{$user->daerah}}</h3>
+                                        <h3 class="heading6">: {{$user->wilayah}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -63,10 +63,10 @@
                                                 <h3 class="heading6">Wilayah</h3>
                                             </div>
                                             <div class="col col-md-8">
-                                                <h3 class="heading6">: Alamat</h3>
-                                                <h3 class="heading6">: Cabang</h3>
-                                                <h3 class="heading6">: Daerah</h3>
-                                                <h3 class="heading6">: Wilayah</h3>
+                                                <h3 class="heading6">: {{$user->alamat}}</h3>
+                                                <h3 class="heading6">: {{$user->cabang}}</h3>
+                                                <h3 class="heading6">: {{$user->daerah}}</h3>
+                                                <h3 class="heading6">: {{$user->wilayah}}</h3>
                                             </div>
                                         </div>
                                     </li>
@@ -79,7 +79,7 @@
                                         <div class="row">
                                             <div class="col col-md-4">
                                                 <img class="card-muhammadiyah"
-                                                    src="\assets_admin\assets\img\card-muhammadiyah.png">
+                                                    src="{{ asset('storage/'.$user->foto_kta) }}">
                                             </div>
                                             <div class="col col-md-8">
                                                 <button class="btn-green mb-3">Anggota</button><br>

@@ -225,6 +225,7 @@ Route::controller(usercon::class)->group(function () {
     Route::get('/kajians', 'vw_kajian')->name('vw_kajian');
     Route::get('/about', 'vw_about')->name('vw_about');
     Route::get('/profile', 'gotoProfile')->name('gotoProfile');
+    Route::get('/detailacc', 'gotodetailacc')->name('gotodetailacc');
     Route::get('/account', 'gotoAccount')->name('gotoAccount');
     Route::get('/createUser', 'createUser')->name('createUser');
     Route::get('/editProfile', 'editProfile')->name('editProfile');

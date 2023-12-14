@@ -39,6 +39,13 @@ class usercon extends Controller
         return view('user.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
     }
 
+    public function gotodetailacc(){
+        $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
+        $user = User::find($userId); // Mengambil data pengguna
+        return view('user.detail_akun_user_non_public', ['user' => $user]);
+        // return view('user.detail_akun_user_public');
+    }
+
 
 
     public function gotoAccount()

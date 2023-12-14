@@ -19,7 +19,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <li>
-                        <button class="dropdown-item" onclick="window.location.href = '{{ route('gotoProfile') }}';">
+                        <button class="dropdown-item" onclick="window.location.href = '{{ route('gotodetailacc') }}';">
                             <span class="heading7">Account</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="fas fa-person-check icon-akun" viewBox="0 0 16 16">
