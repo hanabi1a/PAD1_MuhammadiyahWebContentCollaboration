@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'id',
+        'nama',
         'username',
         'password',
         'foto_profile',
@@ -64,6 +65,13 @@ class User extends Authenticatable
 
     public function versions()
     {
-        return $this->hasMany(version_history::class, 'user_id');
+        return $this->hasMany(versionHistory::class, 'user_id');
     }
+
+    public function is_admin() {
+        $adminUsernames = ['admint']; // Username admin yang diizinkan
+    
+        return in_array($this->username, $adminUsernames);
+    }
+    
 }

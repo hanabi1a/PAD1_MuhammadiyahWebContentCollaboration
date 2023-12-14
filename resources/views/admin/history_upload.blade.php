@@ -61,8 +61,16 @@
                             <td>{{ $kajian->id_user }}</td>
                             <td>{{ $kajian->judul_kajian }}</td>
                             <td>{{ $kajian->id }}</td>
-                            <td>{{ $kajian->judul_kajian_nv }}</td>
-                            <td>{{ $kajian->id_kajian_nv }}</td>
+                            <td>{{ $kajian->judul_kajian }}</td>
+                            <td>
+                                @if($kajian->versionHistory()->exists())
+                                {{ $kajian->versionHistory->count()}}
+                                <!-- Menampilkan ID dari versi baru jika ada -->
+                                @else
+                                -
+                                <!-- Jika tidak ada versi baru -->
+                                @endif
+                            </td>
                             <td>{{ $kajian->created_at }}</td>
                         </tr>
 

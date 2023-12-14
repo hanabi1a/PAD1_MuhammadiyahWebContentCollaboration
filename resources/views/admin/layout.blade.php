@@ -73,7 +73,7 @@
                             </div>
                         </a>
                         <a class="nav-link {{ request()->is('history_upload*') ? 'active' : '' }}"
-                            href="history_upload">
+                            href="{{route('history_upload')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-upload"></i>
                             </div>History Upload
@@ -81,7 +81,7 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <form action="{{ route('logout') }}" method="POST">
+                        <form action="{{ route('logout') }}" method="GET">
                             <a class="nav-link" href="#"
                                 onclick="event.preventDefault(); this.closest('form').submit();">
                                 <div class="sb-nav-link-icon">

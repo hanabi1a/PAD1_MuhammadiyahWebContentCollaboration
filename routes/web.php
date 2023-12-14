@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.homepage');
 });
 // Route::get('/layout', function () {
 //     return view('admin/layout');
@@ -221,6 +221,7 @@ Route::controller(loginregis::class)->group(function () {
 });
 
 Route::controller(usercon::class)->group(function () {
+    Route::get('/kajian', 'nlkajian')->name('nlkajian');
     Route::get('/kajians', 'vw_kajian')->name('vw_kajian');
     Route::get('/about', 'vw_about')->name('vw_about');
     Route::get('/profile', 'gotoProfile')->name('gotoProfile');
@@ -233,6 +234,7 @@ Route::controller(usercon::class)->group(function () {
     Route::delete('/userdeleteKajian/{id}', 'deleteKajianUser')->name('userdeleteKajian');
     Route::get('/uploadkajian/{id}', 'upnv')->name('upnv');
     Route::post('uploadnewversion/{kajianid}', 'storeNewVersion')->name('storeNewVersion');
+    Route::get('/uploaddetail/{id}', 'detail_upload_nv')->name('upnvdetail');
 });
 
 Route::controller(KajianController::class)->group(function () {
@@ -243,6 +245,7 @@ Route::controller(KajianController::class)->group(function () {
     Route::delete('/deleteKajian/{id}', 'deleteKajian')->name('deleteKajian');
     Route::get('/edit_kajian/{id}', 'edit_kajian')->name('edit_kajian');
     Route::post('/update_kajian/{id}', 'update_kajian')->name('update_kajian');
+    Route::get('/detailNewVersion/{id}', 'showNewVersionDetail')->name('detailNv');
 });
 
 

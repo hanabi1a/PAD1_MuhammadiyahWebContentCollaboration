@@ -156,12 +156,12 @@
                                             <div class="postingan col-md-9">
                                                 <a style="text-decoration:none; color: #000;" href="profile_user">
                                                     <strong>
-                                                        <p>Karthi Madhes</p>
+                                                        <p>{{ $kajian->user->username }}</p>
                                                     </strong>
                                                 </a>
                                                 <div class="row">
                                                     <div class="col-md-10">
-                                                        <p>Karthi Madhes Taehyung</p>
+                                                        <p>{{ $kajian->user->nama }}</p>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <img src="/assets_admin/assets/img/arrow-right-square.svg">
@@ -171,175 +171,27 @@
                                         </div>
 
                                         <h1 class="text-edit">Edit by</h1>
+                                        @foreach($kajian->versions as $version)
                                         <div class="row align-items-center edit-by">
                                             <div class="col-md-3">
-                                                <a href="profile_user">
+                                                <a href="#">
                                                     <img src="/assets/img/account-profile.png" alt="">
                                                 </a>
                                             </div>
                                             <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
+                                                <a style="text-decoration:none; color: #000;" href="#">
                                                     <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
+                                                        <p class="mb-0">{{ $version->user->username }}</p>
                                                     </strong>
                                                 </a>
                                                 <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
+                                                    <a href="{{ route('detailNv', ['id' => $version->id]) }}">
+                                                        <img src="/assets_admin/assets/img/arrow-right-square.svg">
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row align-items-center edit-by">
-                                            <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                    <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
-                                                    </strong>
-                                                </a>
-                                                <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center edit-by">
-                                            <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                    <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
-                                                    </strong>
-                                                </a>
-                                                <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center edit-by">
-                                            <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                    <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
-                                                    </strong>
-                                                </a>
-                                                <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center edit-by">
-                                            <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                    <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
-                                                    </strong>
-                                                </a>
-                                                <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center edit-by">
-                                            <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                    <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
-                                                    </strong>
-                                                </a>
-                                                <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center edit-by">
-                                            <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                    <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
-                                                    </strong>
-                                                </a>
-                                                <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center edit-by">
-                                            <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                    <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
-                                                    </strong>
-                                                </a>
-                                                <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center edit-by">
-                                            <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                    <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
-                                                    </strong>
-                                                </a>
-                                                <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center edit-by">
-                                            <div class="col-md-3">
-                                                <a href="profile_user">
-                                                    <img src="/assets/img/account-profile.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="postingan col-md-9 d-flex align-items-center">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user">
-                                                    <strong>
-                                                        <p class="mb-0">Karthi Madhes</p>
-                                                    </strong>
-                                                </a>
-                                                <div class="col-md-5 text-center ml-2">
-                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                </div>
-                                            </div>
+                                        @endforeach
                                         </div>
                                     </div>
                                 </div>

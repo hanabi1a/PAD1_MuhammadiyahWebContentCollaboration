@@ -31,7 +31,7 @@
                             class="nav-link">Home</a></li>
                     <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('about') }}"
                             class="nav-link">About</a></li>
-                    <li class="nav-item {{ request()->is('kajian') ? 'active' : '' }}"><a href="{{ url('kajian') }}"
+                    <li class="nav-item {{ request()->is('kajian') ? 'active' : '' }}"><a href="{{ route('nlkajian') }}"
                             class="nav-link">Kajian</a></li>
                 </ul>
             </div>

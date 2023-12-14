@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kajian;
 use App\Models\HistoryDownload;
+use App\Models\versionHistory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
 
 class KajianController extends Controller
 {
@@ -147,77 +150,86 @@ class KajianController extends Controller
     }
 
     public function update_kajian(Request $request, $id)
-    {
-        // dd($request->all());
-        // $request->validate([
-        //     'val_judul' => 'required',
-        //     'val_pemateri' => 'required',
-        //     'val_tempat' => 'required',
-        //     'val_tanggal' => 'required',
-        //     'val_deskripsi' => 'required',
-        //     'val_foto_kajian' => 'image|nullable|max:1999',
-        //     'val_dokumen' => 'required|mimes:pdf,doc,docx|max:2048'
-        // ]);
+{
+    $kajian = Kajian::find($id);
 
-        $kajian = Kajian::find($id);
+    // Validasi form (harap diaktifkan kembali setelah debugging selesai)
+    // $request->validate([
+    //     Validasi di sini...
+    // ]);
 
-        if ($request->hasFile('val_foto_kajian')) {
-            // Lakukan proses update foto jika ada perubahan
-            $filenameWithExt = $request->file('val_foto_kajian')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('val_foto_kajian')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            $pathFoto = $request->file('val_foto_kajian')->storeAs('storage/photos/', $fileNameToStore);
+    if ($request->hasFile('val_foto_kajian')) {
+        // Proses update foto jika ada perubahan
+        $fotoKajian = $request->file('val_foto_kajian');
+        $fileName = pathinfo($fotoKajian->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = $fotoKajian->getClientOriginalExtension();
+        $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+        $pathFoto = $fotoKajian->storeAs('storage/photos', $fileNameToStore);
 
-            // Hapus foto lama jika diperlukan
-            Storage::delete($kajian->foto_kajian); // Pastikan path foto sudah benar di model
-
-            $kajian->foto_kajian = $pathFoto;
+        // Hapus foto lama jika ada
+        if ($kajian->foto_kajian) {
+            Storage::delete('storage/photos/' . basename($kajian->foto_kajian));
         }
 
-        if ($request->hasFile('val_dokumen')) {
-            // Lakukan proses update dokumen jika ada perubahan
-            $filenameWithExt = $request->file('val_dokumen')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('val_dokumen')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            $pathDokumen = $request->file('val_dokumen')->storeAs('storage/documents/', $fileNameToStore);
-
-            // Hapus dokumen lama jika diperlukan
-            Storage::delete($kajian->file_kajian); // Pastikan path dokumen sudah benar di model
-
-            $kajian->file_kajian = $pathDokumen;
-        }
-
-        $kajian->judul_kajian = $request->val_judul;
-        $kajian->pemateri = $request->val_pemateri;
-        $kajian->lokasi_kajian = $request->val_tempat;
-        $kajian->tanggal_postingan = $request->val_tanggal;
-        $kajian->deskripsi_kajian = $request->val_deskripsi;
-
-        $kajian->save();
-
-        return redirect()->route('data_kajian')->withSuccess("Data berhasil diperbarui");
+        $kajian->foto_kajian = $pathFoto;
     }
 
+    if ($request->hasFile('val_dokumen')) {
+        // Proses update dokumen jika ada perubahan
+        $dokumen = $request->file('val_dokumen');
+        $fileName = pathinfo($dokumen->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = $dokumen->getClientOriginalExtension();
+        $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+        $pathDokumen = $dokumen->storeAs('storage/documents', $fileNameToStore);
+
+        // Hapus dokumen lama jika ada
+        if ($kajian->file_kajian) {
+            Storage::delete('storage/documents/' . basename($kajian->file_kajian));
+        }
+
+        $kajian->file_kajian = $pathDokumen;
+    }
+
+    // Update informasi kajian
+    $kajian->judul_kajian = $request->val_judul;
+    $kajian->pemateri = $request->val_pemateri;
+    $kajian->lokasi_kajian = $request->val_tempat;
+    $kajian->tanggal_postingan = $request->val_tanggal;
+    $kajian->deskripsi_kajian = $request->val_deskripsi;
+
+    $kajian->save();
+
+    return redirect()->route('data_kajian')->withSuccess("Data berhasil diperbarui");
+}
+
+
+    // Contoh bagian controller untuk menangani unduhan
     public function downloadKajian($kajianId)
     {
-        // Logika unduhan kajian
+        // Mendapatkan data kajian berdasarkan ID atau cara lainnya sesuai dengan aplikasi kamu
+        $kajian = Kajian::findOrFail($kajianId);
 
-        // Catat log download ke dalam history_downloads
+        // Logika untuk menyimpan riwayat unduhan ke dalam tabel HistoryDownload
+        $user = Auth::user(); // Mengambil pengguna yang terautentikasi
         $historyDownload = new HistoryDownload();
-        $historyDownload->user_id = auth()->id(); // ID pengguna yang sedang login
-        $historyDownload->kajian_id = $kajianId; // ID kajian yang diunduh
-        $historyDownload->downloaded_at = now(); // Waktu unduh
+        $historyDownload->user_id = $user->id;
+        $historyDownload->kajian_id = $kajian->id;
         $historyDownload->save();
 
-        // Logika unduhan kajian lainnya dan pengalihan ke file unduhan
-
-        // Ambil data history downloads setelah pencatatan
-        $historyDownloads = HistoryDownload::with(['user', 'kajian'])->get();
-
-        return view('admin.history_download', ['historyDownloads' => $historyDownloads]);
+        // Logika untuk mengarahkan pengguna ke file kajian yang akan diunduh
+        return response()->download(storage_path("storage/".$kajian->file_kajian));
     }
+
+    public function showNewVersionDetail($id)
+{
+    $kajianNV = versionHistory::findOrFail($id); // Ganti dengan model dan method yang sesuai dengan struktur aplikasi kamu
+
+    // Lakukan logika untuk menampilkan detail versi baru, misalnya:
+    return view('user.detail_kajian_nv_user', ['kajianNV' => $kajianNV]);
+}
+
+
+    
 
 
 

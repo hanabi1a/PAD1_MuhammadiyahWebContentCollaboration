@@ -88,16 +88,12 @@ class admincon extends Controller
 
         public function showHistoryUpload()
         {
-            $user = Auth::user(); // Mendapatkan pengguna yang terautentikasi
-        
-            $uploadHistory = []; // Menyiapkan variabel untuk riwayat upload
-        
-            if ($user) {
-                $uploadHistory = $user->kajians; // Mengambil riwayat upload pengguna
-            }
-        
-            return view('admin.history_upload', ['uploadHistory' => $uploadHistory]);
+            // Mengambil semua kajian dari semua pengguna
+            $allUploadHistory = Kajian::all();
+
+            return view('admin.history_upload', ['uploadHistory' => $allUploadHistory]);
         }
+
         
 
     public function showDetailUser($id)

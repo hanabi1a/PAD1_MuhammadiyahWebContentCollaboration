@@ -25,7 +25,7 @@
                                                 <strong>Judul :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Judul Kajian</p>
+                                                <p>{{ $kajian->judul_kajian }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -36,7 +36,7 @@
                                                 <strong>Pemateri :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Pemateri Kajian</p>
+                                                <p>{{ $kajian->pemateri }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -47,7 +47,7 @@
                                                 <strong>Tanggal :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Tanggal</p>
+                                                <p>{{ $kajian->tanggal_posting }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                                 <strong>Lokasi:</strong>
                                             </div>
                                             <div class="col-md-9">
-                                                <p>Lokasi</p>
+                                                <p>{{ $kajian->lokasi_kajian}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -69,10 +69,7 @@
                                                 <strong>Deskripsi:</strong>
                                             </div>
                                             <div class="col-md-12">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-                                                    impedit recusandae, esse corrupti iusto maxime sequi itaque
-                                                    laboriosam quam, eveniet accusantium officia rem! Non dignissimos
-                                                    nostrum reiciendis maxime, architecto aperiam.</p>
+                                                <p>{{ $kajian->deskripsi_kajian }}</p>
                                             </div>
                                         </div>
                                     </div>

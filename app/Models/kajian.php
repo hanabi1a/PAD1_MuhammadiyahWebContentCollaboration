@@ -29,7 +29,14 @@ class kajian extends Model
     }
     public function versions()
     {
-        return $this->hasMany(version_history::class, 'kajian_id');
+        return $this->hasMany(versionHistory::class, 'kajian_id');
     }
+
+    // Di dalam model Kajian
+    public function versionHistory()
+    {
+        return $this->hasOne(VersionHistory::class);
+    }
+
 
 }

@@ -16,13 +16,14 @@
                                     <div class="account-detail row align-items-center">
                                         <div class="col-md-2">
                                             <a href="profile_user">
-                                                <img class="pp-account" src="/assets/img/account-profile.png" alt="Foto"
-                                                    style="border-radius: 50%; width: 50px;">
+                                                <img class="pp-account" src="{{ asset('storage/' . $kajianNV->user->foto_profile) }}" alt="Foto"
+                                                    style="border-radius: 50%; width: 50px; height: 50px;">
+
                                             </a>
                                         </div>
                                         <div class="name-account col-md-9 mb-5 align-self-center mt-4">
                                             <a style="text-decoration:none; color: #000;" href="profile_user_2">
-                                                <div class="nama">Karthi Madesh</div>
+                                                <div class="nama">{{ $kajianNV->user->username }}</div>
                                             </a>
                                         </div>
                                         <div class="name-account col-md-1 text-end align-self-center mb-4">
@@ -52,7 +53,7 @@
                                                 <strong>Judul :</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Judul Kajian</p>
+                                                <p>wkwk</p>
                                             </div>
                                         </div>
                                     </div>
@@ -113,12 +114,7 @@
                                                 <strong>Diubah bagian</strong>
                                             </div>
                                             <div class="li-commit col-md-10">
-                                                <li>
-                                                    Judul
-                                                </li>
-                                                <li>
-                                                    Narasi paragraf 2
-                                                </li>
+                                                <b>{{ $kajianNV->commit_msg }}</b>
                                             </div>
                                         </div>
                                     </div>

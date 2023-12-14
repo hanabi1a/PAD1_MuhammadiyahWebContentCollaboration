@@ -12,7 +12,12 @@ class usercon extends Controller
     public function vw_kajian()
     {
         $latestKajians = Kajian::orderBy('created_at', 'desc')->take(5)->get(); // Ambil 5 kajian terbaru
-        return view('user.kajian', compact('latestKajians'));
+        return view('user.kajian2', compact('latestKajians'));
+    }
+
+    public function nlkajian()
+    {
+        return view('user.kajian');
     }
 
     public function vw_about()
@@ -153,6 +158,7 @@ class usercon extends Controller
     // dd($validatedData);
     // dd($filePath);
     
+    
 
     $versionHistory = new versionHistory();
     $versionHistory->kajian_id = $kajianid;
@@ -170,8 +176,21 @@ class usercon extends Controller
     
     $versionHistory->save();
 
-    return redirect()->route('gotoProfile')->with('success', 'Versi baru telah berhasil diunggah.');
+    $idid_kajian = $versionHistory->kajian_id;
+
+    return redirect()->route('upnvdetail', ['id' => $idid_kajian])->with('success', 'Versi baru telah berhasil diunggah.');
+
 }
+
+
+    // Dalam fungsi detail_upload_nv
+    public function detail_upload_nv($id)
+    {
+        $kajian = Kajian::with('versionHistory')->find($id);
+
+        return view('user.detail_upload_user', ['kajian' => $kajian]);
+    }
+
 
 
 

@@ -9,6 +9,12 @@ class HistoryDownload extends Model
 {
     protected $table = 'history_downloads';
 
+    protected $fillable = [
+        'user_id',
+        'kajian_id',
+        'downloaded_at'
+    ];
+
     // Definisikan relasi ke model User (jika diperlukan)
     public function user()
     {
