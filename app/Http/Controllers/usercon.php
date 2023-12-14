@@ -195,7 +195,7 @@ class usercon extends Controller
     {
         $kajian = Kajian::with('versionHistory')->find($id);
 
-        return view('user.detail_upload_user', ['kajian' => $kajian]);
+        return view('user.detail_kajian_upload_user', ['kajian' => $kajian]);
     }
 
 
