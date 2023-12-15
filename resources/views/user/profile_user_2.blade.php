@@ -44,7 +44,10 @@
                                         class="post-img rounded-start" alt="Profile">
                                 </div>
                                 <div class="col-md-5 mt-2">
-                                    <h5 class="heading6"><strong>{{ $kajian->judul_kajian }}</strong></h5>
+                                <a href="{{ route('userkajian', $kajian->id) }}" class="text-info me-2"title="View">
+                                <h5 class="heading6"><strong>{{ $kajian->judul_kajian }}</strong></h5>
+                                </a>
+                                    
                                     <p class="heading7">{{ $kajian->deskripsi_kajian }}</p>
                                 </div>
                                 <div class="col-md-2">
