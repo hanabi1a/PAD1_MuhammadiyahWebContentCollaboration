@@ -116,14 +116,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <iframe width="560" height="240" src="https://www.youtube.com/embed/nuF60TmusIw?si=bfMYdaXP2-s2MqxR"
+                    <iframe width="540" height="240" src="https://www.youtube.com/embed/nuF60TmusIw?si=bfMYdaXP2-s2MqxR"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
                 </div>
 
                 <div class="col-md-6">
-                    <iframe width="560" height="240" src="https://www.youtube.com/embed/AHBl03lNZEc?si=iPuszVPQQ5Je6xdx"
+                    <iframe width="540" height="240" src="https://www.youtube.com/embed/AHBl03lNZEc?si=iPuszVPQQ5Je6xdx"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
@@ -132,14 +132,14 @@
 
             <div class="row mt-5">
                 <div class="col-md-6">
-                    <iframe width="560" height="240" src="https://www.youtube.com/embed/ClmfzaVPYyQ?si=8dIuuvdlAcjJh4gp"
+                    <iframe width="540" height="240" src="https://www.youtube.com/embed/ClmfzaVPYyQ?si=8dIuuvdlAcjJh4gp"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
                 </div>
 
                 <div class="col-md-6">
-                    <iframe width="560" height="240" src="https://www.youtube.com/embed/hSYcVnuzPMA?si=Y286BQcjjDciOm5t"
+                    <iframe width="540" height="240" src="https://www.youtube.com/embed/hSYcVnuzPMA?si=Y286BQcjjDciOm5t"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>

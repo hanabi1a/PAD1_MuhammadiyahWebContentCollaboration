@@ -194,21 +194,22 @@ Route::get('/', function () {
 // Route::get('/form_create_user', function () {
 //     return view('user/form_create_user');
 // });
-// Route::get('/detail_kajian_ori_user', function () {
-//     return view('user/detail_kajian_ori_user');
-// });
-// Route::get('/detail_kajian_nv_user', function () {
-//     return view('user/detail_kajian_nv_user');
-// });
+Route::get('/detail_kajian_ori_user', function () {
+    return view('user/detail_kajian_ori_user');
+});
+Route::get('/detail_kajian_nv_user', function () {
+    return view('user/detail_kajian_nv_user');
+});
 // Route::get('/detail_kajian_upload_user', function () {
 //     return view('user/detail_kajian_upload_user');
 // });
 // Route::get('/form_edit_user', function () {
 //     return view('user/form_edit_user');
 // });
-// Route::get('/form_upload_user', function () {
-//     return view('user/form_upload_user');
-// });
+Route::get('/form_upload_user', function () {
+    return view('user/form_upload_user');
+});
+
 
 Route::controller(loginregis::class)->group(function () {
     Route::get('/sign_up', 'register')->name('register');

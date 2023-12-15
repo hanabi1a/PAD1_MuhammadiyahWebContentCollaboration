@@ -76,7 +76,7 @@
                 <div class="image-container">
                     <img src="/assets/img/kajian/kajian1.png" alt="" class="img-fluid">
                     <div class="overlay">
-                        <button class="btn btn-info btn-poster">Kajian Umum</button>
+                        <button class="btn btn-poster">Kajian Umum</button>
                         <div class="title">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus</div>
                         <div class="subtitle">20 December, 2021 | By Annisa Urohmah</div>
                     </div>
@@ -86,7 +86,7 @@
                 <div class="image-container">
                     <img src="/assets/img/kajian/kajian1.png" alt="" class="img-fluid">
                     <div class="overlay">
-                        <button class="btn btn-info btn-poster">Kajian Umum</button>
+                        <button class="btn btn-poster">Kajian Umum</button>
                         <div class="title">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus</div>
                         <div class="subtitle">20 December, 2021 | By Annisa Urohmah</div>
                     </div>
@@ -94,9 +94,9 @@
             </div>
             <div class="col-4">
                 <div class="image-container">
-                    <img src="/assets/img/kajian/kajian1.png" alt="" class="img-fluid">
+                    <img src="/assets/img/kajian/kajian1.png" alt="" class="img-fluid postkajian-kajian">
                     <div class="overlay">
-                        <button class="btn btn-info btn-poster">Kajian Umum</button>
+                        <button class="btn btn-poster">Kajian Umum</button>
                         <div class="title">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus</div>
                         <div class="subtitle">20 December, 2021 | By Annisa Urohmah</div>
                     </div>
@@ -112,14 +112,14 @@
     <div class="container">
         <div class="title mb-3 mt-5">Kajian Terkini</div>
         <div class="row">
-            <div class="col-md-9 order-md-1">
-                <div class="col-md-9 order-md-1">
+            <div class="col-md-8 order-md-1">
+                <div class="col-md-11 order-md-1">
                     @foreach ($latestKajians as $kajian)
                     <div class="row mb-3">
-                        <div class="col-md-3">
-                            <img src="{{ asset('storage/' . $kajian->foto_kajian) }}" alt="" class="img-fluid">
+                        <div class="col-md-4">
+                            <img src="{{ asset('storage/' . $kajian->foto_kajian) }}" alt="" class="postkajian-kajian">
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <div class="title mb-3 mt-2">{{ $kajian->judul_kajian }}</div>
                             <ul class="list-unstyled">
                                 <li>Narasumber : {{ $kajian->pemateri }}</li>
@@ -138,44 +138,21 @@
                     </div>
                     @endforeach
                 </div>
-
-
-
-                <div class="row mb-3 mt-5">
-                    <div class="col-md-3">
-                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
-                        </div>
-                        <ul class="list-unstyled">
-                            <li>Narasumber : Prof. Dr. H. M. Dailamy S.P</li>
-                            <li>Tema : “Rahasia dibalik kemampuan Muhammadiyah dapat bertahan sampai lebih dari satu
-                                abad”</li>
-                        </ul>
-                        <div class="d-flex mt-3">
-                            <div class="button-kajian text-light me-3">
-                                View More
-                            </div>
-                            <p>Monday | December 19, 2022 | By Aisa selvira</p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <div class="col-md-3 order-md-2">
+
+            <div class="col-md-4 order-md-2 col-kanan">
                 <div class="card mt-5">
                     <div class="row">
                         <img src="/assets/img/kajian/highest.png" alt="" class="img-fluid">
                     </div>
-
                     <div class="bungkus">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <img src="/assets/img/account-profile.png" alt="">
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -183,8 +160,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -192,8 +171,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -201,8 +182,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>

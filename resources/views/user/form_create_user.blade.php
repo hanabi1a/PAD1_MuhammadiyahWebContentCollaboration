@@ -21,9 +21,10 @@
                                         <input type="text"
                                             class="form-control input-default @error('judul') is-invalid @enderror"" id="
                                             val_judul" name="val_judul" placeholder="Judul">
-                                        @if ($errors->has('name'))
-                                        <span class="text-danger">{{ $errors->first('judul') }}</span>
+                                        @if ($errors->has('val_judul'))
+                                        <span class="text-danger">{{ $errors->first('val_judul') }}</span>
                                         @endif
+
                                     </div>
                                 </div>
 

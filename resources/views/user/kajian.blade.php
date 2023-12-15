@@ -295,7 +295,6 @@
                             <div class="white-overlay">
                                 <!-- Social Media Info with Images -->
                                 <div class="social-media-info">
-                                    <p>Follow us on:</p>
                                     <div class="social-icons">
                                         <img src="/assets/img/facebook-1.png" alt="Facebook"
                                             style="width: 190px; height: 60px;">
@@ -304,6 +303,12 @@
                                         <img src="/assets/img/icon/google.png" alt="Google"
                                             style="width: 60px; height: 60px;">
                                     </div>
+                                </div>
+                                <div class="detail-kajian text-center">
+                                    <span class="fw-bold">Kajian Al Islam dan Kemuhammadiyahan Series ke-26</span><br>
+                                    Risalah Islam Berkemajuan | Prof. Dr. Abdul Mu'ti, M.Ed | Kajian Al-Islam &
+                                    Kemuhammadiyahan UMS <br>
+                                    Videos | 30 December, 2022 | Masjid Hj. Sudalmiyah Rais UMS
                                 </div>
                             </div>
                         </div>
@@ -321,10 +326,10 @@
                     <div class="bungkus">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <img src="/assets/img/account-profile.png" alt="">
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -332,8 +337,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -341,8 +348,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -350,8 +359,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -359,8 +370,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -368,8 +381,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -377,8 +392,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -386,8 +403,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -395,8 +414,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -404,8 +425,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -413,8 +436,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -422,8 +447,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -431,8 +458,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -440,8 +469,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
@@ -449,8 +480,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3"><img src="/assets/img/account-profile.png" alt=""></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
+                                    <img src="/assets/img/account-profile.png" alt="">
+                                </div>
+                                <div class="col-md-8">
                                     <div class="nama-setor">Aisa Selvira</div>
                                     <div class="jumlah">40 post</div>
                                 </div>
