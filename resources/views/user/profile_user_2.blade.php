@@ -51,16 +51,12 @@
                                     <p class="heading7">{{ $kajian->deskripsi_kajian }}</p>
                                 </div>
                                 <div class="col-md-2">
-                                    <div class="card-body">
+                                <div class="card-body">
                                         <form action="{{ route('userdeleteKajian', $kajian->id) }}" method="post">
-                                            <a href="{{ route('userkajian', $kajian->id) }}" class="text-info me-2"
-                                                title="View"><i class="fa fa-eye fa-lg"></i></a>
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-lin text-info" title="Delete"
-                                                onclick="return confirm('Apakah anda yakin?')">
-                                                <i class="fa fa-trash fa-lg"></i>
-                                            </button>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"
+                                                onclick="return confirmDelete()">Delete</button>
                                         </form>
                                     </div>
                                     <div class="row">
@@ -123,5 +119,12 @@ function showDeleteConfirmation() {
     // Implement your delete logic here
     alert("Delete option clicked!");
 }
+</script>
+
+<script>
+    function confirmDelete() {
+        // Menggunakan window.confirm() untuk menampilkan notifikasi
+        return window.confirm('Apakah Anda yakin ingin menghapus data?');
+    }
 </script>
 @endsection

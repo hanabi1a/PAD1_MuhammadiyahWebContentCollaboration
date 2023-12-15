@@ -22,7 +22,7 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-md-3">
-                                <img src="\assets_admin\assets\img\user.png" alt="" class="img-fluid profile-user">
+                                <img src="{{ asset('storage/' . $user->foto_profile) }}" alt="" class="img-fluid profile-user">
                             </div>
                             <div class="col-md-9">
                                 <div class="row">
