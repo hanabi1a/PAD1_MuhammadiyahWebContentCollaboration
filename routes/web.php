@@ -235,6 +235,7 @@ Route::controller(usercon::class)->group(function () {
     Route::post('/storeupdateuser', 'storeupdateuser')->name('storeupdateuser');
     Route::post('/storekajianuser', 'storekajianuser')->name('storekajianuser');
     Route::get('/userkajian/{id}', 'userkajian')->name('userkajian');
+    Route::get('/nluserkajian/{id}', 'nluserkajian')->name('nluserkajian');
     Route::get('/userdata_kajian', 'data_kajian')->name('userdata_kajian');
     Route::delete('/userdeleteKajian/{id}', 'deleteKajianUser')->name('userdeleteKajian');
     Route::get('/uploadkajian/{id}', 'upnv')->name('upnv');

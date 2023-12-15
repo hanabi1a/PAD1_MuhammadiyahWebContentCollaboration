@@ -145,7 +145,7 @@
                                 <li>Tema : “{{ $kajian->deskripsi_kajian }}”</li>
                             </ul>
                             <div class="d-flex mt-3">
-                                <a href="{{ route('userkajian', ['id' => $kajian->id]) }}"
+                                <a href="{{ route('nluserkajian', ['id' => $kajian->id]) }}"
                                     class="button-kajian text-light me-3" style="text-decoration: none;">
                                     View More
                                 </a>

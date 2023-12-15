@@ -221,6 +221,15 @@ class usercon extends Controller
 
     return view('user.detail_kajian_ori_user', ['userkajian' => $userkajian, 'uploaderUsername' => $uploaderUsername]);
 }
+
+    public function nluserkajian($id)
+    {
+        $userkajian = Kajian::find($id);
+
+        // Periksa apakah relasi user ada dan tidak kosong
+
+        return view('user.detail_kajian_ori_nluser', ['userkajian' => $userkajian]);
+    }
     
     public function upnv($id)
     {
