@@ -64,6 +64,45 @@ class usercon extends Controller
         $user = User::find($userId); // Mengambil data pengguna
         return view('user.form_edit_profile_user', ['user' => $user]);
     }
+
+    public function editdetailacc(){
+        $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
+        $user = User::find($userId); // Mengambil data pengguna
+        return view('user.form_edit_akun_user_2', ['user' => $user]);
+    }
+
+
+    public function storeupdatedetailuser(Request $request){
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
+            'foto_kta' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Contoh validasi untuk gambar
+        ]);
+
+        // Mengambil ID pengguna yang sedang login
+        $userId = auth()->id();
+        
+        // Mengambil data pengguna yang akan diperbarui
+        $user = User::find($userId);
+        
+        // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
+        $user->nama = $validatedData['username'];
+        $user->tempat_lahir = $validatedData['nama'];
+        
+        // Mengelola unggahan foto jika ada
+        if ($request->hasFile('foto_kta')) {
+            $image = $request->file('foto_kta');
+            $fileNameToStore = time() . '_' . $image->getClientOriginalName(); // Atur nama unik untuk file
+            $fppath = $image->storeAs('photos', $fileNameToStore); // Menyimpan file ke dalam storage/app/photos
+            $user->foto_kta = $fileNameToStore; // Simpan nama file ke dalam model pengguna
+        }
+
+        // Menyimpan perubahan data pengguna
+        $user->save();
+
+        // Redirect atau tampilkan respons sesuai kebutuhan
+        return redirect()->route('gotodetailacc')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
+    }
     public function storeupdateuser(Request $request)
     {
         // Validasi data yang diterima dari formulir

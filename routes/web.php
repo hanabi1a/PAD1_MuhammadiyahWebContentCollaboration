@@ -230,6 +230,8 @@ Route::controller(usercon::class)->group(function () {
     Route::get('/account', 'gotoAccount')->name('gotoAccount');
     Route::get('/createUser', 'createUser')->name('createUser');
     Route::get('/editProfile', 'editProfile')->name('editProfile');
+    Route::get('/editdetailacc', 'editdetailacc')->name('editdetailacc');
+    Route::post('/storeupdatedetailuser', 'storeupdatedetailuser')->name('storeupdatedetailuser');
     Route::post('/storeupdateuser', 'storeupdateuser')->name('storeupdateuser');
     Route::post('/storekajianuser', 'storekajianuser')->name('storekajianuser');
     Route::get('/userkajian/{id}', 'userkajian')->name('userkajian');
