@@ -17,7 +17,8 @@ class usercon extends Controller
 
     public function nlkajian()
     {
-        return view('user.kajian');
+        $latestKajians = Kajian::orderBy('created_at', 'desc')->take(5)->get(); // Ambil 5 kajian terbaru
+        return view('user.kajian', compact('latestKajians'));
     }
 
     public function vw_about()
@@ -88,7 +89,7 @@ class usercon extends Controller
         // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
         $user->nama = $validatedData['username'];
         $user->tempat_lahir = $validatedData['nama'];
-        
+
         // Mengelola unggahan foto jika ada
         if ($request->hasFile('foto_kta')) {
             $image = $request->file('foto_kta');

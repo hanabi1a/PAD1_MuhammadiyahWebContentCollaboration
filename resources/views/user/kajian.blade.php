@@ -133,150 +133,29 @@
         <hr>
         <div class="row">
             <div class="col-md-9 order-md-1">
-                <div class="row mb-3 ">
-                    <div class="col-md-3">
-                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
+            @foreach ($latestKajians as $kajian)
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <img src="{{ asset('storage/' . $kajian->foto_kajian) }}" alt="" class="postkajian-kajian">
                         </div>
-                        <ul class="list-unstyled">
-                            <li>Narasumber : Prof. Dr. H. M. Dailamy S.P</li>
-                            <li>Tema : “Rahasia dibalik kemampuan Muhammadiyah dapat bertahan sampai lebih dari satu
-                                abad”</li>
-                        </ul>
-                        <div class="d-flex mt-3">
-                            <button class="button-kajian text-light me-3" onclick="window.location.href='#'">
-                                View More
-                            </button>
-                            <p class="mt-1">Monday | December 19, 2022 | By Aisa selvira</p>
-                        </div>
-                    </div>
-                </div>
+                        <div class="col-md-8">
+                            <div class="title mb-3 mt-2">{{ $kajian->judul_kajian }}</div>
+                            <ul class="list-unstyled">
+                                <li>Narasumber : {{ $kajian->pemateri }}</li>
+                                <li>Tema : “{{ $kajian->deskripsi_kajian }}”</li>
+                            </ul>
+                            <div class="d-flex mt-3">
+                                <a href="{{ route('userkajian', ['id' => $kajian->id]) }}"
+                                    class="button-kajian text-light me-3" style="text-decoration: none;">
+                                    View More
+                                </a>
 
-                <div class="row mb-3 mt-5">
-                    <div class="col-md-3">
-                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
-                        </div>
-                        <ul class="list-unstyled">
-                            <li>Narasumber : Prof. Dr. H. M. Dailamy S.P</li>
-                            <li>Tema : “Rahasia dibalik kemampuan Muhammadiyah dapat bertahan sampai lebih dari satu
-                                abad”</li>
-                        </ul>
-                        <div class="d-flex mt-3">
-                            <button class="button-kajian text-light me-3" onclick="window.location.href='#'">
-                                View More
-                            </button>
-                            <p class="mt-1">Monday | December 19, 2022 | By Aisa selvira</p>
+                                <p>{{ $kajian->created_at->format('l | F d, Y') }} | By {{ $kajian->user->username }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row mb-3 mt-5">
-                    <div class="col-md-3">
-                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid img-overlay-kajian">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
-                        </div>
-                        <ul class="list-unstyled">
-                            <li>Narasumber : Prof. Dr. H. M. Dailamy S.P</li>
-                            <li>Tema : “Rahasia dibalik kemampuan Muhammadiyah dapat bertahan sampai lebih dari satu
-                                abad”</li>
-                        </ul>
-                        <div class="d-flex mt-3">
-                            <button class="button-kajian text-light me-3" onclick="window.location.href='#'">
-                                View More
-                            </button>
-                            <p class="mt-1">Monday | December 19, 2022 | By Aisa selvira</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-3 mt-5">
-                    <div class="col-md-3">
-                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
-                        </div>
-                        <ul class="list-unstyled">
-                            <li>Narasumber : Prof. Dr. H. M. Dailamy S.P</li>
-                            <li>Tema : “Rahasia dibalik kemampuan Muhammadiyah dapat bertahan sampai lebih dari satu
-                                abad”</li>
-                        </ul>
-                        <div class="d-flex mt-3">
-                            <button class="button-kajian text-light me-3" onclick="window.location.href='#'">
-                                View More
-                            </button>
-                            <p class="mt-1">Monday | December 19, 2022 | By Aisa selvira</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-3 mt-5">
-                    <div class="col-md-3">
-                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
-                        </div>
-                        <ul class="list-unstyled">
-                            <li>Narasumber : Prof. Dr. H. M. Dailamy S.P</li>
-                            <li>Tema : “Rahasia dibalik kemampuan Muhammadiyah dapat bertahan sampai lebih dari satu
-                                abad”</li>
-                        </ul>
-                        <div class="d-flex mt-3">
-                            <button class="button-kajian text-light me-3" onclick="window.location.href='#'">
-                                View More
-                            </button>
-                            <p class="mt-1">Monday | December 19, 2022 | By Aisa selvira</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-3 mt-5">
-                    <div class="col-md-3">
-                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
-                        </div>
-                        <ul class="list-unstyled">
-                            <li>Narasumber : Prof. Dr. H. M. Dailamy S.P</li>
-                            <li>Tema : “Rahasia dibalik kemampuan Muhammadiyah dapat bertahan sampai lebih dari satu
-                                abad”</li>
-                        </ul>
-                        <div class="d-flex mt-3">
-                            <button class="button-kajian text-light me-3" onclick="window.location.href='#'">
-                                View More
-                            </button>
-                            <p class="mt-1">Monday | December 19, 2022 | By Aisa selvira</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-3 mt-5">
-                    <div class="col-md-3">
-                        <img src="/assets/img/kajian/kajian.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="title mb-3 mt-2">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus
-                        </div>
-                        <ul class="list-unstyled">
-                            <li>Narasumber : Prof. Dr. H. M. Dailamy S.P</li>
-                            <li>Tema : “Rahasia dibalik kemampuan Muhammadiyah dapat bertahan sampai lebih dari satu
-                                abad”</li>
-                        </ul>
-                        <div class="d-flex mt-3">
-                            <button class="button-kajian text-light me-3" onclick="window.location.href='#'">
-                                View More
-                            </button>
-                            <p class="mt-1">Monday | December 19, 2022 | By Aisa selvira</p>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
 
 
                 <!-- Card Video YouTube -->
