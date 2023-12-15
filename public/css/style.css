@@ -4660,8 +4660,6 @@ footer .col-md-4 {
     }
 }
 
-
-
 .edit-down-share {
     margin-top: 30px;
     float: right;
@@ -4707,4 +4705,8 @@ footer .col-md-4 {
 .nav-link.active {
     background-color: #8b8e90;
     color: #fff;
+}
+
+.list-article a {
+    color: #000;
 }

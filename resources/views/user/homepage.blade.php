@@ -1,3 +1,4 @@
+homepage
 @extends('user.layout')
 @section('content')
 

@@ -209,6 +209,9 @@ Route::get('/detail_kajian_nv_user', function () {
 Route::get('/form_upload_user', function () {
     return view('user/form_upload_user');
 });
+Route::get('/about2', function () {
+    return view('user/about2');
+});
 
 
 Route::controller(loginregis::class)->group(function () {

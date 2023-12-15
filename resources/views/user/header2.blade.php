@@ -15,7 +15,8 @@
                 <button class=" btn btn-light dropdown-toggle btn-login" type="button" id="dropdownMenu2"
                     data-bs-toggle="dropdown" aria-expanded="true">
                     {{ Auth::user()->username }}
-                    <img src="{{ asset('storage/'.Auth::user()->foto_profile) }}" alt="" width="30px" height="30px" style="border-radius: 50%;">
+                    <img src="{{ asset('storage/'.Auth::user()->foto_profile) }}" alt="" width="30px" height="30px"
+                        style="border-radius: 50%;">
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <li>
@@ -64,7 +65,7 @@
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item {{ request()->is('homepage2') ? 'active' : '' }}"><a
                             href="{{ url('homepage') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('about') }}"
+                    <li class="nav-item {{ request()->is('about2') ? 'active' : '' }}"><a href="{{ url('about2') }}"
                             class="nav-link">About</a></li>
                     <li class="nav-item {{ request()->is('kajian2') ? 'active' : '' }}"><a
                             href="{{ route('vw_kajian') }}" class="nav-link">Kajian</a></li>
