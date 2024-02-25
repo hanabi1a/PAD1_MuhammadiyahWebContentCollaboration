@@ -10,8 +10,8 @@ class kajian extends Model
     use HasFactory;
     protected $table = 'kajian';
 
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'id',
         'judul_kajian',
         'pemateri',
         'lokasi_kajian',

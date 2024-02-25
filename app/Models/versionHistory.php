@@ -11,6 +11,8 @@ class versionHistory extends Model
 
     protected $table = 'version_history';
 
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'kajian_id', // ID kajian yang terhubung
         'user_id',   // ID pengguna yang mengunggah versi
@@ -19,6 +21,8 @@ class versionHistory extends Model
         'commit_message'
         // tambahkan kolom lain jika diperlukan
     ];
+
+    
     protected static function boot()
     {
         parent::boot();

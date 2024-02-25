@@ -9,6 +9,8 @@ class HistoryDownload extends Model
 {
     protected $table = 'history_downloads';
 
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'user_id',
         'kajian_id',

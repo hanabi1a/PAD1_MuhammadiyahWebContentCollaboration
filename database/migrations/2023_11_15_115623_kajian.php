@@ -12,19 +12,20 @@ return new class extends Migration {
     {
         Schema::create('kajian', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
-            $table->string('id_file_kajian');
-            $table->string('pemateri');
-            $table->string('judul_kajian');
-            $table->string('file_kajian');
-            $table->string('deskripsi_kajian');
-            $table->date('tanggal_postingan');
-            $table->string('lokasi_kajian');
-            $table->string('keyword_kajian');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->string('id_file_kajian')->nullable();
+            $table->string('pemateri')->nullable();
+            $table->string('judul_kajian')->nullable();
+            $table->string('file_kajian')->nullable();
+            $table->string('deskripsi_kajian')->nullable();
+            $table->date('tanggal_postingan')->nullable();
+            $table->string('lokasi_kajian')->nullable();
+            $table->string('keyword_kajian')->nullable();
             $table->string('foto_kajian')->nullable();
-
-            // Menambahkan foreign key ke tabel 'user'
-            // $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

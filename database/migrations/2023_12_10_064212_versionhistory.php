@@ -13,16 +13,24 @@ return new class extends Migration
     {
         Schema::create('version_history', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kajian_id')->nullable();
-            $table->unsignedInteger('user_id')->nullable();
+
+            $table->unsignedBigInteger('kajian_id');
+            $table->foreign('kajian_id')
+                ->references('id')
+                ->on('kajian')
+                ->onDelete('cascade');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            
             $table->integer('version_number')->nullable();
             $table->string('file_path')->nullable();
             $table->string('commit_message')->nullable();
             $table->timestamps();
-
-            // Tambahkan constraint foreign key jika diperlukan
-            $table->foreign('kajian_id')->references('id')->on('kajian')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
         });
     }
 
