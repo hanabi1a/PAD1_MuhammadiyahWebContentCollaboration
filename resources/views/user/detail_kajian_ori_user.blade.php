@@ -130,7 +130,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <a href="{{ asset('storage/'.$userkajian->file_kajian) }}"
+                                    <a onclick="window.location.href='{{ route('download', $userkajian->id) }}'""
                                         class="btn d-flex flex-column align-items-center" download>
                                         <img src="/assets_admin/assets/img/download.svg" alt="Download Icon">
                                         <span class="text-editdownshare">Download</span>

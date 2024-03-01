@@ -27,7 +27,7 @@
             </button>
             <div class="collapse navbar-collapse nvbar" id="ftco-nav">
                 <ul class="navbar-nav m-auto">
-                    <li class="nav-item {{ request()->is('homepage') ? 'active' : '' }}"><a href="{{ url('homepage') }}"
+                    <li class="nav-item {{ request()->is('homepage') ? 'active' : '' }}"><a href="{{ url('public_homepage') }}"
                             class="nav-link">Home</a></li>
                     <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('about') }}"
                             class="nav-link">About</a></li>
