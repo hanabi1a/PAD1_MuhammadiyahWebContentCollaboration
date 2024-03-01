@@ -1,0 +1,18 @@
+FE:
+- Detail account user page
+- Form edit account user page
+- Profile user page
+
+BE :
+-Melihat daftar data akun user
+-Mencari data akun user (SEARCH BERDASARKAN ID DAN USERNAME)
+-Melihat detail akun user
+-Menghapus akun user (DELETE)
+-Melihat detail kajian
+-Mengedit detail kajian (EDIT)
+-Melihat daftar data history sign in user
+-Mencari data history sign in user (SEARCH BERDASARKAN ID USER DAN USERNAME)
+-Filter data history sign in user (FILTER BERDASARKAN TANGGAL. FILTER DAPAT DILAKUKAN DENGAN ATAU TANPA MELAKUKAN SEARCH TERLEBIH DAHULU)
+-Melihat daftar data history download user 
+-Mencari data history download user (SEARCH BERDASARKAN ID USER, USERNAME, ID KAJIAN, JUDUL KAJIAN)
+-Filter data history download user (FILTER BERDASARKAN TANGGAL. FILTER DAPAT DILAKUKAN DENGAN ATAU TANPA MELAKUKAN SEARCH TERLEBIH DAHULU)
