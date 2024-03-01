@@ -18,7 +18,7 @@ class loginregis extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest')->except(['logout', 'homepage']);
+        // $this->middleware('web')->except(['logout']);
     }
 
     public function register()
@@ -31,18 +31,19 @@ class loginregis extends Controller
 
         $rule = [
             'pekerjaan' => 'required',
-            'nama' => 'required',
-            'username' => 'required',
-            'password' => 'required|min:4',
-            'foto_kta' => 'image|nullable|max:1999',
-            'foto_profile' => 'image|nullable|max:1999',
+            'nama' => 'required|max:255',
+            'username' => 'required|max:50',
+            'password' => 'required|min:4|regex:/^\S*$/|confirmed',
+            'foto_kta' => 'image|nullable|between:2000,10000',
+            'foto_profile' => 'image|nullable|between:2000,10000',
             'alamat' => 'required',
             'nomor_keanggotaan' => 'required',
             'daerah' => 'required',
             'cabang' => 'required',
             'tempat_lahir' => 'required',
             'wilayah' => 'required',
-            'tanggal_lahir' => 'required',
+            'tanggal_lahir' => 'required|date|before_or_equal:today',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan'
         ];
         $validator = Validator::make($request->all(), $rule);
         if ($validator->fails()) {
@@ -167,7 +168,7 @@ class loginregis extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login')
+        return redirect()->route('public_homepage')
             ->withSuccess("You have logged out");
     }
 

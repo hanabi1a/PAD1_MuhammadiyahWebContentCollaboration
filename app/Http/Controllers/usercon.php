@@ -40,6 +40,11 @@ class usercon extends Controller
         return view('user.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
     }
 
+    public function  gotoHomenotlogin()
+    {
+        return view('user.homepage');
+    }
+
     public function gotodetailacc(){
         $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
         $user = User::find($userId); // Mengambil data pengguna
@@ -73,80 +78,88 @@ class usercon extends Controller
     }
 
 
-    public function storeupdatedetailuser(Request $request){
+    public function storeupdateuser(Request $request){
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'username' => 'required|string|max:255',
-            'foto_kta' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Contoh validasi untuk gambar
+            'foto_profiles' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
-
-        // Mengambil ID pengguna yang sedang login
+    
         $userId = auth()->id();
-        
-        // Mengambil data pengguna yang akan diperbarui
-        $user = User::find($userId);
-        
-        // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
-        $user->nama = $validatedData['username'];
-        $user->tempat_lahir = $validatedData['nama'];
+        // Mengambil data pengguna dari database berdasarkan ID atau metode lain yang digunakan
+        $user = User::find($userId); // Pastikan untuk mengganti $userId dengan cara yang sesuai
+    
+        // Memperbarui data pengguna berdasarkan input yang diterima
+        $user->nama = $validatedData['nama'];
+        $user->username = $validatedData['username'];
+    
+        // Memeriksa apakah ada foto profil yang diunggah
+        if ($request->hasFile('foto_profiles')) {
+            $filenameWithExt = $request->file('foto_profiles')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto_profiles')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fppath = $request->file('foto_profiles')->storeAs('/photos', $fileNameToStore);
 
-        // Mengelola unggahan foto jika ada
-        if ($request->hasFile('foto_kta')) {
-            $image = $request->file('foto_kta');
-            $fileNameToStore = time() . '_' . $image->getClientOriginalName(); // Atur nama unik untuk file
-            $fppath = $image->storeAs('photos', $fileNameToStore); // Menyimpan file ke dalam storage/app/photos
-            $user->foto_kta = $fileNameToStore; // Simpan nama file ke dalam model pengguna
+            $user->foto_profile = $fppath; 
         }
-
-        // Menyimpan perubahan data pengguna
+        
+    
+        // Menyimpan perubahan ke database
         $user->save();
-
-        // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect()->route('gotodetailacc')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
+    
+        // Redirect atau berikan respons sesuai kebutuhan aplikasi
+        return redirect()->route('gotoProfile')->with('success', 'Profil berhasil diperbarui');
     }
-    public function storeupdateuser(Request $request)
-    {
-        // Validasi data yang diterima dari formulir
-        $validatedData = $request->validate([
-            'username' => 'required|string|max:255',
-            'tempat_lahir' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
-            'alamat' => 'required|string',
-            'cabang' => 'required|string',
-            'daerah' => 'required|string',
-            'wilayah' => 'required|string',
-            'foto_kta' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Contoh validasi untuk gambar
-        ]);
+    
+    public function storeupdatedetailuser(Request $request)
+{
+    // Validasi data yang diterima dari formulir
+    $validatedData = $request->validate([
+        'nama' => 'required|string|max:255',
+        'tempat_lahir' => 'required|string|max:255',
+        'tanggal_lahir' => 'required|date',
+        'alamat' => 'required|string|max:255',
+        'cabang' => 'required|string|max:255',
+        'daerah' => 'required|string|max:255',
+        'wilayah' => 'required|string|max:255',
+        'foto_kta' => 'nullable|image|mimes:jpeg,png,jpg', // Contoh validasi untuk gambar
+    ]);
 
-        // Mengambil ID pengguna yang sedang login
-        $userId = auth()->id();
+    // Mengambil ID pengguna yang sedang login
+    $userId = auth()->id();
+    
+    // Mengambil data pengguna yang akan diperbarui
+    $user = User::find($userId);
+    
+    // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
+    $user->nama = $validatedData['nama'];
+    $user->tempat_lahir = $validatedData['tempat_lahir'];
+    $user->tanggal_lahir = $validatedData['tanggal_lahir'];
+    $user->alamat = $validatedData['alamat'];
+    $user->cabang = $validatedData['cabang'];
+    $user->daerah = $validatedData['daerah'];
+    $user->wilayah = $validatedData['wilayah'];
+    
+    // Mengelola unggahan foto jika ada
+    if ($request->hasFile('foto_kta')) {
+        $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('foto_kta')->getClientOriginalExtension();
+        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+        $path = $request->file('foto_kta')->storeAs('/photos', $fileNameToStore);
         
-        // Mengambil data pengguna yang akan diperbarui
-        $user = User::find($userId);
-        
-        // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
-        $user->nama = $validatedData['username'];
-        $user->tempat_lahir = $validatedData['tempat_lahir'];
-        $user->tanggal_lahir = $validatedData['tanggal_lahir'];
-        $user->alamat = $validatedData['alamat'];
-        $user->cabang = $validatedData['cabang'];
-        $user->daerah = $validatedData['daerah'];
-        $user->wilayah = $validatedData['wilayah'];
-        
-        // Mengelola unggahan foto jika ada
-        if ($request->hasFile('foto_kta')) {
-            $image = $request->file('foto_kta');
-            $fileNameToStore = time() . '_' . $image->getClientOriginalName(); // Atur nama unik untuk file
-            $fppath = $image->storeAs('photos', $fileNameToStore); // Menyimpan file ke dalam storage/app/photos
-            $user->foto_kta = $fileNameToStore; // Simpan nama file ke dalam model pengguna
-        }
-
-        // Menyimpan perubahan data pengguna
-        $user->save();
-
-        // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect()->route('gotoProfile')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
+        // Simpan informasi foto ke database
+        $user->foto_kta = $path; // Simpan path foto di kolom foto_kta
     }
+
+    // Menyimpan perubahan data pengguna
+    $user->save();
+
+    // Redirect atau tampilkan respons sesuai kebutuhan
+    return redirect()->route('gotodetailacc')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
+}
+
 
 
 
@@ -278,7 +291,7 @@ class usercon extends Controller
 
     $idid_kajian = $versionHistory->kajian_id;
 
-    return redirect()->route('upnvdetail', ['id' => $idid_kajian])->with('success', 'Versi baru telah berhasil diunggah.');
+    return redirect()->route('detailNv', ['id' => $idid_kajian])->with('success', 'Versi baru telah berhasil diunggah.');
 
 }
 

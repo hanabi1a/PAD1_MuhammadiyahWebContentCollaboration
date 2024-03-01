@@ -13,14 +13,14 @@
     @endif
                     <div class="card-body">
                         <div class="form-validation">
-                            <form class="form-valide" action="{{ route('storeupdateuser') }}" method="post" enctype="multipart/form-data">
+                            <form class="form-valide" action="{{ route('storeupdatedetailuser') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" for="val-nama">Nama
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control input-default" value="{{$user->nama}}" id="val-nama"
-                                            name="username" placeholder="Nama">
+                                            name="nama" placeholder="Nama">
                                     </div>
                                 </div>
                                 <div class="form-group row">

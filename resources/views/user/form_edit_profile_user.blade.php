@@ -22,7 +22,7 @@
                                         </label>
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control input-default" value="{{$user->nama}}"
-                                                id="val-nama" name="username" placeholder="Nama">
+                                                id="val-nama" name="nama" placeholder="Nama">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -40,7 +40,7 @@
                                             <div class="input-group mb-3">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="foto-input"
-                                                        name="foto_kta" accept=".png, .jpg, .jpeg">
+                                                        name="foto_profiles" accept=".png, .jpg, .jpeg">
                                                     <label class="custom-file-label-foto custom-file-label"
                                                         for="foto-input">Choose
                                                         file</label>

@@ -61,8 +61,8 @@ class KajianController extends Controller
             'val_tempat' => 'required',
             'val_tanggal' => 'required',
             'val_deskripsi' => 'required',
-            'val_foto_kajian' => 'image|nullable|max:1999',
-            'val_dokumen' => 'required|mimes:pdf,doc,docx|max:2048'
+            'val_foto_kajian' => 'image|nullable|max:26000',
+            'val_dokumen' => 'required|mimes:pdf,doc,docx|max:20480'
         ]);
 
         $userId = auth()->id(); 

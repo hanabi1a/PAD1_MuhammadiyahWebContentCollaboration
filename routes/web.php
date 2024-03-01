@@ -244,6 +244,7 @@ Route::controller(usercon::class)->group(function () {
     Route::get('/uploadkajian/{id}', 'upnv')->name('upnv');
     Route::post('uploadnewversion/{kajianid}', 'storeNewVersion')->name('storeNewVersion');
     Route::get('/uploaddetail/{id}', 'detail_upload_nv')->name('upnvdetail');
+    Route::get('/public_homepage', 'gotoHomenotlogin')->name('public_homepage');
 });
 
 Route::controller(KajianController::class)->group(function () {
@@ -255,6 +256,7 @@ Route::controller(KajianController::class)->group(function () {
     Route::get('/edit_kajian/{id}', 'edit_kajian')->name('edit_kajian');
     Route::post('/update_kajian/{id}', 'update_kajian')->name('update_kajian');
     Route::get('/detailNewVersion/{id}', 'showNewVersionDetail')->name('detailNv');
+    Route::get('/download/{id}', 'downloadKajian')->name('download');
 });
 
 
