@@ -34,8 +34,8 @@ class loginregis extends Controller
             'nama' => 'required|max:255',
             'username' => 'required|max:50',
             'password' => 'required|min:4|regex:/^\S*$/|confirmed',
-            'foto_kta' => 'image|nullable|max:10000',
-            'foto_profile' => 'image|nullable|max:10000',
+            'foto_kta' => 'image|nullable|between:2000,10000',
+            'foto_profile' => 'image|nullable|between:2000,10000',
             'alamat' => 'required',
             'nomor_keanggotaan' => 'required',
             'daerah' => 'required',
@@ -43,7 +43,7 @@ class loginregis extends Controller
             'tempat_lahir' => 'required',
             'wilayah' => 'required',
             'tanggal_lahir' => 'required|date|before_or_equal:today',
-            'jenis_kelamin' => 'required|in:P,L'
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan'
         ];
         $validator = Validator::make($request->all(), $rule);
         if ($validator->fails()) {
