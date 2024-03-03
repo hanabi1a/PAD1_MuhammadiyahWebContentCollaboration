@@ -51,6 +51,13 @@
                                         <input type="password" class="form-control" placeholder="Password" id="password"
                                             name="password">
                                     </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="password_confirmation">Password Confirmation</label>
+                                        <input type="password" class="form-control" placeholder="password confirmation" id="password_confirmation"
+                                            name="password_confirmation">
+                                    </div>
+
                                     <div class="form-group col-md-6">
                                         <label for="cabang">Cabang</label>
                                         <input type="text" class="form-control" placeholder="Cabang" id="cabang"
@@ -89,19 +96,12 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="jenis-kelamin">Jenis Kelamin</label>
-                                        <div>
-                                            <label class="control control--checkbox"><span
-                                                    class="caption">Perempuan</span>
-                                                <input type="checkbox" name="jenis-kelamin" value="Perempuan">
-                                                <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--checkbox"><span
-                                                    class="caption">Laki-Laki</span>
-                                                <input type="checkbox" name="jenis-kelamin" value="Laki-Laki">
-                                                <div class="control__indicator"></div>
-                                            </label>
-                                        </div>
+                                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                                        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" required>
+                                            <option value="" selected disabled>Please select</option>
+                                            <option value="P">Perempuan</option>
+                                            <option value="L">Laki-Laki</option>
+                                        </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="foto_kta">Foto KTA</label>
