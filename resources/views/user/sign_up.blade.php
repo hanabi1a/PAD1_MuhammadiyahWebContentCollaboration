@@ -52,6 +52,11 @@
                                             name="password">
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label for="password_confirmation">Password Confirmation</label>
+                                        <input type="password" class="form-control" placeholder="password confirmation" id="password_confirmation"
+                                            name="password_confirmation">
+                                    </div>
+                                    <div class="form-group col-md-6">
                                         <label for="cabang">Cabang</label>
                                         <input type="text" class="form-control" placeholder="Cabang" id="cabang"
                                             name="cabang">
@@ -67,9 +72,9 @@
                                             name="wilayah">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="tempat-lahir">Tempat Lahir</label>
+                                        <label for="tempat_lahir">Tempat Lahir</label>
                                         <input type="text" class="form-control" placeholder="Tempat Lahir"
-                                            id="tempat-lahir" name="tempat_lahir">
+                                            id="tempat_lahir" name="tempat_lahir">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="daerah">Daerah</label>
@@ -77,9 +82,9 @@
                                             name="daerah">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="tanggal-lahir">Tanggal Lahir</label>
+                                        <label for="tanggal_lahir">Tanggal Lahir</label>
                                         <input type="date" class="form-control" placeholder="Tanggal Lahir"
-                                            id="tanggal-lahir" name="tanggal_lahir">
+                                            id="tanggal_lahir" name="tanggal_lahir">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="foto_profile">Foto Profil</label>
@@ -89,19 +94,12 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="jenis-kelamin">Jenis Kelamin</label>
-                                        <div>
-                                            <label class="control control--checkbox"><span
-                                                    class="caption">Perempuan</span>
-                                                <input type="checkbox" name="jenis-kelamin" value="Perempuan">
-                                                <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--checkbox"><span
-                                                    class="caption">Laki-Laki</span>
-                                                <input type="checkbox" name="jenis-kelamin" value="Laki-Laki">
-                                                <div class="control__indicator"></div>
-                                            </label>
-                                        </div>
+                                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                                        <select class="form-control" name="jenis_kelamin" id="jenis-jenis_kelamin" required>
+                                            <option value="" selected disabled>Please select</option>
+                                            <option value="P">Perempuan</option>
+                                            <option value="L">Laki-Laki</option>
+                                        </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="foto_kta">Foto KTA</label>
