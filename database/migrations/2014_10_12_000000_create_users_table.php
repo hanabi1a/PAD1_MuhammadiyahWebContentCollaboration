@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function(Blueprint $table){
             $table->id();  // Ini akan membuat kolom id yang otomatis bertambah
-            $table->string('username')->unique()->nullable();
-            $table->string('password')->nullable();
+            $table->string('username')->unique();
+            $table->string('password');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('role')->default('user');
             $table->string('nama')->nullable();
             $table->string('nomor_keanggotaan')->nullable();
             $table->string('foto_kta')->nullable();
