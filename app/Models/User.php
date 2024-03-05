@@ -21,6 +21,8 @@ class User extends Authenticatable
         'nama',
         'username',
         'password',
+        'email',
+        'role',
         'foto_profile',
         'foto_kta',
         'alamat',
@@ -30,6 +32,7 @@ class User extends Authenticatable
         'wilayah',
         'daerah',
         'tanggal_lahir',
+        'jenis_kelamin',
     ];
 
     protected $table = 'users';

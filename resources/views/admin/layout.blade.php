@@ -45,7 +45,7 @@
                             </div>
                         </a>
                         <a class="nav-link {{ request()->is('data_user*') ? 'active' : '' }}"
-                            href="{{ route('data_user')}}">
+                            href="{{ route('admin.show_data_user')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-user"></i>
                             </div>Data User
@@ -55,7 +55,7 @@
                         </a>
                         </a>
                         <a class="nav-link {{ request()->is('history_login*') ? 'active' : '' }}"
-                            href="{{ route('history_login')}}">
+                            href="{{ route('admin.show_history_login')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-bar-chart"></i>
                             </div>History Login
@@ -73,7 +73,7 @@
                             </div>
                         </a>
                         <a class="nav-link {{ request()->is('history_upload*') ? 'active' : '' }}"
-                            href="{{route('history_upload')}}">
+                            href="{{route('admin.show_history_upload')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-upload"></i>
                             </div>History Upload
