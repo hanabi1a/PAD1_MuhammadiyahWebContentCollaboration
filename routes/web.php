@@ -20,6 +20,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/sign_in_user', function () {
+    return view('auth/sign_in_user');
+});
+
+Route::get('/sign_in_admin', function () {
+    return view('admin/signin_admin');
+});
+
+Route::get('/sign_up', function () {
+    return view('auth/sign_up');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -50,7 +62,7 @@ Route::middleware('auth')->group(function () {
      */
     Route::middleware('admin')->group(function () {
         Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-        
+
 
         Route::get('admin/data_user', [AdminController::class, 'show_data_user'])->name('admin.show_data_user');
         Route::get('admin/history_login', [AdminController::class, 'show_history_login'])->name('admin.show_history_login');
@@ -60,4 +72,4 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
