@@ -24,7 +24,7 @@ class KajianController extends Controller
 
         if (Auth::check()) {
             if (Auth::user()->isAdmin()) {
-                return view('admin.data_kajian', compact('dataKajian'));
+                return view('kajian.admin_view.data_kajian', compact('dataKajian'));
             } else {
                 return view('user.data_kajian', compact('dataKajian'));
             }

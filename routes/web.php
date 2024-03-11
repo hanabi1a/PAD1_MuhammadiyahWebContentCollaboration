@@ -20,18 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sign_in_user', function () {
-    return view('auth/sign_in_user');
-});
-
-Route::get('/sign_in_admin', function () {
-    return view('admin/signin_admin');
-});
-
-Route::get('/sign_up', function () {
-    return view('auth/sign_up');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
