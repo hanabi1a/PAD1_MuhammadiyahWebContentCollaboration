@@ -11,7 +11,7 @@
 
         <div class="card mb-4">
             <div class="card-header text-white d-flex justify-content-between align-items-center">
-                <a href="{{ route('create')}}" class="btn btn-danger">Create</a>
+                <a href="{{ route('admin.kajian.create')}}" class="btn btn-danger">Create</a>
             </div>
 
 
@@ -41,10 +41,10 @@
                             <td>{{ $kajian->judul_kajian }}</td>
                             <td>{{ $kajian->tanggal_postingan }}</td>
                             <td class="text-center">
-                                <form action="{{ route('deleteKajian', $kajian->id) }}" method="post">
-                                    <a href="{{ route('kajian', $kajian->id) }}" class="text-info me-2"
-                                        title="View"><i class="fa fa-eye fa-lg"></i>
-                                    </a>
+                                <a href="{{ route('admin.kajian.show', $kajian->id) }}" class="text-info me-2"
+                                    title="View"><i class="fa fa-eye fa-lg"></i>
+                                </a>
+                                <form action="{{ route('admin.kajian.destroy', $kajian->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-lin text-info" title="Delete"

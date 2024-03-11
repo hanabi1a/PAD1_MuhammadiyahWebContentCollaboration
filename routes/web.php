@@ -26,7 +26,7 @@ Route::get('/dashboard', function () {
 
 
 Route::controller(KajianController::class)->group(function () {
-    Route::get('/data_kajian', 'data_kajian')->name('data_kajian');
+    Route::get('/data_kajian', 'index')->name('data_kajian');
 });
 
 
@@ -49,13 +49,28 @@ Route::middleware('auth')->group(function () {
      * app/Http/Controllers/UserManagement/Admin/AdminController.php
      */
     Route::middleware('admin')->group(function () {
+        Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
         
-
-        Route::get('admin/data_user', [AdminController::class, 'show_data_user'])->name('admin.show_data_user');
+        // User
+        Route::get('admin/users', [AdminController::class, 'show_data_user'])->name('admin.show_data_user');
+        Route::get('admin/users/{id}', [AdminController::class, 'show_detail_user'])->name('admin.show_detail_user');
+        Route::get('admin/users/{id}/edit', [AdminController::class, 'edit_user'])->name('admin.edit_user');
+        Route::put('admin/users/{id}', [AdminController::class, 'update_user'])->name('admin.update_user');
+        Route::delete('admin/users/{id}', [AdminController::class, 'delete_user'])->name('admin.delete_user');
+        
         Route::get('admin/history_login', [AdminController::class, 'show_history_login'])->name('admin.show_history_login');
         Route::get('admin/history_upload', [AdminController::class, 'show_history_upload'])->name('admin.show_history_upload');
+        Route::get('admin/history_download', [AdminController::class, 'show_history_download'])->name('admin.show_history_download');
 
+        // Kajian
+        Route::get('admin/kajian', [KajianController::class, 'index'])->name('admin.kajian.index');
+        Route::get('admin/kajian/create', [KajianController::class, 'create'])->name('admin.kajian.create');
+        Route::post('admin/kajian', [KajianController::class, 'store'])->name('admin.kajian.store');
+        Route::delete('admin/kajian/{id}', [KajianController::class, 'destroy'])->name('admin.kajian.destroy');
+        Route::get('admin/kajian/{id}', [KajianController::class, 'show'])->name('admin.kajian.show');
+        Route::get('admin/kajian/{id}/edit', [KajianController::class, 'edit'])->name('admin.kajian.edit');
+        Route::put('admin/kajian/{id}', [KajianController::class, 'update'])->name('admin.kajian.update');
 
     });
 });

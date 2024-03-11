@@ -35,17 +35,23 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <img src="{{ asset('storage/'.$user->foto_profile) }}" alt="Profile Image" width="150">
+                                @if($user->foto_profile)
+                                    <img src="{{ asset('storage/'.$user->foto_profile) }}" alt="Profile Image" width="150">
+                                @else
+                                    <img src="{{ asset('storage/images/default.jpg') }}" alt="Default Profile Image" width="150">
+                                @endif
                             </td>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->username }}</td>
                             <td class="text-center">
-                                <form action="{{ route('deleteUser', $user->id) }}" method="post">
-                                    <a href="{{ route('showDetailUser', $user->id) }}" class="text-info me-2"
-                                        title="View"><i class="fa fa-eye fa-lg"></i>
-                                    </a>
+                                <form action="{{ route('admin.delete_user', $user->id) }}" method="post">
                                     @csrf
                                     @method('delete')
+                                    
+                                    <a href="{{ route('admin.show_detail_user', $user->id) }}" class="text-info me-2"
+                                        title="View"><i class="fa fa-eye fa-lg"></i>
+                                    </a>
+                                    
                                     <button type="submit" class="btn btn-lin text-info" title="Delete"
                                         onclick="return confirm('Apakah anda yakin?')">
                                         <i class="fa fa-trash fa-lg"></i>
