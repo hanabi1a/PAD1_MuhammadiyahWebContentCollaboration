@@ -55,6 +55,10 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/data_user', [AdminController::class, 'show_data_user'])->name('admin.show_data_user');
         Route::get('admin/history_login', [AdminController::class, 'show_history_login'])->name('admin.show_history_login');
         Route::get('admin/history_upload', [AdminController::class, 'show_history_upload'])->name('admin.show_history_upload');
+        Route::get('admin/history_download', [AdminController::class, 'show_history_download'])->name('admin.show_history_download');
+        Route::get('admin/users/{id}', [AdminController::class, 'show_detail_user'])->name('admin.show_detail_user');
+        Route::get('admin/users/{id}/edit', [AdminController::class, 'edit_user'])->name('admin.edit_user');
+        Route::patch('admin/users/{id}', [AdminController::class, 'update_user'])->name('admin.update_user');
 
 
     });

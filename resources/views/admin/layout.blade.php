@@ -26,8 +26,8 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading"></div>
-                        <a class="nav-link {{ request()->is('admin_dashboard*') ? 'active' : '' }}" href=" {{
-                            route('dashboard')}}">
+                        <a class="nav-link {{ request()->is('admin/dashboard*') ? 'active' : '' }}" href=" {{
+                            route('admin.dashboard')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-home"></i>
                             </div>Dashboard
@@ -35,6 +35,8 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
+
+                        {{-- TODO: Fix the Route and nav-link below--}}
                         <a class="nav-link {{ request()->is('data_kajian*') ? 'active' : '' }}"
                             href="{{ route('data_kajian')}}">
                             <div class="sb-nav-link-icon">
@@ -44,7 +46,9 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <a class="nav-link {{ request()->is('data_user*') ? 'active' : '' }}"
+
+
+                        <a class="nav-link {{ request()->is('admin/data_user*') ? 'active' : '' }}"
                             href="{{ route('admin.show_data_user')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-user"></i>
@@ -54,7 +58,7 @@
                             </div>
                         </a>
                         </a>
-                        <a class="nav-link {{ request()->is('history_login*') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->is('admin.history_login*') ? 'active' : '' }}"
                             href="{{ route('admin.show_history_login')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-bar-chart"></i>
@@ -63,8 +67,8 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <a class="nav-link {{ request()->is('history_download*') ? 'active' : '' }}"
-                            href="history_download">
+                        <a class="nav-link {{ request()->is('admin/history_download*') ? 'active' : '' }}"
+                            href="{{ route('admin.show_history_download')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-download"></i>
                             </div>History Download
@@ -72,7 +76,7 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <a class="nav-link {{ request()->is('history_upload*') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->is('admin/history_upload*') ? 'active' : '' }}"
                             href="{{route('admin.show_history_upload')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-upload"></i>
@@ -81,9 +85,12 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
-                        <form action="{{ route('logout') }}" method="GET">
-                            <a class="nav-link" href="#"
-                                onclick="event.preventDefault(); this.closest('form').submit();">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+
+                            <a class="nav-link" href="route('logout')"
+                                onclick="event.preventDefault();
+                                                this.closest('form').submit();">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-sign-out-alt"></i>
                                 </div>Log Out
@@ -91,7 +98,6 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </div>
                             </a>
-                            @csrf
                         </form>
                     </div>
                 </div>
