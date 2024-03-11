@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-md-1 btn-end">
                                 <button class="btn d-flex flex-column align-items-center"
-                                    onclick="window.location.href='{{ route('EditUser', $user->id) }}'">
+                                    onclick="window.location.href='{{ route('admin.edit_user', $user->id) }}'">
                                     <img src="/assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
                                     <span class="text-editdownshare">Edit</span>
                                 </button>

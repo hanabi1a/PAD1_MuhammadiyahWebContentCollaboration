@@ -18,7 +18,7 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="form-validation">
-                        <form class="form-valide" action="{{ route('update_kajian', ['id' => $kajian->id]) }}"
+                        <form class="form-valide" action="{{ route('admin.kajian.update', ['id' => $kajian->id]) }}"
                             enctype="multipart/form-data" method="post">
                             @csrf
                             <div class="form-group row">
@@ -59,8 +59,10 @@
                                 <label class="col-lg-4 col-form-label" for="val-tanggal">Deskripsi</label>
                                 <div class="col-lg-6">
                                     <textarea class="form-control" id="val-deskripsi"
-                                        value="{{$kajian->deskripsi_kajian}}" name="val_deskripsi"
-                                        placeholder="Deskripsi" style="resize: vertical; min-height: 100px;"></textarea>
+                                         name="val_deskripsi" placeholder="Deskripsi" 
+                                         style="resize: vertical; min-height: 100px;"
+                                         >{{$kajian->deskripsi_kajian}}
+                                    </textarea>
                                 </div>
                             </div>
 
