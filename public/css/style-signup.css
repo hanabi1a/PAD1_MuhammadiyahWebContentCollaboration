@@ -56,7 +56,7 @@ h2 {
 
 .half,
 .half .container>.row {
-    height: 160vh;
+    height: 150vh;
 }
 
 .container1 {
@@ -144,7 +144,7 @@ h2 {
 }
 
 .half a {
-    color: #04454D;
+    color: var(--extra);
     text-decoration: underline;
     padding-top: 20px;
 }
@@ -160,8 +160,8 @@ p {
 }
 
 .btn-primary {
-    background-color: #04454D;
-    border: #04454D;
+    background-color: var(--extra);
+    border: var(--extra);
 }
 
 .btn-primary:hover {
@@ -216,12 +216,12 @@ p {
 }
 
 .control input:checked~.control__indicator {
-    background: #04454D;
+    background: var(--extra);
 }
 
 .control:hover input:not([disabled]):checked~.control__indicator,
 .control input:checked:focus~.control__indicator {
-    background: #04454D;
+    background: var(--extra);
 }
 
 .control input:disabled~.control__indicator {
@@ -262,4 +262,26 @@ p {
 .control--checkbox input:disabled:checked~.control__indicator {
     background-color: #7e0cf5;
     opacity: .2;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.pagination .page-link {
+    text-decoration: none;
+}
+
+.btn-kategori {
+    border: 3px solid var(--extra);
+    border-radius: 5px;
+}
+
+.btn-kategori:hover {
+    background-color: var(--extra);
+    color: #fff;
+}
+
+.caption-title-signup{
+    color: var(--extra);
 }
