@@ -12,48 +12,36 @@ use Illuminate\Support\Facades\Auth;
 
 class KajianController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth')
+            ->except(['index', 'kajian', 'downloadKajian', 'showNewVersionDetail']);
+    }
+
+    public function index()
+    {
+        $dataKajian = Kajian::all(); 
+
+        if (Auth::check()) {
+            if (Auth::user()->isAdmin()) {
+                return view('admin.data_kajian', compact('dataKajian'));
+            } else {
+                return view('user.data_kajian', compact('dataKajian'));
+            }
+            
+        } else {
+            return view('user.data_kajian', compact('dataKajian'));
+        }
+    }
+
+
     public function create()
     {
         return view('admin.form_create_admin');
     }
-    // public function storekajian(Request $request){
-    //     // dd($request->all());
+    
 
-    //     $request->validate([
-    //         'val_judul' => 'required',
-    //         'val_pemateri' => 'required',
-    //         'val_tempat' => 'required',
-    //         'val_tanggal' => 'required',
-    //         'val_deskripsi' => 'required',
-    //         'val_foto_kajian' => 'image|nullable|max:1999',
-    //         'val_dokumen' => 'required|mimes:pdf,doc,docx|max:2048'
-    //     ]);
-
-    //     if($request->hasFile('val_foto_kajian')){
-    //         $filenameWithExt = $request->file('val_foto_kajian')->getClientOriginalName();
-    //         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-    //         $extension = $request->file('val_foto_kajian')->getClientOriginalExtension();
-    //         $fileNameToStore = $filename.'_'.time().'.'.$extension;
-    //         $path = $request->file('val_foto_kajian')->storeAs('storage/photos/', $fileNameToStore);
-    //     }else{
-    //        //
-    //     }
-
-    //     Kajian::create([
-    //         'judul_kajian' => $request->val_judul,
-    //         'pemateri' => $request->val_pemateri,
-    //         'lokasi_kajian' => $request->val_tempat,
-    //         'tanggal_postingan' => $request->val_tanggal,
-    //         'deskripsi_kajian' => $request->val_deskripsi,
-    //         'foto_kajian' => $path,
-    //         'file_kajian' => $request->file_kajian,
-    //     ]);
-
-    //     $request->session()->regenerate();
-    //     return redirect()->route('data_kajian')
-    //     ->withSuccess("Thanks! data inserted successfully");
-    // }
-    public function storekajian(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'val_judul' => 'required',
@@ -64,8 +52,6 @@ class KajianController extends Controller
             'val_foto_kajian' => 'image|nullable|max:26000',
             'val_dokumen' => 'required|mimes:pdf,doc,docx|max:20480'
         ]);
-
-        $userId = auth()->id(); 
 
         $pathFoto = null;
         if ($request->hasFile('val_foto_kajian')) {
@@ -93,54 +79,45 @@ class KajianController extends Controller
             'deskripsi_kajian' => $request->val_deskripsi,
             'foto_kajian' => $pathFoto,
             'file_kajian' => $pathDokumen,
-            'id_user' => $userId,
+            'id_user' => Auth::user()->id,
         ]);
 
         $request->session()->regenerate();
         return redirect()->route('data_kajian')
             ->withSuccess("Terima kasih! Data berhasil disimpan");
+
     }
 
-
-
-    public function deleteKajian($id)
+    
+    public function destroy($id)
     {
-        $Kajian = Kajian::find($id);
+        $kajian = Kajian::find($id);
 
-        if (!$Kajian) {
-            return redirect()->route('dashboard')->withError('Kajian not found');
+        if (!$kajian) {
+            return redirect()->route('dashboard')->withError('Kajian tidak ditemukan');
         }
 
-        // Delete the kajian
-        $Kajian->delete();
+        $kajian->delete();
 
-        return redirect()->route('data_kajian')->withSuccess('Kajian deleted successfully');
+        return redirect()->route('data_kajian')->withSuccess('Kajian berhasil dihapus');
     }
 
 
+    public function show($id)
+    {
+        $kajian = Kajian::find($id);
 
+        // Periksa apakah relasi user ada dan tidak kosong
+        $uploaderUsername = ($kajian->user) ? $kajian->user->username : null;
 
-    public function kajian($id)
-{
-    $kajian = Kajian::find($id);
-
-    // Periksa apakah relasi user ada dan tidak kosong
-    $uploaderUsername = ($kajian->user) ? $kajian->user->username : null;
-
-    return view('admin.detail_kajian_ori', ['kajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
-}
+        return view('admin.detail_kajian_ori', ['kajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
+    }
 
     
 
-    public function data_kajian()
-    {
+    
 
-        $dataKajian = Kajian::all(); // Retrieve all kajian data from the database
-
-        return view('admin.data_kajian', compact('dataKajian'));
-    }
-
-    public function edit_kajian($id)
+    public function edit($id)
     {
 
         $kajian = Kajian::find($id); // Contoh pengambilan data dari model Kajian
@@ -149,7 +126,7 @@ class KajianController extends Controller
 
     }
 
-    public function update_kajian(Request $request, $id)
+    public function update(Request $request, $id)
 {
     $kajian = Kajian::find($id);
 

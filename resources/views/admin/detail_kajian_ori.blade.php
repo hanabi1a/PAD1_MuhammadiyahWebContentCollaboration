@@ -123,7 +123,7 @@
                         <div class="col-md-5 order-md-2">
                             <div class="edit-down-share row">
                                 <div class="col-md-3">
-                                    <a href="{{ route('edit_kajian', $kajian->id) }}"
+                                    <a href="{{ route('admin.kajian.edit', $kajian->id) }}"
                                         class="btn d-flex flex-column align-items-center">
                                         <img src="/assets_admin/assets/img/pencil-square.svg" alt="Edit Icon">
                                         <span class="text-editdownshare">Edit</span>

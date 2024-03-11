@@ -37,8 +37,8 @@
                         </a>
 
                         {{-- TODO: Fix the Route and nav-link below--}}
-                        <a class="nav-link {{ request()->is('data_kajian*') ? 'active' : '' }}"
-                            href="{{ route('data_kajian')}}">
+                        <a class="nav-link {{ request()->is('admin/kajian*') ? 'active' : '' }}"
+                            href="{{ route('admin.kajian.index')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-columns"></i>
                             </div>Data Kajian
@@ -48,7 +48,7 @@
                         </a>
 
 
-                        <a class="nav-link {{ request()->is('admin/data_user*') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}"
                             href="{{ route('admin.show_data_user')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-user"></i>

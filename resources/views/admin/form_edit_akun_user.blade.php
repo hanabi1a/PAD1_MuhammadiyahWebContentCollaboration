@@ -14,13 +14,15 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="form-validation">
-                    <form class="form-valide" action="{{ route('UpdateUser', ['id' => $datauser->id]) }}" method="post">
+                    <form class="form-valide" action="{{ route('admin.update_user', ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
+
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-nama">Nama
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" value="{{$datauser->nama}}" id="val-nama" name="username"
+                                <input type="text" class="form-control input-default" value="{{$user->nama}}" id="val-nama" name="name"
                                     placeholder="Nama">
                             </div>
                         </div>
@@ -28,14 +30,14 @@
                             <label class="col-lg-4 col-form-label" for="val-tempat_lahir">Tempat Lahir
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control input-default" value="{{$datauser->tempat_lahir}}" id="val-tempat_lahir"
+                                <input type="text" class="form-control input-default" value="{{$user->tempat_lahir}}" id="val-tempat_lahir"
                                     name="tempat_lahir" placeholder="Tempat Lahir">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val_tanggal">Tanggal Lahir</label>
                             <div class="col-lg-6">
-                                <input type="date" class="form-control input-default" value="{{$datauser->tanggal_lahir}}" id="val-tanggal"
+                                <input type="date" class="form-control input-default" value="{{$user->tanggal_lahir}}" id="val-tanggal"
                                     name="tanggal_lahir">
                             </div>
                         </div>
@@ -43,29 +45,29 @@
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-alamat">Alamat</label>
                             <div class="col-lg-6">
-                                <textarea class="form-control" id="val-alamat" value="{{$datauser->alamat}}" name="alamat"
-                                    placeholder="Alamat"></textarea>
+                                <textarea class="form-control" id="val-alamat" name="alamat"
+                                    placeholder="Alamat">{{$user->alamat}}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-cabang">Cabang</label>
                             <div class="col-lg-6">
-                                <textarea class="form-control" id="val-cabang" value="{{$datauser->cabang}}" name="cabang"
-                                    placeholder="Cabang"></textarea>
+                                <textarea class="form-control" id="val-cabang" name="cabang"
+                                    placeholder="Cabang">{{$user->cabang}}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-daerah">Daerah</label>
                             <div class="col-lg-6">
                                 <textarea class="form-control" id="val-daerah" name="daerah"
-                                    placeholder="Daerah"></textarea>
+                                    placeholder="Daerah">{{$user->daerah}}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-wilayah">Wilayah</label>
                             <div class="col-lg-6">
                                 <textarea class="form-control" id="val-wilayah" name="wilayah"
-                                    placeholder="Wilayah"></textarea>
+                                    placeholder="Wilayah">{{$user->wilayah}}</textarea>
                             </div>
                         </div>
 
