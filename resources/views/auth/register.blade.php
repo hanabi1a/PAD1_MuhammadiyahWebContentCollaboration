@@ -11,6 +11,10 @@
     <title>Halaman Register</title>
 </head>
 
+<body> @if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+    @endif
+
 <div class="container1">
     <div class="d-lg-flex half">
         <div class="bg order-1 order-md-2" style="background-image: url('assets/img/bg-sign-in.png');"></div>
@@ -32,12 +36,12 @@
                             </div>
 
                             <!-- Username -->
-                            <!-- <div class="mt-4">
+                            <div class="mt-4">
                                 <x-input-label for="username" :value="__('Nama Pengguna')" />
                                 <x-text-input id="username" class="form-control" type="text" name="username"
                                     :value="old('username')" required autocomplete="username" />
                                 <x-input-error :messages="$errors->get('username')" class="mt-2" />
-                            </div> -->
+                            </div>
 
                             <!-- Email Address -->
                             <div class="mt-4">
@@ -70,9 +74,9 @@
                                     {{ __('Sudah Memiliki Akun?') }}
                                 </a>
 
-                                <!-- <x-primary-button class="ms-4">
+                                <x-primary-button class="ms-4">
                                     {{ __('Register') }}
-                                </x-primary-button> -->
+                                </x-primary-button>
                             </div>
                         </form>
                     </div>
