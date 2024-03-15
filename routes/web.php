@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\KajianController;
@@ -37,7 +38,11 @@ Route::controller(AboutController::class)->group(function () {
     Route::get('/about', 'index')->name('about');
 });
 
-
+Route::group([], function () {
+    Route::post('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register', [RegisteredUserController::class, 'store_additional_1'])->name('register.step1');
+    Route::post('/register', [RegisteredUserController::class, 'store_additional_2'])->name('register.step2');
+});
 
 
 /**
@@ -61,17 +66,17 @@ Route::middleware('auth')->group(function () {
      * app/Http/Controllers/UserManagement/
      */
 
-Route::middleware('registered')->group(function () {
-    Route::get('/kajian/create', [KajianController::class, 'create'])->name('kajian.create');
-    Route::post('/kajian', [KajianController::class, 'store'])->name('kajian.store');
-    Route::get('/profile', [ProfileController::class, 'show_profile'])->name('profile.show');
-    Route::get('/profile/edit', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
-    Route::put('/profile', [ProfileController::class, 'store_edit_profile'])->name('profile.store');
-    Route::delete('/kajian/{id}', [KajianController::class, 'destroy'])->name('kajian.destroy');
+    Route::middleware('registered')->group(function () {
+        Route::get('/kajian/create', [KajianController::class, 'create'])->name('kajian.create');
+        Route::post('/kajian', [KajianController::class, 'store'])->name('kajian.store');
+        Route::get('/profile', [ProfileController::class, 'show_profile'])->name('profile.show');
+        Route::get('/profile/edit', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
+        Route::put('/profile', [ProfileController::class, 'store_edit_profile'])->name('profile.store');
+        Route::delete('/kajian/{id}', [KajianController::class, 'destroy'])->name('kajian.destroy');
 
-    
+        
 
-});
+    });
 
     /**
      * Admin middleware
