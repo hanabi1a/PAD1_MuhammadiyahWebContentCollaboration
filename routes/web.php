@@ -39,9 +39,11 @@ Route::controller(AboutController::class)->group(function () {
 });
 
 Route::group([], function () {
-    Route::post('/register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('/register', [RegisteredUserController::class, 'store_additional_1'])->name('register.step1');
-    Route::post('/register', [RegisteredUserController::class, 'store_additional_2'])->name('register.step2');
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register/1', [RegisteredUserController::class, 'store'])->name('register.step1');
+    Route::post('/register/2', [RegisteredUserController::class, 'store_additional_1'])->name('register.step2');
+    Route::post('/register/3', [RegisteredUserController::class, 'store_additional_2'])->name('register.step3');
+    Route::post('/register/4', [RegisteredUserController::class, 'store_additional_3'])->name('register.step4');
 });
 
 

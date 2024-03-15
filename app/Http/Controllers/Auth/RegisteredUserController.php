@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -28,7 +29,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -51,11 +52,11 @@ class RegisteredUserController extends Controller
         session(['tuid' => $user->id]);
 
         // return redirect(RouteServiceProvider::HOME);
-        return redirect()->route('register.step1');
+        return redirect()->route('register');
     }
 
     
-    public function store_additional_1(Request $request)
+    public function store_additional_1(Request $request) : RedirectResponse
     {
         $validatedData = $request->validate([
             'tempat_lahir' => 'required|string|max:255',
@@ -80,10 +81,10 @@ class RegisteredUserController extends Controller
         $user->save();
 
         // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect()->route('register.step2');
+        return redirect()->route('register');
     }
 
-    public function store_additional_2(Request $request)
+    public function store_additional_2(Request $request) : RedirectResponse
     {
         $validatedData = $request->validate([
             'cabang' => 'required|string|max:255',
@@ -103,13 +104,23 @@ class RegisteredUserController extends Controller
         // Menyimpan perubahan data pengguna
         $user->save();
 
+
+        // Redirect atau tampilkan respons sesuai kebutuhan
+        // return redirect(RouteServiceProvider::HOME);
+
+        return redirect()->route('register');
+    }
+
+    public function store_additional_3(Request $request) : RedirectResponse
+    {
+
+        $userId = session('tuid');
+        $user = User::find($userId);
+
         // Menghapus sessino ID pengguna yang sedang mendaftar
         $request->session()->forget('tuid');
 
-        // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect(RouteServiceProvider::HOME);
-
-        if (Auth::user()->isAdmin()) {
+        if ($user->isAdmin()) {
             return redirect(RouteServiceProvider::ADMIN);
         } else {
             return redirect(RouteServiceProvider::HOME);
