@@ -122,7 +122,7 @@
                         <div class="col-md-5 order-md-2">
                             <div class="edit-down-share row">
                                 <div class="col-md-3">
-                                    <a href="{{ route('upnv', $userkajian->id) }}"
+                                    <a href="{{ route('kajian.edit.new_version', $userkajian->id) }}"
                                         class="btn d-flex flex-column align-items-center">
                                         <img src="/assets/img/btn-upload.png" alt="Edit Icon" width="21">
                                         <span class="text-editdownshare">Upload</span>
@@ -130,7 +130,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <a onclick="window.location.href='{{ route('download', $userkajian->id) }}'""
+                                    <a onclick="window.location.href='{{ route('kajian.download', $userkajian->id) }}'""
                                         class="btn d-flex flex-column align-items-center" download>
                                         <img src="/assets_admin/assets/img/download.svg" alt="Download Icon">
                                         <span class="text-editdownshare">Download</span>

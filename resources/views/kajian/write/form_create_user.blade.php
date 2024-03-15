@@ -10,7 +10,7 @@
                     <hr>
                     <div class="card-body">
                         <div class="form-validation">
-                            <form class="form-valide" action="{{ route('storekajianuser') }}" method="POST"
+                            <form class="form-valide" action="{{ route('kajian.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <!-- Judul -->

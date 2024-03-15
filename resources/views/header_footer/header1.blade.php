@@ -29,10 +29,11 @@
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item {{ request()->is('homepage') ? 'active' : '' }}"><a href="{{ url('public_homepage') }}"
                             class="nav-link">Home</a></li>
-                    <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('about') }}"
+                    <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}"
                             class="nav-link">About</a></li>
-                    <li class="nav-item {{ request()->is('kajian') ? 'active' : '' }}"><a href="{{ route('nlkajian') }}"
-                            class="nav-link">Kajian</a></li>
+                    <li class="nav-item {{ request()->is('kajian') ? 'active' : '' }}"><a href="#"
+                            class="nav-link">Kajian</a></li> 
+                            {{-- {{ route('nlkajian') }} --}}
                 </ul>
             </div>
         </div>

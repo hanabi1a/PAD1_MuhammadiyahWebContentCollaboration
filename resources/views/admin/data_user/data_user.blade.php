@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('header_footer.layout-admin')
 
 @section('content')
 <main>
@@ -40,8 +40,8 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->username }}</td>
                             <td class="text-center">
-                                <form action="{{ route('deleteUser', $user->id) }}" method="post">
-                                    <a href="{{ route('showDetailUser', $user->id) }}" class="text-info me-2"
+                                <form action="{{ route('admin.delete_user', $user->id) }}" method="post">
+                                    <a href="{{ route('admin.show_detail_user', $user->id) }}" class="text-info me-2"
                                         title="View"><i class="fa fa-eye fa-lg"></i>
                                     </a>
                                     @csrf

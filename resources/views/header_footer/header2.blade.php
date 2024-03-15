@@ -20,7 +20,8 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <li>
-                        <button class="dropdown-item" onclick="window.location.href = '{{ route('gotodetailacc') }}';">
+                        <!-- TODO: route  -->
+                        <button class="dropdown-item" onclick="window.location.href = '';">
                             <span class="heading7">Account</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="fas fa-person-check icon-akun" viewBox="0 0 16 16">
@@ -32,7 +33,7 @@
                         </button>
                     </li>
                     <li>
-                        <button class="dropdown-item" onclick="window.location.href = '{{ route('gotoProfile') }}';">
+                        <button class="dropdown-item" onclick="window.location.href = '{{ route('profile.show') }}';">
                             <span class="heading7">Profile</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-person icon-profile" viewBox="0 0 16 16">
@@ -65,10 +66,10 @@
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item {{ request()->is('homepage2') ? 'active' : '' }}"><a
                             href="{{ url('homepage') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item {{ request()->is('about2') ? 'active' : '' }}"><a href="{{ url('about2') }}"
+                    <li class="nav-item {{ request()->is('about2') ? 'active' : '' }}"><a href="{{ route('about') }}"
                             class="nav-link">About</a></li>
                     <li class="nav-item {{ request()->is('kajian2') ? 'active' : '' }}"><a
-                            href="{{ route('vw_kajian') }}" class="nav-link">Kajian</a></li>
+                            href="{{ route('kajian.show') }}" class="nav-link">Kajian</a></li>
                 </ul>
             </div>
         </div>

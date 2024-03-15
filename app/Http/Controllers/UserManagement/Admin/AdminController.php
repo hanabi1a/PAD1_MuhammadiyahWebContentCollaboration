@@ -25,21 +25,21 @@ class AdminController extends Controller
         $totalKajian = kajian::count();
         $totalUser = User::count();
 
-        return view('admin.dashboard', 
+        return view('admin.dashboard.dashboard', 
         compact('totalKajian', 'totalUser'));
     }
 
     public function show_data_user()
     {
         $userdata = User::all(); 
-        return view('admin.data_user', compact('userdata'));
+        return view('admin.data_user.data_user', compact('userdata'));
     }
 
     public function show_history_login()
     {
         $historis = historylogin::with('user')->get();
     
-        return view('admin.history_login', compact('historis'));
+        return view('admin.history_login.history_login', compact('historis'));
     }
 
     public function show_history_upload()
@@ -47,26 +47,26 @@ class AdminController extends Controller
         // Mengambil semua kajian dari semua pengguna
         $uploadHistory  = Kajian::all();
 
-        return view('admin.history_upload', compact('uploadHistory'));
+        return view('admin.history_upload.history_upload', compact('uploadHistory'));
     }
 
     public function show_history_download()
     {
         $historyDownloads  = HistoryDownload::with(['user', 'kajian'])->get();
 
-        return view('admin.history_download', compact('historyDownloads'));
+        return view('admin.history_download.history_download', compact('historyDownloads'));
     }
 
     public function show_detail_user(string $id)
     {
         $user = User::find($id);
-        return view('admin.detail_akun_user', compact('user'));
+        return view('admin.data_user.detail_akun_user', compact('user'));
     }
 
     public function edit_user(string $id)
     {
         $user = User::find($id);
-        return view('admin.form_edit_akun_user', compact('user'));
+        return view('manajemen_akun.form_edit_akun_user', compact('user'));
     }
 
     public function update_user(Request $request, string $id)

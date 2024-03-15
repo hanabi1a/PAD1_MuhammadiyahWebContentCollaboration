@@ -11,6 +11,7 @@
     <title>Halaman Register</title>
 </head>
 
+
 <body>
     <div class="container1">
         <div class="d-lg-flex half">
@@ -35,6 +36,7 @@
                                     @enderror
                                 </div>
 
+
                                 <!-- Email Address -->
                                 <div class="mt-4">
                                     <label for="email">Email</label>
@@ -44,6 +46,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+
 
                                 <!-- Password -->
                                 <div class="mt-4">
@@ -217,6 +220,7 @@
                                 </ul>
                             </nav>
                         </div>
+
                     </div>
                 </div>
             </div>
