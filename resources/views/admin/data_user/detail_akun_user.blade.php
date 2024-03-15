@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout_admin')
 
 @section('content')
 <main>
@@ -21,7 +21,7 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-md-3">
-                                <img src="{{ asset('storage/'.$user->foto_profile) }}" alt="" class="img-fluid profile-user">
+                                <img src="{{ asset('storage/' . $user->foto_profile) }}" alt="" class="img-fluid profile-user">
                             </div>
                             <div class="col-md-9">
                                 <div class="row">
@@ -78,7 +78,7 @@
                                         <div class="row">
                                             <div class="col col-md-4">
                                                 <img class="card-muhammadiyah"
-                                                    src="{{ asset('storage/'.$user->foto_kta) }}">
+                                                    src="{{ asset('storage/' . $user->foto_kta) }}">
                                             </div>
                                             <div class="col col-md-8">
                                                 <button class="btn-green mb-3">Anggota</button><br>

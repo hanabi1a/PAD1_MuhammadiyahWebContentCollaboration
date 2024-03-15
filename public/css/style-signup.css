@@ -285,3 +285,70 @@ p {
 .caption-title-signup {
     color: var(--extra);
 }
+
+.btn-kategori {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid var(--extra);
+    margin-bottom: 20px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-kategori:hover {
+    background-color: var(--extra);
+    color: white;
+}
+
+.btn-kategori:active {
+    background-color: var(--extra);
+    border-color: var(--extra);
+}
+
+.btn-before {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid var(--extra);
+    margin-right: 1000px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-before:hover {
+    background-color: var(--extra);
+    color: white;
+}
+
+.btn-before:active {
+    background-color: var(--extra);
+    border-color: var(--extra);
+}
+
+.btn-after {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: var(--extra);
+    color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-after:hover {
+    background-color: white;
+    border: 1px solid var(--extra);
+    color: var(--extra);
+}
+
+.btn-after:active {
+    background-color: var(--extra);
+    border-color: var(--extra);
+}
+
+.bulletin-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    list-style: none;
+    margin-top: 30px;
+}
+
+.mr-6 {
+    margin-right: 75px;
+}

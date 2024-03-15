@@ -24,7 +24,6 @@
                             <form id="form1" method="POST" action="{{ route('register') }}" class="form-slide">
                                 <h3 class="heading1"><strong>Daftar Akun</strong></h3>
                                 @csrf
-
                                 <!-- Name -->
                                 <div>
                                     <label for="name">Nama Lengkap</label>
@@ -64,6 +63,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <button type="button" class="btn btn-block btn-after mt-3 next-slide">Selanjutnya</button>
                             </form>
 
                             <!-- Form Slide 2 -->
@@ -107,6 +107,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <button type="button" class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
+                                <button type="button" class="btn-after col-5 btn mt-5 next-slide">Selanjutnya</button>
                             </form>
 
                             <!-- Form Slide 3 -->
@@ -151,6 +153,8 @@
                                         @endif
                                     </div>
                                 </div>
+                                <button type="button" class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
+                                <button type="button" class="btn-after col-5 btn mt-5 next-slide">Lewati</button>
                             </form>
 
                             <!-- Form Slide 4 -->
@@ -160,9 +164,7 @@
                                 @csrf
                                 <div class="form-row justify-content-center align-items-center">
                                     <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i> Al Qur'an</button>
-                                            <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i> Al Qur'an</button>
+                                            class="fas fa-plus-square fa-lg mr-2"></i>Al Qur'an</button>
                                     <button type="button" class="form-group col-md-5 btn btn-kategori"><i
                                             class="fas fa-plus-square fa-lg mr-2"></i>Hadist</button>
                                     <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
@@ -193,29 +195,20 @@
                                             class="fas fa-plus-square fa-lg mr-2"></i>Humaniora</button>
                                     <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
                                             class="fas fa-plus-square fa-lg mr-2"></i>Teknologi</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori"><i
+                                    <button type="button" class="align-item-centerform-group col-md-5 btn btn-kategori"><i
                                             class="fas fa-plus-square fa-lg mr-2"></i>Humaniora</button>
-                                    <!-- Tambahkan tombol lainnya di sini -->
+                                    <button type="button" class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
+                                    <input type="submit" class="btn-after col-5 btn mt-5" value="Register">
                                 </div>
-                                <input type="submit" value="Register" class="btn btn-block btn-primary mt-3">
                             </form>
+                            <ul class="bulletin-wrapper">
+                                <li><div class="bulletin" onclick="showForm(1)">●</div></li>
+                                <li><div class="bulletin" onclick="showForm(2)">●</div></li>
+                                <li><div class="bulletin" onclick="showForm(3)">●</div></li>
+                                <li><div class="bulletin" onclick="showForm(4)">●</div></li>
+                            </ul>
 
-                            <nav id="pagination" aria-label="pagination-sign-up" class="mt-4">
-                                <ul class="pagination">
-                                    <li class="page-item active" data-slide="1">
-                                        <a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item" data-slide="2">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item" data-slide="3">
-                                        <a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item" data-slide="4">
-                                        <a class="page-link" href="#">4</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <p class="text-center">Telah memiliki akun? <a href="register">Masuk di sini</a></p>
                         </div>
                     </div>
                 </div>
@@ -231,16 +224,27 @@
             $('.form-slide').hide();
             $('#form1').show();
 
-            $('.page-item').click(function () {
-                var slide = $(this).data('slide');
-                $('.form-slide').hide();
-                $('#form' + slide).show();
-                $('.page-item').removeClass('active');
-                $(this).addClass('active');
+            $('.next-slide').click(function () {
+                var currentForm = $(this).closest('form');
+                var nextForm = currentForm.next('.form-slide');
+                currentForm.hide();
+                nextForm.show();
+            });
+
+            $('.prev-slide').click(function () {
+                var currentForm = $(this).closest('form');
+                var prevForm = currentForm.prev('.form-slide');
+                currentForm.hide();
+                prevForm.show();
             });
         });
 
+        function showForm(formNumber) {
+            $('.form-slide').hide(); // Semua form di-hide
+            $('#form' + formNumber).show(); // Form yang diinginkan ditampilkan
+        }
+
+    </script>
     </script>
 </body>
-
 </html>

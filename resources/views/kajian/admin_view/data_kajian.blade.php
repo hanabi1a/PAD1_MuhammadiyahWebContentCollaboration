@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout_admin')
 
 @section('content')
 <main>
@@ -34,7 +34,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <img src="{{ asset('storage/'.$kajian->foto_kajian) }}" alt="Profile Image" width="150">
+                                <img src="{{ asset('storage/' . $kajian->foto_kajian) }}" alt="Profile Image" width="150">
                             </td>
                             <td>{{ $kajian->id_user }}</td>
                             <td>{{ $kajian->pemateri }}</td>
