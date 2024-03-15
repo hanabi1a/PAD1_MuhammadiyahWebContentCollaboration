@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
@@ -28,18 +29,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
-
-Route::controller(HomeController::class)->group(function () {
-    Route::get('/homepage', 'index')->name('home');
-});
-
-Route::controller(AboutController::class)->group(function () {
-    Route::get('/about', 'index')->name('about');
-});
-
 Route::group([], function () {
+    // Route::get('/', [HomeController::class, 'index']);
+    Route::get('/beranda', [HomeController::class, 'index'])->name('home');
+    Route::get('/about', [AboutController::class, 'index'])->name('about');
+
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::get('/register/{page}', [RegisteredUserController::class, 'create'])->name('register.show');
     Route::post('/register/1', [RegisteredUserController::class, 'store'])->name('register.step1');
     Route::post('/register/2', [RegisteredUserController::class, 'store_additional_1'])->name('register.step2');
     Route::post('/register/3', [RegisteredUserController::class, 'store_additional_2'])->name('register.step3');
@@ -52,9 +48,15 @@ Route::group([], function () {
  * Hanya bisa diakses oleh user yang sudah login
  */
 Route::middleware('auth')->group(function () {
+    // Breeze
     Route::get('/profileb', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profileb', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profileb', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    // Start
+
+    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     
 
 

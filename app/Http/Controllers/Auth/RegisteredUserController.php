@@ -19,9 +19,9 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create($page = 0): View
     {
-        return view('auth.register');
+        return view('auth.register', compact('page'));
     }
 
     /**
@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'nama' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
         session(['tuid' => $user->id]);
 
         // return redirect(RouteServiceProvider::HOME);
-        return redirect()->route('register');
+        return redirect()->route('register.show', ['page' => 1]);
     }
 
     
@@ -63,7 +63,7 @@ class RegisteredUserController extends Controller
             'tanggal_lahir' => 'required|date|before:today',
             'pekerjaan' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan', // TODO: Check this later
+            'jenis_kelamin' => 'required|in:L,P', // TODO: Check this later
         ]);
         
         // Mengambil data pengguna yang akan diperbarui
@@ -81,12 +81,13 @@ class RegisteredUserController extends Controller
         $user->save();
 
         // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect()->route('register');
+        return redirect()->route('register.show', ['page' => 2]);
     }
 
     public function store_additional_2(Request $request) : RedirectResponse
     {
         $validatedData = $request->validate([
+            'nomor_keanggotaan' => 'required|string|max:255',
             'cabang' => 'required|string|max:255',
             'daerah' => 'required|string|max:255',
             'wilayah' => 'required|string|max:255',
@@ -97,9 +98,26 @@ class RegisteredUserController extends Controller
         $user = User::find($userId);
         
         // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
+        $user->nomor_keanggotaan = $validatedData['nomor_keanggotaan'];
         $user->cabang = $validatedData['cabang'];
         $user->daerah = $validatedData['daerah'];
         $user->wilayah = $validatedData['wilayah'];
+
+        if ($request->hasFile('foto_kta')) {
+            $filename = $request->file('foto_kta')->getClientOriginalName();
+            $extension = $request->file('foto_kta')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . $userId. '.' . $extension;
+            $path = $request->file('foto_kta')->storeAs('/kta', $fileNameToStore);
+            $user->foto_kta = $path;
+        }
+
+        if ($request->hasFile('foto_profile')) {
+            $filename = $request->file('foto_profile')->getClientOriginalName();
+            $extension = $request->file('foto_profile')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . $userId. '.' . $extension;
+            $path = $request->file('foto_profile')->storeAs('/profile', $fileNameToStore);
+            $user->foto_profile = $path;
+        }
 
         // Menyimpan perubahan data pengguna
         $user->save();
@@ -108,7 +126,7 @@ class RegisteredUserController extends Controller
         // Redirect atau tampilkan respons sesuai kebutuhan
         // return redirect(RouteServiceProvider::HOME);
 
-        return redirect()->route('register');
+        return redirect()->route('register.show', ['page' => 3]);
     }
 
     public function store_additional_3(Request $request) : RedirectResponse
@@ -119,6 +137,8 @@ class RegisteredUserController extends Controller
 
         // Menghapus sessino ID pengguna yang sedang mendaftar
         $request->session()->forget('tuid');
+
+        Auth::login($user);
 
         if ($user->isAdmin()) {
             return redirect(RouteServiceProvider::ADMIN);
