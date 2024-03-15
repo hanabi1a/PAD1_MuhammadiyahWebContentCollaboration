@@ -29,7 +29,7 @@
                             <div class="form-group first">
                                 <x-input-label for="email" :value="__('Email')" />
                                 <x-text-input id="email" class="form-control" type="email" name="email"
-                                    :value="old('email')" required autofocus autocomplete="username" />
+                                    :value="old('email')" required autofocus autocomplete="username" placeholder="Email"/>
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
 
@@ -37,7 +37,7 @@
                             <div class="mt-4 form-group first">
                                 <x-input-label for="password" :value="__('Password')" />
                                 <x-text-input id="password" class="form-control" type="password" name="password"
-                                    required autocomplete="current-password" />
+                                    required autocomplete="current-password" placeholder="Kata Sandi" />
 
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
