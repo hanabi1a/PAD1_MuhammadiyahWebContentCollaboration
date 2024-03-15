@@ -106,7 +106,7 @@
         <p class="text-center heading2"><strong>Tokoh Muhammadiyah</strong></p>
         <hr class="hr">
         <div class="container">
-            @include('layouts.carousel')
+            @include('components.carousel')
         </div>
     </section>
 

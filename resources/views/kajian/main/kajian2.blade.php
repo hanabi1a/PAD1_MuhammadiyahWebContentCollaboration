@@ -117,7 +117,7 @@
                     @foreach ($latestKajians as $kajian)
                     <div class="row mb-3">
                         <div class="col-md-4">
-                            <img src="{{ asset('storage/' . $kajian->foto_kajian) }}" alt="" class="postkajian-kajian">
+                            <img src="{{ asset($kajian->foto_kajian) }}" alt="" class="postkajian-kajian">
                         </div>
                         <div class="col-md-8">
                             <div class="title mb-3 mt-2">{{ $kajian->judul_kajian }}</div>
@@ -126,7 +126,7 @@
                                 <li>Tema : “{{ $kajian->deskripsi_kajian }}”</li>
                             </ul>
                             <div class="d-flex mt-3">
-                                <a href="{{ route('userkajian', ['id' => $kajian->id]) }}"
+                                <a href="{{ route('kajian.detail', $kajian->id) }}"
                                     class="button-kajian text-light me-3" style="text-decoration: none;">
                                     View More
                                 </a>

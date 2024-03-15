@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserManagement\Admin\AdminController;
@@ -20,25 +23,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sign_in_user', function () {
-    return view('auth/sign_in_user');
-});
-
-Route::get('/sign_in_admin', function () {
-    return view('admin/signin_admin');
-});
-
-Route::get('/sign_up', function () {
-    return view('auth/sign_up');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::controller(KajianController::class)->group(function () {
-    Route::get('/data_kajian', 'index')->name('data_kajian');
+
+
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/homepage', 'index')->name('home');
+});
+
+Route::controller(AboutController::class)->group(function () {
+    Route::get('/about', 'index')->name('about');
+});
+
+Route::group([], function () {
+    Route::post('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register', [RegisteredUserController::class, 'store_additional_1'])->name('register.step1');
+    Route::post('/register', [RegisteredUserController::class, 'store_additional_2'])->name('register.step2');
 });
 
 
@@ -47,9 +50,33 @@ Route::controller(KajianController::class)->group(function () {
  * Hanya bisa diakses oleh user yang sudah login
  */
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profileb', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profileb', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profileb', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+
+
+    /**
+     * Registered middleware
+     * Hanya bisa diakses oleh admin dan registered user
+     * 
+     * 
+     * Referensi:
+     * app/Http/Middleware/UserManagement/
+     * app/Http/Controllers/UserManagement/
+     */
+
+    Route::middleware('registered')->group(function () {
+        Route::get('/kajian/create', [KajianController::class, 'create'])->name('kajian.create');
+        Route::post('/kajian', [KajianController::class, 'store'])->name('kajian.store');
+        Route::get('/profile', [ProfileController::class, 'show_profile'])->name('profile.show');
+        Route::get('/profile/edit', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
+        Route::put('/profile', [ProfileController::class, 'store_edit_profile'])->name('profile.store');
+        Route::delete('/kajian/{id}', [KajianController::class, 'destroy'])->name('kajian.destroy');
+
+        
+
+    });
 
     /**
      * Admin middleware
@@ -85,6 +112,15 @@ Route::middleware('auth')->group(function () {
         Route::put('admin/kajian/{id}', [KajianController::class, 'update'])->name('admin.kajian.update');
 
     });
+
+});
+Route::controller(KajianController::class)->group(function () {
+    Route::get('/data_kajian', 'index')->name('data_kajian');
+    Route::get('/kajian', 'show_kajian')->name('kajian.show');
+    Route::get('/kajian/{id}', 'show')->name('kajian.detail');
+    Route::get('/kajian/{id}/create_new', 'edit')->name('kajian.edit.new_version');
+    Route::get('/kajian/download/{id}', 'downloadKajian')->name('kajian.download');
+
 });
 
 require __DIR__ . '/auth.php';

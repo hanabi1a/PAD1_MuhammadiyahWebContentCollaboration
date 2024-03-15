@@ -15,8 +15,9 @@
                         @endif
                         <div class="card-body">
                             <div class="form-validation">
-                            <form class="form-valide" action="{{ route('storeupdateuser') }}" method="post" enctype="multipart/form-data">
-                                    @csrf
+                            <form class="form-valide" action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
+                            @method('put')        
+                            @csrf
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val-nama">Nama
                                         </label>

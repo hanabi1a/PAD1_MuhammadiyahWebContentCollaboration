@@ -46,8 +46,75 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        session(['tuid' => $user->id]);
+
+        // return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('register.step1');
     }
+
+    
+    public function store_additional_1(Request $request)
+    {
+        $validatedData = $request->validate([
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date|before:today',
+            'pekerjaan' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan', // TODO: Check this later
+        ]);
+        
+        // Mengambil data pengguna yang akan diperbarui
+        $userId = session('tuid');
+        $user = User::find($userId);
+        
+        // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
+        $user->tempat_lahir = $validatedData['tempat_lahir'];
+        $user->tanggal_lahir = $validatedData['tanggal_lahir'];
+        $user->pekerjaan = $validatedData['pekerjaan'];
+        $user->alamat = $validatedData['alamat'];
+        $user->jenis_kelamin = $validatedData['jenis_kelamin'];
+
+        // Menyimpan perubahan data pengguna
+        $user->save();
+
+        // Redirect atau tampilkan respons sesuai kebutuhan
+        return redirect()->route('register.step2');
+    }
+
+    public function store_additional_2(Request $request)
+    {
+        $validatedData = $request->validate([
+            'cabang' => 'required|string|max:255',
+            'daerah' => 'required|string|max:255',
+            'wilayah' => 'required|string|max:255',
+        ]);
+        
+        // Mengambil data pengguna yang akan diperbarui
+        $userId = session('tuid');
+        $user = User::find($userId);
+        
+        // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
+        $user->cabang = $validatedData['cabang'];
+        $user->daerah = $validatedData['daerah'];
+        $user->wilayah = $validatedData['wilayah'];
+
+        // Menyimpan perubahan data pengguna
+        $user->save();
+
+        // Menghapus sessino ID pengguna yang sedang mendaftar
+        $request->session()->forget('tuid');
+
+        // Redirect atau tampilkan respons sesuai kebutuhan
+        return redirect(RouteServiceProvider::HOME);
+
+        if (Auth::user()->isAdmin()) {
+            return redirect(RouteServiceProvider::ADMIN);
+        } else {
+            return redirect(RouteServiceProvider::HOME);
+        }
+    }
+
+
 }

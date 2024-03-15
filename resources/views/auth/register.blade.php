@@ -11,6 +11,7 @@
     <title>Halaman Register</title>
 </head>
 
+
 <body>
     <div class="container1">
         <div class="d-lg-flex half">
@@ -34,6 +35,7 @@
                                     @enderror
                                 </div>
 
+
                                 <!-- Email Address -->
                                 <div class="mt-4">
                                     <label for="email">Email</label>
@@ -43,6 +45,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+
 
                                 <!-- Password -->
                                 <div class="mt-4">
@@ -210,6 +213,7 @@
 
                             <p class="text-center">Telah memiliki akun? <a href="register">Masuk di sini</a></p>
                         </div>
+
                     </div>
                 </div>
             </div>
