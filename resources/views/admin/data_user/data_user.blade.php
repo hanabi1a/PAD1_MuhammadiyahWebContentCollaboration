@@ -1,4 +1,4 @@
-@extends('header_footer.layout-admin')
+@extends('layouts.layout')
 
 @section('content')
 <main>
@@ -8,7 +8,7 @@
             <li class="text_page breadcrumb"><a href="dashboard">Dashboard /</a><a href="data_user"
                     class="active_title"> Data User</a></li>
         </ol>
-
+        
         <div class="card mb-4">
             <div class="card-body">
                 <table id="datatablesSimple" class="table">

@@ -40,7 +40,6 @@
             <div class="col-md-4">
                 <img src="/assets/img/logo.png" alt="" class="logo-footer">
             </div>
-
             <div class="col-md-4">
                 <div class="heading6">Follow Us :</div>
                 <div class="icon-sosmed">
@@ -58,8 +57,6 @@
                     </a>
                 </div>
             </div>
-
-
             <div class="col-md-4">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.1510599545036!2d110.36996687464045!3d-7.773801877118019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59a883bb28fb%3A0x71c2d1a3cabf9775!2sTeaching%20Industry%20Learning%20Center%20(TILC-UGM)!5e0!3m2!1sid!2sid!4v1695021286547!5m2!1sid!2sid"

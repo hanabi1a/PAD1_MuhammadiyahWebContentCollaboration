@@ -1,5 +1,5 @@
 homepage
-@extends('layouts.layout')
+@extends('layouts.layout_user')
 @section('content')
 
 <section id="home">
