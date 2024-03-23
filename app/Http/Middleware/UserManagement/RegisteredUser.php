@@ -15,7 +15,7 @@ class RegisteredUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user() != null && auth()->user()->role == 'registered' || auth()->user()-> isAdmin()){
+        if (auth()->user() != null && auth()->user()->role == 'registered' || auth()->user()->isAdmin()) {
             return $next($request);
         }
         abort(403, 'Akses ditolak. Anda tidak memiliki akses untuk mengakses halaman ini.');

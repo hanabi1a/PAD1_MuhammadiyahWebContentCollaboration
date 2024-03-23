@@ -4,20 +4,13 @@
             <a class="navbar-brand" href="#">
                 <img src="/assets/img/logo.png" alt="" class="logo-navbar2">
             </a>
-            <form action="#" class="searchform order-lg-last">
-                <div class="form-group d-flex">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <button type="submit" placeholder="" class="form-control search"><span
-                            class="fa fa-search"></span></button>
-                </div>
-            </form>
             <div class="dropdown order-lg-last">
-                <button class=" btn btn-light dropdown-toggle btn-login" type="button" id="dropdownMenu2"
-                    data-bs-toggle="dropdown" aria-expanded="true">
+                <div class="dropdown-toggle btn-login text-light" id="dropdownMenu2" data-bs-toggle="dropdown"
+                    aria-expanded="true">
                     {{ Auth::user()->username }}
-                    <img src="{{ asset('storage/'.Auth::user()->foto_profile) }}" alt="" width="30px" height="30px"
-                        style="border-radius: 50%;">
-                </button>
+                    <img src="{{ asset('storage/' . Auth::user()->foto_profile) }}" alt="" width="30px" height="30px"
+                        style="border-radius: 50%;" class="ms-2">
+                </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <li>
                         <!-- TODO: route  -->
@@ -64,16 +57,14 @@
             </button>
             <div class="collapse navbar-collapse nvbar" id="ftco-nav">
                 <ul class="navbar-nav m-auto">
-                    <li class="nav-item {{ request()->is('homepage2') ? 'active' : '' }}"><a
-                            href="{{ url('homepage') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item {{ request()->is('about2') ? 'active' : '' }}"><a href="{{ route('about') }}"
+                    <li class="nav-item {{ request()->is('homepage') ? 'active' : '' }}"><a href="{{ url('homepage') }}"
+                            class="nav-link">Home</a></li>
+                    <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}"
                             class="nav-link">About</a></li>
-                    <li class="nav-item {{ request()->is('kajian2') ? 'active' : '' }}"><a
+                    <li class="nav-item {{ request()->is('kajian') ? 'active' : '' }}"><a
                             href="{{ route('kajian.show') }}" class="nav-link">Kajian</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- END nav -->
-
 </section>

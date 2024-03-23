@@ -1,3 +1,5 @@
+sign-in master
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -231,7 +233,7 @@
                                         </div>
         
                                         <button type="submit" 
-                                            class="btn btn-block btn-after mt-5 next-slide">Selanjutnya
+                                            class="btn btn-block btn-after mt-3 next-slide">Selanjutnya
                                         </button>
 
 

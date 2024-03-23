@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    @include('header_footer.header2')
+    @include('header_footer.header_user_2')
     @yield('content')
     @include('header_footer.footer')
 </body>

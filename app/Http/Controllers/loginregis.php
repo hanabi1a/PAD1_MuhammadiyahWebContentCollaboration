@@ -156,7 +156,7 @@ class loginregis extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return view('user.homepage2', compact('user'));
+            return view('user.homepage', compact('user'));
         }
         return redirect()->route('login')
             ->withErrors(['You are not allowed to access',])->onlyInput('email');

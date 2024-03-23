@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
@@ -22,26 +23,29 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/kajian2', function () {
+    return view('kajian2');
+});
+Route::get('/layout_user_2', function () {
+    return view('layout_user_2');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
-
-Route::controller(HomeController::class)->group(function () {
-    Route::get('/homepage', 'index')->name('home');
-});
-
-Route::controller(AboutController::class)->group(function () {
-    Route::get('/about', 'index')->name('about');
-});
-
 Route::group([], function () {
-    Route::post('/register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('/register', [RegisteredUserController::class, 'store_additional_1'])->name('register.step1');
-    Route::post('/register', [RegisteredUserController::class, 'store_additional_2'])->name('register.step2');
+    // Route::get('/', [HomeController::class, 'index']);
+    Route::get('/beranda', [HomeController::class, 'index'])->name('home');
+    Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::get('/register/{page}', [RegisteredUserController::class, 'create'])->name('register.show');
+    Route::post('/register/1', [RegisteredUserController::class, 'store'])->name('register.step1');
+    Route::post('/register/2', [RegisteredUserController::class, 'store_additional_1'])->name('register.step2');
+    Route::post('/register/3', [RegisteredUserController::class, 'store_additional_2'])->name('register.step3');
+    Route::post('/register/4', [RegisteredUserController::class, 'store_additional_3'])->name('register.step4');
 });
 
 
@@ -50,10 +54,16 @@ Route::group([], function () {
  * Hanya bisa diakses oleh user yang sudah login
  */
 Route::middleware('auth')->group(function () {
+    // Breeze
     Route::get('/profileb', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profileb', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profileb', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
+
+    // Start
+
+    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 
 
     /**
@@ -74,7 +84,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile', [ProfileController::class, 'store_edit_profile'])->name('profile.store');
         Route::delete('/kajian/{id}', [KajianController::class, 'destroy'])->name('kajian.destroy');
 
-        
+
 
     });
 
@@ -90,14 +100,14 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-        
+
         // User
         Route::get('admin/users', [AdminController::class, 'show_data_user'])->name('admin.show_data_user');
         Route::get('admin/users/{id}', [AdminController::class, 'show_detail_user'])->name('admin.show_detail_user');
         Route::get('admin/users/{id}/edit', [AdminController::class, 'edit_user'])->name('admin.edit_user');
         Route::put('admin/users/{id}', [AdminController::class, 'update_user'])->name('admin.update_user');
         Route::delete('admin/users/{id}', [AdminController::class, 'delete_user'])->name('admin.delete_user');
-        
+
         Route::get('admin/history_login', [AdminController::class, 'show_history_login'])->name('admin.show_history_login');
         Route::get('admin/history_upload', [AdminController::class, 'show_history_upload'])->name('admin.show_history_upload');
         Route::get('admin/history_download', [AdminController::class, 'show_history_download'])->name('admin.show_history_download');
