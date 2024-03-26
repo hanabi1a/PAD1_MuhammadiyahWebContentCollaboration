@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="#">
                 <img src="/assets/img/logo.png" alt="" class="logo-navbar2">
             </a>
-            @if (Auth::user() != null && Auth::user()->role == 'registered')
+            @if (Auth::user() != null)
                 <div class="dropdown order-lg-last">
                     <div class="dropdown-toggle btn-login text-light" id="dropdownMenu2" data-bs-toggle="dropdown"
                         aria-expanded="true">
