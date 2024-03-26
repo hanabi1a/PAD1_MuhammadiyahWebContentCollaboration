@@ -216,7 +216,6 @@
                 $(this).addClass('active');
             });
         });
-
     </script>
 </body>
 

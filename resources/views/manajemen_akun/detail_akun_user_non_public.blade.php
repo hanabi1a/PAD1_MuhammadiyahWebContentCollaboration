@@ -1,4 +1,4 @@
-@extends('layouts.layout2')
+@extends('layouts.layout_user_2')
 
 @section('content')
 <main>
@@ -79,7 +79,7 @@
                                         <div class="row">
                                             <div class="col col-md-4">
                                                 <img class="card-muhammadiyah"
-                                                    src="{{ asset('storage/'.$user->foto_kta) }}">
+                                                    src="{{ asset('storage/' . $user->foto_kta) }}">
                                             </div>
                                             <div class="col col-md-8">
                                                 <button class="btn-green mb-3">Anggota</button><br>

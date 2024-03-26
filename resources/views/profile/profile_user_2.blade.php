@@ -1,4 +1,4 @@
-@extends('layouts.layout2')
+@extends('layouts.layout_user_2')
 
 @section('content')
 <main>
@@ -8,7 +8,7 @@
                 <div class="container">
                     <div class="row mb-5 justify-content-center align-items-center">
                         <div class="col-md-2">
-                            <img class="user-profile-pp" src="{{ asset('storage/' . $user->foto_profile) }}" alt=""
+                            <img class="user-profile-pp" src="{{ asset($user->foto_profile) }}" alt=""
                                 style="border-radius: 50%; width: 100px; height: 100px;">
                         </div>
                         <div class="col-md-4 mt-2">
@@ -19,12 +19,12 @@
                         <div class="col-md-5 text-end d-flex justify-content-end">
                             <!-- Button Edit Profile without image -->
                             <button class="button-kajian me-6 mt-2"
-                                onclick="window.location.href = '{{ route('editProfile') }}';">
+                                onclick="window.location.href = '{{ route('profile.edit_profile') }}';">
                                 Edit Profile
                             </button>
 
                             <!-- Button Create with image -->
-                            <div class="btn btn-edit" onclick="window.location.href = '{{ route('createUser') }}';">
+                            <div class="btn btn-edit" onclick="window.location.href = '{{ route('kajian.create') }}';">
                                 <img src="\assets\img\btn-add.png" alt="Create Icon" width="40">
                                 <span class="text-editdownshare">Create</span>
                             </div>
@@ -40,11 +40,11 @@
                         <div class="custom-card col-md-6 mt-4" style="max-width: 540px; margin-right:25px;">
                             <div class="row">
                                 <div class="col-md-4 me-2">
-                                    <img src="{{ asset('storage/' . $kajian->foto_kajian) }}"
+                                    <img src="{{ asset('storage/kajian/' . $kajian->foto_kajian) }}"
                                         class="post-img rounded-start" alt="Profile">
                                 </div>
                                 <div class="col-md-5 mt-2">
-                                <a href="{{ route('userkajian', $kajian->id) }}" class="text-info me-2"title="View">
+                                <a href="{{ route('kajian.detail', $kajian->id) }}" class="text-info me-2"title="View">
                                 <h5 class="heading6"><strong>{{ $kajian->judul_kajian }}</strong></h5>
                                 </a>
                                     
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col-md-2">
                                 <div class="card-body">
-                                        <form action="{{ route('userdeleteKajian', $kajian->id) }}" method="post">
+                                        <form action="{{ route('kajian.destroy', $kajian->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete"

@@ -45,7 +45,6 @@
                   </label>
                   <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
                 </div>
-
                 <input type="submit" value="Sign In" class="btn btn-block btn-primary">
               </form>
               <p class="text-center">Not a member? <a href="sign_up">Sign Up</a></p>

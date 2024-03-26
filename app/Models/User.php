@@ -72,15 +72,15 @@ class User extends Authenticatable
         return $this->hasMany(versionHistory::class, 'user_id');
     }
 
-    // public function is_admin() {
-    //     $adminUsernames = ['admint']; // Username admin yang diizinkan
     
-    //     return in_array($this->username, $adminUsernames);
-    // }
-
     public function isAdmin()
     {
         return $this->role === 'admin';
+    }
+
+    public function isRegistered()
+    {
+        return $this->role === 'registered';
     }
     
 }

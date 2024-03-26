@@ -1,4 +1,4 @@
-@extends('header_footer.layout-admin')
+@extends('layouts.layout')
 
 @section('content')
 <main>

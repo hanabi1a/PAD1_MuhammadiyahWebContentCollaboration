@@ -19,15 +19,14 @@
 </head>
 
 <body class="sb-nav-fixed">
-    @include('header_footer.header')
+    @include('header_footer.header_admin')
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading"></div>
-                        <a class="nav-link {{ request()->is('admin/dashboard*') ? 'active' : '' }}" href=" {{
-                            route('admin.dashboard')}}">
+                        <a class="nav-link {{ request()->is('admin/dashboard*') ? 'active' : '' }}" href=" {{ route('admin.dashboard')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-home"></i>
                             </div>Dashboard
