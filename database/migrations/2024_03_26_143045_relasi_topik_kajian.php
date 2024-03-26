@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('relasi_topik_kajian', function(Blueprint $table){
             $table->id();
+            $table->unsignedBigInteger('kajian_id');
+            $table->unsignedBigInteger('topik_kajian_id');
             $table->foreign('kajian_id')
                 ->references('id')
                 ->on('kajian')
