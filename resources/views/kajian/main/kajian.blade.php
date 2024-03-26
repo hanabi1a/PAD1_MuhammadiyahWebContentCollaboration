@@ -1,4 +1,4 @@
-@extends('layouts.layout_user')
+@extends('layouts.layout_user_2')
 @section('content')
 <section id="kajian-hero">
     <div class="container">
@@ -15,7 +15,7 @@
                 <div class="carousel-item active">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="d-flex flex-row-reverse bd-highlight">
+                            <div class="d-flex flex-row-reverse bd-highlight center-image">
                                 <img src="/assets/img/kajiann-2.png" alt="" class="img-fluid card-kajian-slide me-3">
                             </div>
                         </div>
@@ -27,7 +27,9 @@
                                 WIB - End</div>
                             <div class="subtitle">Pengajian Milad Universitas Muhammadiyah Kudus ke-24 dan Muktamar
                                 Muhammadiyah ‘ Aisyiyah ke-48</div>
-                            <button class="button-kajian-hero">View More</button>
+                            <a href="#">
+                                <button class="button-kajian-hero">Lihat Selengkapnya</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -35,7 +37,7 @@
                 <div class="carousel-item">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="d-flex flex-row-reverse bd-highlight">
+                            <div class="d-flex flex-row-reverse bd-highlight center-image">
                                 <img src="/assets/img/kajiann-1.jpg" alt="" class="img-fluid card-kajian-slide me-3">
                             </div>
                         </div>
@@ -47,7 +49,9 @@
                                 WIB - End</div>
                             <div class="subtitle">Pengajian Milad Universitas Muhammadiyah Kudus ke-24 dan Muktamar
                                 Muhammadiyah ‘ Aisyiyah ke-48</div>
-                            <button class="button-kajian-hero">View More</button>
+                            <a href="#">
+                                <button class="button-kajian-hero">Lihat Selengkapnya</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -55,7 +59,7 @@
                 <div class="carousel-item">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="d-flex flex-row-reverse bd-highlight">
+                            <div class="d-flex flex-row-reverse bd-highlight center-image">
                                 <img src="/assets/img/kajiann-3.png" alt="" class="img-fluid card-kajian-slide me-3">
                             </div>
                         </div>
@@ -67,7 +71,9 @@
                                 WIB - End</div>
                             <div class="subtitle">Pengajian Milad Universitas Muhammadiyah Kudus ke-24 dan Muktamar
                                 Muhammadiyah ‘ Aisyiyah ke-48</div>
-                            <button class="button-kajian-hero">View More</button>
+                            <a href="#">
+                                <button class="button-kajian-hero">Lihat Selengkapnya</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +94,86 @@
     </div>
 </section>
 
-<section id="poster">
+<section id="search">
+    <div class="row">
+        <div class="col-8">
+            <div class="search">
+                <input type="text" class="search-input" placeholder="search..." name="">
+                <a href="#" class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M21.7505 20.6895L16.0865 15.0255C17.4475 13.3914 18.1263 11.2956 17.9815 9.17389C17.8366 7.05219 16.8794 5.06801 15.3089 3.6341C13.7384 2.2002 11.6755 1.42697 9.54942 1.47528C7.42333 1.52359 5.39772 2.38971 3.89396 3.89347C2.3902 5.39723 1.52408 7.42284 1.47577 9.54893C1.42746 11.675 2.20068 13.7379 3.63459 15.3084C5.0685 16.8789 7.05268 17.8361 9.17438 17.981C11.2961 18.1258 13.3919 17.4471 15.026 16.086L20.69 21.75L21.7505 20.6895ZM3.00045 9.74996C3.00045 8.41494 3.39633 7.1099 4.13803 5.99987C4.87973 4.88983 5.93394 4.02467 7.16734 3.51378C8.40074 3.00289 9.75794 2.86921 11.0673 3.12966C12.3767 3.39011 13.5794 4.03299 14.5234 4.97699C15.4674 5.921 16.1103 7.12373 16.3708 8.4331C16.6312 9.74248 16.4975 11.0997 15.9866 12.3331C15.4757 13.5665 14.6106 14.6207 13.5006 15.3624C12.3905 16.1041 11.0855 16.5 9.75045 16.5C7.96085 16.498 6.24512 15.7862 4.97967 14.5207C3.71423 13.2553 3.00244 11.5396 3.00045 9.74996Z"
+                            fill="#4A5A67" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="btn btn-light unggah-kajian">Unggah Kajian</div>
+        </div>
+    </div>
+</section>
+
+<section id="kajian-home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Kajian Muhammadiyah</h1>
+            </div>
+            <div class="col-md-6 text-end" style="font-size: 20px; font-weight: 600;">
+                <a href="">Lihat Semua<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
+                        fill="none">
+                        <path d="M14.375 8.75L25.625 20L14.375 31.25" stroke="#04454D" stroke-width="2.8125"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section id="video-terkini">
+
+
+</section>
+
+<!-- <section id="poster">
     <div class="container">
         <div class="row">
             <div class="col-4">
@@ -122,278 +207,8 @@
                 </div>
             </div>
         </div>
-
     </div>
-    </div>
-</section>
-
-<section id="kajian">
-    <div class="container">
-        <div class="heading2 mb-3 mt-5"><strong>Kajian Terkini</strong></div>
-        <hr>
-        <div class="row">
-            <div class="col-md-9 order-md-1">
-            @foreach ($latestKajians as $kajian)
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <img src="{{ asset('storage/' . $kajian->foto_kajian) }}" alt="" class="postkajian-kajian">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="title mb-3 mt-2">{{ $kajian->judul_kajian }}</div>
-                            <ul class="list-unstyled">
-                                <li>Narasumber : {{ $kajian->pemateri }}</li>
-                                <li>Tema : “{{ $kajian->deskripsi_kajian }}”</li>
-                            </ul>
-                            <div class="d-flex mt-3">
-                                <a href="{{ route('nluserkajian', ['id' => $kajian->id]) }}"
-                                    class="button-kajian text-light me-3" style="text-decoration: none;">
-                                    View More
-                                </a>
-
-                                <p>{{ $kajian->created_at->format('l | F d, Y') }} | By {{ $kajian->user->username }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+</section> -->
 
 
-                <!-- Card Video YouTube -->
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <div class="video-card">
-                            <!-- Video Background -->
-                            <div class="video-background">
-                                <iframe width="540" height="240"
-                                    src="https://www.youtube.com/embed/nuF60TmusIw?si=bfMYdaXP2-s2MqxR"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen></iframe>
-                            </div>
-                            <!-- White Overlay -->
-                            <div class="white-overlay">
-                                <!-- Social Media Info with Images -->
-                                <div class="social-media-info">
-                                    <div class="social-icons">
-                                        <img src="/assets/img/facebook-1.png" alt="Facebook"
-                                            style="width: 190px; height: 60px;">
-                                        <img src="/assets/img/twitter-1.png" alt="Twitter"
-                                            style="width: 190px; height: 60px;">
-                                        <img src="/assets/img/icon/google.png" alt="Google"
-                                            style="width: 60px; height: 60px;">
-                                    </div>
-                                </div>
-                                <div class="detail-kajian text-center">
-                                    <span class="fw-bold">Kajian Al Islam dan Kemuhammadiyahan Series ke-26</span><br>
-                                    Risalah Islam Berkemajuan | Prof. Dr. Abdul Mu'ti, M.Ed | Kajian Al-Islam &
-                                    Kemuhammadiyahan UMS <br>
-                                    Videos | 30 December, 2022 | Masjid Hj. Sudalmiyah Rais UMS
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-3 order-md-2">
-                <div class="card mt-5">
-                    <div class="row">
-                        <img src="/assets/img/kajian/highest.png" alt="" class="img-fluid">
-                    </div>
-
-                    <div class="bungkus">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/assets/img/account-profile.png" alt="">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="nama-setor">Aisa Selvira</div>
-                                    <div class="jumlah">40 post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <center class="mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                class="bi bi-chevron-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                class="bi bi-chevron-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                            </svg>
-                        </center>
-                    </div>
-
-                    <div class="title mt-5">
-                        Follow Us :
-                        <div class="d-flex justify-content-between mt-3">
-                            <img src="/assets/img/icon/fb.png" alt="">
-                            <img src="/assets/img/icon/twt.png" alt="">
-                            <img src="/assets/img/icon/google.png" alt="">
-                            <img src="/assets/img/icon/yt.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 @endsection

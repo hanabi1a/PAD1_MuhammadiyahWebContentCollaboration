@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\HomeController1;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserManagement\Admin\AdminController;
@@ -22,6 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/kajian2', function () {
+    return view('kajian2');
+});
+Route::get('/layout_user_2', function () {
+    return view('layout_user_2');
 });
 
 Route::get('/dashboard', function () {
@@ -52,11 +59,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profileb', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profileb', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profileb', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-    // Start
-
-    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     
 
 
@@ -78,7 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile', [ProfileController::class, 'store_edit_profile'])->name('profile.store');
         Route::delete('/kajian/{id}', [KajianController::class, 'destroy'])->name('kajian.destroy');
 
-        
+
 
     });
 
@@ -94,14 +96,14 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-        
+
         // User
         Route::get('admin/users', [AdminController::class, 'show_data_user'])->name('admin.show_data_user');
         Route::get('admin/users/{id}', [AdminController::class, 'show_detail_user'])->name('admin.show_detail_user');
         Route::get('admin/users/{id}/edit', [AdminController::class, 'edit_user'])->name('admin.edit_user');
         Route::put('admin/users/{id}', [AdminController::class, 'update_user'])->name('admin.update_user');
         Route::delete('admin/users/{id}', [AdminController::class, 'delete_user'])->name('admin.delete_user');
-        
+
         Route::get('admin/history_login', [AdminController::class, 'show_history_login'])->name('admin.show_history_login');
         Route::get('admin/history_upload', [AdminController::class, 'show_history_upload'])->name('admin.show_history_upload');
         Route::get('admin/history_download', [AdminController::class, 'show_history_download'])->name('admin.show_history_download');

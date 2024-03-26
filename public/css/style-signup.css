@@ -17,8 +17,6 @@ font-family: 'Poppins', sans-serif;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--background);
-
 }
 
 .row {
@@ -33,6 +31,7 @@ p {
 
 h3 {
     padding-bottom: 20px;
+    padding-top: 50px;
     text-align: center;
 }
 
@@ -56,18 +55,30 @@ h2 {
 
 .half,
 .half .container>.row {
-    height: 150vh;
+    height: 100%;
 }
 
 .container1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin-top: 5%;
+    margin-top: 25px;
     margin-bottom: 5%;
     margin-left: 10%;
     margin-right: 10%;
 }
 
-@media (max-width: 990px) {
+
+.bgsignup {
+    background-image: url("/assets/img/bgsignup.png");
+}
+
+@media (max-width: 768px) {
+    .bgsignup {
+        background-size: 100%;
+    }
+}
+
+
+/* @media (max-width: 990px) {
 
     .half,
     .half .container>.row {
@@ -77,17 +88,17 @@ h2 {
     .half .bg {
         height: 200px;
     }
-}
+} */
 
 @media (max-width: 768px) {
 
     .half,
     .half .container>.row {
-        height: 200vh;
+        height: 100%h;
     }
 
     .half .bg {
-        height: 200px;
+        height: 300px;
     }
 
     .container1 {
@@ -151,12 +162,13 @@ h2 {
 
 p {
     padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 .half .btn {
     height: 54px;
-    padding-left: 30px;
-    padding-right: 30px;
+    /* padding-left: 30px;
+    padding-right: 30px; */
 }
 
 .btn-primary {
@@ -284,6 +296,7 @@ p {
 
 .caption-title-signup {
     color: var(--extra);
+    margin-top: -30px;
 }
 
 .btn-kategori {
@@ -308,8 +321,9 @@ p {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     border: 1px solid var(--extra);
-    margin-right: 1000px;
+    /* margin-right: 1000px; */
     transition: background-color 0.3s, border-color 0.3s;
+    padding: 8px 16px;
 }
 
 .btn-before:hover {
@@ -328,6 +342,7 @@ p {
     background-color: var(--extra);
     color: white;
     transition: background-color 0.3s, border-color 0.3s;
+    padding: 8px 16px;
 }
 
 .btn-after:hover {
@@ -349,6 +364,18 @@ p {
     margin-top: 30px;
 }
 
-.mr-6 {
-    margin-right: 75px;
+.prev-slide {
+    margin-right: 10%;
+}
+
+
+@media (max-width: 768px) {
+    .prev-slide {
+        margin-right: 3%;
+    }
+
+    .btn-before,
+    .btn-after {
+        font-size: 12px;
+    }
 }
