@@ -39,7 +39,6 @@ Route::get('/dashboard', function () {
 Route::group([], function () {
     // Route::get('/', [HomeController::class, 'index']);
     Route::get('/beranda', [HomeController::class, 'index'])->name('home');
-    // Route::get('/beranda1', [HomeController1::class, 'index'])->name('home');
     Route::get('/about', [AboutController::class, 'index'])->name('about');
 
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -60,12 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profileb', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profileb', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profileb', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-    // Start
-
-    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
+    
 
 
     /**

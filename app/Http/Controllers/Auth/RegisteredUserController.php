@@ -55,8 +55,8 @@ class RegisteredUserController extends Controller
         return redirect()->route('register.show', ['page' => 1]);
     }
 
-
-    public function store_additional_1(Request $request): RedirectResponse
+    
+    public function store_additional_1(Request $request)
     {
         $validatedData = $request->validate([
             'tempat_lahir' => 'required|string|max:255',
@@ -84,7 +84,7 @@ class RegisteredUserController extends Controller
         return redirect()->route('register.show', ['page' => 2]);
     }
 
-    public function store_additional_2(Request $request): RedirectResponse
+    public function store_additional_2(Request $request)
     {
         $validatedData = $request->validate([
             'nomor_keanggotaan' => 'required|string|max:255',
@@ -103,37 +103,8 @@ class RegisteredUserController extends Controller
         $user->daerah = $validatedData['daerah'];
         $user->wilayah = $validatedData['wilayah'];
 
-        if ($request->hasFile('foto_kta')) {
-            $filename = $request->file('foto_kta')->getClientOriginalName();
-            $extension = $request->file('foto_kta')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . $userId . '.' . $extension;
-            $path = $request->file('foto_kta')->storeAs('/kta', $fileNameToStore);
-            $user->foto_kta = $path;
-        }
-
-        if ($request->hasFile('foto_profile')) {
-            $filename = $request->file('foto_profile')->getClientOriginalName();
-            $extension = $request->file('foto_profile')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . $userId . '.' . $extension;
-            $path = $request->file('foto_profile')->storeAs('/profile', $fileNameToStore);
-            $user->foto_profile = $path;
-        }
-
         // Menyimpan perubahan data pengguna
         $user->save();
-
-
-        // Redirect atau tampilkan respons sesuai kebutuhan
-        // return redirect(RouteServiceProvider::HOME);
-
-        return redirect()->route('register.show', ['page' => 3]);
-    }
-
-    public function store_additional_3(Request $request): RedirectResponse
-    {
-
-        $userId = session('tuid');
-        $user = User::find($userId);
 
         // Menghapus sessino ID pengguna yang sedang mendaftar
         $request->session()->forget('tuid');

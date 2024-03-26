@@ -120,31 +120,5 @@ class ProfileController extends Controller
     //     // return view('user.detail_akun_user_public');
     // }
 
-    // public function store_data_pribadi(Request $request, $userId) 
-    // {
-    //     $validatedData = $request->validate([
-    //         'tempat_lahir' => 'required|string|max:255',
-    //         'tanggal_lahir' => 'required|date|before:today',
-    //         'pekerjaan' => 'required|string|max:255',
-    //         'alamat' => 'required|string|max:255',
-    //         'jenis_kelamin' => 'required|in:Laki-laki,Perempuan', // TODO: Check this later
-    //     ]);
-        
-    //     // Mengambil data pengguna yang akan diperbarui
-    //     $user = User::find($userId);
-        
-    //     // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
-    //     $user->tempat_lahir = $validatedData['tempat_lahir'];
-    //     $user->tanggal_lahir = $validatedData['tanggal_lahir'];
-    //     $user->pekerjaan = $validatedData['pekerjaan'];
-    //     $user->alamat = $validatedData['alamat'];
-    //     $user->jenis_kelamin = $validatedData['jenis_kelamin'];
-
-    //     // Menyimpan perubahan data pengguna
-    //     $user->save();
-
-    //     // Redirect atau tampilkan respons sesuai kebutuhan
-    //     return redirect()->route('profile.show')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
-    // }
     
 }
