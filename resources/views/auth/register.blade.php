@@ -22,56 +22,12 @@
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-7">
 
-                            <form id="form1" method="POST" action="{{ route('register') }}" class="form-slide">
-                                <h3 class="heading1"><strong>Daftar Akun</strong></h3>
-                                @csrf
-                                <!-- Name -->
-                                <div>
-                                    <label for="name">Nama Lengkap</label>
-                                    <input id="name" class="form-control" type="text" name="name"
-                                        value="{{ old('name') }}" required autofocus autocomplete="name" placeholder="Nama Lengkap">
-                                    @error('name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-
-                                <!-- Email Address -->
-                                <div class="mt-4">
-                                    <label for="email">Email</label>
-                                    <input id="email" class="form-control" type="email" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
-                                    @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-
-                                <!-- Password -->
-                                <div class="mt-4">
-                                    <label for="password">Kata Sandi</label>
-                                    <input id="password" class="form-control" type="password" name="password"
-                                        required autocomplete="new-password" placeholder="Kata Sandi">
-                                    @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <!-- Confirm Password -->
-                                <div class="mt-4">
-                                    <label for="password_confirmation">Konfirmasi Kata Sandi</label>
-                                    <input id="password_confirmation" class="form-control" type="password"
-                                        name="password_confirmation" required autocomplete="new-password" placeholder="Konfirmasi Kata Sandi">
-                                    @error('password_confirmation')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <button type="button" class="btn btn-block btn-after mt-3 next-slide">Selanjutnya</button>
-                            </form>
-
+                        @switch($page)
+                            @case(1)
                             <!-- Form Slide 2 -->
-                            <form id="form2" action="" method="post" enctype="multipart/form-data" class="form-slide">
-                            <h3 class="heading1"><strong>Daftar Akun</strong></h3>
+                            <form id="form2" action="{{ route('register.step2') }}" method="post"
+                                enctype="multipart/form-data" class="form-slide">
+                                <h3 class="heading1"><strong>Daftar Akun</strong></h3>
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-12 mt-3">
@@ -110,13 +66,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
-                                <button type="button" class="btn-after col-5 btn mt-5 next-slide">Selanjutnya</button>
+
+                                <button type="button"
+                                    class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
+                                <button type="submit" class="btn-after col-5 btn mt-5 next-slide">Selanjutnya</button>
                             </form>
 
+                            @break
+                        @case(2)
                             <!-- Form Slide 3 -->
-                            <form id="form3" action="" method="post" enctype="multipart/form-data" class="form-slide">
-                            <h3 class="heading1"><strong>Daftar Akun</strong></h3>
+                            <form id="form3" action="{{ route('register.step3') }}" method="post"
+                                enctype="multipart/form-data" class="form-slide">
+                                <h3 class="heading1"><strong>Daftar Akun</strong></h3>
                                 @csrf
                                 <p class="caption-title-signup"><strong>Data Kartu Keanggotaan Muhammadiyah
                                         (Opsional)</strong></p>
@@ -156,12 +117,18 @@
                                         @endif
                                     </div>
                                 </div>
-                                <button type="button" class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
-                                <button type="button" class="btn-after col-5 btn mt-5 next-slide">Lewati</button>
+
+                                <button type="button" class="btn-before col-5 btn mt-5 mr-6 prev-slide"
+                                    action="{{ route('register.show', ['page' => 3]) }}">Lewati</button>
+                                <button type="submit" class="btn-after col-5 btn mt-5 next-slide">Simpan</button>
                             </form>
 
+                            @break
+
+                        @case(3)
                             <!-- Form Slide 4 -->
-                            <form id="form4" action="" method="post" enctype="multipart/form-data" class="form-slide">
+                            <form id="form4" action="{{ route('register.step4') }}" method="post"
+                                enctype="multipart/form-data" class="form-slide">
                                 <h3 class="heading1"><strong>Kategori kajian apa yang Anda sukai?</strong></h3>
                                 <p class="ml-3 caption-title-signup">Pilih 5 Kategori</p>
                                 @csrf
@@ -198,18 +165,85 @@
                                             class="fas fa-plus-square fa-lg mr-2"></i>Humaniora</button>
                                     <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
                                             class="fas fa-plus-square fa-lg mr-2"></i>Teknologi</button>
-                                    <button type="button" class="align-item-centerform-group col-md-5 btn btn-kategori"><i
+                                    <button type="button"
+                                        class="align-item-centerform-group col-md-5 btn btn-kategori"><i
                                             class="fas fa-plus-square fa-lg mr-2"></i>Humaniora</button>
-                                    <button type="button" class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
+
+                                    <button type="button"
+                                        class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
                                     <input type="submit" class="btn-after col-5 btn mt-5" value="Register">
                                 </div>
                             </form>
-                            <ul class="bulletin-wrapper">
-                                <li><div class="bulletin" onclick="showForm(1)">●</div></li>
-                                <li><div class="bulletin" onclick="showForm(2)">●</div></li>
-                                <li><div class="bulletin" onclick="showForm(3)">●</div></li>
-                                <li><div class="bulletin" onclick="showForm(4)">●</div></li>
-                            </ul>
+
+                            @break
+                        @default
+                            <!-- Form Slide 1 -->
+                            <form id="form1" method="POST" action="{{ route('register.step1') }}" class="form-slide">
+                                <h3 class="heading1"><strong>Daftar Akun</strong></h3>
+
+                                @csrf
+                                <!-- Name -->
+                                <div>
+                                    <label for="name">Nama Lengkap</label>
+                                    <input id="name" class="form-control" type="text" name="name"
+                                        value="{{ old('name') }}" required autofocus autocomplete="name"
+                                        placeholder="Nama Lengkap">
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <!-- Username -->
+                                <div class="mt-4">
+                                    <label for="username">Username</label>
+                                    <input id="username" class="form-control" type="text" name="username"
+                                        value="{{ old('username') }}" required autocomplete="username"
+                                        placeholder="Username">
+                                    @error('username')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+
+                                <!-- Email Address -->
+                                <div class="mt-4">
+                                    <label for="email">Email</label>
+                                    <input id="email" class="form-control" type="email" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+                                    @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+
+                                <!-- Password -->
+                                <div class="mt-4">
+                                    <label for="password">Kata Sandi</label>
+                                    <input id="password" class="form-control" type="password" name="password" required
+                                        autocomplete="new-password" placeholder="Kata Sandi">
+                                    @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <!-- Confirm Password -->
+                                <div class="mt-4">
+                                    <label for="password_confirmation">Konfirmasi Kata Sandi</label>
+                                    <input id="password_confirmation" class="form-control" type="password"
+                                        name="password_confirmation" required autocomplete="new-password"
+                                        placeholder="Konfirmasi Kata Sandi">
+                                    @error('password_confirmation')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <button type="submit" class="btn btn-block btn-after mt-3 next-slide">Selanjutnya
+                                </button>
+
+
+                            </form>
+
+                        @endswitch
 
                             <p class="text-center">Telah memiliki akun? <a href="register">Masuk di sini</a></p>
                         </div>
