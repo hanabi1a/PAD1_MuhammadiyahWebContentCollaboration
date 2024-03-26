@@ -1,5 +1,5 @@
 @if (Auth::user() != null && Auth::user()->role == 'registered')
-    @extends('layouts.layout_user_2')
+    @extends('layouts.layout')
     @section('content')
         <section id="hero-about">
             <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">

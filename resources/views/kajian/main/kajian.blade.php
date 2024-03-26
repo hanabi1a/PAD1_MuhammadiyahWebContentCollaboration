@@ -1,4 +1,4 @@
-@extends('layouts.layout_user_2')
+@extends('layouts.layout')
 @section('content')
 <section id="kajian-hero">
     <div class="container">
