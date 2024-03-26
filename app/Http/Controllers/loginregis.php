@@ -172,4 +172,13 @@ class loginregis extends Controller
             ->withSuccess("You have logged out");
     }
 
+    // public function logout(Request $request)
+    // {
+    //     Auth::logout();
+    //     $request->session()->invalidate();
+    //     $request->session()->regenerateToken();
+    //     return redirect()->route('public_homepage')
+    //         ->withSuccess("You have logged out");
+    // }
+
 }

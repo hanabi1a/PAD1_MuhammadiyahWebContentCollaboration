@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\HomeController1;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserManagement\Admin\AdminController;
@@ -38,6 +39,7 @@ Route::get('/dashboard', function () {
 Route::group([], function () {
     // Route::get('/', [HomeController::class, 'index']);
     Route::get('/beranda', [HomeController::class, 'index'])->name('home');
+    // Route::get('/beranda1', [HomeController1::class, 'index'])->name('home');
     Route::get('/about', [AboutController::class, 'index'])->name('about');
 
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
