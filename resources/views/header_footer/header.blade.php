@@ -1,6 +1,5 @@
 <section class="ftco-section">
-    <nav class="navbar navbar-expand-lg ftco-navbar-light">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg ftco-navbar-light navbar-custom">
             <a class="navbar-brand" href="#">
                 <img src="/assets/img/logo.png" alt="" class="logo-navbar2">
             </a>
@@ -78,6 +77,6 @@
                             class="nav-link" style="font-size: 16px; font-weight: bold;">Tentang Kami</a></li>
                 </ul>
             </div>
-        </div>
+      
     </nav>
 </section>

@@ -1,4 +1,4 @@
-@extends('layouts.layout_user_2')
+@extends('layouts.layout')
 @section('content')
 <section id="kajian-hero">
     <div class="container">
@@ -96,9 +96,9 @@
 
 <section id="search">
     <div class="row">
-        <div class="col-8">
+        <div class="col-9 col-md-10">
             <div class="search">
-                <input type="text" class="search-input" placeholder="search..." name="">
+                <input type="text" class="search-input" placeholder="Search..." name="">
                 <a href="#" class="search-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path
@@ -108,8 +108,8 @@
                 </a>
             </div>
         </div>
-        <div class="col-4">
-            <div class="btn btn-light unggah-kajian">Unggah Kajian</div>
+        <div class="col-3 col-md-2">
+            <div class="btn btn-light unggah-kajian"><img src="assets\img\icon\unggah.svg"> Unggah Kajian</div>
         </div>
     </div>
 </section>
@@ -168,47 +168,169 @@
         </div>
 </section>
 
-<section id="video-terkini">
-
-
-</section>
-
-<!-- <section id="poster">
+<section id="kajian-home">
     <div class="container">
+        <h1 class="mb-4">Kajian Rekomendasi</h1>
+            <div class="list-rekomendasi d-flex flex-wrap">
+                <div class="kategori me-2">Sejarah   <img src="assets\img\icon\cancel.svg"></img></div>
+                <div class="kategori me-2">Aqidah</div>
+                <div class="kategori me-2">Akhlak</div>
+                <div class="kategori me-2">Fiqih</div>
+                <div class="kategori me-2">Al-Qur’an</div>
+                <div class="dropdown">
+                    <button class="kategori-lainnya dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Tambah Kategori
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Sejarah</a></li>
+                        <li><a class="dropdown-item" href="#">Aqidah</a></li>
+                        <li><a class="dropdown-item" href="#">Fiqih</a></li>
+                    </ul>
+                </div>
+            </div>
+
         <div class="row">
-            <div class="col-4">
-                <div class="image-container">
-                    <img src="/assets/img/kajiann-2.png" alt="" class="img-fluid img-ov">
-                    <div class="overlay">
-                        <button class="btn btn-poster">Kajian Umum</button>
-                        <div class="title">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus</div>
-                        <div class="subtitle">20 December, 2021 | By Annisa Urohmah</div>
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body" style="border: 1px solid #8b8e90
+                ">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
                     </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="image-container">
-                    <img src="/assets/img/kajiann-2.png" alt="" class="img-fluid img-ov">
-                    <div class="overlay">
-                        <button class="btn btn-poster">Kajian Umum</button>
-                        <div class="title">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus</div>
-                        <div class="subtitle">20 December, 2021 | By Annisa Urohmah</div>
+
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
                     </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="image-container">
-                    <img src="/assets/img/kajiann-2.png" alt="" class="img-fluid img-ov">
-                    <div class="overlay">
-                        <button class="btn btn-poster">Kajian Umum</button>
-                        <div class="title">Pengajian BPH, Dosen dan Pegawai Universitas Muhammadiyah Kudus</div>
-                        <div class="subtitle">20 December, 2021 | By Annisa Urohmah</div>
+
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
                     </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
                 </div>
             </div>
         </div>
+
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section id="kajian-home">
+    <div class="container">
+        <h1 class="mb-4">Kajian Terkini</h1>
+
+        <div class="row">
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                <div class="card-body">
+                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                    <button class="btn btn-view">Lihat Selengkapnya</button>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section id="kajian-home">
+    <div class="container">
+        <h1>Video Terkini</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="col-md-6">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
     </div>
-</section> -->
-
-
+</section>
 @endsection

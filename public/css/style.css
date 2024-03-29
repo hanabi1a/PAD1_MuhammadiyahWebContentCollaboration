@@ -846,6 +846,11 @@ footer .logo-footer {
     width: 70%;
 }
 
+.navbar-custom {
+    padding-left: 80px;
+    padding-right: 20px;
+}
+
 @media (max-width: 991.98px) {
     .ftco-navbar-light .navbar-nav>.nav-item.active>a {
         color: var(--Background);
@@ -870,50 +875,24 @@ footer .logo-footer {
     outline: none !important;
 }
 
-.searchform {
-    height: 38px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    border-radius: 40px;
-    margin-right: 20px;
+.search-form {
+    padding-top: 20%;
 }
 
-.searchform .form-control {
-    width: calc(100% - 46px);
-    border: none;
-    background: #fff !important;
-    color: rgba(0, 0, 0, 0.7) !important;
-    font-size: 12px;
-
+#search-form {
+    margin-top: 7%;
+    padding: 1.5% 11%;
+    width: 100%;
+    height: 10%;
+    flex-shrink: 0;
+    background: var(--Extra, #04454D);
+    text-align: center;
+    justify-content: center;
 }
 
-.searchform .form-control::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    color: rgba(0, 0, 0, 0.7) !important;
-}
 
-.searchform .form-control::-moz-placeholder {
-    /* Firefox 19+ */
-    color: rgba(0, 0, 0, 0.7) !important;
-}
-
-.searchform .form-control:-ms-input-placeholder {
-    /* IE 0+ */
-    color: rgba(0, 0, 0, 0.7) !important;
-}
-
-.searchform .form-control:-moz-placeholder {
-    /* Firefox 18- */
-    color: rgba(0, 0, 0, 0.7) !important;
-}
-
-.searchform .search {
-    width: 46px;
-    height: 46px;
-}
-
-.searchform .search span {
-    font-size: 18px;
+#search-form .row-search {
+    margin-top: 10px;
 }
 
 .form-control {
@@ -1133,6 +1112,8 @@ select.form-control:focus::-ms-value {
     color: #fff;
 }
 
+
+
 @media screen and (max-width: 768px) {
     .akun {
         margin-top: 10px;
@@ -1141,6 +1122,18 @@ select.form-control:focus::-ms-value {
 
     .logo-navbar {
         width: 60%;
+    }
+
+    .unggah-kajian {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Memposisikan ikon dan teks ke tengah secara horizontal */
+        text-align: center;
+        /* Memposisikan teks ke tengah secara horizontal */
     }
 }
 
@@ -2198,7 +2191,7 @@ footer .col-md-4 {
 
 .card {
     position: relative;
-    margin-top: 110px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     min-width: 0;
@@ -2255,14 +2248,15 @@ footer .col-md-4 {
     color: white;
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 7px;
+    padding-top: 15px;
     width: 100%;
-    padding-bottom: 7px;
-    border-radius: 5px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    margin-bottom: 30px;
 }
 
 .btn-green-submit:hover {
-    background-color: var(--bs-success);
+    background-color: #023339;
     color: white;
 }
 
@@ -3929,6 +3923,7 @@ footer .col-md-4 {
 }
 
 
+
 /* CSS untuk elemen drop area */
 .drop-area {
     border: 2px dashed #04454D;
@@ -4673,21 +4668,28 @@ footer .col-md-4 {
     flex-direction: column;
     text-align: center;
     margin-right: 20px;
-    /* Sesuaikan dengan kebutuhan jarak horizontal */
 }
 
 .edit-down-share .col-md-4:last-child {
     margin-right: 0;
-    /* Menghapus margin-right pada elemen terakhir agar tidak ada jarak ekstra */
 }
 
 .edit-down-share img {
     margin-bottom: 5px;
-    /* Sesuaikan dengan kebutuhan jarak antara ikon dan teks */
 }
 
 .bungkus-card {
     width: 100%;
+}
+
+.card-form {
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.card-body {
+    padding: 2% 5%;
 }
 
 .card-body-user {
@@ -4709,4 +4711,45 @@ footer .col-md-4 {
 
 .list-article a {
     color: #000;
+}
+
+.unggah-kajian {
+    border-radius: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.title-form {
+    text-align: center;
+    align-items: center;
+    padding: 1.5%;
+    color: var(--background);
+    border-radius: 20px 20px 0px 0px;
+    background: var(--Extra, #04454D);
+}
+
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: calc(100% - 30px);
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+.custom-select img {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* Menghindari ikon dropdown menjadi klik target */
 }

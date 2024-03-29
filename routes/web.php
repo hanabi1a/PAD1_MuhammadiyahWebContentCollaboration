@@ -31,6 +31,10 @@ Route::get('/layout_user_2', function () {
     return view('layout_user_2');
 });
 
+Route::get('/form_create_user', function () {
+    return view('kajian.write.form_create_user');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
