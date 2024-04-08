@@ -109,7 +109,14 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="btn btn-light unggah-kajian">Unggah Kajian</div>
+        <button class="btn btn-light unggah-kajian" id="createKajianBtn">Unggah Kajian</button>
+
+            <script>
+                document.getElementById('createKajianBtn').addEventListener('click', function() {
+                    window.location.href = '{{ route('kajian.create') }}';
+                });
+            </script>
+
         </div>
     </div>
 </section>
