@@ -13,13 +13,22 @@
 
 }
 
+/* .card-artikel {
+    background: linear-gradient(to bottom, #e3ffd0, #e0ffeb, #d4f6be);
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+} */
+
 .img-carousel {
     width: 100%;
 }
 
 
 #about .subtitle {
-    font-size: 20px;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 18px;
 }
 
 #tokoh {
@@ -43,22 +52,24 @@
     line-height: 36px;
     text-align: center;
     align-items: center;
-
     border-radius: 8px;
     background: var(--Extra, #04454D);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-footer .col-md-4 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+.time {
+    font-size: 16px;
 }
 
+.time-container {
+    display: flex;
+    align-items: center;
+}
+
+.rounded-iframe {
+    border-radius: 8px;
+    overflow: hidden;
+}
 
 @media screen and (max-width: 768px) {
     .navbar {
@@ -148,8 +159,7 @@ footer .col-md-4 {
 
 
 #kajian-home {
-    padding-top: 50px;
-    padding-bottom: 100px;
+    margin-top: 50px;
 }
 
 #kajian-home h2 {
@@ -161,10 +171,6 @@ footer .col-md-4 {
     font-size: 22px;
     font-weight: bolder;
     text-align: center;
-}
-
-#contact {
-    background-color: #F5F2EB;
 }
 
 #kajian-home .card-title {
@@ -197,6 +203,9 @@ footer .col-md-4 {
     font-size: 18px;
 }
 
+.list-rekomendasi {
+    margin-bottom: 20px;
+}
 
 .list-rekomendasi .kategori {
     width: 125px;
@@ -214,7 +223,7 @@ footer .col-md-4 {
     font-weight: 500;
     line-height: normal;
     line-height: 38px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .list-rekomendasi .kategori-lainnya {
@@ -224,7 +233,6 @@ footer .col-md-4 {
     border-radius: 50px;
     border: 2px solid #04454D;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
     color: #04454D;
     text-align: center;
     font-family: Poppins;
@@ -233,7 +241,6 @@ footer .col-md-4 {
     font-weight: 500;
     line-height: normal;
     line-height: 38px;
-    margin-bottom: 50px;
 }
 
 /* Base styles */
@@ -258,7 +265,6 @@ footer .col-md-4 {
 }
 
 
-
 #kajian-video .title {
     color: var(--Black, #000);
     font-family: Poppins;
@@ -272,7 +278,7 @@ footer .col-md-4 {
 
 /* Contact Section */
 .contact-title {
-    color: #000;
+    color: #fff;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -280,24 +286,20 @@ footer .col-md-4 {
 }
 
 .contact-subtitle {
-    color: #3B3B3B;
+    color: #fff;
     text-align: center;
     font-size: 16px;
 }
 
 
-footer {
-    /* padding-top: 25px;
-    padding-bottom: 25px; */
-    background-color: var(--extra);
-    color: #fff;
-}
 
 .follow {
     font-size: 18px;
 }
 
-
+.box-shadow {
+    box-shadow: 0.2rem .6rem 1.2rem rgba(0, 0, 0, .15) !important;
+}
 
 @media screen and (max-width: 768px) {
     .center-image {
@@ -402,18 +404,17 @@ footer {
 
 #about .title {
     font-weight: bold;
-    font-size: 40px;
+    font-size: 28px;
+    margin-bottom: 34px;
 }
 
-#about .subtitle {
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+.subtitle .highlight {
+    background-color: var(--text-tritary);
 }
 
 #about .paragraf {
     font-size: 16px;
+    margin-bottom: 26px;
 }
 
 
@@ -437,6 +438,8 @@ footer {
 
 #about .list-article {
     font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
 }
 
 #about .sifat {
@@ -528,6 +531,7 @@ ol {
 
 
 #kajian {
+    margin-top: 1%;
     padding-bottom: 100px;
 }
 
@@ -561,7 +565,11 @@ ol {
 
 #kajian .card {
     border: none;
-    border-color: var(--text-tritary);
+}
+
+#kajian .order-md-2 .card {
+    border: 1px solid #000000;
+    border-radius: 8px;
 }
 
 .nama-setor {
@@ -656,7 +664,6 @@ ol {
     color: #fff;
     border-radius: 8px;
     background: var(--Dot1, #04454D);
-    font-size: 12px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 10px;
     padding-left: 20px;
@@ -776,7 +783,7 @@ ol {
 /* css new */
 #search {
     margin-top: 3%;
-    padding: 1.5% 11% 0.5%;
+    padding: 1.5% 11% 0.2% 11%;
     width: 100%;
     height: 10%;
     flex-shrink: 0;
@@ -796,7 +803,7 @@ ol {
 
 .search {
     width: 100%;
-    margin-bottom: auto;
+    margin-bottom: 1.5%;
     height: 50px;
     background-color: #fff;
     padding: 10px;

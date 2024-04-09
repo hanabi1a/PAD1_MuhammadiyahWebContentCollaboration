@@ -34,6 +34,12 @@ Route::get('/layout_user_2', function () {
 Route::get('/form_create_user', function () {
     return view('kajian.write.form_create_user');
 });
+Route::get('/form_create_user_nv', function () {
+    return view('kajian.write.form_create_user_nv');
+});
+Route::get('/detail_kajian_ori_user', function () {
+    return view('kajian.read.detail_kajian_asli_user');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -134,6 +140,7 @@ Route::controller(KajianController::class)->group(function () {
     Route::get('/data_kajian', 'index')->name('data_kajian');
     Route::get('/kajian', 'show_kajian')->name('kajian.show');
     Route::get('/kajian/{id}', 'show')->name('kajian.detail');
+    Route::get('/kajian/create', 'create')->name('kajian.create');
     Route::get('/kajian/{id}/create_new', 'edit')->name('kajian.edit.new_version');
     Route::get('/kajian/download/{id}', 'downloadKajian')->name('kajian.download');
 

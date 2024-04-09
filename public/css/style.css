@@ -881,7 +881,7 @@ footer .logo-footer {
 
 #search-form {
     margin-top: 7%;
-    padding: 1.5% 11%;
+    padding: 1.5% 11% 0.3% 11%;
     width: 100%;
     height: 10%;
     flex-shrink: 0;
@@ -891,9 +891,26 @@ footer .logo-footer {
 }
 
 
-#search-form .row-search {
+#search-kajian .row-search {
     margin-top: 10px;
 }
+
+#search-kajian {
+    margin-top: 8%;
+    padding: 1.5% 11% 4.8% 11%;
+    width: 100%;
+    height: 10%;
+    flex-shrink: 0;
+    background: var(--Extra, #04454D);
+    text-align: center;
+    justify-content: center;
+}
+
+
+#search-kajian .row-search {
+    margin-top: 10px;
+}
+
 
 .form-control {
     height: 38px !important;
@@ -1051,7 +1068,6 @@ select.form-control:focus::-ms-value {
 .dropdown-item {
     display: block;
     width: 100%;
-    padding: 0.25rem 1.5rem;
     clear: both;
     font-weight: 400;
     color: #212529;
@@ -1146,14 +1162,6 @@ select.form-control:focus::-ms-value {
     margin-right: 8%;
 }
 
-.icon-akun {
-    margin-left: 26px;
-}
-
-.icon-profile {
-    margin-left: 41px;
-}
-
 .icon-sosmed {
     margin-top: 10px;
 }
@@ -1167,21 +1175,17 @@ select.form-control:focus::-ms-value {
     filter: brightness(0.8);
 }
 
-.icon-logout {
-    margin-left: 30px;
-}
-
 .sosmed {
     margin: 5px;
 }
 
-/* footer */
-footer {
-    /* padding-top: 25px;
-    padding-bottom: 25px; */
+#contact {
     background-color: var(--extra);
     color: #fff;
+    margin-top: 7%;
 }
+
+/* footer */
 
 footer .col-md-4 {
     display: flex;
@@ -1191,10 +1195,47 @@ footer .col-md-4 {
     text-align: center;
     margin: 0;
     padding: 0;
+
 }
 
 /* Contact Section */
 
+/* Banner */
+
+.video-kajian {
+    margin: 20px 0;
+}
+
+.video-kajian img {
+    max-width: 100%;
+}
+
+.share-kajian {
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: wh;
+}
+
+.share-kajian a {
+    margin: 0 5px;
+}
+
+.akhir-videokajian p {
+    font-size: 14px;
+    color: #777;
+}
+
+.text-video-kajian {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
 
 .contact-title {
     color: #000;
@@ -2191,7 +2232,6 @@ footer .col-md-4 {
 
 .card {
     position: relative;
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     min-width: 0;
@@ -2251,8 +2291,7 @@ footer .col-md-4 {
     padding-top: 15px;
     width: 100%;
     padding-bottom: 15px;
-    border-radius: 20px;
-    margin-bottom: 30px;
+    border-radius: 10px;
 }
 
 .btn-green-submit:hover {
@@ -2283,6 +2322,23 @@ footer .col-md-4 {
     border: 2px solid var(--bs-success);
 }
 
+.btn-download-share-kajian {
+    background-color: var(--bs-green);
+    border: none;
+    color: white;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 15px;
+    width: 60%;
+    padding-bottom: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-download-share-kajian:hover {
+    background-color: #023339;
+    color: white;
+}
 
 .user-profile-pp {
     width: 125px;
@@ -2291,6 +2347,10 @@ footer .col-md-4 {
 
 .posts {
     text-align: center;
+}
+
+.username-kajian-baru {
+    font-weight: bold;
 }
 
 .custom-card {
@@ -2367,9 +2427,6 @@ footer .col-md-4 {
     flex: 1 0 0%;
 }
 
-.row {
-    margin-right: 0;
-}
 
 @media (max-width: 768px) {
 
@@ -3954,14 +4011,12 @@ footer .col-md-4 {
 }
 
 /* Detail kajian */
-.name-account {
-    margin-top: 20px;
-    float: right;
-}
 
 .nama {
-    margin-top: 10px;
     text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
 }
 
 
@@ -4696,8 +4751,6 @@ footer .col-md-4 {
     flex: 1 1 auto;
     padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
     color: var(--bs-card-color);
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .nav-link {
@@ -4707,6 +4760,12 @@ footer .col-md-4 {
 .nav-link.active {
     background-color: #8b8e90;
     color: #fff;
+}
+
+.account-detail {
+    background-color: var(--extra);
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
 .list-article a {

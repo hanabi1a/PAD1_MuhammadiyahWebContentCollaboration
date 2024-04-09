@@ -46,7 +46,11 @@
             </div>
         </div>
         <div class="col-3 col-md-2">
-            <div class="btn btn-light unggah-kajian"><img src="assets\img\icon\unggah.svg"> Unggah Kajian</div>
+            <a href="{{ route('kajian.create') }}">
+                <div class="btn btn-light unggah-kajian">
+                    <img src="assets\img\icon\unggah.svg">Unggah Kajian
+                </div>
+            </a>
         </div>
     </div>
 </section>
@@ -55,7 +59,7 @@
     <div class="container">
         <div class="row featurette">
             <div class="col-md-8 order-md-1">
-                <p class="title">About Us</>
+                <p class="title">Tentang Kami</>
                     <p class="paragraf">
                         Muhammadiyah adalah persyarikatan yang merupakan Gerakan Islam. Maksud gerakanya ialah
                         Dakwah
@@ -82,7 +86,7 @@
                     </p>
 
                     <img src="/assets/img/bendera-about.png" alt="" class="img-fluid">
-                    <div class="subtitle mt-4">DASAR DAN AMAL USAHA MUHAMMADIYAH</div>
+                    <div class="subtitle mt-5">DASAR DAN AMAL USAHA MUHAMMADIYAH</div>
                     <p class="paragraf mt-4">
                         Dalam perjuangan melaksanakan usahanya menuju tujuan terwujudnya masyarakat Islam yang
                         sebenarbenarnya, dimana kesejahteraan, kebaikan dan kebahagiaan luas-merata, Muhammadiyah
@@ -108,7 +112,7 @@
                         </ol>
                     </p>
 
-                    <div class="sifat">
+                    <div class="sifat mt-5">
                         <div class="container">
                             <div class="title-sifat text-light">
                                 Sifat Muhammadiyah
@@ -140,66 +144,53 @@
                             <a
                                         href="
                             https://muhammadiyah.or.id/ikhtiar-menyelamatkan-semesta-memaknai-tema-milad-ke-111-muhammadiyah/">
-                            Link Artikel</a> </div> <div class="mt-2 mb-2"
+                            Ikhtiar Menyelamatkan Semesta, Memaknai Tema Milad ke-111 Muhammadiyah</a> </div> <div class="mt-2 mb-2"
                             style="width: 100%; height: 1px; background: #000;">
                         </div>
 
                         <div class="list-article"">
                             <a
                                         href="
-                            https://muhammadiyah.or.id/ikhtiar-menyelamatkan-semesta-memaknai-tema-milad-ke-111-muhammadiyah/">
-                            Link Artikel</a> </div> <div class="mt-2 mb-2"
+                            https://muhammadiyah.or.id/2022/12/mengapa-buya-ar-sutan-mansur-mendapat-gelar-mayor-jenderal-tituler/">
+                            Mengapa Buya AR Sutan Mansur Mendapat Gelar Mayor Jenderal Tituler?</a> </div> <div class="mt-2 mb-2"
                             style="width: 100%; height: 1px; background: #000;">
                         </div>
 
                         <div class="list-article"">
                             <a
                                         href="
-                            https://muhammadiyah.or.id/ikhtiar-menyelamatkan-semesta-memaknai-tema-milad-ke-111-muhammadiyah/">
-                            Link Artikel</a> </div> <div class="mt-2 mb-2"
+                            https://muhammadiyah.or.id/2022/12/buya-hamka-mui-dan-fatwa-perayaan-natal-bersama-apa-yang-sebenarnya-terjadi/">
+                            Buya Hamka, MUI dan Fatwa Perayaan Natal Bersama, Apa Yang Sebenarnya Terjadi?</a> </div> <div class="mt-2 mb-2"
                             style="width: 100%; height: 1px; background: #000;">
                         </div>
-
                         <div class="list-article"">
                             <a
                                         href="
-                            https://muhammadiyah.or.id/ikhtiar-menyelamatkan-semesta-memaknai-tema-milad-ke-111-muhammadiyah/">
-                            Link Artikel</a> </div> <div class="mt-2 mb-2"
+                            https://muhammadiyah.or.id/2022/12/mengenal-salmah-orbayyinah-ketua-umum-pp-aisyiyah-2022-2027/">
+                            Mengenal Salmah Orbayinah, Ketua Umum PP ‘Aisyiyah 2022-2027</a> </div> <div class="mt-2 mb-2"
                             style="width: 100%; height: 1px; background: #000;">
                         </div>
 
                     </div>
                 </div>
 
-                <div class="card mt-5">
+                <div class="card mt-2">
                     <div class="card-header">
-                        Judul Video
+                        <h2 class="heading3 mb-2"><strong>Berkah Sedekah</strong></h2>
                         <iframe width="100%" height="70%"
                             src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>
+                            <div class="time-container">
+                                <img src="assets\img\icon\clock.svg" class="mr-3">
+                                <p class="time mt-3">8 September 2023</p>
+                            </div>
                     </div>
                     <div class="card-body">
-                        <!-- <div class="row mb-3">
+                        <div class="row mt-4">
                             <div class="col-md-8">
-                                <iframe width="100%" height="70%"
-                                    src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen></iframe>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="judul">Berkah Sedekah</div>
-                                <p class="subjudul mt-3"><img src="/assets/img/clock.png" alt="" width="25px"
-                                        height="25px">August 2, 2023
-                                </p>
-                            </div>
-                        </div> -->
-
-                        <div class="row mb-3">
-                            <div class="col-md-8">
-                                <iframe width="100%" height="70%"
+                                <iframe class="rounded-iframe" width="100%" height="70%"
                                     src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
                                     title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -212,9 +203,9 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row">
                             <div class="col-md-8">
-                                <iframe width="100%" height="70%"
+                                <iframe class="rounded-iframe" width="100%" height="70%"
                                     src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
                                     title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -227,9 +218,9 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row">
                             <div class="col-md-8">
-                                <iframe width="100%" height="70%"
+                                <iframe class="rounded-iframe" width="100%" height="70%"
                                     src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
                                     title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -242,9 +233,9 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row">
                             <div class="col-md-8">
-                                <iframe width="100%" height="70%"
+                                <iframe class="rounded-iframe" width="100%" height="70%"
                                     src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
                                     title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -268,72 +259,78 @@
             <div class="col-md-6">
                 <h1>Kajian Muhammadiyah</h1>
             </div>
-            <div class="col-md-6 text-end" style="font-size: 20px; font-weight: 600;">
-                <a href="">Lihat Semua<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
-                        fill="none">
-                        <path d="M14.375 8.75L25.625 20L14.375 31.25" stroke="#04454D" stroke-width="2.8125"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+            <div class="col-md-6 d-flex justify-content-end align-items-center">
+                <a href="" class="d-flex align-items-center">
+                    <p class="m-0 me-2"><strong>Lihat Semua</strong></p>
+                    <img src="assets\img\icon\btn_next.svg" style="width: 20px; height: 20px;" alt="Next Button">
                 </a>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
-                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                <div class="card-body">
-                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                <div class="card box-shadow">
+                    <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                    <div class="card-body">
+                        <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                        </div>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                        <button class="btn btn-view">Lihat Selengkapnya</button>
                     </div>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                    <button class="btn btn-view">Lihat Selengkapnya</button>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                <div class="card-body">
-                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                <div class="card box-shadow">
+                    <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                    <div class="card-body">
+                        <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                        </div>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                        <button class="btn btn-view">Lihat Selengkapnya</button>
                     </div>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                    <button class="btn btn-view">Lihat Selengkapnya</button>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                <div class="card-body">
-                    <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                <div class="card box-shadow">
+                    <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
+                    <div class="card-body">
+                        <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+                        </div>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <div class="card-title" style="color: #04454D;">#SEJARAH</div>
+                        <button class="btn btn-view">Lihat Selengkapnya</button>
                     </div>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                    <button class="btn btn-view">Lihat Selengkapnya</button>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 <section id="kajian-home">
     <div class="container">
-        <h1>Video Terkini</h1>
-        <div class="row">
-            <div class="col-md-6">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+        <div class="video-kajian">
+            <img src="\assets\img\video-kajian.png" alt="Video Kajian">
+            <div class="share-kajian mt-3">
+                <a href="#">
+                    <img src="\assets\img\facebookk.svg" alt="Facebook">
+                </a>
+                <a href="#">
+                    <img src="\assets\img\twitter-1.svg" alt="Twitter">
+                </a>
+                <a href="#">
+                    <img src="\assets\img\google.svg" alt="Google">
+                </a>
+                <div class="text-video-kajian mt-3">
+                    <h2>Kajian Al Islam dan Kemuhammadiyahan Series ke-26</h2>
+                    <p>Risalah Islam Berkemajuan | Prof. Dr. Abdul Mu'ti, M.Ed | Kajian Al-Islam & Kemuhammadiyahan UMS</p>
+                    <p>Videos | 30 December, 2022 | Masjid Hj. Sudalmiyah Rais UMS</p>
             </div>
-
-            <div class="col-md-6">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
             </div>
         </div>
     </div>

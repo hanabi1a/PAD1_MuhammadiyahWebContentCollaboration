@@ -139,12 +139,12 @@
                                                         <option value="Alquran">Alquran</option>
                                                         <option value="Ramadhan">Ramadhan</option>
                                                     </select>
-                                                    <img src="assets/img/icon/arrow-dropdown.svg" alt="Dropdown" id="dropdown-icon">
+                                                    <img src="/assets/img/icon/dropdown.svg" alt="Dropdown" id="dropdown-icon">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mt-5">
+                                    <div class="mt-5 mb-4">
                                         <button type="submit" class="btn-green-submit btn-block">Unggah Kajian</button>
                                     </div>
                                 </form>

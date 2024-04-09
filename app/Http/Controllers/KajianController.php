@@ -19,21 +19,21 @@ class KajianController extends Controller
             ->except(['index', 'kajian', 'downloadKajian', 'showNewVersionDetail', 'show_latest_kajian']);
     }
 
-    public function index()
-    {
+    public function index(){
+        $kajian = Kajian::paginate(6);
         $dataKajian = Kajian::all();
 
         if (Auth::check()) {
             if (Auth::user()->isAdmin()) {
-                return view('kajian.admin_view.data_kajian', compact('dataKajian'));
+                return view('kajian.admin_view.data_kajian', compact('kajian', 'dataKajian'));
             } else {
-                return view('user.data_kajian', compact('dataKajian'));
+                return view('user.data_kajian', compact('kajian', 'dataKajian'));
             }
-
         } else {
             return view('admin.data_kajian', compact('dataKajian'));
         }
     }
+
 
     public function show_kajian()
     {
