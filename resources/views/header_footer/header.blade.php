@@ -1,10 +1,29 @@
 <section class="ftco-section">
     <nav class="navbar navbar-expand-lg ftco-navbar-light navbar-custom">
+
             <a class="navbar-brand" href="#">
                 <img src="/assets/img/logo.png" alt="" class="logo-navbar2">
             </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item {{ request()->is('beranda', '/') || request()->routeIs('beranda') ? 'active' : '' }}">
+                        <a href="{{ url('beranda') }}" class="nav-link" style="font-size: 16px; font-weight: bold;">Beranda</a>
+                    </li>
+                    <li class="nav-item {{ request()->is('kajian') ? 'active' : '' }}">
+                        <a href="{{ route('kajian.show') }}" class="nav-link" style="font-size: 16px; font-weight: bold;">Kajian</a>
+                    </li>
+                    <li class="nav-item {{ request()->is('about') ? 'active' : '' }}">
+                        <a href="{{ route('about') }}" class="nav-link" style="font-size: 16px; font-weight: bold;">Tentang Kami</a>
+                    </li>
+                </ul>
+            </div>
+
             @if (Auth::user() != null && Auth::user()->role == 'registered')
-                <div class="dropdown order-lg-last">
+            <div class="dropdown order-lg-last">
                     <div class="dropdown-toggle btn-login text-light" id="dropdownMenu2" data-bs-toggle="dropdown"
                         aria-expanded="true">
                         {{ Auth::user()->username }}
@@ -32,9 +51,9 @@
                             </button>
                         </li>
                     </ul>
-                </div>          
-            @else 
-                <div class="collapse navbar-collapse order-lg-last">
+                </div>        
+            @else
+            <div class="collapse navbar-collapse order-lg-last">
                     <div class="d-flex order-lg-last akun">
                         <button class="sign-up me-3 fw-bolder" onclick="window.location.href='{{ route('register') }}'">
                             Daftar
@@ -45,20 +64,6 @@
                     </div>
                 </div>
             @endif
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse nvbar" id="ftco-nav">
-                <ul class="navbar-nav m-auto">
-                    <li class="nav-item {{ request()->is('beranda') ? 'active' : '' }}"><a href="{{ url('beranda') }}"
-                            class="nav-link" style="font-size: 16px; font-weight: bold;">Beranda</a></li>
-                    <li class="nav-item {{ request()->is('kajian') ? 'active' : '' }}"><a href="{{ route('kajian.show') }}" 
-                        class="nav-link" style="font-size: 16px; font-weight: bold;">Kajian</a></li>
-                    <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}"
-                            class="nav-link" style="font-size: 16px; font-weight: bold;">Tentang Kami</a></li>
-                </ul>
-            </div>
-      
+
     </nav>
 </section>

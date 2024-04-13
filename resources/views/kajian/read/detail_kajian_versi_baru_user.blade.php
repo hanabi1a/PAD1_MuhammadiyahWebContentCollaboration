@@ -139,10 +139,11 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-5 order-md-2">
-                        <button type="submit" class="btn-green-submit btn-block" onclick="window.location.href = '{{ route('kajian.edit.new_version', $userkajian->id) }}'">
-                            <img src="/assets/img/icon/unggah-baru.svg" alt="Bagikan Icon" class="icon-img"> Unggah Kajian Versi Baru
-                        </button>
+                            <button type="submit" class="btn-green-submit btn-block" onclick="window.location.href = '{{ route('kajian.edit.new_version', $userkajian->id) }}'">
+                                <img src="/assets/img/icon/unggah-baru.svg" alt="Bagikan Icon" class="icon-img"> Unggah Kajian Versi Baru
+                            </button>
                             <div class="card mt-4 col-md-12">
                                 <div class="bungkus-card">
                                     <div class="card-body-user">
@@ -167,6 +168,77 @@
                                                 </div>
                                             @endforeach
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-md-3">
+                            <div class="versi-baru">
+                                <div class="card">
+                                    <h2 class="red-heading">VERSI BARU DARI KAJIAN YANG TELAH ADA</h2>
+                                    <div class="desc">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <strong>Kajian Referensi | Penulis</strong>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <strong>:</strong>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p>Muktamar Muhammadiyah</p>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p>|</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p>adihidayat</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="desc">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <strong>Kajian Referensi | Penulis</strong>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <strong>:</strong>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p>Muktamar Muhammadiyah</p>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p>|</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p>adihidayat</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="desc">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <strong>Kajian Referensi | Penulis</strong>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <strong>:</strong>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p>Muktamar Muhammadiyah</p>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p>|</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p>adihidayat</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="desc">
+                                        <strong>Perubahan yang dilakukan terhadap kajian referensi    :  </strong>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+                                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                     </div>
                                 </div>
                             </div>

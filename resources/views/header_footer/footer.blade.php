@@ -57,7 +57,6 @@
     </div>
 </section>
 
-
 <section>
     <footer>
         <div class="row">

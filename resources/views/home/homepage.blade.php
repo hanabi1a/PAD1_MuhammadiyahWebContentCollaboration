@@ -161,13 +161,13 @@
                 @if (isset($kajian))
                 <div class="row">
                     @foreach ($kajian as $item)
-                        <div class="col-md-4">
+                        <div class="col-md-4">{{ $item->id }}
                             <div class="card box-shadow">
-                                <img src="{{ $item->gambar }}" class="img-fluid img-kajian">
+                                <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
                                 <div class="card-body">
-                                    <div class="card-title mt-3">AAA</div>
-                                    <p class="card-text">BBBB</p>
-                                    <div class="card-title" style="color: #04454D;">CCC</div>
+                                    <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
+                                    <p class="card-text">{{ $item->pemateri }}</p>
+                                    <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
                                     <button class="btn btn-view">Lihat Selengkapnya</button>
                                 </div>
                             </div>
@@ -176,26 +176,8 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="row mt-5">
-                    <div class="col">
-                        @if ($kajian->total() > $kajian->perPage())
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-center">
-                                    @foreach ($kajian->links()->elements[0] as $page => $url)
-                                        @if ($page == $kajian->currentPage())
-                                            <li class="page-item active" aria-current="page">
-                                                <span class="page-link">{{ $page }}</span>
-                                            </li>
-                                        @else
-                                            <li class="page-item">
-                                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </nav>
-                        @endif
-                    </div>
+                <div class="d-flex justify-content-center">
+                    {!! $kajian->links() !!}
                 </div>
                 <!-- End Pagination -->
             @endif
@@ -336,6 +318,5 @@
         </section>
     </div>
 @endsection
-
 
 

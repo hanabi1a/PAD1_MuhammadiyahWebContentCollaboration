@@ -99,16 +99,26 @@ body {
 .heading1 {
     font-size: 26px;
     padding: 4px;
+    font-weight: bold;
 }
 
 .heading2 {
     font-size: 24px;
     padding: 4px;
+    font-weight: bold;
 }
 
 .heading3 {
     font-size: 22px;
     padding: 4px;
+    font-weight: bold;
+}
+
+.red-heading {
+    font-size: 22px;
+    padding: 4px;
+    color: red;
+    font-weight: bold;
 }
 
 .heading4 {
@@ -847,8 +857,8 @@ footer .logo-footer {
 }
 
 .navbar-custom {
-    padding-left: 80px;
-    padding-right: 20px;
+    padding-left: 10%;
+    padding-right: 6%;
 }
 
 @media (max-width: 991.98px) {
