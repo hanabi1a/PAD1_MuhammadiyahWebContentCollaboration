@@ -22,13 +22,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.homepage');
 });
 Route::get('/kajian2', function () {
     return view('kajian2');
 });
 Route::get('/layout_user_2', function () {
     return view('layout_user_2');
+});
+
+Route::get('/form_create_user', function () {
+    return view('kajian.write.form_create_user');
+});
+Route::get('/form_create_user_nv', function () {
+    return view('kajian.write.form_create_user_nv');
+});
+Route::get('/detail_kajian_asli_user', function () {
+    return view('kajian.read.detail_kajian_asli_user_UI');
+});
+Route::get('/detail_kajian_versi_baru_user', function () {
+    return view('kajian.read.detail_kajian_versi_baru_user');
 });
 
 Route::get('/dashboard', function () {
@@ -73,14 +86,14 @@ Route::middleware('auth')->group(function () {
      */
 
     Route::middleware('registered')->group(function () {
+        Route::get('/kajian/{id}', [KajianController::class, 'show'])->name('kajian.show');
         Route::get('/kajian/create', [KajianController::class, 'create'])->name('kajian.create');
+        Route::get('/kajian/{id}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('kajian.new_version');
         Route::post('/kajian', [KajianController::class, 'store'])->name('kajian.store');
         Route::get('/profile', [ProfileController::class, 'show_profile'])->name('profile.show');
         Route::get('/profile/edit', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
         Route::put('/profile', [ProfileController::class, 'store_edit_profile'])->name('profile.store');
         Route::delete('/kajian/{id}', [KajianController::class, 'destroy'])->name('kajian.destroy');
-
-
 
     });
 
@@ -124,6 +137,7 @@ Route::controller(KajianController::class)->group(function () {
     Route::get('/data_kajian', 'index')->name('data_kajian');
     Route::get('/kajian', 'show_kajian')->name('kajian.show');
     Route::get('/kajian/{id}', 'show')->name('kajian.detail');
+    Route::get('/kajian/create', 'create')->name('kajian.create');
     Route::get('/kajian/{id}/create_new', 'edit')->name('kajian.edit.new_version');
     Route::get('/kajian/download/{id}', 'downloadKajian')->name('kajian.download');
 
