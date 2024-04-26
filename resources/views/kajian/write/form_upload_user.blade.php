@@ -65,11 +65,10 @@
 
                                     <!-- Deskripsi -->
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-deskripsi">Deskripsi</label>
-                                        <div class="col-lg-6">
-                                            <textarea class="form-control" id="val-deskripsi" name="val_deskripsi"
-                                                placeholder="Deskripsi"
-                                                style="resize: vertical; min-height: 100px;">{{ $kajian->deskripsi_kajian }}</textarea>
+                                            <label class="col-lg-4 col-form-label" for="val_deskripsi">Deskripsi</label>
+                                            <div class="col-lg-8">
+                                            <div class="form-control" id="editor" name="editor"
+                                            style="resize: vertical; min-height: 100px;"></div>
                                         </div>
                                     </div>
 

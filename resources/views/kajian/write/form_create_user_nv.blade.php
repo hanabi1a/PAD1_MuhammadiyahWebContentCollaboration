@@ -76,9 +76,8 @@
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val_deskripsi">Deskripsi</label>
                                         <div class="col-lg-8">
-                                            <textarea class="form-control" id="val-deskripsi" name="val_deskripsi"
-                                                placeholder="Deskripsi"
-                                                style="resize: vertical; min-height: 100px;"></textarea>
+                                            <div class="form-control" id="editor" name="editor"
+                                                style="resize: vertical; min-height: 100px;"></div>
                                         </div>
                                     </div>
 
@@ -129,11 +128,10 @@
 
                                     <!-- Perubahan Kajian -->
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val_deskripsi">Perubahan yang dilakukan terhadap Kajian Referensi</label>
-                                        <div class="col-lg-8">
-                                            <textarea class="form-control" id="val-perubahan-kajian" name="val_perubahan-kajian"
-                                                placeholder="Perubahan Kajian"
-                                                style="resize: vertical; min-height: 100px;"></textarea>
+                                            <label class="col-lg-4 col-form-label" for="val_deskripsi">Perubahan yang dilakukan terhadap Kajian Referensi</label>
+                                            <div class="col-lg-8">
+                                            <div class="form-control" id="editor" name="editor" 
+                                            style="resize: vertical; min-height: 100px;"></div>
                                         </div>
                                     </div>
 
@@ -161,15 +159,12 @@
                                         <label class="col-lg-4 col-form-label" for="val-kategori">Kategori</label>
                                         <div class="col-lg-8">
                                             <div class="input-group">
-                                                <div class = "custom-select">
-                                                    <select class="form-control input-default custom-select" id="val-kategori" name="val_kategori">
-                                                        <option value="">Pilih Kategori</option>
-                                                        <option value="Fiqih">Fiqih</option>
-                                                        <option value="Alquran">Alquran</option>
-                                                        <option value="Ramadhan">Ramadhan</option>
-                                                    </select>
-                                                    <img src="/assets/img/icon/dropdown.svg" alt="Dropdown" id="dropdown-icon">
-                                                </div>
+                                                <select class="form-select">
+                                                    <option value="" disabled>Pilih Kategori</option>
+                                                    <option value="Fiqih">Fiqih</option>
+                                                    <option value="Alquran">Alquran</option>
+                                                    <option value="Ramadhan">Ramadhan</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
