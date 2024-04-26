@@ -110,6 +110,7 @@
                 </a>
             </div>
         </div>
+              
         <div class="col-3 col-md-2">
             <a href="{{ route('kajian.create') }}">
                 <div class="btn btn-light unggah-kajian">
@@ -117,6 +118,15 @@
                 </div>
             </a>
         </div>
+        
+          {{-- 
+              Note: MIssing in Conflict Resolve
+              <script>
+              document.getElementById('createKajianBtn').addEventListener('click', function() {
+                  window.location.href = '{{ route('kajian.create') }}';
+              });
+          </script> --}}
+        
     @else
         <div class="search pb-3">
             <input type="text" class="search-input" placeholder="Search..." name="">
