@@ -1,4 +1,4 @@
-@extends('layouts.layout_user_2')
+@extends('layouts.layout')
         @section('content')
         <section id="home">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

@@ -1,5 +1,5 @@
 @if (Auth::user() != null && Auth::user()->role == 'registered')
-    @extends('layouts.layout_user_2')
+    @extends('layouts.layout')
     @section('content')
         <section id="kajian-hero">
             <div class="container">
@@ -399,7 +399,7 @@
         </section>
     @endsection
 @elseif (Auth::user() != null)
-@extends('layouts.layout_user_2')
+@extends('layouts.layout')
     @section('content')
         <section id="kajian-hero">
             <div class="container">
@@ -799,7 +799,7 @@
         </section>
     @endsection
 @else
-@extends('layouts.layout_user_2')
+@extends('layouts.layout')
     @section('content')
         <section id="kajian-hero">
             <div class="container">
