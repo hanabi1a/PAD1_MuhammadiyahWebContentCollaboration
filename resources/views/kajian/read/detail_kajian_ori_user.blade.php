@@ -1,4 +1,4 @@
-@extends('layouts.layout_user_2')
+@extends('layouts.layout')
 
 <head>
     <link href="{{ asset('assets_admin/css/styles.css') }}" rel="stylesheet" />

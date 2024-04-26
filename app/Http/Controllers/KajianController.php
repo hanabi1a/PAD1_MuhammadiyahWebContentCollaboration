@@ -19,21 +19,21 @@ class KajianController extends Controller
             ->except(['index', 'kajian', 'downloadKajian', 'showNewVersionDetail', 'show_latest_kajian']);
     }
 
-    public function index()
-    {
+    public function index(){
+        $kajian = Kajian::paginate(6);
         $dataKajian = Kajian::all();
 
         if (Auth::check()) {
             if (Auth::user()->isAdmin()) {
-                return view('kajian.admin_view.data_kajian', compact('dataKajian'));
+                return view('kajian.admin_view.data_kajian', compact('kajian', 'dataKajian'));
             } else {
-                return view('user.data_kajian', compact('dataKajian'));
+                return view('user.data_kajian', compact('kajian', 'dataKajian'));
             }
-
         } else {
             return view('admin.data_kajian', compact('dataKajian'));
         }
     }
+
 
     public function show_kajian()
     {
@@ -138,7 +138,7 @@ class KajianController extends Controller
 
         } elseif (Auth::user()->role == 'registered') {
 
-            return view('kajian.read.detail_kajian_ori_user', ['userkajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
+            return view('kajian.read.detail_kajian_asli_user', ['userkajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
 
         }
         return view('kajian.read.detail_kajian_ori_nluser', ['userkajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
@@ -248,7 +248,7 @@ class KajianController extends Controller
         $kajianNV = versionHistory::findOrFail($id); // Ganti dengan model dan method yang sesuai dengan struktur aplikasi kamu
 
         // Lakukan logika untuk menampilkan detail versi baru, misalnya:
-        return view('user.detail_kajian_nv_user', ['kajianNV' => $kajianNV]);
+        return view('user.detail_kajian_versi_baru_user', ['kajianNV' => $kajianNV]);
     }
 
 
