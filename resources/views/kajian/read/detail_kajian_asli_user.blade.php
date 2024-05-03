@@ -26,7 +26,7 @@
                             <div class="row mb-3 ">
                                 <div class="col-md-11">
                                     <div class="account-detail row align-items-center">
-                                        <div class="col-md-2">
+                                        <div
                                             @if($userkajian->user)
                                             <a href="profile_user">
                                                 <img class="pp-account" 

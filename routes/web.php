@@ -86,7 +86,7 @@ Route::middleware('auth')->group(function () {
      */
 
     Route::middleware('registered')->group(function () {
-        Route::get('/kajian/{id}', [KajianController::class, 'show'])->name('kajian.show');
+        Route::get('/kajian/{id}/view', [KajianController::class, 'show'])->name('kajian.show');
         Route::get('/kajian/create', [KajianController::class, 'create'])->name('kajian.create');
         Route::get('/kajian/{id}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('kajian.new_version');
         Route::post('/kajian', [KajianController::class, 'store'])->name('kajian.store');
