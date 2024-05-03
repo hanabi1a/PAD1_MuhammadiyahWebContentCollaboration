@@ -139,7 +139,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-5 order-md-2">
                             <button type="submit" class="btn-green-submit btn-block" onclick="window.location.href = '{{ route('kajian.edit.new_version', $userkajian->id) }}'">
                                 <img src="/assets/img/icon/unggah-baru.svg" alt="Bagikan Icon" class="icon-img"> Unggah Kajian Versi Baru
@@ -167,6 +166,10 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+
+                                            <div class="d-flex justify-content-center">
+                                                {!! $kajian->links() !!}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

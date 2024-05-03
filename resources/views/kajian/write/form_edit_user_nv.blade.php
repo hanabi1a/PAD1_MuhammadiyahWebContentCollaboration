@@ -50,11 +50,12 @@
                             </div>
                         </div>
 
+                        <!-- Deskripsi -->
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label" for="val-tanggal">Deskripsi</label>
-                            <div class="col-lg-6">
-                                <textarea class="form-control" id="val-deskripsi" name="val-deskripsi"
-                                    placeholder="Deskripsi" style="resize: vertical; min-height: 100px;"></textarea>
+                                <label class="col-lg-4 col-form-label" for="val_deskripsi">Deskripsi</label>
+                                <div class="col-lg-8">
+                                <div class="form-control" id="editor" name="editor"
+                                style="resize: vertical; min-height: 100px;"></div>
                             </div>
                         </div>
 
@@ -100,20 +101,19 @@
                             </div>
                         </div>
 
+                        <!-- Perubahan Kajian -->
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label" for="val-pemateri">Commit Message
-                            </label>
-                            <div class="col-lg-6">
-                                <textarea class="form-control" id="val-commit-message" name="val-commit-message"
-                                    placeholder="Commit Message"></textarea>
+                            <label class="col-lg-4 col-form-label" for="val_deskripsi">Perubahan yang dilakukan terhadap Kajian Referensi</label>
+                            <div class="col-lg-8">
+                                <div class="form-control" id="editor" name="editor" 
+                                style="resize: vertical; min-height: 100px;"></div>
                             </div>
                         </div>
-
 
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label"></label>
                             <div class="col-md-6 mt-2">
-                                <button type="submit" class="btn-green-submit btn-block">Submit</button>
+                                <button type="submit" class="btn-green-submit btn-block">Simpan Perubahan</button>
                             </div>
                         </div>
                     </form>
