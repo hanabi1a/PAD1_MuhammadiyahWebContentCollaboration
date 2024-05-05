@@ -76,8 +76,8 @@
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val_deskripsi">Deskripsi</label>
                                         <div class="col-lg-8">
-                                            <div class="form-control" id="editor" name="editor" 
-                                                style="resize: vertical; min-height: 100px;"></div>
+                                            <textarea class="form-control" id="editor" name="val_deskripsi" 
+                                                style="resize: vertical; min-height: 100px;"></textarea>
                                         </div>
                                     </div>
                                     <!-- Photo Section -->

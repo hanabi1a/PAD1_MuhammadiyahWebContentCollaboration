@@ -20,6 +20,7 @@ class kajian extends Model
         'deskripsi_kajian',
         'foto_kajian',
         'file_kajian',
+        'slug'
         // tambahkan nama-nama atribut lain jika ada
     ];
 
@@ -36,6 +37,16 @@ class kajian extends Model
     public function versionHistory()
     {
         return $this->hasOne(VersionHistory::class);
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
 

@@ -15,7 +15,7 @@
                         <a href="{{ url('beranda') }}" class="nav-link" style="font-size: 16px; font-weight: bold;">Beranda</a>
                     </li>
                     <li class="nav-item {{ request()->is('kajian') ? 'active' : '' }}">
-                        <a href="{{ route('kajian.show') }}" class="nav-link" style="font-size: 16px; font-weight: bold;">Kajian</a>
+                        <a href="{{ route('kajian.index') }}" class="nav-link" style="font-size: 16px; font-weight: bold;">Kajian</a>
                     </li>
                     <li class="nav-item {{ request()->is('about') ? 'active' : '' }}">
                         <a href="{{ route('about') }}" class="nav-link" style="font-size: 16px; font-weight: bold;">Tentang Kami</a>
