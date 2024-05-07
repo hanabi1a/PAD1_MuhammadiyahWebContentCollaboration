@@ -131,7 +131,9 @@
                                         <button type="button" class="btn-download-share-kajian btn-block" onclick="window.location.href = '{{ route('kajian.download', $userkajian->id) }}'">
                                             <img src="/assets/img/icon/unduh-kajian.svg" alt="Unduh Icon" class="icon-img"> Unduh File Kajian
                                         </button>
-                                        <button type="button" class="btn-download-share-kajian btn-block">
+                                        <button type="button" class="btn-download-share-kajian btn-block"
+                                            onclick="navigator.clipboard.writeText(window.location.href); alert('URL copied to clipboard.');"
+                                            >
                                             <img src="/assets/img/icon/share-kajian.svg" alt="Bagikan Icon" class="icon-img"> Bagikan Tautan Kajian
                                         </button>
                                     </div>
