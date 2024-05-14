@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class RegisteredUserController extends Controller
 {

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\KajianApiController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,6 @@ Route::get('/kajian-api', [KajianApiController::class, 'index'])->name('kajian-a
 Route::get('/kajian-api/{id}', [KajianApiController::class, 'show'])->name('kajian-api.spesific');
 Route::get('/kajian-api/download/{id}', [KajianApiController::class, 'downloadKajian'])->name('kajian-api.download');
 Route::get('/kajian/search', [KajianApiController::class, 'search'])->name('kajian-api.search');
+
+//Route buat regis via api
+Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
