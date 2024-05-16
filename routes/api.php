@@ -24,6 +24,12 @@ Route::get('/kajian-api', [KajianApiController::class, 'index'])->name('kajian-a
 Route::get('/kajian-api/{id}', [KajianApiController::class, 'show'])->name('kajian-api.spesific');
 Route::get('/kajian-api/download/{id}', [KajianApiController::class, 'downloadKajian'])->name('kajian-api.download');
 Route::get('/kajian/search', [KajianApiController::class, 'search'])->name('kajian-api.search');
+Route::post('/kajian/create', [KajianApiController::class, 'store'])->name('kajian-api.store');
+Route::middleware('jwt.verify')->post('/kajian', 'Api\KajianApiController@store');
+
+Route::post('/auth/register', \App\Http\Controllers\Api\Auth\RegisterController::class);
+Route::post('/auth/login', \App\Http\Controllers\Api\Auth\LoginController::class);
+
 
 //Route buat regis via api
 Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');

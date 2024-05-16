@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kajian;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class KajianApiController extends Controller
 {
@@ -74,4 +75,38 @@ class KajianApiController extends Controller
         }
         return response()->download(storage_path($kajian->file_kajian));
     }
+
+    public function store(Request $request)
+    {
+        // Pastikan token JWT valid
+        if (!$user = JWTAuth::parseToken()->authenticate()) {
+            return response()->json(['status' => 401, 'message' => 'Unauthorized'], 401);
+        }
+
+        // Validasi data request
+        $validatedData = $request->validate([
+            'judul_kajian' => 'required',
+            'pemateri' => 'required',
+            'lokasi_kajian' => 'required',
+            'tanggal_postingan'  => 'required',
+            'deskripsi_kajian' => 'required',
+            // tambahkan validasi untuk field lainnya jika diperlukan
+        ]);
+
+        // Buat instance baru dari Kajian dan isi dengan data request
+        $kajian = new Kajian;
+        $kajian->judul_kajian = $validatedData['judul_kajian'];
+        $kajian->pemateri = $validatedData['pemateri'];
+        $kajian->lokasi_kajian = $validatedData['lokasi_kajian'];
+        $kajian->tanggal_postingan = $validatedData['tanggal_postingan'];
+        $kajian->deskripsi_kajian = $validatedData['deskripsi_kajian'];
+        // isi field lainnya jika ada
+
+        // Simpan kajian ke dalam database
+        $kajian->save();
+
+        // Kirim response
+        return response()->json(['status' => 200, 'message' => 'Kajian successfully created', 'data' => $kajian]);
+    }
+
 }
