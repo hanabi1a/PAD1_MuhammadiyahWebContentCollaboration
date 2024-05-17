@@ -37,4 +37,3 @@ class tbhistorydownloads extends Migration
         Schema::dropIfExists('history_downloads');
     }
 }
-

@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Http\Controllers\Controller;
 use App\Models\historylogin;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,9 +21,10 @@ class loginregis extends Controller
     {
         return view('user.sign_up');
     }
+
     public function Store(Request $request)
     {
-        // dd($request->all()); 
+        // dd($request->all());
 
         $rule = [
             'pekerjaan' => 'required',
@@ -43,7 +40,7 @@ class loginregis extends Controller
             'tempat_lahir' => 'required',
             'wilayah' => 'required',
             'tanggal_lahir' => 'required|date|before_or_equal:today',
-            'jenis_kelamin' => 'required|in:P,L'
+            'jenis_kelamin' => 'required|in:P,L',
         ];
         $validator = Validator::make($request->all(), $rule);
         if ($validator->fails()) {
@@ -57,14 +54,14 @@ class loginregis extends Controller
             $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto_kta')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
             $path = $request->file('foto_kta')->storeAs('/photos', $fileNameToStore);
         }
         if ($request->hasFile('foto_profile')) {
             $filenameWithExt = $request->file('foto_profile')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto_profile')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
             $fppath = $request->file('foto_profile')->storeAs('/photos', $fileNameToStore);
         }
 
@@ -87,13 +84,12 @@ class loginregis extends Controller
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
             return redirect()->route('homepage');
         }
 
-
         return back()->withErrors(['username' => 'The provided credentials do not match our records'])->onlyInput('username');
     }
-
 
     public function login()
     {
@@ -101,26 +97,26 @@ class loginregis extends Controller
     }
 
     //    public function authenticate(Request $request)
-//     {
-//         $credentials = $request->validate([
-//             'username' => 'required',
-//             'password' => 'required',
-//         ]);
+    //     {
+    //         $credentials = $request->validate([
+    //             'username' => 'required',
+    //             'password' => 'required',
+    //         ]);
 
     //         if (Auth::attempt($credentials)) {
-//             $user = Auth::user();
+    //             $user = Auth::user();
 
     //             if ($user->username === 'admint') {
-//                 return view('admin.dashboard'); // Ganti 'admin.dashboard' dengan nama view untuk dashboard admin
-//             }
+    //                 return view('admin.dashboard'); // Ganti 'admin.dashboard' dengan nama view untuk dashboard admin
+    //             }
 
     //             return redirect()->route('homepage'); // Ganti 'homepage' dengan rute untuk halaman beranda umum
-//         }
+    //         }
 
     //         return back()->withErrors([
-//             'username' => 'The provided credentials do not match our records',
-//         ])->onlyInput('username');
-//     }
+    //             'username' => 'The provided credentials do not match our records',
+    //         ])->onlyInput('username');
+    //     }
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -150,16 +146,16 @@ class loginregis extends Controller
         ])->onlyInput('username');
     }
 
-
-
     public function homepage()
     {
         if (Auth::check()) {
             $user = Auth::user();
+
             return view('user.homepage', compact('user'));
         }
+
         return redirect()->route('login')
-            ->withErrors(['You are not allowed to access',])->onlyInput('email');
+            ->withErrors(['You are not allowed to access'])->onlyInput('email');
 
     }
 
@@ -168,8 +164,9 @@ class loginregis extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect()->route('public_homepage')
-            ->withSuccess("You have logged out");
+            ->withSuccess('You have logged out');
     }
 
     // public function logout(Request $request)

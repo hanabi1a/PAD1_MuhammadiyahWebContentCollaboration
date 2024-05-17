@@ -18,6 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/beranda';
+
     public const ADMIN = '/admin/dashboard';
 
     /**
