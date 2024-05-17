@@ -20,12 +20,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Route::middleware('auth:sanctum')->get('/kajian-api', [KajianApiController::class, 'index'])->name('kajian-api.index');
 Route::get('/kajian-api', [KajianApiController::class, 'index'])->name('kajian-api.index');
+// Route::middleware('auth:sacntum')->get('/kajian-api/{id}', [KajianApiController::class, 'show'])->name('kajian-api.spesific');
 Route::get('/kajian-api/{id}', [KajianApiController::class, 'show'])->name('kajian-api.spesific');
+// Route::middleware('auth:sanctum')->get('/kajian-api/download/{id}', [KajianApiController::class, 'downloadKajian'])->name('kajian-api.download');
 Route::get('/kajian-api/download/{id}', [KajianApiController::class, 'downloadKajian'])->name('kajian-api.download');
+// Route::post('/kajian/create', [KajianApiController::class, 'store'])->name('kajian-api.store');
 Route::get('/kajian/search', [KajianApiController::class, 'search'])->name('kajian-api.search');
-Route::post('/kajian/create', [KajianApiController::class, 'store'])->name('kajian-api.store');
-Route::middleware('jwt.verify')->post('/kajian', 'Api\KajianApiController@store');
+// Route::middleware('jwt.verify')->post('/kajian', 'Api\KajianApiController@store');
+
+Route::middleware('auth:sanctum')->post('/kajian-api/create', [KajianApiController::class, 'store'])->name('kajian-api.store');
+
 
 Route::post('/auth/register', \App\Http\Controllers\Api\Auth\RegisterController::class);
 Route::post('/auth/login', \App\Http\Controllers\Api\Auth\LoginController::class);
@@ -33,3 +39,9 @@ Route::post('/auth/login', \App\Http\Controllers\Api\Auth\LoginController::class
 
 //Route buat regis via api
 Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
