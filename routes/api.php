@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\UserUtilityController;
 use App\Http\Controllers\Api\KajianApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/kajian-api/create', [KajianApiController::class, 'store']);
     Route::delete('/kajian-api/destroy/{id}', [KajianApiController::class, 'destroy']);
     Route::put('/kajian-api/update/{id}', [KajianApiController::class, 'update']);
+    Route::patch('/kajian-api/update-deskripsi/{id}', [KajianApiController::class, 'updateDescription']);
+    Route::patch('/auth/update-username/{id}', [UserUtilityController::class, 'updateUsername']);
+    Route::patch('/auth/update-password/{id}', [UserUtilityController::class, 'updatePassword']);
 });
 
 Route::post('/auth/register', \App\Http\Controllers\Api\Auth\RegisterController::class);

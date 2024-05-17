@@ -159,4 +159,29 @@ class KajianApiController extends Controller
 
         return response()->json(['status' => 200, 'message' => 'Kajian successfully updated', 'data' => $kajian]);
     }
+
+    public function updateDescription(Request $request, $id)
+    {
+        $userId = auth()->user()->id;
+        $kajian = Kajian::find($id);
+
+        if (!$kajian) {
+            return response()->json(['status' => 404, 'message' => 'Kajian not found'], 404);
+        }
+        if ($kajian->id_user != $userId) {
+            return response()->json(['status' => 403, 'message' => 'Nda bolee ngedit kajian orang lain'], 403);
+        }
+
+        // Validasi data yang dikirim
+        $validatedData = $request->validate([
+            'deskripsi_kajian' => 'required',
+        ]);
+
+        // Update deskripsi kajian
+        $kajian->deskripsi_kajian = $validatedData['deskripsi_kajian'];
+
+        $kajian->save();
+
+        return response()->json(['status' => 200, 'message' => 'Kajian description successfully updated', 'data' => $kajian]);
+    }
 }
