@@ -16,7 +16,7 @@ class KajianController extends Controller
     public function __construct()
     {
         $this->middleware('auth')
-            ->except(['index', 'show_kajian', 'downloadKajian', 'showNewVersionDetail']);
+            ->except(['index', 'show' ,'show_kajian', 'downloadKajian', 'showNewVersionDetail']);
     }
 
     public function index()
@@ -25,6 +25,7 @@ class KajianController extends Controller
         $kajianList = Kajian::all();
 
         if (Auth::check()) {
+            Log::info('User is authenticated and is ' . Auth::user()->role . " = " . Auth::user()->isAdmin());
             if (Auth::user()->isAdmin()) {
                 return view('kajian.admin_view.data_kajian', compact('kajian', 'kajianList'));
             } else {
@@ -161,23 +162,31 @@ class KajianController extends Controller
             $uploaderUsername = $kajian->user->username;
         }
 
-        if (Auth::user()->isAdmin()) {
+        $shareAbleUrl = route('kajian.show', $kajian->slug);
 
+        if (Auth::user()->isAdmin()) {
+          
             return view(
-                'kajian.admin_view.detail_kajian',
-                ['kajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
+                'kajian.admin_view.detail_kajian', 
+                ['userkajian' => $kajian, 
+                'uploaderUsername' => $uploaderUsername,
+                'shareAbleUrl' => $shareAbleUrl
+                ]);
 
         } elseif (Auth::user()->isRegistered()) {
 
             return view(
-                'kajian.read.detail_kajian_asli_user',
-                ['userkajian' => $kajian,
-                    'uploaderUsername' => $uploaderUsername]);
+                'kajian.read.detail_kajian_asli_user', 
+                ['userkajian' => $kajian, 
+                'uploaderUsername' => $uploaderUsername,
+                'shareAbleUrl' => $shareAbleUrl]);
 
         }
+        return view('kajian.read.detail_kajian_asli_user', 
+        ['userkajian' => $kajian, 
+        'uploaderUsername' => $uploaderUsername,
+        'shareAbleUrl' => $shareAbleUrl]);
 
-        return view('kajian.read.detail_kajian_asli_user',
-            ['userkajian' => $kajian, 'uploaderUsername' => $uploaderUsername]);
 
     }
 
@@ -199,7 +208,7 @@ class KajianController extends Controller
 
         $kajian = Kajian::find($id); // Contoh pengambilan data dari model Kajian
 
-        return view('admin.form_edit_admin_ori', ['kajian' => $kajian]);
+        return view('kajian.write.form_create_user_nv', ['kajian' => $kajian]);
 
     }
 
