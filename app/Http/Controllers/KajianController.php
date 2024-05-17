@@ -45,6 +45,7 @@ class KajianController extends Controller
 
     public function create()
     {
+        Log::info('Create method called');
         if (Auth::user()->isAdmin()) {
             return view('admin.form_create_admin');
         } else {
