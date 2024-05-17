@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->string('pemateri')->nullable();
             $table->string('judul_kajian')->nullable();
             $table->string('file_kajian')->nullable();
-            $table->string('deskripsi_kajian')->nullable();
+            $table->text('deskripsi_kajian')->nullable();
             $table->date('tanggal_postingan')->nullable();
             $table->string('lokasi_kajian')->nullable();
             $table->string('keyword_kajian')->nullable();

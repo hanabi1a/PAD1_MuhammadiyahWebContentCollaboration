@@ -13,27 +13,22 @@
 
 }
 
+/* .card-artikel {
+    background: linear-gradient(to bottom, #e3ffd0, #e0ffeb, #d4f6be);
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+} */
+
 .img-carousel {
     width: 100%;
 }
 
 
 #about .subtitle {
-    font-size: 20px;
-}
-
-#kajian-home {
-    padding-top: 50px;
-    padding-bottom: 100px;
-}
-
-.card-title {
-    font-size: 26px;
     font-weight: bold;
-}
-
-.card-text {
     font-size: 24px;
+    margin-bottom: 18px;
 }
 
 #tokoh {
@@ -57,22 +52,24 @@
     line-height: 36px;
     text-align: center;
     align-items: center;
-
     border-radius: 8px;
     background: var(--Extra, #04454D);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-footer .col-md-4 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+.time {
+    font-size: 16px;
 }
 
+.time-container {
+    display: flex;
+    align-items: center;
+}
+
+.rounded-iframe {
+    border-radius: 8px;
+    overflow: hidden;
+}
 
 @media screen and (max-width: 768px) {
     .navbar {
@@ -162,8 +159,7 @@ footer .col-md-4 {
 
 
 #kajian-home {
-    padding-top: 50px;
-    padding-bottom: 100px;
+    margin-top: 50px;
 }
 
 #kajian-home h2 {
@@ -177,17 +173,95 @@ footer .col-md-4 {
     text-align: center;
 }
 
-#contact {
-    background-color: #F5F2EB;
+#kajian-home .card-title {
+    font-size: 16px;
+    font-weight: bold;
 }
 
-#kajian-home .card-title {
-    font-size: 26px;
-    font-weight: bold;
+#kajian-home .card-text {
+    font-size: 16px;
+}
+
+#kajian-home h1 {
+    color: var(--Black, #000);
+
+    /* Heading1-Poppins */
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    margin-bottom: 20px;
+}
+
+#kajian-home a {
+    color: #000;
 }
 
 .card-text {
     font-size: 18px;
+}
+
+.list-rekomendasi {
+    margin-bottom: 20px;
+}
+
+.list-rekomendasi .kategori {
+    width: 125px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    background: var(--Extra, #04454D);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    line-height: 38px;
+    margin-bottom: 10px;
+}
+
+.list-rekomendasi .kategori-lainnya {
+    width: 220px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: 2px solid #04454D;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #04454D;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    line-height: 38px;
+}
+
+/* Base styles */
+.list-rekomendasi .kategori,
+.list-rekomendasi .kategori-lainnya {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.list-rekomendasi .kategori:hover {
+    background-color: #03383e;
+    box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.35);
+    transform: translateY(-5px);
+}
+
+.list-rekomendasi .kategori-lainnya:hover {
+    border-color: #03383e;
+    color: #03383e;
+    background-color: #ffffff;
+    box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.35);
+    transform: translateY(-5px);
 }
 
 
@@ -204,7 +278,7 @@ footer .col-md-4 {
 
 /* Contact Section */
 .contact-title {
-    color: #000;
+    color: #fff;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -212,24 +286,33 @@ footer .col-md-4 {
 }
 
 .contact-subtitle {
-    color: #3B3B3B;
+    color: #fff;
     text-align: center;
     font-size: 16px;
 }
 
 
-footer {
-    /* padding-top: 25px;
-    padding-bottom: 25px; */
-    background-color: var(--extra);
-    color: #fff;
-}
 
 .follow {
     font-size: 18px;
 }
 
+.box-shadow {
+    box-shadow: 0.2rem .6rem 1.2rem rgba(0, 0, 0, .15) !important;
+}
 
+@media screen and (max-width: 768px) {
+    .center-image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .list-rekomendasi .kategori {
+        margin-bottom: 7px;
+    }
+
+
+}
 
 @media screen and (max-width: 768px) {
     .navbar {
@@ -321,18 +404,17 @@ footer {
 
 #about .title {
     font-weight: bold;
-    font-size: 40px;
+    font-size: 28px;
+    margin-bottom: 34px;
 }
 
-#about .subtitle {
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+.subtitle .highlight {
+    background-color: var(--text-tritary);
 }
 
 #about .paragraf {
     font-size: 16px;
+    margin-bottom: 26px;
 }
 
 
@@ -340,7 +422,8 @@ footer {
     background-color: #fff;
     font-weight: bold;
     font-size: 20px;
-    border: none;
+    border: 1px solid #FDC827;
+    color: var(--Black, #000);
 }
 
 #about .card-body {
@@ -355,6 +438,8 @@ footer {
 
 #about .list-article {
     font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
 }
 
 #about .sifat {
@@ -414,13 +499,11 @@ ol {
     margin-top: 10px;
 }
 
-#kajian-hero .detail {
-    padding-right: 125px;
-}
+
 
 .button-kajian-hero {
     margin-top: 50px;
-    width: 150px;
+    width: 220px;
     height: 36px;
     flex-shrink: 0;
     line-height: 36px;
@@ -432,6 +515,14 @@ ol {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     color: var(--Extra, #04454D);
     font-size: 16px;
+
+    color: var(--Black, #000);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .control {
@@ -440,6 +531,7 @@ ol {
 
 
 #kajian {
+    margin-top: 1%;
     padding-bottom: 100px;
 }
 
@@ -473,7 +565,16 @@ ol {
 
 #kajian .card {
     border: none;
-    border-color: var(--text-tritary);
+}
+
+#kajian .order-md-2 .card {
+    border: 1px solid #000000;
+    border-radius: 8px;
+}
+
+#kajian .versi-baru .card {
+    border: 1px solid #000000;
+    border-radius: 8px;
 }
 
 .nama-setor {
@@ -568,7 +669,6 @@ ol {
     color: #fff;
     border-radius: 8px;
     background: var(--Dot1, #04454D);
-    font-size: 12px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 10px;
     padding-left: 20px;
@@ -592,6 +692,11 @@ ol {
 @media (max-width: 767px) {
     .img-hero-about {
         height: auto;
+    }
+
+    #kajian-hero .detail {
+        padding-left: 60px;
+        padding-right: 60px;
     }
 }
 
@@ -678,4 +783,88 @@ ol {
     margin-top: -100px;
     width: 30%;
     margin-left: 38px;
+}
+
+/* css new */
+#search {
+    margin-top: 3%;
+    padding: 1.5% 11% 0.2% 11%;
+    width: 100%;
+    height: 10%;
+    flex-shrink: 0;
+    background: var(--Extra, #04454D);
+    text-align: center;
+    justify-content: center;
+}
+
+
+#search .row-search {
+    margin-top: 10px;
+}
+
+.search-margin-top {
+    padding-top: 100px;
+}
+
+.search {
+    width: 100%;
+    margin-bottom: 1.5%;
+    height: 50px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.search-input {
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 100%;
+    margin-top: 5px;
+    caret-color: transparent;
+    line-height: 20px;
+    transition: width 0.4s linear
+}
+
+.search .search-input {
+    padding: 0 10px;
+    width: 100%;
+    caret-color: #000;
+    font-size: 19px;
+    font-weight: 300;
+    color: #000;
+    transition: width 0.4s linear;
+}
+
+.search-input::placeholder {
+    color: #000;
+    font-family: Poppins;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.search-icon {
+    height: 34px;
+    width: 34px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 10px;
+    bottom: 30px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.search-icon:hover {
+    color: #fff !important;
+}
+
+@media screen and (max-width: 768px) {
+    #search {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }

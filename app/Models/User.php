@@ -21,6 +21,8 @@ class User extends Authenticatable
         'nama',
         'username',
         'password',
+        'email',
+        'role',
         'foto_profile',
         'foto_kta',
         'alamat',
@@ -30,6 +32,7 @@ class User extends Authenticatable
         'wilayah',
         'daerah',
         'tanggal_lahir',
+        'jenis_kelamin',
     ];
 
     protected $table = 'users';
@@ -69,10 +72,15 @@ class User extends Authenticatable
         return $this->hasMany(versionHistory::class, 'user_id');
     }
 
-    public function is_admin() {
-        $adminUsernames = ['admint']; // Username admin yang diizinkan
     
-        return in_array($this->username, $adminUsernames);
+    public function isAdmin() : bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isRegistered() : bool
+    {
+        return $this->role === 'registered';
     }
     
 }
