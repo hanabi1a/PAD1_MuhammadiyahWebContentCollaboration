@@ -13,7 +13,7 @@ class UserUtilityController extends Controller
         $userId = auth()->user()->id;
         $user = User::find($id);
 
-        if (!$user) {
+        if (! $user) {
             return response()->json(['status' => 404, 'message' => 'User not found'], 404);
         }
         if ($user->id != $userId) {
@@ -22,7 +22,7 @@ class UserUtilityController extends Controller
 
         // Validasi data yang dikirim
         $validatedData = $request->validate([
-            'username' => ['required', 'string', 'max:255']
+            'username' => ['required', 'string', 'max:255'],
         ]);
 
         // Update username user
@@ -32,12 +32,13 @@ class UserUtilityController extends Controller
 
         return response()->json(['status' => 200, 'message' => 'Username successfully updated', 'data' => $user]);
     }
+
     public function updatePassword(Request $request, $id)
     {
         $userId = auth()->user()->id;
         $user = User::find($id);
 
-        if (!$user) {
+        if (! $user) {
             return response()->json(['status' => 404, 'message' => 'User not found'], 404);
         }
         if ($user->id != $userId) {
@@ -46,7 +47,7 @@ class UserUtilityController extends Controller
 
         // Validasi data yang dikirim
         $validatedData = $request->validate([
-            'password' => ['required', 'string', 'max:255']
+            'password' => ['required', 'string', 'max:255'],
         ]);
 
         // Update username user
