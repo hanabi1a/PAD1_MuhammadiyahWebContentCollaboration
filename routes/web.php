@@ -76,6 +76,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/beranda', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+Route::resource('kajian', KajianController::class)->only(['index', 'show']);
+Route::prefix('kajian')->name('kajian.')->group(function () {
+    Route::get('/latest', [KajianController::class, 'show_kajian'])->name('show.latest');
+    Route::get('/download/{id}', [KajianController::class, 'downloadKajian'])->name('download');
+    Route::get('/{id}/new_version', [KajianController::class, 'downloadNewVersion'])->name('download.new_version');
+});
+
 Route::prefix('register')->name('register.')->group(function () {
     Route::get('/', [RegisteredUserController::class, 'create'])->name('show');
     Route::get('/{page}', [RegisteredUserController::class, 'create'])->name('show');
@@ -217,11 +224,6 @@ Route::middleware('auth')->group(function () {
 
 // });
 
-Route::resource('kajian', KajianController::class)->only(['index', 'show']);
-Route::prefix('kajian')->name('kajian.')->group(function () {
-    Route::get('/latest', [KajianController::class, 'show_kajian'])->name('show.latest');
-    Route::get('/download/{id}', [KajianController::class, 'downloadKajian'])->name('download');
-    Route::get('/{id}/new_version', [KajianController::class, 'downloadNewVersion'])->name('download.new_version');
-});
+
 
 require __DIR__ . '/auth.php';
