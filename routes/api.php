@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 // Route::middleware('auth:sanctum')->get('/kajian-api', [KajianApiController::class, 'index'])->name('kajian-api.index');
 Route::get('/kajian-api', [KajianApiController::class, 'index'])->name('kajian-api.index');
@@ -41,7 +41,3 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/auth/register', \App\Http\Controllers\Api\Auth\RegisterController::class);
 Route::post('/auth/login', \App\Http\Controllers\Api\Auth\LoginController::class);
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

@@ -133,7 +133,7 @@ class KajianApiController extends Controller
     {
         $userId = auth()->user()->id;
         $kajian = Kajian::find($id);
-        
+
         if (! $kajian) {
             return response()->json(['status' => 404, 'message' => 'Kajian not found'], 404);
         }
@@ -165,7 +165,7 @@ class KajianApiController extends Controller
         $userId = auth()->user()->id;
         $kajian = Kajian::find($id);
 
-        if (!$kajian) {
+        if (! $kajian) {
             return response()->json(['status' => 404, 'message' => 'Kajian not found'], 404);
         }
         if ($kajian->id_user != $userId) {
