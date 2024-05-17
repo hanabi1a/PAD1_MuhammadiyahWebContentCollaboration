@@ -77,16 +77,16 @@ class KajianApiController extends Controller
 
     public function store(Request $request)
     {
-        // Pastikan token JWT valid
+        // Ambil pengguna yang sedang login
+        $user = $request->user();
 
         // Validasi data request
         $validatedData = $request->validate([
             'judul_kajian' => 'required',
             'pemateri' => 'required',
             'lokasi_kajian' => 'required',
-            'tanggal_postingan'  => 'required',
+            'tanggal_postingan'  => 'required|date',
             'deskripsi_kajian' => 'required',
-            // tambahkan validasi untuk field lainnya jika diperlukan
         ]);
 
         // Buat instance baru dari Kajian dan isi dengan data request
@@ -96,7 +96,7 @@ class KajianApiController extends Controller
         $kajian->lokasi_kajian = $validatedData['lokasi_kajian'];
         $kajian->tanggal_postingan = $validatedData['tanggal_postingan'];
         $kajian->deskripsi_kajian = $validatedData['deskripsi_kajian'];
-        // isi field lainnya jika ada
+        $kajian->id_user = $user->id; // Sertakan id_user dari pengguna yang sedang login
 
         // Simpan kajian ke dalam database
         $kajian->save();
