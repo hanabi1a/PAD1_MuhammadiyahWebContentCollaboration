@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kajian;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class KajianApiController extends Controller
 {
@@ -79,9 +78,6 @@ class KajianApiController extends Controller
     public function store(Request $request)
     {
         // Pastikan token JWT valid
-        if (!$user = JWTAuth::parseToken()->authenticate()) {
-            return response()->json(['status' => 401, 'message' => 'Unauthorized'], 401);
-        }
 
         // Validasi data request
         $validatedData = $request->validate([
