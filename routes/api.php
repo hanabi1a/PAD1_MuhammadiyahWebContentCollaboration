@@ -37,9 +37,6 @@ Route::post('/auth/register', \App\Http\Controllers\Api\Auth\RegisterController:
 Route::post('/auth/login', \App\Http\Controllers\Api\Auth\LoginController::class);
 
 
-//Route buat regis via api
-Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
-
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
