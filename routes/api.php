@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\KajianApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\KajianApiController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,15 +29,15 @@ Route::get('/kajian-api/download/{id}', [KajianApiController::class, 'downloadKa
 Route::get('/kajian/search', [KajianApiController::class, 'search'])->name('kajian-api.search');
 // Route::middleware('jwt.verify')->post('/kajian', 'Api\KajianApiController@store');
 
-Route::middleware('auth:sanctum')->post('/kajian-api/create', [KajianApiController::class, 'store'])->name('kajian-api.store');
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/kajian-api/create', [KajianApiController::class, 'store']);
+    Route::delete('/kajian-api/destroy/{id}', [KajianApiController::class, 'destroy']);
+    Route::put('/kajian-api/update/{id}', [KajianApiController::class, 'update']);
+});
 
 Route::post('/auth/register', \App\Http\Controllers\Api\Auth\RegisterController::class);
 Route::post('/auth/login', \App\Http\Controllers\Api\Auth\LoginController::class);
 
-
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
-

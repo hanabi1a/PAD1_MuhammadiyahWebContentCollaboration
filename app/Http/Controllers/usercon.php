@@ -1,23 +1,25 @@
 <?php
+
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+
 use App\Models\Kajian;
 use App\Models\User;
 use App\Models\versionHistory;
+use Illuminate\Http\Request;
 
 class usercon extends Controller
 {
-
     public function vw_kajian()
     {
         $latestKajians = Kajian::orderBy('created_at', 'desc')->take(5)->get(); // Ambil 5 kajian terbaru
+
         return view('user.kajian2', compact('latestKajians'));
     }
 
     public function nlkajian()
     {
         $latestKajians = Kajian::orderBy('created_at', 'desc')->take(5)->get(); // Ambil 5 kajian terbaru
+
         return view('user.kajian', compact('latestKajians'));
     }
 
@@ -28,7 +30,7 @@ class usercon extends Controller
 
     public function showLatestKajians()
     {
-        
+
     }
 
     public function gotoProfile()
@@ -36,23 +38,23 @@ class usercon extends Controller
         $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
         $user = User::find($userId); // Mengambil data pengguna
         $dataKajian = Kajian::where('id_user', $userId)->get(); // Mengambil data Kajian berdasarkan user_id
-        
+
         return view('user.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
     }
 
-    public function  gotoHomenotlogin()
+    public function gotoHomenotlogin()
     {
         return view('user.homepage');
     }
 
-    public function gotodetailacc(){
+    public function gotodetailacc()
+    {
         $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
         $user = User::find($userId); // Mengambil data pengguna
+
         return view('user.detail_akun_user_non_public', ['user' => $user]);
         // return view('user.detail_akun_user_public');
     }
-
-
 
     public function gotoAccount()
     {
@@ -68,100 +70,99 @@ class usercon extends Controller
     {
         $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
         $user = User::find($userId); // Mengambil data pengguna
+
         return view('user.form_edit_profile_user', ['user' => $user]);
     }
 
-    public function editdetailacc(){
+    public function editdetailacc()
+    {
         $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
         $user = User::find($userId); // Mengambil data pengguna
+
         return view('user.form_edit_akun_user_2', ['user' => $user]);
     }
 
-
-    public function storeupdateuser(Request $request){
+    public function storeupdateuser(Request $request)
+    {
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'username' => 'required|string|max:255',
             'foto_profiles' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
-    
+
         $userId = auth()->id();
         // Mengambil data pengguna dari database berdasarkan ID atau metode lain yang digunakan
         $user = User::find($userId); // Pastikan untuk mengganti $userId dengan cara yang sesuai
-    
+
         // Memperbarui data pengguna berdasarkan input yang diterima
         $user->nama = $validatedData['nama'];
         $user->username = $validatedData['username'];
-    
+
         // Memeriksa apakah ada foto profil yang diunggah
         if ($request->hasFile('foto_profiles')) {
             $filenameWithExt = $request->file('foto_profiles')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto_profiles')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
             $fppath = $request->file('foto_profiles')->storeAs('/photos', $fileNameToStore);
 
-            $user->foto_profile = $fppath; 
+            $user->foto_profile = $fppath;
         }
-        
-    
+
         // Menyimpan perubahan ke database
         $user->save();
-    
+
         // Redirect atau berikan respons sesuai kebutuhan aplikasi
         return redirect()->route('gotoProfile')->with('success', 'Profil berhasil diperbarui');
     }
-    
+
     public function storeupdatedetailuser(Request $request)
-{
-    // Validasi data yang diterima dari formulir
-    $validatedData = $request->validate([
-        'nama' => 'required|string|max:255',
-        'tempat_lahir' => 'required|string|max:255',
-        'tanggal_lahir' => 'required|date',
-        'alamat' => 'required|string|max:255',
-        'cabang' => 'required|string|max:255',
-        'daerah' => 'required|string|max:255',
-        'wilayah' => 'required|string|max:255',
-        'foto_kta' => 'nullable|image|mimes:jpeg,png,jpg', // Contoh validasi untuk gambar
-    ]);
+    {
+        // Validasi data yang diterima dari formulir
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'alamat' => 'required|string|max:255',
+            'cabang' => 'required|string|max:255',
+            'daerah' => 'required|string|max:255',
+            'wilayah' => 'required|string|max:255',
+            'foto_kta' => 'nullable|image|mimes:jpeg,png,jpg', // Contoh validasi untuk gambar
+        ]);
 
-    // Mengambil ID pengguna yang sedang login
-    $userId = auth()->id();
-    
-    // Mengambil data pengguna yang akan diperbarui
-    $user = User::find($userId);
-    
-    // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
-    $user->nama = $validatedData['nama'];
-    $user->tempat_lahir = $validatedData['tempat_lahir'];
-    $user->tanggal_lahir = $validatedData['tanggal_lahir'];
-    $user->alamat = $validatedData['alamat'];
-    $user->cabang = $validatedData['cabang'];
-    $user->daerah = $validatedData['daerah'];
-    $user->wilayah = $validatedData['wilayah'];
-    
-    // Mengelola unggahan foto jika ada
-    if ($request->hasFile('foto_kta')) {
-        $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
-        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        $extension = $request->file('foto_kta')->getClientOriginalExtension();
-        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-        $path = $request->file('foto_kta')->storeAs('/photos', $fileNameToStore);
-        
-        // Simpan informasi foto ke database
-        $user->foto_kta = $path; // Simpan path foto di kolom foto_kta
+        // Mengambil ID pengguna yang sedang login
+        $userId = auth()->id();
+
+        // Mengambil data pengguna yang akan diperbarui
+        $user = User::find($userId);
+
+        // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
+        $user->nama = $validatedData['nama'];
+        $user->tempat_lahir = $validatedData['tempat_lahir'];
+        $user->tanggal_lahir = $validatedData['tanggal_lahir'];
+        $user->alamat = $validatedData['alamat'];
+        $user->cabang = $validatedData['cabang'];
+        $user->daerah = $validatedData['daerah'];
+        $user->wilayah = $validatedData['wilayah'];
+
+        // Mengelola unggahan foto jika ada
+        if ($request->hasFile('foto_kta')) {
+            $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto_kta')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('foto_kta')->storeAs('/photos', $fileNameToStore);
+
+            // Simpan informasi foto ke database
+            $user->foto_kta = $path; // Simpan path foto di kolom foto_kta
+        }
+
+        // Menyimpan perubahan data pengguna
+        $user->save();
+
+        // Redirect atau tampilkan respons sesuai kebutuhan
+        return redirect()->route('gotodetailacc')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
     }
-
-    // Menyimpan perubahan data pengguna
-    $user->save();
-
-    // Redirect atau tampilkan respons sesuai kebutuhan
-    return redirect()->route('gotodetailacc')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
-}
-
-
-
 
     public function storekajianuser(Request $request)
     {
@@ -172,17 +173,17 @@ class usercon extends Controller
             'val_tanggal' => 'required',
             'val_deskripsi' => 'required',
             'val_foto_kajian' => 'image|nullable|max:1999',
-            'val_dokumen' => 'required|mimes:pdf,doc,docx|max:2048'
+            'val_dokumen' => 'required|mimes:pdf,doc,docx|max:2048',
         ]);
 
-        $userId = auth()->id(); 
+        $userId = auth()->id();
 
         $pathFoto = null;
         if ($request->hasFile('val_foto_kajian')) {
             $filenameWithExt = $request->file('val_foto_kajian')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('val_foto_kajian')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
             $pathFoto = $request->file('val_foto_kajian')->storeAs('storage/photos/', $fileNameToStore);
         }
 
@@ -191,7 +192,7 @@ class usercon extends Controller
             $filenameWithExt = $request->file('val_dokumen')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('val_dokumen')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
             $pathDokumen = $request->file('val_dokumen')->storeAs('storage/documents/', $fileNameToStore);
         }
 
@@ -207,15 +208,16 @@ class usercon extends Controller
         ]);
 
         $request->session()->regenerate();
+
         return redirect()->route('gotoProfile')
-            ->withSuccess("Terima kasih! Data berhasil disimpan");
+            ->withSuccess('Terima kasih! Data berhasil disimpan');
     }
 
     public function deleteKajianUser($id)
     {
         $Kajian = Kajian::find($id);
 
-        if (!$Kajian) {
+        if (! $Kajian) {
             return redirect()->route('gotoProfile')->withError('Kajian not found');
         }
 
@@ -226,14 +228,14 @@ class usercon extends Controller
     }
 
     public function userkajian($id)
-{
-    $userkajian = Kajian::find($id);
+    {
+        $userkajian = Kajian::find($id);
 
-    // Periksa apakah relasi user ada dan tidak kosong
-    $uploaderUsername = ($userkajian->user) ? $userkajian->user->username : null;
+        // Periksa apakah relasi user ada dan tidak kosong
+        $uploaderUsername = ($userkajian->user) ? $userkajian->user->username : null;
 
-    return view('user.detail_kajian_ori_user', ['userkajian' => $userkajian, 'uploaderUsername' => $uploaderUsername]);
-}
+        return view('user.detail_kajian_ori_user', ['userkajian' => $userkajian, 'uploaderUsername' => $uploaderUsername]);
+    }
 
     public function nluserkajian($id)
     {
@@ -243,7 +245,7 @@ class usercon extends Controller
 
         return view('user.detail_kajian_ori_nluser', ['userkajian' => $userkajian]);
     }
-    
+
     public function upnv($id)
     {
 
@@ -254,47 +256,44 @@ class usercon extends Controller
     }
 
     public function storeNewVersion(Request $request, $kajianid)
-{
-    $validatedData = $request->validate([
-        'val_dokumen' => 'required|file|mimes:pdf,docx|max:2048',
-        'val_commit_massage' => 'required|string|max:255',
-    ]);
+    {
+        $validatedData = $request->validate([
+            'val_dokumen' => 'required|file|mimes:pdf,docx|max:2048',
+            'val_commit_massage' => 'required|string|max:255',
+        ]);
 
-    $kajian = Kajian::find($kajianid);
+        $kajian = Kajian::find($kajianid);
 
-    if (!$kajian) {
-        return redirect()->route('errorPage')->with('error', 'Kajian tidak ditemukan.');
+        if (! $kajian) {
+            return redirect()->route('errorPage')->with('error', 'Kajian tidak ditemukan.');
+        }
+
+        $file = $request->file('val_dokumen'); // Ganti 'file' menjadi 'val_dokumen'
+        $filePath = $file->store('storage/kajiannv/');
+        // dd($validatedData);
+        // dd($filePath);
+
+        $versionHistory = new versionHistory();
+        $versionHistory->kajian_id = $kajianid;
+        $versionHistory->user_id = auth()->id();
+        $versionHistory->file_path = $filePath;
+        $versionHistory->commit_msg = $validatedData['val_commit_massage'];
+        // Copy data lain dari kajian yang tidak berubah ke versi baru
+        // $versionHistory->judul_kajian = $kajian->judul_kajian;
+        // $versionHistory->pemateri = $kajian->pemateri;
+        // $versionHistory->lokasi_kajian = $kajian->lokasi_kajian;
+        // $versionHistory->tanggal_postingan = $kajian->tanggal_postingan;
+        // $versionHistory->deskripsi_kajian = $kajian->deskripsi_kajian;
+        // $versionHistory->foto_kajian = $kajian->foto_kajian;
+        // ...
+
+        $versionHistory->save();
+
+        $idid_kajian = $versionHistory->kajian_id;
+
+        return redirect()->route('detailNv', ['id' => $idid_kajian])->with('success', 'Versi baru telah berhasil diunggah.');
+
     }
-
-    $file = $request->file('val_dokumen'); // Ganti 'file' menjadi 'val_dokumen'
-    $filePath = $file->store('storage/kajiannv/');
-    // dd($validatedData);
-    // dd($filePath);
-    
-    
-
-    $versionHistory = new versionHistory();
-    $versionHistory->kajian_id = $kajianid;
-    $versionHistory->user_id = auth()->id();
-    $versionHistory->file_path = $filePath;
-    $versionHistory->commit_msg = $validatedData['val_commit_massage'];
-    // Copy data lain dari kajian yang tidak berubah ke versi baru
-    // $versionHistory->judul_kajian = $kajian->judul_kajian;
-    // $versionHistory->pemateri = $kajian->pemateri;
-    // $versionHistory->lokasi_kajian = $kajian->lokasi_kajian;
-    // $versionHistory->tanggal_postingan = $kajian->tanggal_postingan;
-    // $versionHistory->deskripsi_kajian = $kajian->deskripsi_kajian;
-    // $versionHistory->foto_kajian = $kajian->foto_kajian;
-    // ...
-    
-    $versionHistory->save();
-
-    $idid_kajian = $versionHistory->kajian_id;
-
-    return redirect()->route('detailNv', ['id' => $idid_kajian])->with('success', 'Versi baru telah berhasil diunggah.');
-
-}
-
 
     // Dalam fungsi detail_upload_nv
     public function detail_upload_nv($id)
@@ -303,12 +302,4 @@ class usercon extends Controller
 
         return view('user.detail_kajian_upload_user', ['kajian' => $kajian]);
     }
-
-
-
-
-
-
-
-
 }

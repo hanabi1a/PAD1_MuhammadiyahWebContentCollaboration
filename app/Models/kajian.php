@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class kajian extends Model
 {
     use HasFactory;
+
     protected $table = 'kajian';
 
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'judul_kajian',
         'pemateri',
@@ -20,7 +22,7 @@ class kajian extends Model
         'deskripsi_kajian',
         'foto_kajian',
         'file_kajian',
-        'slug'
+        'slug',
         // tambahkan nama-nama atribut lain jika ada
     ];
 
@@ -28,6 +30,7 @@ class kajian extends Model
     {
         return $this->belongsTo(User::class, 'id_user'); // Sesuaikan 'id_user' dengan nama kolom foreign key di tabel 'kajian'
     }
+
     public function versions()
     {
         return $this->hasMany(versionHistory::class, 'kajian_id');
@@ -48,6 +51,4 @@ class kajian extends Model
     {
         return 'slug';
     }
-
-
 }

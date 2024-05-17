@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\HomeController1;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserManagement\Admin\AdminController;
@@ -59,7 +57,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 });
 
-
 // Route::group([], function () {
 //     // Route::get('/', [HomeController::class, 'index']);
 //     Route::get('/beranda', [HomeController::class, 'index'])->name('home');
@@ -99,14 +96,12 @@ Route::middleware('auth')->group(function () {
         Route::patch('/', [ProfileController::class, 'update'])->name('update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
     });
-    
-
 
     /**
      * Registered middleware
      * Hanya bisa diakses oleh admin dan registered user
-     * 
-     * 
+     *
+     *
      * Referensi:
      * app/Http/Middleware/UserManagement/
      * app/Http/Controllers/UserManagement/
@@ -118,7 +113,7 @@ Route::middleware('auth')->group(function () {
     //     Route::get('/kajian/{id}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('kajian.new_version');
     //     Route::post('/kajian', [KajianController::class, 'store'])->name('kajian.store');
     //     Route::delete('/kajian/{id}', [KajianController::class, 'destroy'])->name('kajian.destroy');
-        
+
     //     Route::get('/profile', [ProfileController::class, 'show_profile'])->name('profile.show');
     //     Route::get('/profile/edit', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
     //     Route::put('/profile', [ProfileController::class, 'store_edit_profile'])->name('profile.store');
@@ -145,8 +140,8 @@ Route::middleware('auth')->group(function () {
     /**
      * Admin middleware
      * Hanya bisa diakses oleh admin
-     * 
-     * 
+     *
+     *
      * Referensi:
      * app/Http/Middleware/UserManagement/Admin.php
      * app/Http/Controllers/UserManagement/Admin/AdminController.php
@@ -181,7 +176,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('dashboard');
             Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-            
+
             // User
             Route::get('/users', [AdminController::class, 'show_data_user'])->name('show_data_user');
             Route::get('/users/{id}', [AdminController::class, 'show_detail_user'])->name('show_detail_user');
@@ -224,4 +219,4 @@ Route::prefix('kajian')->name('kajian.')->group(function () {
     Route::get('/{id}/new_version', [KajianController::class, 'downloadNewVersion'])->name('download.new_version');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

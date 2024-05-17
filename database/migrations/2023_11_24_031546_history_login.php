@@ -19,9 +19,9 @@ return new class extends Migration
                 ->on('users');
             $table->timestamp('timestamp');
             $table->text('user_agent');
-            $table->timestamps(); 
+            $table->timestamps();
         });
-        
+
     }
 
     /**
