@@ -18,11 +18,10 @@ class versionHistory extends Model
         'user_id',   // ID pengguna yang mengunggah versi
         'version_number', // Nomor versi
         'file_path',  // Path ke file kajian
-        'commit_message'
+        'commit_message',
         // tambahkan kolom lain jika diperlukan
     ];
 
-    
     protected static function boot()
     {
         parent::boot();
