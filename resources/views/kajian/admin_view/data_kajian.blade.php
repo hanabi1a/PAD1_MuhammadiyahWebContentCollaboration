@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout_admin')
 
 @section('content')
 <main>
@@ -54,8 +54,6 @@
                                 </form>
                             </td>
                         </tr>
-
-
                         @endforeach
                     </tbody>
 
