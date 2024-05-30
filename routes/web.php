@@ -82,13 +82,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/beranda', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-Route::resource('kajian', KajianController::class)->only(['index', 'show']);
-Route::prefix('kajian')->name('kajian.')->group(function () {
-    Route::get('/latest', [KajianController::class, 'show_kajian'])->name('show.latest');
-    Route::get('/download/{id}', [KajianController::class, 'downloadKajian'])->name('download');
-    Route::get('/{id}/new_version', [KajianController::class, 'downloadNewVersion'])->name('download.new_version');
-});
-
 Route::prefix('register')->name('register.')->group(function () {
     Route::get('/', [RegisteredUserController::class, 'create'])->name('show');
     Route::get('/{page}', [RegisteredUserController::class, 'create'])->name('show');
@@ -111,6 +104,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [ProfileController::class, 'edit'])->name('edit');
         Route::patch('/', [ProfileController::class, 'update'])->name('update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'show_profile'])->name('show');
+        Route::get('/edit', [ProfileController::class, 'edit_profile'])->name('edit_profile');
+        Route::get('/informasi', [ProfileController::class, 'show_profile_information'])->name('show.information');
+        Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
+        Route::put('/edit/picture/update', [ProfileController::class, 'upload_profile_picture'])->name('update.picture');
+        Route::put('/edit/picture/delete', [ProfileController::class, 'delete_profile_picture'])->name('delete.picture');
+        Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
+        Route::get('/akun_user', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_user');
     });
 
     /**
@@ -146,13 +150,6 @@ Route::middleware('auth')->group(function () {
             // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('profile')->name('profile.')->group(function () {
-            Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
-            Route::get('/akun_user', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_user');
-            Route::get('/', [ProfileController::class, 'show_profile'])->name('show');
-            Route::get('/edit', [ProfileController::class, 'edit_profile'])->name('edit_profile');
-            Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
-        });
     });
 
     /**
@@ -229,6 +226,12 @@ Route::middleware('auth')->group(function () {
 //     Route::get('/kajian/download/{id}', 'downloadKajian')->name('kajian.download');
 
 // });
+Route::resource('kajian', KajianController::class)->only(['index', 'show']);
+Route::prefix('kajian')->name('kajian.')->group(function () {
+    Route::get('/latest', [KajianController::class, 'show_kajian'])->name('show.latest');
+    Route::get('/download/{id}', [KajianController::class, 'downloadKajian'])->name('download');
+    Route::get('/{id}/new_version', [KajianController::class, 'downloadNewVersion'])->name('download.new_version');
+});
 
 
 

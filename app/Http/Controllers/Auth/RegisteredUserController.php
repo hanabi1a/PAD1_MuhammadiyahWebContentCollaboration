@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -45,11 +46,8 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // Auth::login($user);
-
         session(['tuid' => $user->id]);
 
-        // return redirect(RouteServiceProvider::HOME);
         return redirect()->route('register.show', ['page' => 1]);
     }
 
@@ -60,7 +58,7 @@ class RegisteredUserController extends Controller
             'tanggal_lahir' => 'required|date|before:today',
             'pekerjaan' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'jenis_kelamin' => 'required|in:L,P', // TODO: Check this later
+            'jenis_kelamin' => 'required|in:L,P',
         ]);
 
         // Mengambil data pengguna yang akan diperbarui
@@ -84,10 +82,10 @@ class RegisteredUserController extends Controller
     public function store_additional_2(Request $request)
     {
         $validatedData = $request->validate([
-            'nomor_keanggotaan' => 'required|string|max:255',
-            'cabang' => 'required|string|max:255',
-            'daerah' => 'required|string|max:255',
-            'wilayah' => 'required|string|max:255',
+            'nomor_keanggotaan' => 'string|max:255',
+            'cabang' => 'string|max:255',
+            'daerah' => 'string|max:255',
+            'wilayah' => 'string|max:255',
         ]);
 
         // Mengambil data pengguna yang akan diperbarui
@@ -99,6 +97,38 @@ class RegisteredUserController extends Controller
         $user->cabang = $validatedData['cabang'];
         $user->daerah = $validatedData['daerah'];
         $user->wilayah = $validatedData['wilayah'];
+
+
+        if ($request->hasFile('foto_profile')) {
+            $filenameWithExt = $request->file('foto_profile')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto_profile')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().$userId.'.'.$extension;
+            $path = $request->file('foto_profile')->storeAs('/profile', $fileNameToStore);
+
+            // Menghapus foto lama jika ada
+            if ($user->foto_profile) {
+                Storage::delete($user->foto_profile);
+            }
+
+            $user->foto_profile = $path;
+        }
+
+        if ($request->hasFile('foto_kta')) {
+            $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto_kta')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().$userId.'.'.$extension;
+            $path = $request->file('foto_kta')->storeAs('/ktp', $fileNameToStore);
+
+            // Menghapus foto lama jika ada
+            if ($user->foto_kta) {
+                Storage::delete($user->foto_kta);
+            }
+
+            $user->foto_kta = $path;
+        }
+
 
         // Menyimpan perubahan data pengguna
         $user->save();

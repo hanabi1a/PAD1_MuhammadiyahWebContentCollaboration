@@ -119,14 +119,6 @@
             </a>
         </div>
         
-          {{-- 
-              Note: MIssing in Conflict Resolve
-              <script>
-              document.getElementById('createKajianBtn').addEventListener('click', function() {
-                  window.location.href = '{{ route('kajian.create') }}';
-              });
-          </script> --}}
-        
     @else
         <div class="search pb-3">
             <input type="text" class="search-input" placeholder="Search..." name="">
