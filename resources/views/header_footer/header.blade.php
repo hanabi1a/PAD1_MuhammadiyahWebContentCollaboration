@@ -39,8 +39,8 @@
                             </button>
                         </li>
                         <li>
-                            <!-- TODO: route  -->
-                            <button class="dropdown-item" onclick="window.location.href = '';">
+            
+                            <button class="dropdown-item" onclick="window.location.href = '{{ route('profile.show.information') }}';">
                                 <img src="\assets\img\icon\icon_informasi_akun.svg"/>
                                 <span class="heading7">Informasi Akun</span>
                             </button>

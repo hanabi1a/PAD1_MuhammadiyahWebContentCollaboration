@@ -97,6 +97,15 @@ Route::middleware('auth')->group(function () {
         Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
     });
 
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'show_profile'])->name('show');
+        Route::get('/edit', [ProfileController::class, 'edit_profile'])->name('edit_profile');
+        Route::get('/informasi', [ProfileController::class, 'show_profile_information'])->name('show.information');
+        Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
+        Route::put('/edit/picture/update', [ProfileController::class, 'upload_profile_picture'])->name('update.picture');
+        Route::put('/edit/picture/delete', [ProfileController::class, 'delete_profile_picture'])->name('delete.picture');
+    });
+
     /**
      * Registered middleware
      * Hanya bisa diakses oleh admin dan registered user
@@ -128,12 +137,6 @@ Route::middleware('auth')->group(function () {
             Route::get('/{kajian}/create/new', [KajianController::class, 'create_new_version'])->name('edit.new_version');
             // Route::post('/', [KajianController::class, 'store'])->name('store');
             // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
-        });
-
-        Route::prefix('profile')->name('profile.')->group(function () {
-            Route::get('/', [ProfileController::class, 'show_profile'])->name('show');
-            Route::get('/edit', [ProfileController::class, 'edit_profile'])->name('edit_profile');
-            Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
         });
     });
 

@@ -8,7 +8,7 @@
                 <div class="container">
                     <div class="row mb-5 justify-content-center align-items-center">
                         <div class="col-md-2">
-                            <img class="user-profile-pp" src="{{ asset($user->foto_profile) }}" alt=""
+                            <img class="user-profile-pp" src="{{asset('storage/'.$user->foto_profile)}}" alt=""
                                 style="border-radius: 50%; width: 100px; height: 100px;">
                         </div>
                         <div class="col-md-4 mt-2">
