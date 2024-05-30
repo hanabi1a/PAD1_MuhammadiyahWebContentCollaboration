@@ -123,8 +123,7 @@
                                     </div>
 
                                     <div class="kategori">
-                                        <strong>Kategori</strong>
-                                        <p><strong>#SEJARAH ISLAM #PENDIDIKAN</strong></p>
+                                        <strong>{{ $userkajian->kategori_kajian }}</strong>
                                     </div>
 
                                     <div class="mt-4">

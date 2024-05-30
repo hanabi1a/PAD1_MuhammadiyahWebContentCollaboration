@@ -147,209 +147,94 @@
                 </a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card box-shadow">
-                    <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                    <div class="card-body">
-                        <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
+        @if (isset($kajian))
+            <div class="row">
+                @foreach ($kajian as $item)
+                    <div class="col-md-4 mb-5">
+                        <div class="card box-shadow">
+                            <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
+                            <div class="card-body">
+                                <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
+                                <p class="card-text">{{ $item->pemateri }}</p>
+                                <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
+                                <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
+                            </div>
                         </div>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                        <button class="btn btn-view">Lihat Selengkapnya</button>
-                    </div>
-                </div>
+                     </div>
+                 @endforeach
             </div>
-
-            <div class="col-md-4">
-                <div class="card box-shadow">
-                    <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                    <div class="card-body">
-                        <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                        </div>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                        <button class="btn btn-view">Lihat Selengkapnya</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card box-shadow">
-                    <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                    <div class="card-body">
-                        <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                        </div>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                        <button class="btn btn-view">Lihat Selengkapnya</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endif
     </div>
 </section>
 
 @if (Auth::user() != null && Auth::user()->role == 'registered')
-        <section id="kajian-home">
-            <div class="container">
-                <h1 class="mb-4">Kajian Rekomendasi</h1>
-                <div class="list-rekomendasi d-flex flex-wrap">
-                    <div class="kategori me-2">Sejarah   <img src="assets\img\icon\cancel.svg"></div>
-                    <div class="kategori me-2">Aqidah</div>
-                    <div class="kategori me-2">Akhlak</div>
-                    <div class="kategori me-2">Fiqih</div>
-                    <div class="kategori me-2">Al-Qur’an</div>
-                    <div class="dropdown">
-                        <button class="kategori-lainnya dropdown-toggle" type="button" id="dropdownMenuButton1">
-                            Tambah Kategori
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Sejarah</a></li>
-                            <li><a class="dropdown-item" href="#">Aqidah</a></li>
-                            <li><a class="dropdown-item" href="#">Fiqih</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card box-shadow">
-                            <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                            <div class="card-body">
-                                <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan</div>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                                <button class="btn btn-view">Lihat Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card box-shadow">
-                            <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                            <div class="card-body">
-                                <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                                </div>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                                <button class="btn btn-view">Lihat Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card box-shadow">
-                        <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                            <div class="card-body">
-                                <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                                </div>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                                <button class="btn btn-view">Lihat Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-5">
-                    <div class="col-md-4">
-                        <div class="card box-shadow">
-                            <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                            <div class="card-body">
-                                <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                                </div>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                                <button class="btn btn-view">Lihat Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card box-shadow">
-                        <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                            <div class="card-body">
-                                <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                                </div>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                                <button class="btn btn-view">Lihat Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card box-shadow">
-                            <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                            <div class="card-body">
-                                <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                                </div>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                                <button class="btn btn-view">Lihat Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-
     <section id="kajian-home">
         <div class="container">
-            <h1 class="mb-4">Kajian Terkini</h1>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card box-shadow">
-                        <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                        <div class="card-body">
-                            <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                            </div>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                            <button class="btn btn-view">Lihat Selengkapnya</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card box-shadow">
-                        <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                        <div class="card-body">
-                            <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                            </div>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                            <button class="btn btn-view">Lihat Selengkapnya</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card box-shadow">
-                        <img src="/assets/img/kajian3.jpg" class="img-fluid img-kajian">
-                        <div class="card-body">
-                            <div class="card-title mt-3">Peta Jalan Peradaban Islam Indonesia Dalam Perspektif Pendidikan
-                            </div>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <div class="card-title" style="color: #04454D;">#SEJARAH</div>
-                            <button class="btn btn-view">Lihat Selengkapnya</button>
-                        </div>
-                    </div>
+            <h1 class="mb-4">Kajian Rekomendasi</h1>
+            <div class="list-rekomendasi d-flex flex-wrap">
+                <div class="kategori me-2">Sejarah   <img src="assets\img\icon\cancel.svg"></div>
+                <div class="kategori me-2">Aqidah</div>
+                <div class="kategori me-2">Akhlak</div>
+                <div class="kategori me-2">Fiqih</div>
+                <div class="kategori me-2">Al-Qur’an</div>
+                <div class="dropdown">
+                    <button class="kategori-lainnya dropdown-toggle" type="button" id="dropdownMenuButton1">
+                        Tambah Kategori
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Sejarah</a></li>
+                        <li><a class="dropdown-item" href="#">Aqidah</a></li>
+                        <li><a class="dropdown-item" href="#">Fiqih</a></li>
+                    </ul>
                 </div>
             </div>
+            @if (isset($kajian))
+                <div class="row">
+                    @foreach ($kajian as $item)
+                        <div class="col-md-4 mb-5">
+                            <div class="card box-shadow">
+                                <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
+                                <div class="card-body">
+                                    <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
+                                    <p class="card-text">{{ $item->pemateri }}</p>
+                                    <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
+                                    <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <!-- Pagination Links -->
+                <div class="d-flex justify-content-center">
+                    {!! $kajian->links('pagination.custom') !!}
+                </div>
+                <!-- End Pagination -->
+            @endif
         </div>
     </section>
+@endif
+<section id="kajian-home">
+    <div class="container">
+        <h1 class="mb-4">Kajian Terkini</h1>
+        @if (isset($kajian))
+            <div class="row">
+                @foreach ($kajian as $item)
+                    <div class="col-md-4 mb-5">
+                        <div class="card box-shadow">
+                            <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
+                            <div class="card-body">
+                                <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
+                                <p class="card-text">{{ $item->pemateri }}</p>
+                                <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
+                                <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+    </div>
+</section>
 
 <section id="kajian-home">
     <div class="container">

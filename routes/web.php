@@ -32,6 +32,15 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/form_create_user', function () {
 //     return view('kajian.write.form_create_user');
 // });
+Route::get('/akun_muhammadiyah', function () {
+    return view('profile.profile_akun_muhammadiyah');
+});
+Route::get('/akun_muhammadiyah', function () {
+    return view('profile.profile_akun_muhammadiyah');
+});
+Route::get('/akun_pengguna', function () {
+    return view('profile.profile_akun_pengguna');
+});
 // Route::get('/form_create_user_nv', function () {
 //     return view('kajian.write.form_create_user_nv');
 // });
@@ -104,6 +113,8 @@ Route::middleware('auth')->group(function () {
         Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
         Route::put('/edit/picture/update', [ProfileController::class, 'upload_profile_picture'])->name('update.picture');
         Route::put('/edit/picture/delete', [ProfileController::class, 'delete_profile_picture'])->name('delete.picture');
+        Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
+        Route::get('/akun_user', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_user');
     });
 
     /**
@@ -132,12 +143,13 @@ Route::middleware('auth')->group(function () {
             ->only(['create', 'show', 'store', 'destroy']);
         Route::prefix('kajian')->name('kajian.')->group(function () {
             // Route::get('/create', [KajianController::class, 'create'])->name('create');
-            // Route::get('/{id}', [KajianController::class, 'show'])->name('show');
+            Route::get('/{kajian}', [KajianController::class, 'show'])->name('show');
             Route::get('/{kajian}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('show.new_version');
             Route::get('/{kajian}/create/new', [KajianController::class, 'create_new_version'])->name('edit.new_version');
             // Route::post('/', [KajianController::class, 'store'])->name('store');
             // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
         });
+
     });
 
     /**

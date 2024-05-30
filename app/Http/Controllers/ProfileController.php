@@ -18,6 +18,19 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+
+    public function show_kajian_in_profile_muhammadiyah()
+    {
+        $kajian = Kajian::paginate(9);
+        return view('profile.profile_akun_muhammadiyah', compact('kajian'));
+    }
+
+    public function show_kajian_in_profile_user()
+    {
+        $kajian = Kajian::paginate(9);
+        return view('profile.profile_akun_pengguna', compact('kajian'));
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -64,17 +77,20 @@ class ProfileController extends Controller
 
     public function show_profile()
     {
-        $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
-        $user = User::find($userId); // Mengambil data pengguna
-        $dataKajian = Kajian::where('id_user', $userId)->get(); // Mengambil data Kajian berdasarkan user_id
+
+        $userId = auth()->id(); 
+        $user = User::find($userId); 
+        $dataKajian = Kajian::where('id_user', $userId)->paginate(9); 
+        
 
         return view('profile.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
     }
 
     public function edit_profile()
     {
-        $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
-        $user = User::find($userId); // Mengambil data pengguna
+
+        $userId = auth()->id(); 
+        $user = User::find($userId); 
 
         return view('profile.form_edit_profile_user', ['user' => $user]);
     }
