@@ -4144,11 +4144,11 @@ a:hover {
     font-weight: bold;
 }
 
-.active_akun {
+
+.border_active {
     border-bottom: 4px solid var(--extra);
     /* Tambahkan garis bawah */
     font-weight: bold;
-    padding: 10px;
     display: inline-block;
     /* Tambahkan agar border bawah hanya di bawah teks */
 }

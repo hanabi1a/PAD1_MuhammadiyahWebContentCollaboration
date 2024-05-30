@@ -146,7 +146,7 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('profile')->name('profile.')->group(function () {
             Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
-            Route::get('/akun_user', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_user');
+            Route::get('/akun_pengguna', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_pengguna');
             Route::get('/', [ProfileController::class, 'show_profile'])->name('show');
             Route::get('/edit', [ProfileController::class, 'edit_profile'])->name('edit_profile');
             Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');

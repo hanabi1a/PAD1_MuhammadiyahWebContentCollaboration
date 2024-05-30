@@ -33,7 +33,7 @@
                     </div>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li>
-                            <button class="dropdown-item" onclick="window.location.href = '{{ route('profile.show') }}';">
+                            <button class="dropdown-item" onclick="window.location.href = '{{ route('profile.akun_pengguna') }}';">
                                 <img src="\assets\img\icon\icon_profile_pengguna.svg"/>
                                 <span class="heading7">Profil Pengguna</span>
                             </button>

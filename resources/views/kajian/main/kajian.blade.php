@@ -150,7 +150,7 @@
             </div>
             <div class="col-md-6 d-flex justify-content-end align-items-center">
                 <a href="" class="d-flex align-items-center">
-                    <p class="m-0 me-2"><strong>Lihat Semua</strong></p>
+                <a href="{{ route('profile.akun_muhammadiyah') }}" class="m-0 me-2"><strong>Lihat Semua</strong></a>
                     <img src="assets\img\icon\btn_next.svg" style="width: 20px; height: 20px;" alt="Next Button">
                 </a>
             </div>

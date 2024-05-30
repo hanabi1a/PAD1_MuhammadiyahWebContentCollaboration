@@ -28,6 +28,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -74,5 +76,25 @@ document.addEventListener('DOMContentLoaded', function () {
         theme: 'snow'
     });
 </script>
+<script>
+    $(document).ready(function () {
+        $('#TabProfile a[data-toggle="tab"]').on('click', function (e) {
+            e.preventDefault();
+            
+            // Remove active class and active_akun class from all tabs
+            $('#TabProfile .nav-link').removeClass('active');
+            
+            // Add active class and active_akun class to the clicked tab
+            $(this).addClass('active');
+            
+            // Hide all tab panes
+            $('.tab-pane').removeClass('show active');
+            
+            // Show the tab pane associated with the clicked tab
+            $($(this).attr('href')).addClass('show active');
+        });
+    });
+</script>
+
 
 </html>

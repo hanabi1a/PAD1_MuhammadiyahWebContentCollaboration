@@ -73,14 +73,15 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function show_profile()
-    {
-        $userId = auth()->id(); 
-        $user = User::find($userId); 
-        $dataKajian = Kajian::where('id_user', $userId)->paginate(9); 
+    // public function show_profile()
+    // {
         
-        return view('profile.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
-    }
+    //     $userId = auth()->id(); 
+    //     $user = User::find($userId); 
+    //     $dataKajian = Kajian::where('id_user', $userId)->paginate(9); 
+        
+    //     return view('profile.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
+    // }
 
     public function edit_profile()
     {
