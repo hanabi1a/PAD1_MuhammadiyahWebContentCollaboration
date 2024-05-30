@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function(Blueprint $table){
+        Schema::create('users', function (Blueprint $table) {
             $table->id();  // Ini akan membuat kolom id yang otomatis bertambah
             $table->string('username')->unique();
             $table->string('password');

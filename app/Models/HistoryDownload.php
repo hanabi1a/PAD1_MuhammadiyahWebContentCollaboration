@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class HistoryDownload extends Model
@@ -14,7 +13,7 @@ class HistoryDownload extends Model
     protected $fillable = [
         'user_id',
         'kajian_id',
-        'downloaded_at'
+        'downloaded_at',
     ];
 
     // Definisikan relasi ke model User (jika diperlukan)
