@@ -4,9 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-
 
 class CheckAuth
 {
@@ -23,5 +21,4 @@ class CheckAuth
 
         // return redirect()->route('login')->withErrors(['You are not allowed to access'])->onlyInput('username');
     }
-
 }

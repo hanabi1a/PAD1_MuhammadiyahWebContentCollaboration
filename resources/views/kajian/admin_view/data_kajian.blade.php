@@ -41,7 +41,7 @@
                             <td>{{ $kajian->judul_kajian }}</td>
                             <td>{{ $kajian->tanggal_postingan }}</td>
                             <td class="text-center">
-                                <a href="{{ route('admin.kajian.show', $kajian->id) }}" class="text-info me-2"
+                                <a href="{{ route('admin.kajian.show', $kajian) }}" class="text-info me-2"
                                     title="View"><i class="fa fa-eye fa-lg"></i>
                                 </a>
                                 <form action="{{ route('admin.kajian.destroy', $kajian->id) }}" method="post">

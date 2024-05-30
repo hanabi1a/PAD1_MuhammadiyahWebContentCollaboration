@@ -1,28 +1,26 @@
 <?php
 
-    namespace App\Models;
+namespace App\Models;
 
-    use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
-    class historylogin extends Model
+class historylogin extends Model
+{
+    protected $table = 'history_login'; // Nama tabel yang sesuai
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'user_id',
+        'timestamp',
+        'user_agent',
+        // Kolom-kolom yang bisa diisi secara massal (mass assignable)
+    ];
+
+    // Relasi ke model User jika diperlukan
+
+    public function user()
     {
-        protected $table = 'history_login'; // Nama tabel yang sesuai
-
-        protected $primaryKey = 'id';
-
-        protected $fillable = [
-            'user_id', 
-            'timestamp', 
-            'user_agent',
-            // Kolom-kolom yang bisa diisi secara massal (mass assignable)
-        ];
-
-
-        // Relasi ke model User jika diperlukan
-
-        public function user()
-        {
-            return $this->belongsTo(User::class, 'user_id', 'id');
-        }
-        
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
+}

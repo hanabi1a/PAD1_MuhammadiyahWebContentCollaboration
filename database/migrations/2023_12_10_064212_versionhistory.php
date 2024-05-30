@@ -25,12 +25,12 @@ return new class extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            
+
             $table->integer('version_number')->nullable();
             $table->string('file_path')->nullable();
             $table->string('commit_message')->nullable();
             $table->timestamps();
-            
+
         });
     }
 

@@ -12,8 +12,8 @@ use Storage;
 
 class AdminController extends Controller
 {
-
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -25,34 +25,35 @@ class AdminController extends Controller
         $totalKajian = kajian::count();
         $totalUser = User::count();
 
-        return view('admin.dashboard.dashboard', 
-        compact('totalKajian', 'totalUser'));
+        return view('admin.dashboard.dashboard',
+            compact('totalKajian', 'totalUser'));
     }
 
     public function show_data_user()
     {
-        $userdata = User::all(); 
+        $userdata = User::all();
+
         return view('admin.data_user.data_user', compact('userdata'));
     }
 
     public function show_history_login()
     {
         $historis = historylogin::with('user')->get();
-    
+
         return view('admin.history_login.history_login', compact('historis'));
     }
 
     public function show_history_upload()
     {
         // Mengambil semua kajian dari semua pengguna
-        $uploadHistory  = Kajian::all();
+        $uploadHistory = Kajian::all();
 
         return view('admin.history_upload.history_upload', compact('uploadHistory'));
     }
 
     public function show_history_download()
     {
-        $historyDownloads  = HistoryDownload::with(['user', 'kajian'])->get();
+        $historyDownloads = HistoryDownload::with(['user', 'kajian'])->get();
 
         return view('admin.history_download.history_download', compact('historyDownloads'));
     }
@@ -60,12 +61,14 @@ class AdminController extends Controller
     public function show_detail_user(string $id)
     {
         $user = User::find($id);
+
         return view('admin.data_user.detail_akun_user', compact('user'));
     }
 
     public function edit_user(string $id)
     {
         $user = User::find($id);
+
         return view('manajemen_akun.form_edit_akun_user', compact('user'));
     }
 
@@ -73,28 +76,27 @@ class AdminController extends Controller
     {
         $user = User::find($id);
 
-        if (!$user) {
+        if (! $user) {
             \Log::info('User not found', ['id' => $id]);
+
             return redirect()->route('admin.show_data_user')->withError('User tidak ditemukan');
         }
 
-        
         $data = $request->only([
-            'nama', 
-            'tempat_lahir', 
+            'nama',
+            'tempat_lahir',
             'tanggal_lahir',
-            'alamat', 
-            'cabang', 
-            'daerah', 
-            'wilayah', 
+            'alamat',
+            'cabang',
+            'daerah',
+            'wilayah',
         ]);
-
 
         if ($request->hasFile('foto_kta')) {
             $path = $request->file('foto_kta')->store('/photos');
 
             if ($user->foto_kta) {
-                 // Hapus foto KTA lama jika perlu dan ada
+                // Hapus foto KTA lama jika perlu dan ada
                 Storage::delete($user->foto_kta);
             }
 
@@ -112,7 +114,7 @@ class AdminController extends Controller
     {
         $user = User::find($id);
 
-        if (!$user) {
+        if (! $user) {
             return redirect()->route('admin.show_data_user')->withError('User tidak ditemukan');
         }
 
