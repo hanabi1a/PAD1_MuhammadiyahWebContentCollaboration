@@ -31,16 +31,17 @@ class KajianController extends Controller
             } else {
                 return view('kajian.main.kajian', compact('kajian', 'kajianList'));
             }
-        } else {
+        } else {  
             return view('kajian.main.kajian', compact('kajian', 'kajianList'));
         }
     }
 
     public function show_kajian()
     {
-        $latestKajians = Kajian::orderBy('created_at', 'desc')->take(5)->get(); // Ambil 5 kajian terbaru
 
-        return view('kajian.main.kajian', compact('latestKajians'));
+        $kajians = Kajian::orderBy('created_at', 'desc')->paginate(6); 
+        return view('kajian.main.kajian', compact('kajians'));
+
     }
 
     public function create()
