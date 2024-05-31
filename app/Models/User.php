@@ -70,7 +70,7 @@ class User extends Authenticatable
 
     public function versions()
     {
-        return $this->hasMany(versionHistory::class, 'user_id');
+        return $this->hasMany(VersionHistory::class, 'user_id');
     }
 
     public function isAdmin(): bool

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HistoryDownload;
 use App\Models\Kajian;
-use App\Models\versionHistory;
+use App\Models\VersionHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;

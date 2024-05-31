@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kajian;
 use App\Models\User;
-use App\Models\versionHistory;
+use App\Models\VersionHistory;
 use Illuminate\Http\Request;
 
 class usercon extends Controller
@@ -273,7 +273,7 @@ class usercon extends Controller
         // dd($validatedData);
         // dd($filePath);
 
-        $versionHistory = new versionHistory();
+        $versionHistory = new VersionHistory();
         $versionHistory->kajian_id = $kajianid;
         $versionHistory->user_id = auth()->id();
         $versionHistory->file_path = $filePath;
