@@ -39,7 +39,7 @@ class Kajian extends Model
     // Di dalam model Kajian
     public function versionHistory()
     {
-        return $this->hasOne(VersionHistory::class);
+        return $this->hasOne(versionHistory::class);
     }
 
     /**
