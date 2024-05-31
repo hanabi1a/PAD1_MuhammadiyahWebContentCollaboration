@@ -166,7 +166,9 @@ class KajianController extends Controller
 
         $shareAbleUrl = route('kajian.show', $kajian->slug);
 
-        if (Auth::user()->isAdmin()) {
+        $client = Auth::user();
+
+        if ($client != null &&  $client->isAdmin()) {
           
             return view(
                 'kajian.admin_view.detail_kajian', 
@@ -175,7 +177,7 @@ class KajianController extends Controller
                 'shareAbleUrl' => $shareAbleUrl
                 ]);
 
-        } elseif (Auth::user()->isRegistered()) {
+        } elseif ($client != null &&  $client->isRegistered()) {
 
             return view(
                 'kajian.read.detail_kajian_asli_user', 

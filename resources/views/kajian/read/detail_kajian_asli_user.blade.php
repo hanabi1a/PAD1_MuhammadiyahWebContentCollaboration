@@ -119,7 +119,7 @@
                                                 :
                                             </div>
                                         </div>
-                                        <p>{{ $userkajian->deskripsi_kajian }}</p>
+                                        <p>{!! $userkajian->deskripsi_kajian !!}</p>
                                     </div>
 
                                     <div class="kategori">
