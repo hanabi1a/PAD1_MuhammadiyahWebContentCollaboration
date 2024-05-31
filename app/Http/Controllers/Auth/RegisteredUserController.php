@@ -104,7 +104,7 @@ class RegisteredUserController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto_profile')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().$userId.'.'.$extension;
-            $path = $request->file('foto_profile')->storeAs('/profile', $fileNameToStore);
+            $path = $request->file('foto_profile')->storeAs('/profile', $fileNameToStore, 'public');
 
             // Menghapus foto lama jika ada
             if ($user->foto_profile) {
@@ -119,7 +119,7 @@ class RegisteredUserController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto_kta')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().$userId.'.'.$extension;
-            $path = $request->file('foto_kta')->storeAs('/ktp', $fileNameToStore);
+            $path = $request->file('foto_kta')->storeAs('/ktp', $fileNameToStore, 'public');
 
             // Menghapus foto lama jika ada
             if ($user->foto_kta) {

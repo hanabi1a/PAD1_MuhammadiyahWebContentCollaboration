@@ -86,7 +86,7 @@ class KajianController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('val_foto_kajian')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $pathFoto = $request->file('val_foto_kajian')->storeAs('kajian', $fileNameToStore);
+            $pathFoto = $request->file('val_foto_kajian')->storeAs('kajian', $fileNameToStore, 'public');
         }
 
         $pathDokumen = null;
@@ -95,7 +95,7 @@ class KajianController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('val_dokumen')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore);
+            $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
         }
 
         Log::info('Creating new Kajian with data: ', [
@@ -237,7 +237,7 @@ class KajianController extends Controller
             $fileName = pathinfo($fotoKajian->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $fotoKajian->getClientOriginalExtension();
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $pathFoto = $fotoKajian->storeAs('photos', $fileNameToStore);
+            $pathFoto = $fotoKajian->storeAs('photos', $fileNameToStore, 'public');
 
             // Hapus foto lama jika ada
             if ($kajian->foto_kajian) {
