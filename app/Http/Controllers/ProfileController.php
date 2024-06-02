@@ -216,7 +216,7 @@ class ProfileController extends Controller
         // Menghapus foto lama jika ada
         if ($user->foto_profile) {
             Storage::delete($user->foto_profile);
-            $user->foto_profile = "/profile/default.jpg";
+            $user->foto_profile = null;
             $user->save();
         }
 
