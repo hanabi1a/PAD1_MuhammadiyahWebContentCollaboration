@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\historylogin;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,6 +29,14 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        // Add to history_login
+        $user = Auth::user();
+        historylogin::create([
+            'user_id' => $user->id,
+            'timestamp' => now(),
+            'user_agent' => $request->userAgent(),
+        ]);
 
         if (Auth::user()->isAdmin()) {
             return redirect()->intended(RouteServiceProvider::ADMIN);

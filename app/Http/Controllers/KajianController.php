@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HistoryDownload;
 use App\Models\Kajian;
-use App\Models\versionHistory;
+use App\Models\VersionHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -46,6 +46,7 @@ class KajianController extends Controller
 
     public function create()
     {
+        Log::info('Create method called');
         if (Auth::user()->isAdmin()) {
             return view('admin.form_create_admin');
         } else {
@@ -85,7 +86,7 @@ class KajianController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('val_foto_kajian')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $pathFoto = $request->file('val_foto_kajian')->storeAs('kajian', $fileNameToStore);
+            $pathFoto = $request->file('val_foto_kajian')->storeAs('kajian', $fileNameToStore, 'public');
         }
 
         $pathDokumen = null;
@@ -94,7 +95,7 @@ class KajianController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('val_dokumen')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore);
+            $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
         }
 
         Log::info('Creating new Kajian with data: ', [
@@ -165,7 +166,9 @@ class KajianController extends Controller
 
         $shareAbleUrl = route('kajian.show', $kajian->slug);
 
-        if (Auth::user()->isAdmin()) {
+        $client = Auth::user();
+
+        if ($client != null &&  $client->isAdmin()) {
           
             return view(
                 'kajian.admin_view.detail_kajian', 
@@ -174,7 +177,7 @@ class KajianController extends Controller
                 'shareAbleUrl' => $shareAbleUrl
                 ]);
 
-        } elseif (Auth::user()->isRegistered()) {
+        } elseif ($client != null &&  $client->isRegistered()) {
 
             return view(
                 'kajian.read.detail_kajian_asli_user', 
@@ -234,7 +237,7 @@ class KajianController extends Controller
             $fileName = pathinfo($fotoKajian->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $fotoKajian->getClientOriginalExtension();
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $pathFoto = $fotoKajian->storeAs('photos', $fileNameToStore);
+            $pathFoto = $fotoKajian->storeAs('photos', $fileNameToStore, 'public');
 
             // Hapus foto lama jika ada
             if ($kajian->foto_kajian) {
@@ -279,14 +282,20 @@ class KajianController extends Controller
 
         // Logika untuk menyimpan riwayat unduhan ke dalam tabel HistoryDownload
         $user = Auth::user(); // Mengambil pengguna yang terautentikasi
+ 
         $historyDownload = HistoryDownload::create([
-            'user_id' => $user->id,
+            'user_id' => is_null($user) ? 0 : $user->id,
             'kajian_id' => $kajian->id,
             'downloaded_at' => now(),
         ]);
 
         // Logika untuk mengarahkan pengguna ke file kajian yang akan diunduh
-        return response()->download(public_path('storage/'.$kajian->file_kajian)); // Work fine
+        $prefix = env('FILE_DOWNLOAD_PATH', null);
+        if ($prefix) {
+            return response()->download($prefix.$kajian->file_kajian);
+        } else {
+            return response()->download(public_path('storage/'.$kajian->file_kajian));
+        }
     }
 
     public function showNewVersionDetail($id)

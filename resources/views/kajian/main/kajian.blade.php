@@ -119,14 +119,6 @@
             </a>
         </div>
         
-          {{-- 
-              Note: MIssing in Conflict Resolve
-              <script>
-              document.getElementById('createKajianBtn').addEventListener('click', function() {
-                  window.location.href = '{{ route('kajian.create') }}';
-              });
-          </script> --}}
-        
     @else
         <div class="search pb-3">
             <input type="text" class="search-input" placeholder="Search..." name="">
@@ -160,11 +152,11 @@
                 @foreach ($kajian as $item)
                     <div class="col-md-4 mb-5">
                         <div class="card box-shadow">
-                            <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
+                            <img src="{{ asset('storage/'. $item->foto_kajian) }}" class="img-fluid img-kajian">
                             <div class="card-body">
                                 <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
                                 <p class="card-text">{{ $item->pemateri }}</p>
-                                <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
+                                <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
                                 <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                             </div>
                         </div>
@@ -201,11 +193,11 @@
                     @foreach ($kajian as $item)
                         <div class="col-md-4 mb-5">
                             <div class="card box-shadow">
-                                <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
+                                <img src="{{ asset('storage/' . $item->foto_kajian) }}" class="img-fluid img-kajian">
                                 <div class="card-body">
                                     <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
                                     <p class="card-text">{{ $item->pemateri }}</p>
-                                    <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
+                                    <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
                                     <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                                 </div>
                             </div>
@@ -229,11 +221,11 @@
                 @foreach ($kajian as $item)
                     <div class="col-md-4 mb-5">
                         <div class="card box-shadow">
-                            <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
+                            <img src="{{ asset('storage/'. $item->foto_kajian) }}" class="img-fluid img-kajian">
                             <div class="card-body">
                                 <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
                                 <p class="card-text">{{ $item->pemateri }}</p>
-                                <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
+                                <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
                                 <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                             </div>
                         </div>

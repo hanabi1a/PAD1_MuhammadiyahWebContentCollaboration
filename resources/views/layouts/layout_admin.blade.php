@@ -112,6 +112,17 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
+                        <a class="nav-link {{ request()->is('admin/kategori_kajian*') ? 'active' : '' }}"
+                            href="{{ route('admin.kategori_kajian.index')}}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tag"></i>
+                            </div>Kategori Kajian
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+
+
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
 

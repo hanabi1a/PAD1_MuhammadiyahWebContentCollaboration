@@ -33,7 +33,7 @@ class Kajian extends Model
 
     public function versions()
     {
-        return $this->hasMany(versionHistory::class, 'kajian_id');
+        return $this->hasMany(VersionHistory::class, 'kajian_id');
     }
 
     // Di dalam model Kajian

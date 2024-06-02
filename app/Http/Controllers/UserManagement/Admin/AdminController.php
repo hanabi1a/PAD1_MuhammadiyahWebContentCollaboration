@@ -5,10 +5,11 @@ namespace App\Http\Controllers\UserManagement\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\HistoryDownload;
 use App\Models\historylogin;
-use App\Models\kajian;
+use App\Models\Kajian;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Storage;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -22,7 +23,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $totalKajian = kajian::count();
+        $totalKajian = Kajian::count();
         $totalUser = User::count();
 
         return view('admin.dashboard.dashboard',
@@ -77,7 +78,7 @@ class AdminController extends Controller
         $user = User::find($id);
 
         if (! $user) {
-            \Log::info('User not found', ['id' => $id]);
+            Log::info('User not found', ['id' => $id]);
 
             return redirect()->route('admin.show_data_user')->withError('User tidak ditemukan');
         }
@@ -103,7 +104,7 @@ class AdminController extends Controller
             $data['foto_kta'] = $path;
         }
 
-        \Log::info('Updating user', ['id' => $id, 'data' => $data]);
+        Log::info('Updating user', ['id' => $id, 'data' => $data]);
 
         $user->update($data);
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kajian;
 use App\Models\User;
-use App\Models\versionHistory;
+use App\Models\VersionHistory;
 use Illuminate\Http\Request;
 
 class usercon extends Controller
@@ -104,7 +104,7 @@ class usercon extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto_profiles')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $fppath = $request->file('foto_profiles')->storeAs('/photos', $fileNameToStore);
+            $fppath = $request->file('foto_profiles')->storeAs('/photos', $fileNameToStore, 'public');
 
             $user->foto_profile = $fppath;
         }
@@ -151,7 +151,7 @@ class usercon extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto_kta')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $path = $request->file('foto_kta')->storeAs('/photos', $fileNameToStore);
+            $path = $request->file('foto_kta')->storeAs('/photos', $fileNameToStore, 'public');
 
             // Simpan informasi foto ke database
             $user->foto_kta = $path; // Simpan path foto di kolom foto_kta
@@ -184,7 +184,7 @@ class usercon extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('val_foto_kajian')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $pathFoto = $request->file('val_foto_kajian')->storeAs('storage/photos/', $fileNameToStore);
+            $pathFoto = $request->file('val_foto_kajian')->storeAs('storage/photos/', $fileNameToStore, 'public');
         }
 
         $pathDokumen = null;
@@ -193,7 +193,7 @@ class usercon extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('val_dokumen')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $pathDokumen = $request->file('val_dokumen')->storeAs('storage/documents/', $fileNameToStore);
+            $pathDokumen = $request->file('val_dokumen')->storeAs('storage/documents/', $fileNameToStore, 'public');
         }
 
         Kajian::create([
@@ -273,7 +273,7 @@ class usercon extends Controller
         // dd($validatedData);
         // dd($filePath);
 
-        $versionHistory = new versionHistory();
+        $versionHistory = new VersionHistory();
         $versionHistory->kajian_id = $kajianid;
         $versionHistory->user_id = auth()->id();
         $versionHistory->file_path = $filePath;
