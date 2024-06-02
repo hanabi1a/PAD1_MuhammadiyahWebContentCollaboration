@@ -290,7 +290,17 @@ class KajianController extends Controller
         ]);
 
         // Logika untuk mengarahkan pengguna ke file kajian yang akan diunduh
-        return response()->download(storage_path('storage/'.$kajian->file_kajian));
+        // return response()->download(storage_path('storage/'.$kajian->file_kajian)); // JIKA BERADA DI DOMAIN
+
+        // Jika Sub Domain
+        // Download the file to a temporary location
+        $fileContents = file_get_contents(asset('storage/'.$kajian->file_kajian));
+        $fileName = last(explode('/', $kajian->file_kajian));
+        $tempPath = tempnam(sys_get_temp_dir(), $fileName);
+        file_put_contents($tempPath, $fileContents);
+
+        // Serve the file to the user
+        return response()->download($tempPath, $fileName)->deleteFileAfterSend(true);
     }
 
     public function showNewVersionDetail($id)
