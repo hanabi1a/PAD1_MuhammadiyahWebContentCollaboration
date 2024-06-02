@@ -294,7 +294,11 @@ class KajianController extends Controller
 
         // Jika Sub Domain
         // Download the file to a temporary location
-        $fileContents = file_get_contents(asset('storage/'.$kajian->file_kajian));
+        $ch = curl_init(asset('storage/'.$kajian->file_kajian));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $fileContents = curl_exec($ch);
+        curl_close($ch);
+        
         $fileName = last(explode('/', $kajian->file_kajian));
         $tempPath = tempnam(sys_get_temp_dir(), $fileName);
         file_put_contents($tempPath, $fileContents);
