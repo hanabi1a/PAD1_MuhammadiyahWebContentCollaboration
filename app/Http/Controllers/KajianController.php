@@ -290,7 +290,7 @@ class KajianController extends Controller
         ]);
 
         // Logika untuk mengarahkan pengguna ke file kajian yang akan diunduh
-        return response()->download(public_path('storage/'.$kajian->file_kajian)); // Work fine
+        return response()->download(asset('storage/'.$kajian->file_kajian));
     }
 
     public function showNewVersionDetail($id)
