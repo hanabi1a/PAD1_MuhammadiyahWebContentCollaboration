@@ -221,7 +221,7 @@ class ProfileController extends Controller
         }
 
         // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect()->route('profile.edit_profile')->with('success', 'Foto profil berhasil dihapus!'); // Contoh respons berhasil
+        return redirect()->back()->with('success', 'Foto profil berhasil dihapus!'); // Contoh respons berhasil
     }
 
 }
