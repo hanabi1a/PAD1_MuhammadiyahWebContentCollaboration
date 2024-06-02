@@ -115,7 +115,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/edit/picture/update', [ProfileController::class, 'upload_profile_picture'])->name('update.picture');
         Route::put('/edit/picture/delete', [ProfileController::class, 'delete_profile_picture'])->name('delete.picture');
         Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
-        Route::get('/akun_user', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_user');
+        Route::get('/akun_pengguna', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_pengguna');
     });
 
     /**

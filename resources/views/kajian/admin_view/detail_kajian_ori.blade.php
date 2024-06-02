@@ -20,7 +20,7 @@
                                             </a>
                                             @else
                                             <a href=" profile_user">
-                                                <img src="/assets/img/account-profile.png" alt="Foto Profil Default">
+                                                <img src="\assets\img\foto_default.png" alt="Foto Profil Default">
                                             </a>
                                             @endif
                                         </div>

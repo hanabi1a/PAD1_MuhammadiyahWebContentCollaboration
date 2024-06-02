@@ -15,12 +15,12 @@
                 </div>
             </div>
             <div class="col-3 col-md-2">
-                <a href="{{ route('kajian.create') }}">
-                    <div class="btn btn-light unggah-kajian">
-                        <img src="assets/img/icon/unggah.svg"> Unggah Kajian
-                    </div>
-                </a>
-            </div>
+            <a href="{{ route('kajian.create') }}">
+                <div class="btn btn-light unggah-kajian">
+                    <img src="\assets\img\icon\unggah.svg">Unggah Kajian
+                </div>
+            </a>
+        </div>
         @else
             <div class="search pb-3">
                 <input type="text" class="search-input" placeholder="Search..." name="">
@@ -51,8 +51,8 @@
     <section id="kajian-home">
         <div class="container">
             <div class="row">
-                <div class="col-12 text-center mb-4">
-                    <p class="active_akun heading4">Unggahan Kajian Muhammadiyah</p>
+                <div class="col-12 text-center mb-4 border_active">
+                    <p class="heading4">Kajian Muhammadiyah</p>
                 </div>
             </div>
             <div class="row">

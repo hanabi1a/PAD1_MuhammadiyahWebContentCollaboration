@@ -17,7 +17,7 @@
             <div class="col-3 col-md-2">
                 <a href="{{ route('kajian.create') }}">
                     <div class="btn btn-light unggah-kajian">
-                        <img src="assets/img/icon/unggah.svg"> Unggah Kajian
+                        <img src="\assets\img\icon\unggah.svg">Unggah Kajian
                     </div>
                 </a>
             </div>
@@ -61,51 +61,58 @@
                 </ul>
             </div>
             <div class="tab-content" id="TabContent">
-                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                @if (isset($kajian))
-                    <div class="row">
-                        @foreach ($kajian as $item)
-                            <div class="col-md-4 mb-5">
-                                <div class="card box-shadow">
-                                    <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
-                                    <div class="card-body">
-                                        <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
-                                        <p class="card-text">{{ $item->pemateri }}</p>
-                                        <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
-                                        <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
+                <div class="tab-pane fade mt-4 show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                    @if (isset($kajian))
+                        <div class="row">
+                            @foreach ($kajian as $item)
+                                <div class="col-md-4 mb-5">
+                                    <div class="card box-shadow">
+                                        <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
+                                        <div class="card-body">
+                                            <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
+                                            <p class="card-text">{{ $item->pemateri }}</p>
+                                            <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
+                                            <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
+                            @endforeach
+                        </div>
+                        <!-- Pagination Links -->
+                        <div class="d-flex justify-content-center">
+                            {!! $kajian->links('pagination.custom') !!}
+                        </div>
+                        <!-- End Pagination -->
+                    @endif
                 </div>
-                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                @if (isset($kajian))
-                    <div class="row">
-                        @foreach ($kajian as $item)
-                            <div class="col-md-4 mb-5">
-                                <div class="card box-shadow">
-                                    <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
-                                    <div class="card-body">
-                                        <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
-                                        <p class="card-text">{{ $item->pemateri }}</p>
-                                        <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
-                                        <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
+                <div class="tab-pane fade mt-4" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                    @if (isset($kajian))
+                        <div class="row">
+                            @foreach ($kajian as $item)
+                                <div class="col-md-4 mb-5">
+                                    <div class="card box-shadow">
+                                        <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
+                                        <div class="card-body">
+                                            <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
+                                            <p class="card-text">{{ $item->pemateri }}</p>
+                                            <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
+                                            <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-                    </div>
-                     <!-- Pagination Links -->
-                     <div class="d-flex justify-content-center">
-                        {!! $kajian->links('pagination.custom') !!}
-                    </div>
-                    <!-- End Pagination -->
-                @endif
+                            @endforeach
+                        </div>
+                        <!-- Pagination Links -->
+                        <div class="d-flex justify-content-center">
+                            {!! $kajian->links('pagination.custom') !!}
+                        </div>
+                        <!-- End Pagination -->
+                    @endif
                 </div>
             </div>
         </div>
     </section>
 </div>
+
+
 @endsection

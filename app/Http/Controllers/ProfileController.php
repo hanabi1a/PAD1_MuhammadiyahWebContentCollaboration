@@ -77,12 +77,10 @@ class ProfileController extends Controller
 
     public function show_profile()
     {
-
         $userId = auth()->id(); 
         $user = User::find($userId); 
         $dataKajian = Kajian::where('id_user', $userId)->paginate(9); 
         
-
         return view('profile.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
     }
 
