@@ -347,6 +347,7 @@
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <script>
         $(document).ready(function() {
             $('#val-status').change(function() {
@@ -365,15 +366,83 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let dropArea = document.getElementById('drop-area-foto-kta');
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight(e) {
+                dropArea.classList.add('highlight');
+            }
+
+            function unhighlight(e) {
+                dropArea.classList.remove('highlight');
+            }
+
+            dropArea.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                let dt = e.dataTransfer;
+                let files = dt.files;
+
+                handleFiles(files);
+            }
+
+            function handleFiles(files) {
+                ([...files]).forEach(uploadFile);
+            }
+
+            function uploadFile(file) {
+                let url = 'YOUR_UPLOAD_URL';
+                let formData = new FormData();
+
+                formData.append('foto_kta', file);
+
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(() => { /* Done. Inform the user */ })
+                .catch(() => { /* Error. Inform the user */ });
+            }
+        });
     </script>
 
     @if (!$user->isAdmin())
         <script>
-            $('#fnk').hide();
-            $('#fc').hide();
-            $('#fd').hide();
-            $('#fw').hide();
-            $('#fkta').hide();
+            $(document).ready(function() {
+                $('#fnk').hide();
+                $('#fc').hide();
+                $('#fd').hide();
+                $('#fw').hide();
+                $('#fkta').hide();
+            });
+        </script>
+    @else
+        <script>
+            $(document).ready(function() {
+                $('#fnk').show();
+                $('#fc').show();
+                $('#fd').show();
+                $('#fw').show();
+                $('#fkta').show();
+            });
         </script>
     @endif
 
