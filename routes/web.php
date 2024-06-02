@@ -7,6 +7,7 @@ use App\Http\Controllers\KajianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserManagement\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\KategoriKajianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -213,6 +214,9 @@ Route::middleware('auth')->group(function () {
                 Route::get('/{kajian}/edit', [KajianController::class, 'edit'])->name('edit');
                 Route::put('/{kajian}', [KajianController::class, 'update'])->name('update');
             });
+
+            // Kategori Kajian
+            Route::resource('kategori_kajian', KategoriKajianController::class);
         });
     });
 

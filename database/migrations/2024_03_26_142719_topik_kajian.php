@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('topik_kajian', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
+            $table->string('nama')->unique()->nullable();
             $table->timestamps();
 
         });
