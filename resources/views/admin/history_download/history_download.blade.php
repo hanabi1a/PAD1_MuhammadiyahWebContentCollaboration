@@ -51,9 +51,9 @@
                         @foreach($historyDownloads as $index => $historyDownload)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $historyDownload->user()->name }}</td>
+                            <td>{{ $historyDownload->user->nama }}</td>
                             <td>{{ $historyDownload->user_id }}</td>
-                            <td>{{ $historyDownload->kajian()->judul }}</td>
+                            <td>{{ $historyDownload->kajian->judul_kajian }}</td>
                             <td>{{ $historyDownload->kajian_id }}</td>
                             <td>{{ $historyDownload->downloaded_at }}</td>
                         </tr>
