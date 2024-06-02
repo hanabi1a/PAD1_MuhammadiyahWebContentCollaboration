@@ -203,7 +203,7 @@ class ProfileController extends Controller
         $user->save();
 
         // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect()->route('profile.edit_profile')->with('success', 'Foto profil berhasil diperbarui!'); // Contoh respons berhasil
+        return redirect()->back()->with('success', 'Foto profil berhasil diperbarui!'); // Contoh respons berhasil
     }
 
     public function delete_profile_picture() {
