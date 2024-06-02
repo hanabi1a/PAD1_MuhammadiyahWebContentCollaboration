@@ -79,9 +79,8 @@ class ProfileController extends Controller
     {
         $userId = auth()->id(); 
         $user = User::find($userId); 
-        $dataKajian = Kajian::where('id_user', $userId)->paginate(9); 
         
-        return view('profile.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
+        return view('profile.profile_information', ['user' => $user]);
     }
 
     public function edit_profile()
@@ -148,7 +147,7 @@ class ProfileController extends Controller
                 Storage::delete($user->foto_kta);
             }
 
-            $user->foto_profile = $path_foto_kta;
+            $user->foto_kta = $path_foto_kta;
         } 
 
         // Menyimpan perubahan data pengguna
