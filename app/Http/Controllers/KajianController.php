@@ -282,8 +282,9 @@ class KajianController extends Controller
 
         // Logika untuk menyimpan riwayat unduhan ke dalam tabel HistoryDownload
         $user = Auth::user(); // Mengambil pengguna yang terautentikasi
+ 
         $historyDownload = HistoryDownload::create([
-            'user_id' => $user->id,
+            'user_id' => is_null($user) ? 0 : $user->id,
             'kajian_id' => $kajian->id,
             'downloaded_at' => now(),
         ]);
