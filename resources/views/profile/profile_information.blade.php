@@ -86,7 +86,7 @@
 
                         <div class="row">
                             <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                @if($user->foto_profile)
+                                @if($user->foto_profile != null)
                                     <img class="profile-picture" src="{{asset('storage/' . $user->foto_profile)}}" alt="profile_picture">
                                 @else
                                     <img class="profile-picture" src="/assets/img/foto_default.png" alt="profile_picture">
