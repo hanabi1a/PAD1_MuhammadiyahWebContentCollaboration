@@ -307,7 +307,7 @@
                                             <div class="col-lg-8 col-md-8 kta-wrap-container">
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="foto-kta-input"
+                                                        <input type="file" class="custom-file-input" id="foto-input"
                                                             name="foto_kta" accept=".png, .jpg, .jpeg">
                                                         <label class="custom-file-label-foto custom-file-label"
                                                             for="foto-kta-input">Choose
@@ -317,7 +317,7 @@
                                                 <p class="text-upload-foto">Pastikan untuk mengunggah foto KTA Anda dalam salah
                                                     satu format:
                                                     PNG, JPG, JPEG.</p>
-                                                <div class="drop-area" id="drop-area-foto-kta">
+                                                <div class="drop-area" id="drop-area-foto">
                                                     <i class="fa fa-cloud" style="color: #04454D;"></i><br>
                                                     Drag & Drop Gambar Disini
                                                 </div>
@@ -366,75 +366,9 @@
                 }
             });
         });
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            let dropArea = document.getElementById('drop-area-foto-kta');
-
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                dropArea.addEventListener(eventName, preventDefaults, false);
-            });
-
-            function preventDefaults (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-
-            ['dragenter', 'dragover'].forEach(eventName => {
-                dropArea.addEventListener(eventName, highlight, false);
-            });
-
-            ['dragleave', 'drop'].forEach(eventName => {
-                dropArea.addEventListener(eventName, unhighlight, false);
-            });
-
-            function highlight(e) {
-                dropArea.classList.add('highlight');
-            }
-
-            function unhighlight(e) {
-                dropArea.classList.remove('highlight');
-            }
-
-            dropArea.addEventListener('drop', handleDrop, false);
-
-            function handleDrop(e) {
-                let dt = e.dataTransfer;
-                let files = dt.files;
-
-                handleFiles(files);
-            }
-
-            function handleFiles(files) {
-                ([...files]).forEach(uploadFile);
-            }
-
-            function uploadFile(file) {
-                let url = 'YOUR_UPLOAD_URL';
-                let formData = new FormData();
-
-                formData.append('foto_kta', file);
-
-                fetch(url, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(() => { /* Done. Inform the user */ })
-                .catch(() => { /* Error. Inform the user */ });
-            }
-        });
     </script>
 
-    @if (!$user->isAdmin())
-        <script>
-            $(document).ready(function() {
-                $('#fnk').hide();
-                $('#fc').hide();
-                $('#fd').hide();
-                $('#fw').hide();
-                $('#fkta').hide();
-            });
-        </script>
-    @else
+    @if ($user->isAdmin() || $user->isRegistered())
         <script>
             $(document).ready(function() {
                 $('#fnk').show();
@@ -442,6 +376,16 @@
                 $('#fd').show();
                 $('#fw').show();
                 $('#fkta').show();
+            });
+        </script>
+    @else
+        <script>
+            $(document).ready(function() {
+                $('#fnk').hide();
+                $('#fc').hide();
+                $('#fd').hide();
+                $('#fw').hide();
+                $('#fkta').hide();
             });
         </script>
     @endif
