@@ -290,7 +290,12 @@ class KajianController extends Controller
         ]);
 
         // Logika untuk mengarahkan pengguna ke file kajian yang akan diunduh
-        return response()->download(public_path('storage/'.$kajian->file_kajian));
+        $prefix = env('FILE_DOWNLOAD_PATH', null);
+        if ($prefix) {
+            return response()->download($prefix.$kajian->file_kajian);
+        } else {
+            return response()->download(public_path('storage/'.$kajian->file_kajian));
+        }
     }
 
     public function showNewVersionDetail($id)
