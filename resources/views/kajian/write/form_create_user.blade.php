@@ -1,5 +1,17 @@
 @extends('layouts.layout')
 
+@section('style')
+    <style>
+        .note-editor.fullscreen {
+            background-color: white
+        }
+
+        .note-editable.fullscreen {
+            background-color: white
+        }
+    </style>
+@endsection
+
 @section('content')
 
 <main>
