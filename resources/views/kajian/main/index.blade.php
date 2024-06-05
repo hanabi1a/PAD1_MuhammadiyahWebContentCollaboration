@@ -35,7 +35,7 @@
         <div class="row mt-5">
             <div class="col-md-8 order-md-2 order2">
                 <h1 class="title fw-bold">Kiai Ahmad Dahlan</h1>
-                <p class="subtitle">
+                <p class="subtitle align="justify"">
                     MUHAMMADIYAH.OR.ID, JAKARTA – Ketika Persyarikatan Muhammadiyah berdiri pada 18 November 1912,
                     ada delapan nama yang tercatat sebagai pengurusnya. Antara lain KH. Ahmad Dahlan (Ketua Umum),
                     Abd Siratj (Sekretaris), dan anggotanya: Haji Akhmad, H. Abdurrahman, R. Haji Sarkawi, H.
