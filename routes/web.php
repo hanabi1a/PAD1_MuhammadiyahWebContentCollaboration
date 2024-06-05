@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('generate-pdf', [App\Http\Controllers\PDFController::class, 'generatePdf']);
+
 // Route::get('/', function () {
 //     return view('home.homepage');
 // });
