@@ -81,9 +81,9 @@
     <!-- Summernote Lite -->
     <script>
         $('#editor').summernote({
-        placeholder: 'Hello stand alone ui',
+        placeholder: 'Ketik disini',
         tabsize: 2,
-        height: 120,
+        height: 500,
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],

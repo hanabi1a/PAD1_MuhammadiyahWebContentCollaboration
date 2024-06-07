@@ -141,7 +141,7 @@ Route::middleware('auth')->group(function () {
     // });
     Route::middleware('registered')->group(function () {
         Route::resource('kajian', KajianController::class)
-            ->only(['create', 'show', 'store', 'destroy']);
+            ->only(['create', 'show', 'store', 'destroy', 'edit', 'update']);
         Route::prefix('kajian')->name('kajian.')->group(function () {
             // Route::get('/create', [KajianController::class, 'create'])->name('create');
             Route::get('/{kajian}', [KajianController::class, 'show'])->name('show');
@@ -149,6 +149,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/{kajian}/create/new', [KajianController::class, 'create_new_version'])->name('edit.new_version');
             // Route::post('/', [KajianController::class, 'store'])->name('store');
             // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
+            Route::get('/create/konten/{kajian}', [KajianController::class, 'showEditor'])->name('konten');
+            Route::put('/create/konten/{kajian}/save', [KajianController::class, 'update_konten'])->name('store.editor');
         });
 
     });

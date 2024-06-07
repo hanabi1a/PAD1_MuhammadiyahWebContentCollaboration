@@ -21,21 +21,38 @@
             <div class="card">
                 <div class="container">
                     <div class="card-form">
-                        <h1 class="heading3 title-form"><strong>Unggah Kajian</strong></h1>
+                        @if ($kajian != null)
+                            <h1 class="heading3 title-form"><strong>Edit Kajian</strong></h1>
+                        @else
+                            <h1 class="heading3 title-form"><strong>Unggah Kajian</strong></h1>
+                        @endif
+                
+                        
                         <div class="card-body">
                             <h1 class="heading4 mb-3"><strong>Data Kajian</strong></h1>
                             <div class="form-validation">
-                                <form class="form-valide" action="{{ route('kajian.store') }}" method="POST"
+                                @if ($kajian != null)
+                                    <form class="form-valide" action="{{ route('kajian.update', $kajian) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                    @else
+                                    <form class="form-valide" action="{{ route('kajian.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
+                                @endif
                                     <!-- Judul -->
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val_judul">Judul Kajian
                                         </label>
                                         <div class="col-lg-8">
                                             <input type="text"
-                                                class="form-control input-default @error('judul') is-invalid @enderror"" id="
-                                                val_judul" name="val_judul" placeholder="Judul Kajian">
+                                                class="form-control input-default @error('judul') is-invalid @enderror" 
+                                                id="val_judul" name="val_judul" placeholder="Judul Kajian"
+                                                @if ($kajian != null)
+                                                    value="{{ $kajian->judul_kajian }}"
+                                                @endif
+                                                >
                                             @if ($errors->has('val_judul'))
                                             <span class="text-danger">{{ $errors->first('val_judul') }}</span>
                                             @endif
@@ -48,7 +65,11 @@
                                         </label>
                                         <div class="col-lg-8">
                                             <input type="text" class="form-control input-default" id="val-pemateri"
-                                                name="val_pemateri" placeholder="Pemateri">
+                                                name="val_pemateri" placeholder="Pemateri"
+                                                @if ($kajian != null)
+                                                    value="{{ $kajian->pemateri }}"
+                                                @endif
+                                                >
                                         </div>
                                     </div>
 
@@ -58,7 +79,11 @@
                                         </label>
                                         <div class="col-lg-8">
                                             <input type="text" class="form-control input-default" id="val-tempat"
-                                                name="val_tempat" placeholder="Tempat">
+                                                name="val_tempat" placeholder="Tempat"
+                                                @if ($kajian != null)
+                                                    value="{{ $kajian->lokasi_kajian }}"
+                                                @endif
+                                                >
                                         </div>
                                     </div>
 
@@ -67,7 +92,11 @@
                                         <label class="col-lg-4 col-form-label" for="val_tanggal">Tanggal</label>
                                         <div class="col-lg-8">
                                             <input type="date" class="form-control input-default" id="val-tanggal"
-                                                name="val_tanggal">
+                                                name="val_tanggal"
+                                                @if ($kajian != null)
+                                                    value="{{ $kajian->tanggal_postingan }}"
+                                                @endif
+                                                >
                                         </div>
                                     </div>
                                     <!-- Deskripsi -->
@@ -75,13 +104,23 @@
                                         <label class="col-lg-4 col-form-label" for="val_deskripsi">Deskripsi</label>
                                         <div class="col-lg-8">
                                             <textarea class="form-control" id="editor" name="val_deskripsi" 
-                                                style="resize: vertical; min-height: 100px;"></textarea>
+                                                style="resize: vertical; min-height: 100px;">
+                                                @if ($kajian != null)
+                                                    {{ $kajian->deskripsi_kajian }}
+                                                @endif
+                                            </textarea>
                                         </div>
                                     </div>
                                     <!-- Photo Section -->
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val-foto">Foto Kajian</label>
                                         <div class="col-lg-8">
+                                            <!-- Display existing image -->
+                                            @if($kajian != null && $kajian->foto_kajian)
+                                                <div>
+                                                    <img src="{{ asset('storage/' . $kajian->foto_kajian) }}" alt="Foto Kajian" style="max-width: 100%;">
+                                                </div>
+                                            @endif
                                             <div class="input-group mb-3">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="foto-input"
@@ -101,33 +140,16 @@
                                         </div>
                                     </div>
 
-                                    <!-- Document Section -->
-                                    <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-dokumen">File Kajian</label>
-                                        <div class="col-lg-8">
-                                            <div class="input-group mb-3">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="dokumen-input"
-                                                        name="val_dokumen" accept=".pdf, .doc, .docx">
-                                                    <label class="custom-file-label-dokumen custom-file-label"
-                                                        for="dokumen-input">Choose file</label>
-                                                </div>
-                                            </div>
-                                            <p class="text-upload-foto">Pastikan untuk mengunggah file Anda dalam salah
-                                                satu format:
-                                                PDF, DOC, DOCX.</p>
-                                            <div class="drop-area" id="drop-area-dokumen">
-                                                <i class="fa fa-cloud" style="color: #04454D;"></i><br>
-                                                Tarik & Lepas File Disini
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <!-- Kategori -->
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val-kategori">Kategori</label>
                                         <div class="col-lg-8">
                                             <div class="input-group">
                                                 <select class="form-select">
+                                                    @if ($kajian != null && $kajian->kategori != null)
+                                                        <option value="{{ $kajian->kategori }}" selected disabled>{{ $kajian->kategori }}</option>
+                                                    @endif
                                                     <option value="" disabled>Pilih Kategori</option>
                                                     <option value="Fiqih">Fiqih</option>
                                                     <option value="Alquran">Alquran</option>
@@ -137,7 +159,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-5 mb-4">
-                                        <button type="submit" class="btn-green-submit btn-block">Unggah Kajian</button>
+                                        <button type="submit" class="btn-green-submit btn-block">Lanjut</button>
                                     </div>
                                 </form>
                             </div>
@@ -147,6 +169,11 @@
         </section>
     </div>
 </main>
+@if (session('alert'))
+    <script>
+        alert('{{ session('alert') }}');
+    </script>
+@endif
 <script>
     document.getElementById('shareid').addEventListener('click', function () {
         // Buat URL yang ingin Anda bagikan
