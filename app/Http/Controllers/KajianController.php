@@ -47,10 +47,11 @@ class KajianController extends Controller
     public function create()
     {
         Log::info('Create method called');
+        $kajian = null;
         if (Auth::user()->isAdmin()) {
             return view('admin.form_create_admin');
         } else {
-            return view('kajian.write.form_create_user');
+            return view('kajian.write.form_create_user', compact('kajian'));
         }
 
     }
@@ -75,7 +76,6 @@ class KajianController extends Controller
             'val_tanggal' => 'required',
             'val_deskripsi' => 'required',
             'val_foto_kajian' => 'image|nullable|max:26000',
-            'val_dokumen' => 'required|mimes:pdf,doc,docx|max:20480',
         ]);
 
         Log::info('Request data validated');
@@ -89,15 +89,6 @@ class KajianController extends Controller
             $pathFoto = $request->file('val_foto_kajian')->storeAs('kajian', $fileNameToStore, 'public');
         }
 
-        $pathDokumen = null;
-        if ($request->hasFile('val_dokumen')) {
-            $filenameWithExt = $request->file('val_dokumen')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('val_dokumen')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
-        }
-
         Log::info('Creating new Kajian with data: ', [
             'judul_kajian' => $request->val_judul,
             'slug' => Str::slug($request->val_judul), // Temp Slugs
@@ -106,7 +97,6 @@ class KajianController extends Controller
             'tanggal_postingan' => $request->val_tanggal,
             'deskripsi_kajian' => $request->val_deskripsi,
             'foto_kajian' => $pathFoto,
-            'file_kajian' => $pathDokumen,
             'id_user' => Auth::user()->id,
         ]);
 
@@ -118,7 +108,6 @@ class KajianController extends Controller
             'tanggal_postingan' => $request->val_tanggal,
             'deskripsi_kajian' => $request->val_deskripsi,
             'foto_kajian' => $pathFoto,
-            'file_kajian' => $pathDokumen,
             'id_user' => Auth::user()->id,
         ]);
 
@@ -133,9 +122,13 @@ class KajianController extends Controller
                 ->withSuccess('Terima kasih! Data berhasil disimpan');
         }
 
-        return redirect()->route('kajian.show', $kajian)
-            ->withSuccess('Terima kasih! Data berhasil disimpan');
+        return redirect()->route('kajian.konten', $kajian);
 
+    }
+
+    public function show_edit_konten(Kajian $kajian)
+    {
+        return view('kajian.write.form_edit_user', ['kajian' => $kajian]);
     }
 
     public function destroy($id)
@@ -207,71 +200,70 @@ class KajianController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit(Kajian $kajian)
     {
-
-        $kajian = Kajian::find($id); // Contoh pengambilan data dari model Kajian
-
-        return view('kajian.write.form_create_user_nv', ['kajian' => $kajian]);
-
+        return view('kajian.write.form_create_user', compact('kajian'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Kajian $kajian)
     {
-        $kajian = Kajian::find($id);
+        Log::info('Store method called');
+        Log::info('Request data: ', $request->all());
 
-        // Validasi form (harap diaktifkan kembali setelah debugging selesai)
         $request->validate([
             'val_judul' => 'required',
             'val_pemateri' => 'required',
             'val_tempat' => 'required',
             'val_tanggal' => 'required',
             'val_deskripsi' => 'required',
-            'val_ed_foto' => 'image|nullable',
-            'val_ed_dokumen' => 'required|mimes:pdf,doc,docx|max:2048',
+            'val_foto_kajian' => 'image|nullable|max:26000',
         ]);
 
-        if ($request->hasFile('val_ed_foto')) {
-            // Proses update foto jika ada perubahan
-            $fotoKajian = $request->file('val_ed_foto');
-            $fileName = pathinfo($fotoKajian->getClientOriginalName(), PATHINFO_FILENAME);
-            $extension = $fotoKajian->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $pathFoto = $fotoKajian->storeAs('photos', $fileNameToStore, 'public');
+        Log::info('Request data validated');
 
-            // Hapus foto lama jika ada
-            if ($kajian->foto_kajian) {
-                Storage::delete('storage/photos/'.basename($kajian->foto_kajian)); // TODO: Untested
-            }
+        $pathFoto = null;
+        if ($request->hasFile('val_foto_kajian')) {
+            $filenameWithExt = $request->file('val_foto_kajian')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('val_foto_kajian')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $pathFoto = $request->file('val_foto_kajian')->storeAs('kajian', $fileNameToStore, 'public');
 
             $kajian->foto_kajian = $pathFoto;
         }
 
-        if ($request->hasFile('val_ed_dokumen')) {
-            // Proses update dokumen jika ada perubahan
-            $dokumen = $request->file('val_ed_dokumen');
-            $filename = $dokumen->getClientOriginalName();
-            $fileNameToStore = time().'.'.$filename;
-            $pathDokumen = $dokumen->storeAs('documents', $fileNameToStore, 'public');
+        Log::info('Creating new Kajian with data: ', [
+            'judul_kajian' => $request->val_judul,
+            'slug' => Str::slug($request->val_judul), // Temp Slugs
+            'pemateri' => $request->val_pemateri,
+            'lokasi_kajian' => $request->val_tempat,
+            'tanggal_postingan' => $request->val_tanggal,
+            'deskripsi_kajian' => $request->val_deskripsi,
+            'foto_kajian' => $pathFoto,
+            'id_user' => Auth::user()->id,
+        ]);
 
-            // Hapus dokumen lama jika ada
-            if ($kajian->file_kajian) {
-                Storage::delete('storage/documents/'.basename($kajian->file_kajian)); // TODO: Untested
-            }
-
-            $kajian->file_kajian = $pathDokumen;
-        }
-
-        // Update informasi kajian
+        
         $kajian->judul_kajian = $request->val_judul;
+        $kajian->slug = Str::slug($request->val_judul); // Temp Slugs
         $kajian->pemateri = $request->val_pemateri;
         $kajian->lokasi_kajian = $request->val_tempat;
         $kajian->tanggal_postingan = $request->val_tanggal;
         $kajian->deskripsi_kajian = $request->val_deskripsi;
+        
 
+        $kajian->slug = Str::slug($kajian->judul_kajian).'-'.$kajian->id;
         $kajian->save();
 
-        return redirect()->route('data_kajian')->withSuccess('Data berhasil diperbarui');
+        Log::info('Kajian created');
+
+        Log::info('Redirecting to: '.(Auth::user()->role == 'admin' ? 'data_kajian' : 'kajian.show'));
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('data_kajian') // TODO: Untested
+                ->withSuccess('Terima kasih! Data berhasil disimpan');
+        }
+
+        return redirect()->route('kajian.konten', $kajian);
     }
 
     // Contoh bagian controller untuk menangani unduhan
@@ -304,5 +296,42 @@ class KajianController extends Controller
 
         // Lakukan logika untuk menampilkan detail versi baru, misalnya:
         return view('user.detail_kajian_versi_baru_user', ['kajianNV' => $kajianNV]);
+    }
+
+    public function showEditor(Kajian $kajian)
+    {
+        return view('kajian.write.form_editor', compact('kajian'));
+    }
+
+    public function update_konten(Request $request, Kajian $kajian) 
+    {
+        $request->validate([
+            'val_dokumen' => 'mimes:pdf,doc,docx|max:20480',
+        ]);
+
+        Log::info('Request data: ', $request->all());
+        Log::info('Kajian Data: ', $kajian->toArray());
+    
+        $slug = $kajian->slug;
+    
+        
+        $pathDokumen = null;
+        if ($request->hasFile('val_dokumen')) {
+            $extension = $request->file('val_dokumen')->getClientOriginalExtension();
+            $fileNameToStore = $slug.'_'.time().'.'.$extension;
+            $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
+        } elseif($request->has('val_konten')) {
+            // save the val_konten to txt
+            $konten = $request->val_konten;
+            $fileNameToStore = $slug.'_'.time().'.blade.php';
+            $pathDokumen = 'documents/'.$fileNameToStore;
+            Storage::disk('public')->put($pathDokumen, $konten);
+        }
+
+        $kajian->file_kajian = $pathDokumen;
+        $kajian->save();
+
+        return redirect()->route('kajian.show', $kajian)
+            ->withSuccess('Terima kasih! Data berhasil disimpan');
     }
 }
