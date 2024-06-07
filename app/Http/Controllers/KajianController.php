@@ -47,10 +47,11 @@ class KajianController extends Controller
     public function create()
     {
         Log::info('Create method called');
+        $kajian = null;
         if (Auth::user()->isAdmin()) {
             return view('admin.form_create_admin');
         } else {
-            return view('kajian.write.form_create_user');
+            return view('kajian.write.form_create_user', compact('kajian'));
         }
 
     }
