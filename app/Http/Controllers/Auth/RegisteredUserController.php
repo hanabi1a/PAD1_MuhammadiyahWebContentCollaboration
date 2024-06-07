@@ -137,17 +137,6 @@ class RegisteredUserController extends Controller
         // Menyimpan perubahan data pengguna
         $user->save();
 
-        // Menghapus sessino ID pengguna yang sedang mendaftar
-        // $request->session()->forget('tuid');
-
-        // Auth::login($user);
-
-        // if ($user->isAdmin()) {
-        //     return redirect(RouteServiceProvider::ADMIN);
-        // } else {
-        //     return redirect(RouteServiceProvider::HOME);
-        // }
-
         return redirect()->route('register.show', ['page' => 3]);
     }
 
