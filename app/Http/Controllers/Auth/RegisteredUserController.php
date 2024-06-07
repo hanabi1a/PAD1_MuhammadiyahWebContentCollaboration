@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\PersonalizeTopikKajian;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Defuse\Crypto\Key;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
+use App\Models\TopikKajian;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +23,8 @@ class RegisteredUserController extends Controller
      */
     public function create($page = 0): View
     {
-        return view('auth.register', compact('page'));
+        $topik_kajian = TopikKajian::all();
+        return view('auth.register', compact('page', 'topik_kajian'));
     }
 
     /**
@@ -131,6 +135,44 @@ class RegisteredUserController extends Controller
 
 
         // Menyimpan perubahan data pengguna
+        $user->save();
+
+        // Menghapus sessino ID pengguna yang sedang mendaftar
+        // $request->session()->forget('tuid');
+
+        // Auth::login($user);
+
+        // if ($user->isAdmin()) {
+        //     return redirect(RouteServiceProvider::ADMIN);
+        // } else {
+        //     return redirect(RouteServiceProvider::HOME);
+        // }
+
+        return redirect()->route('register.show', ['page' => 3]);
+    }
+
+    public function store_additional_3(Request $request) {
+        // Mengambil data pengguna yang akan diperbarui
+        $userId = session('tuid');
+        $user = User::find($userId);
+
+        $categories = $request->categories;
+
+        // Remove duplicates from categories
+        $categories = array_unique($categories);
+
+        // if categories is not empty
+        if ($categories) {
+            foreach ($categories as $category) {
+                PersonalizeTopikKajian::create([
+                    'user_id' => $userId,
+                    'topik_kajian_id' => $category
+                ]);
+            }
+        }
+
+
+
         $user->save();
 
         // Menghapus sessino ID pengguna yang sedang mendaftar
