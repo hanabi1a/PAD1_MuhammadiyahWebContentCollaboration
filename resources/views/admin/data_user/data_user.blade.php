@@ -32,27 +32,35 @@
                     </tfoot>
                     <tbody>
                         @foreach($userdata as $user)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>
-                                <img src="{{ asset('storage/' . $user->foto_profile) }}" alt="Profile Image" width="150">
-                            </td>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->username }}</td>
-                            <td class="text-center">
-                                <form action="{{ route('admin.delete_user', $user->id) }}" method="post">
-                                    <a href="{{ route('admin.show_detail_user', $user->id) }}" class="text-info me-2"
-                                        title="View"><i class="fa fa-eye fa-lg"></i>
-                                    </a>
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-lin text-info" title="Delete"
-                                        onclick="return confirm('Apakah anda yakin?')">
-                                        <i class="fa fa-trash fa-lg"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    <img src="{{ asset('storage/' . $user->foto_profile) }}" alt="Profile Image" width="150">
+                                </td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->username }}</td>
+                                <td class="text-center">
+                                    <div class="row">
+                                        <a href="{{ route('admin.show_detail_user', $user->id) }}" 
+                                            class="col text-info me-2 d-flex justify-content-center align-items-center" title="View">
+                                            <i class="fa fa-eye fa-lg"></i>
+                                        </a>
+                                        @if(Auth::user() != null && Auth::user()->id != $user->id)
+                                            <form class="col" action="{{ route('admin.delete_user', $user->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-lin text-info" title="Delete"
+                                                    onclick="return confirm('Apakah anda yakin?')">
+                                                    <i class="fa fa-trash fa-lg text-danger"></i>
+                                                </button>
+                                            </form>
+                                        @else
+                                            <div class="col"></div>
+                                        @endif
+                                    </div>
+                                    
+                                </td>
+                            </tr>
                         @endforeach
 
                     </tbody>
