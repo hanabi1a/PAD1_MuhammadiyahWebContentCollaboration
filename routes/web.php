@@ -201,6 +201,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/users/{id}/edit', [AdminController::class, 'edit_user'])->name('edit_user');
             Route::put('/users/{id}', [AdminController::class, 'update_user'])->name('update_user');
             Route::delete('/users/{id}', [AdminController::class, 'delete_user'])->name('delete_user');
+            Route::put('users/{id}/verify', [AdminController::class, 'verify_user'])->name('verify_user');
 
             Route::get('/history_login', [AdminController::class, 'show_history_login'])->name('show_history_login');
             Route::get('/history_upload', [AdminController::class, 'show_history_upload'])->name('show_history_upload');

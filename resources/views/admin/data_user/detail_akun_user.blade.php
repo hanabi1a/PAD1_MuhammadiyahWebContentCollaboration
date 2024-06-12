@@ -48,9 +48,17 @@
 
                         <div class="col-md-12 card-body">
                             <div class="custom-card" style="width: 100%;">
-                                <div class="card-header">
-                                    <p class="heading4"><strong>Keanggotaan Muhammadiyah</strong></p>
-                                </div>
+                                
+                                @if($user->role == 'pending_registered')
+                                    <div class="card-header">
+                                        <p class="heading4"><strong>Berkas Pengajuan Keanggotaan Muhammadiyah</strong></p>
+                                    </div>
+                                @else 
+                                    <div class="card-header">
+                                        <p class="heading4"><strong>Keanggotaan Muhammadiyah</strong></p>
+                                    </div>
+                                @endif
+
                                 <hr>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">
@@ -60,12 +68,14 @@
                                                 <h3 class="heading6">Cabang</h3>
                                                 <h3 class="heading6">Daerah</h3>
                                                 <h3 class="heading6">Wilayah</h3>
+                                                <h3 class="heading6">Nomor Keanggotaan</h3>
                                             </div>
                                             <div class="col col-md-8">
                                                 <h3 class="heading6">: {{$user->alamat}}</h3>
                                                 <h3 class="heading6">: {{$user->cabang}}</h3>
                                                 <h3 class="heading6">: {{$user->daerah}}</h3>
                                                 <h3 class="heading6">: {{$user->wilayah}}</h3>
+                                                <h3 class="heading6">: {{$user->nomor_keanggotaan}}</h3>
                                             </div>
                                         </div>
                                     </li>
@@ -81,15 +91,38 @@
                                                     src="{{ asset('storage/' . $user->foto_kta) }}">
                                             </div>
                                             <div class="col col-md-8">
+                                            @if($user->role == 'registered')
                                                 <button class="btn-green mb-3">Anggota</button><br>
+                                            @elseif($user->role == 'admin')                                                  
+                                                <button class="btn-green-2">Admin</button>
+                                            @else
                                                 <button class="btn-green-2">Non-Anggota</button>
+                                            @endif
                                             </div>
+                                            
                                         </div>
                                     </li>
                                 </ul>
 
                             </div>
                         </div>
+                        @if($user->role == 'pending_registered')
+                            <div class="col">
+                                <form action="{{ route('admin.verify_user', $user->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="action" value="accept">
+                                    <button type="submit" class="btn btn-success w-100">Terima Verifikasi Pengajuan Keanggotaan</button>
+                                </form>
+                                
+                                <form action="{{ route('admin.verify_user', $user->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="action" value="reject">
+                                    <button type="submit" class="btn btn-danger w-100 mt-4">Tolak Verifikasi</button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
