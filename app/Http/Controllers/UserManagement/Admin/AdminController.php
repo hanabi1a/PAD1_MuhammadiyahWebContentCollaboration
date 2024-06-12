@@ -124,6 +124,26 @@ class AdminController extends Controller
         return redirect()->route('admin.show_data_user')->withSuccess('User berhasil dihapus');
     }
 
+    public function verify_user(Request $request, string $id)
+    {
+        $user = User::find($id);
+
+        if (! $user) {
+            return redirect()->route('admin.show_data_user')->withError('User tidak ditemukan');
+        }
+
+        $requested_role = $request->input('action');
+        if ($requested_role == 'accept') {
+            $user->role = 'registered';
+        } else {
+            $user->role = 'user';
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.show_data_user')->withSuccess('User berhasil diverifikasi');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
