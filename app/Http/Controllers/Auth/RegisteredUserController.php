@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\PersonalizeTopikKajian;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Defuse\Crypto\Key;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
+use App\Models\TopikKajian;
 
 class RegisteredUserController extends Controller
 {
@@ -21,7 +23,8 @@ class RegisteredUserController extends Controller
      */
     public function create($page = 0): View
     {
-        return view('auth.register', compact('page'));
+        $topik_kajian = TopikKajian::all();
+        return view('auth.register', compact('page', 'topik_kajian'));
     }
 
     /**
@@ -33,8 +36,8 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -47,15 +50,11 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // Auth::login($user);
-
         session(['tuid' => $user->id]);
 
-        // return redirect(RouteServiceProvider::HOME);
         return redirect()->route('register.show', ['page' => 1]);
     }
 
-    
     public function store_additional_1(Request $request)
     {
         $validatedData = $request->validate([
@@ -63,7 +62,7 @@ class RegisteredUserController extends Controller
             'tanggal_lahir' => 'required|date|before:today',
             'pekerjaan' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'jenis_kelamin' => 'required|in:L,P', // TODO: Check this later
+            'jenis_kelamin' => 'required|in:L,P',
         ]);
 
         // Mengambil data pengguna yang akan diperbarui
@@ -87,10 +86,10 @@ class RegisteredUserController extends Controller
     public function store_additional_2(Request $request)
     {
         $validatedData = $request->validate([
-            'nomor_keanggotaan' => 'required|string|max:255',
-            'cabang' => 'required|string|max:255',
-            'daerah' => 'required|string|max:255',
-            'wilayah' => 'required|string|max:255',
+            'nomor_keanggotaan' => 'string|max:255',
+            'cabang' => 'string|max:255',
+            'daerah' => 'string|max:255',
+            'wilayah' => 'string|max:255',
         ]);
 
         // Mengambil data pengguna yang akan diperbarui
@@ -103,7 +102,66 @@ class RegisteredUserController extends Controller
         $user->daerah = $validatedData['daerah'];
         $user->wilayah = $validatedData['wilayah'];
 
+
+        if ($request->hasFile('foto_profile')) {
+            $filenameWithExt = $request->file('foto_profile')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto_profile')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().$userId.'.'.$extension;
+            $path = $request->file('foto_profile')->storeAs('/profile', $fileNameToStore, 'public');
+
+            // Menghapus foto lama jika ada
+            if ($user->foto_profile) {
+                Storage::delete($user->foto_profile);
+            }
+
+            $user->foto_profile = $path;
+        }
+
+        if ($request->hasFile('foto_kta')) {
+            $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto_kta')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().$userId.'.'.$extension;
+            $path = $request->file('foto_kta')->storeAs('/ktp', $fileNameToStore, 'public');
+
+            // Menghapus foto lama jika ada
+            if ($user->foto_kta) {
+                Storage::delete($user->foto_kta);
+            }
+
+            $user->foto_kta = $path;
+        }
+
+
         // Menyimpan perubahan data pengguna
+        $user->save();
+
+        return redirect()->route('register.show', ['page' => 3]);
+    }
+
+    public function store_additional_3(Request $request) {
+        // Mengambil data pengguna yang akan diperbarui
+        $userId = session('tuid');
+        $user = User::find($userId);
+
+        $categories = $request->categories;
+
+        // Remove duplicates from categories
+        $categories = array_unique($categories);
+
+        // if categories is not empty
+        if ($categories) {
+            foreach ($categories as $category) {
+                PersonalizeTopikKajian::create([
+                    'user_id' => $userId,
+                    'topik_kajian_id' => $category
+                ]);
+            }
+        }
+
+
+
         $user->save();
 
         // Menghapus sessino ID pengguna yang sedang mendaftar
@@ -117,6 +175,4 @@ class RegisteredUserController extends Controller
             return redirect(RouteServiceProvider::HOME);
         }
     }
-
-
 }

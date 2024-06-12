@@ -3,19 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Kajian;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use App\Models\User;
-use App\Models\Kajian;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
+
+    public function show_kajian_in_profile_muhammadiyah()
+    {
+        $kajian = Kajian::paginate(9);
+        return view('profile.profile_akun_muhammadiyah', compact('kajian'));
+    }
+
+    public function show_kajian_in_profile_user()
+    {
+        $kajian = Kajian::paginate(9);
+        return view('profile.profile_akun_pengguna', compact('kajian'));
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -62,48 +77,78 @@ class ProfileController extends Controller
 
     public function show_profile()
     {
-        $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
-        $user = User::find($userId); // Mengambil data pengguna
-        $dataKajian = Kajian::where('id_user', $userId)->get(); // Mengambil data Kajian berdasarkan user_id
+        $userId = auth()->id(); 
+        $user = User::find($userId); 
         
-        return view('profile.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
+        return view('profile.profile_information', ['user' => $user]);
     }
 
     public function edit_profile()
     {
-        $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
-        $user = User::find($userId); // Mengambil data pengguna
+
+        $userId = auth()->id(); 
+        $user = User::find($userId); 
+
         return view('profile.form_edit_profile_user', ['user' => $user]);
     }
 
-    
-
-    public function store_edit_profile(Request $request){
+    public function store_edit_profile(Request $request)
+    {
         $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
             'username' => 'required|string|max:255',
-            'foto_kta' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Contoh validasi untuk gambar
+            'nama' => 'required|string|max:255',
+            'tempat_lahir' => 'string|max:255',
+            'tanggal_lahir' => 'date',
+            'pekerjaan' => 'string|max:255',
+            'alamat' => 'string|max:255',
+            'jenis_kelamin' => 'required|in:L,P',
+            'status' => 'string|max:255',
+            'nomor_keanggotaan' => 'string|max:255',
+            'cabang' => 'string|max:255',
+            'daerah' => 'string|max:255',
+            'wilayah' => 'string|max:255',
+            'foto_kta' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         // Mengambil ID pengguna yang sedang login
         $userId = auth()->id();
-        
+
         // Mengambil data pengguna yang akan diperbarui
         $user = User::find($userId);
-        
+
         // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
         $user->username = $validatedData['username'];
         $user->nama = $validatedData['nama'];
-        $path = null;
+        $user->tempat_lahir = $validatedData['tempat_lahir'];
+        $user->tanggal_lahir = $validatedData['tanggal_lahir'];
+        $user->pekerjaan = $validatedData['pekerjaan'];
+        $user->alamat = $validatedData['alamat'];
+        $user->jenis_kelamin = $validatedData['jenis_kelamin'];
+        $user->role = $validatedData['status'];
+        $user->nomor_keanggotaan = $validatedData['nomor_keanggotaan'];
+        $user->cabang = $validatedData['cabang'];
+        $user->daerah = $validatedData['daerah'];
+        $user->wilayah = $validatedData['wilayah'];
+        
+
+
+        $path_foto_kta = null;
 
         // Mengelola unggahan foto jika ada
         if ($request->hasFile('foto_kta')) {
             $filenameWithExt = $request->file('foto_kta')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('foto_kta')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . $userId. '.' . $extension;
-            $path = $request->file('foto_kta')->storeAs('/kta', $fileNameToStore);
-        }
+            $fileNameToStore = $filename.'_'.time().$userId.'.'.$extension;
+            $path_foto_kta = $request->file('foto_kta')->storeAs('/kta', $fileNameToStore, 'public');
+
+            // Menghapus foto lama jika ada
+            if ($user->foto_kta) {
+                Storage::delete($user->foto_kta);
+            }
+
+            $user->foto_kta = $path_foto_kta;
+        } 
 
         // Menyimpan perubahan data pengguna
         $user->save();
@@ -120,5 +165,63 @@ class ProfileController extends Controller
     //     // return view('user.detail_akun_user_public');
     // }
 
-    
+    public function show_profile_information() {
+        $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
+        $user = User::find($userId); // Mengambil data pengguna
+        return view('profile.profile_information', ['user' => $user]);
+    }
+
+    public function upload_profile_picture(Request $request)
+    {
+        $validatedData = $request->validate([
+            'foto_profile' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        // Mengambil ID pengguna yang sedang login
+        $userId = auth()->id();
+
+        // Mengambil data pengguna yang akan diperbarui
+        $user = User::find($userId);
+
+        // Mengelola unggahan foto jika ada
+        if ($request->hasFile('foto_profile')) {
+            $filenameWithExt = $request->file('foto_profile')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto_profile')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().$userId.'.'.$extension;
+            $path = $request->file('foto_profile')->storeAs('/profile', $fileNameToStore, 'public');
+
+            // Menghapus foto lama jika ada
+            if ($user->foto_profile) {
+                Storage::delete($user->foto_profile);
+            }
+
+            $user->foto_profile = $path;
+        } 
+
+        // Menyimpan perubahan data pengguna
+        $user->save();
+
+        // Redirect atau tampilkan respons sesuai kebutuhan
+        return redirect()->back()->with('success', 'Foto profil berhasil diperbarui!'); // Contoh respons berhasil
+    }
+
+    public function delete_profile_picture() {
+        // Mengambil ID pengguna yang sedang login
+        $userId = auth()->id();
+
+        // Mengambil data pengguna yang akan diperbarui
+        $user = User::find($userId);
+
+        // Menghapus foto lama jika ada
+        if ($user->foto_profile) {
+            Storage::delete($user->foto_profile);
+            $user->foto_profile = null;
+            $user->save();
+        }
+
+        // Redirect atau tampilkan respons sesuai kebutuhan
+        return redirect()->back()->with('success', 'Foto profil berhasil dihapus!'); // Contoh respons berhasil
+    }
+
 }

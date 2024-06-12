@@ -132,45 +132,21 @@
                                 <h3 class="heading1"><strong>Kategori kajian apa yang Anda sukai?</strong></h3>
                                 <p class="ml-3 caption-title-signup">Pilih 5 Kategori</p>
                                 @csrf
-                                <div class="form-row justify-content-center align-items-center">
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Al Qur'an</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Hadist</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Aqidah</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Fiqih</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Sejarah</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Pendidikan</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>llmu
-                                        Sosial</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Pendidikan</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Teknologi</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Humaniora</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>llmu
-                                        Sosial</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Pendidikan</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Teknologi</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Humaniora</button>
-                                    <button type="button" class="form-group col-md-5 btn btn-kategori mr-5 ml-1"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Teknologi</button>
-                                    <button type="button"
-                                        class="align-item-centerform-group col-md-5 btn btn-kategori"><i
-                                            class="fas fa-plus-square fa-lg mr-2"></i>Humaniora</button>
+                                <div class="form-row justify-content-center align-items-center d-flex flex-wrap">
 
-                                    <button type="button"
-                                        class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
+                                    @foreach ($topik_kajian as $category)
+                                        <div class="form-check col-md-5">
+                                            <input class="btn-check form-check-input visually-hidden" type="checkbox" value="{{ $category->id }}" id="checkbox-{{ $category->id }}" name="categories[]">
+                                            <label class="form-group btn btn-kategori w-100 d-flex align-items-center justify-content-center" for="checkbox-{{ $category->id }}">
+                                                {{ $category->nama }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+                                <div class="form-row justify-content-center">
+                                    <button type="button" class="btn-before col-5 btn mt-5 mr-6 prev-slide">Sebelumnya</button>
                                     <input type="submit" class="btn-after col-5 btn mt-5" value="Register">
                                 </div>
                             </form>
@@ -245,7 +221,7 @@
 
                         @endswitch
 
-                            <p class="text-center">Telah memiliki akun? <a href="register">Masuk di sini</a></p>
+                            <p class="text-center">Telah memiliki akun? <a href="login">Masuk di sini</a></p>
                         </div>
 
                     </div>
@@ -258,7 +234,5 @@
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
-    </script>
-    </script>
 </body>
 </html>

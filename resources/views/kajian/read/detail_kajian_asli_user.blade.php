@@ -24,35 +24,35 @@
                     <div class="row">
                         <div class="content col-md-6 order-md-1 me-5">
                             <div class="row mb-3 ">
-                                <div class="col-md-11">
-                                    <div class="account-detail row align-items-center">
-                                        <div
-                                            @if($userkajian->user)
-                                            <a href="profile_user">
+                            <div class="col-md-11">
+                                <div class="account-detail row align-items-center">
+                                    <div class="col-md-3 d-flex justify-content-center">
+                                        @if($userkajian->user)
+                                            <a href="{{ route('profile.akun_pengguna') }}">
                                                 <img class="pp-account" 
-                                                src="{{ asset('storage/' . $userkajian->user->foto_profile) }}" 
-                                                alt="Foto tidak ada" style="border-radius: 50%; width: 50px;">
+                                                    src="{{ asset('storage/' . $userkajian->user->foto_profile) }}" 
+                                                    alt="Foto tidak ada" style="border-radius: 50%; width: 50px;">
                                             </a>
-                                            @else
-                                            <a href=" profile_user">
-                                                <img src="/assets/img/account-profile.png" alt="Foto Profil Default">
-                                            </a>
-                                            @endif
-                                        </div>
-                                        @if ($userkajian->user)
-                                            <div class="name-account col-md-9 align-items-center" style="display: flex;">
-                                                <a style="text-decoration:none; color: #000;" href="profile_user_2">
-                                                    <div class="nama">{{ $userkajian->user->username }}</div>
-                                                </a>
-                                            </div>
                                         @else
-                                            <div class="name-account col-md-9 mb-5 align-self-center mt-4">
-                                                <div class="nama">User tidak ditemukan</div>
-                                            </div>
+                                            <a href="{{ route('profile.akun_pengguna') }}">
+                                                <img src="\assets\img\foto_default.png" alt="Foto Profil Default" style="border-radius: 50%; width: 50px;">
+                                            </a>
                                         @endif
                                     </div>
-                                    <img src="{{ asset('storage/' . $userkajian->foto_kajian) }}" alt="" class="img-fluid">
+                                    @if ($userkajian->user)
+                                        <div class="name-account col-md-9 align-items-center" style="display: flex;">
+                                            <a style="text-decoration:none; color: #000;" href="{{ route('profile.akun_pengguna') }}">
+                                                <div class="nama">{{ $userkajian->user->username }}</div>
+                                            </a>
+                                        </div>
+                                    @else
+                                        <div class="name-account col-md-9 mb-5 align-self-center mt-4">
+                                            <div class="nama">User tidak ditemukan</div>
+                                        </div>
+                                    @endif
                                 </div>
+                                <img src="{{ asset('storage/' . $userkajian->foto_kajian) }}" alt="" class="img-fluid">
+                            </div>
                                 <div class="desc-kajian col-md-12">
                                     <div class="mt-4">
                                         <div class="row">
@@ -119,12 +119,11 @@
                                                 :
                                             </div>
                                         </div>
-                                        <p>{{ $userkajian->deskripsi_kajian }}</p>
+                                        <p>{!! $userkajian->deskripsi_kajian !!}</p>
                                     </div>
 
                                     <div class="kategori">
-                                        <strong>Kategori</strong>
-                                        <p><strong>#SEJARAH ISLAM #PENDIDIKAN</strong></p>
+                                        <strong>{{ $userkajian->kategori_kajian }}</strong>
                                     </div>
 
                                     <div class="mt-4">

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\VersionHistory;
 
 class User extends Authenticatable
 {
@@ -62,6 +63,7 @@ class User extends Authenticatable
     {
         return $this->password;
     }
+
     public function kajians()
     {
         return $this->hasMany(Kajian::class, 'id_user'); // Sesuaikan 'user_id' dengan nama kolom foreign key di tabel 'kajian'
@@ -69,18 +71,36 @@ class User extends Authenticatable
 
     public function versions()
     {
-        return $this->hasMany(versionHistory::class, 'user_id');
+        return $this->hasMany(VersionHistory::class, 'user_id');
     }
 
-    
-    public function isAdmin() : bool
+    public function isAdmin(): bool
     {
         return $this->role === 'admin';
     }
 
-    public function isRegistered() : bool
+    public function isRegistered(): bool
     {
         return $this->role === 'registered';
     }
-    
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

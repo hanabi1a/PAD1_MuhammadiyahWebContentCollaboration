@@ -10,7 +10,6 @@ font-family: 'Poppins', sans-serif;
     --text-tritary: #FDC827;
     --background: #fff;
     --extra: #04454D;
-
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
@@ -906,7 +905,7 @@ footer .logo-footer {
 }
 
 #search-kajian {
-    margin-top: 8%;
+    margin-top: 15px;
     padding: 1.5% 11% 4.8% 11%;
     width: 100%;
     height: 10%;
@@ -2436,6 +2435,7 @@ a:hover {
 .col {
     flex: 1 0 0%;
 }
+
 
 
 @media (max-width: 768px) {
@@ -4067,6 +4067,94 @@ a:hover {
     opacity: 0.6;
 }
 
+/* Profile style */
+
+
+.profile-image {
+    width: 16%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+    margin-right: 50px;
+}
+
+.kajian-profile-user {
+    padding: 40px;
+    background-color: var(--extra);
+    color: white;
+}
+
+
+#kajian-home .tab-profile {
+    padding: 10px;
+}
+
+.card-kajian {
+    margin-top: 40px;
+}
+
+.img-card-kajian {
+    width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.body-card-kajian {
+    padding: 16px;
+}
+
+.title-card-kajian h4 {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.content-card-kajian p {
+    font-size: 14px;
+    color: #666;
+}
+
+.footer-card-kajian .d-flex {
+    align-items: center;
+}
+
+.post-nama,
+.post-tanggal,
+.post-waktu {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #999;
+}
+
+.post-nama img,
+.post-tanggal img,
+.post-waktu img {
+    margin-right: 5px;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-tabs .nav-link.active {
+    border-color: var(--extra);
+    font-weight: bold;
+}
+
+
+.border_active {
+    border-bottom: 4px solid var(--extra);
+    /* Tambahkan garis bawah */
+    font-weight: bold;
+    display: inline-block;
+    /* Tambahkan agar border bawah hanya di bawah teks */
+}
+
+
+/* ///////// */
 
 @media (min-width: 768px) {
     .float-md-start {

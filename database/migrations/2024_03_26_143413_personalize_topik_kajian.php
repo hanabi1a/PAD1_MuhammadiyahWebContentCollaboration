@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personalize_topik_kajian', function(Blueprint $table){
+        Schema::create('personalize_topik_kajian', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('topik_kajian_id');
@@ -24,7 +24,7 @@ return new class extends Migration
                 ->on('topik_kajian')
                 ->onDelete('cascade');
             $table->timestamps();
-            
+
         });
     }
 
