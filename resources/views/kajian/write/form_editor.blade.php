@@ -32,10 +32,15 @@
 
                                 <p>Anda dapat mengupload file atau mengetikkan konten kajian secara langsung!</p>
                                 <div class="form-validation">
-
-                            
-                                    <form class="form-validation" action="{{route('kajian.store.editor', $kajian)}}" method="POST"
-                                            enctype="multipart/form-data">
+            
+                                    <form class="form-validation" 
+                                        @if(isset($oldFileContent) && $oldFileContent != null)
+                                            action="{{route('kajian.new_version.konten.store', [$oldKajian, $version, $kajian])}}" 
+                                        @else
+                                            action="{{route('kajian.store.editor', $kajian)}}"
+                                        @endif
+                                        method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
 
@@ -64,7 +69,11 @@
                                         <hr/>
 
                                         <textarea class="form-control" id="editor" name="val_konten" 
-                                            style="resize: vertical; min-height: 100vh;"></textarea>
+                                            style="resize: vertical; min-height: 100vh;">
+                                            @if(isset($oldFileContent) && $oldFileContent != null)
+                                                {{$oldFileContent}}
+                                            @endif
+                                        </textarea>
 
                                         <div class="row">
                                             <div class="col mt-5 mb-4">

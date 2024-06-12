@@ -160,7 +160,7 @@
                                                             <p class="username-kajian-baru">{{ $userkajian->user->username }}</p>
                                                         </div>
                                                         <div class="col-md-1 mt-3">
-                                                            <a href="{{ route('detailNv', ['id' => $version->id]) }}">
+                                                            <a href="{{ route('kajian.show', $version->kajian) }}">
                                                                 <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                             </a>
                                                         </div>

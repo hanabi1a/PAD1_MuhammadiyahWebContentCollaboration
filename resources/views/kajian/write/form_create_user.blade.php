@@ -31,15 +31,21 @@
                         <div class="card-body">
                             <h1 class="heading4 mb-3"><strong>Data Kajian</strong></h1>
                             <div class="form-validation">
-                                @if ($kajian != null)
+                                @if ($kajian != null && $new_version == null)
                                     <form class="form-valide" action="{{ route('kajian.update', $kajian) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-                                    @else
+                                @else
                                     <form class="form-valide" action="{{ route('kajian.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
+
+                                    @if(isset($new_version) && $new_version != null && $new_version)
+                                        <input type="hidden" name="is_new_version" value="{{$new_version}}">
+                                        <input type="hidden" name="old_kajian_id" value="{{$kajian->id}}">
+                                    @endif
+
                                 @endif
                                     <!-- Judul -->
                                     <div class="form-group row">
@@ -151,9 +157,9 @@
                                                         <option value="{{ $kajian->kategori }}" selected disabled>{{ $kajian->kategori }}</option>
                                                     @endif
                                                     <option value="" disabled>Pilih Kategori</option>
-                                                    <option value="Fiqih">Fiqih</option>
-                                                    <option value="Alquran">Alquran</option>
-                                                    <option value="Ramadhan">Ramadhan</option>
+                                                    @foreach ($kategori_kajian as $item)
+                                                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
