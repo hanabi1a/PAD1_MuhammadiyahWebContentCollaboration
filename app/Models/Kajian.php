@@ -36,6 +36,12 @@ class Kajian extends Model
         return $this->hasMany(VersionHistory::class, 'old_kajian_id');
     }
 
+    public function current_versions()
+    {
+        return $this->hasOne(VersionHistory::class, 'kajian_id');
+    }
+
+
     // Di dalam model Kajian
     public function versionHistory()
     {

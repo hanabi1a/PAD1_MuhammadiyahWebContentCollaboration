@@ -184,6 +184,15 @@ class KajianController extends Controller
         $shareAbleUrl = route('kajian.show', $kajian->slug);
 
         $client = Auth::user();
+        $versionHistory = $kajian->current_versions;
+        $diffMessage = null;
+        if ($versionHistory) {
+            $commitMessageFilePath = public_path('storage/'.$versionHistory->commit_message);
+
+            $commitMessageContent = is_file($commitMessageFilePath) ? file_get_contents($commitMessageFilePath) : null;
+
+            $diffMessage = html_entity_decode($commitMessageContent);
+        }
 
         if ($client != null &&  $client->isAdmin()) {
           
@@ -191,7 +200,8 @@ class KajianController extends Controller
                 'kajian.admin_view.detail_kajian', 
                 ['userkajian' => $kajian, 
                 'uploaderUsername' => $uploaderUsername,
-                'shareAbleUrl' => $shareAbleUrl
+                'shareAbleUrl' => $shareAbleUrl,
+                'diffMessage' => $diffMessage
                 ]);
 
         } elseif ($client != null &&  $client->isRegistered()) {
@@ -200,13 +210,17 @@ class KajianController extends Controller
                 'kajian.read.detail_kajian_asli_user', 
                 ['userkajian' => $kajian, 
                 'uploaderUsername' => $uploaderUsername,
-                'shareAbleUrl' => $shareAbleUrl]);
+                'shareAbleUrl' => $shareAbleUrl,
+                'diffMessage' => $diffMessage
+                ]);
 
         }
         return view('kajian.read.detail_kajian_asli_user', 
         ['userkajian' => $kajian, 
         'uploaderUsername' => $uploaderUsername,
-        'shareAbleUrl' => $shareAbleUrl]);
+        'shareAbleUrl' => $shareAbleUrl,
+        'diffMessage' => $diffMessage
+        ]);
 
 
     }

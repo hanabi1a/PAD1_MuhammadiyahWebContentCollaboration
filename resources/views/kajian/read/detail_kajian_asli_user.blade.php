@@ -1,5 +1,25 @@
 @extends('layouts.layout')
 
+
+@section('style')
+    <style>
+        .diff-text del{
+            color: red;
+        }
+        .diff-text ins{
+            color: green;
+        }
+
+        .outline-box {
+            border: 1px solid #000; /* Change the color as needed */
+            padding: 24px; /* Adjust the padding as needed */
+            border-radius: 24px;
+        }
+
+    </style>
+
+@endsection
+
 @section('content')
 <main>
     <section id="search-kajian">
@@ -175,6 +195,31 @@
                     </div>
                 </div>
             </div>
+            @if($diffMessage)
+                <div class="card">
+                    <div class="container outline-box">
+                        <h1 class="heading3 mb-3"><strong>Perbedaan Konten Kajian</strong></h1>
+                        {{-- Real Author --}}
+                        <div class="row">
+                            <div class="col-md-3">
+                                <strong>Penulis Asli</strong>
+                            </div>
+                            <div class="col-md-1">
+                                <strong>:</strong>
+                            </div>
+                            <div class="col-md-5">
+                                @php
+                                    $decodedData = json_decode($userkajian->current_versions->oldKajian);
+                                @endphp
+                                <p>{{ $decodedData->pemateri }}</p>
+                            </div>
+                        </div>
+                        <div class="diff-text">
+                            {!! $diffMessage !!}
+                        </div>
+                    </div>
+                </div>
+            @endif
         </section>
     </div>
 </main>
