@@ -337,14 +337,6 @@ class KajianController extends Controller
         }
     }
 
-    public function showNewVersionDetail($id)
-    {
-        $kajianNV = versionHistory::findOrFail($id); // Ganti dengan model dan method yang sesuai dengan struktur aplikasi kamu
-
-        // Lakukan logika untuk menampilkan detail versi baru, misalnya:
-        return view('user.detail_kajian_versi_baru_user', ['kajianNV' => $kajianNV]);
-    }
-
     public function show_editor_new_version(Kajian $oldKajian, VersionHistory $version, Kajian $kajian)
     {
 
@@ -352,6 +344,11 @@ class KajianController extends Controller
         Log::info('Old Kajian: ', $oldKajian->toArray());
 
         $oldFilePath = public_path('storage/'.$oldKajian->file_kajian);
+
+        $prefix = env('FILE_DOWNLOAD_PATH', null);
+        if ($prefix) {
+            $oldFilePath = $prefix.$oldKajian->file_kajian ;
+        }
 
         $oldFileContent = is_file($oldFilePath) ? file_get_contents($oldFilePath) : '';
     
