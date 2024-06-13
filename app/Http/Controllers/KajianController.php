@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Admin\KategoriKajianController;
 use App\Models\HistoryDownload;
 use App\Models\Kajian;
+use App\Models\TopikKajian;
 use App\Models\VersionHistory;
+use FineDiff\Diff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -48,10 +51,11 @@ class KajianController extends Controller
     {
         Log::info('Create method called');
         $kajian = null;
+        $kategori_kajian = TopikKajian::all();
         if (Auth::user()->isAdmin()) {
-            return view('admin.form_create_admin');
+            return view('kajian.write.form_create_admin'); // TODO: Not working
         } else {
-            return view('kajian.write.form_create_user', compact('kajian'));
+            return view('kajian.write.form_create_user', compact('kajian', 'kategori_kajian'));
         }
 
     }
@@ -116,6 +120,26 @@ class KajianController extends Controller
 
         Log::info('Kajian created');
 
+        $is_new_version = $request->is_new_version;
+        $old_kajian_id = $request->old_kajian_id;
+        if ($is_new_version != null && $is_new_version) {
+            $versionHistory = VersionHistory::create([
+                'old_kajian_id' => $old_kajian_id,
+                'kajian_id' => $kajian->id,
+                'user_id' => Auth::user()->id,
+            ]);
+
+            $oldKajian = Kajian::find($old_kajian_id);
+
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('data_kajian') // TODO: Untested
+                    ->withSuccess('Terima kasih! Data berhasil disimpan');
+            }
+    
+            return redirect()->route('kajian.new_version.konten', [$oldKajian, $versionHistory, $kajian]);
+        }
+
+
         Log::info('Redirecting to: '.(Auth::user()->role == 'admin' ? 'data_kajian' : 'kajian.show'));
         if (Auth::user()->role == 'admin') {
             return redirect()->route('data_kajian') // TODO: Untested
@@ -160,6 +184,15 @@ class KajianController extends Controller
         $shareAbleUrl = route('kajian.show', $kajian->slug);
 
         $client = Auth::user();
+        $versionHistory = $kajian->current_versions;
+        $diffMessage = null;
+        if ($versionHistory) {
+            $commitMessageFilePath = public_path('storage/'.$versionHistory->commit_message);
+
+            $commitMessageContent = is_file($commitMessageFilePath) ? file_get_contents($commitMessageFilePath) : null;
+
+            $diffMessage = html_entity_decode($commitMessageContent);
+        }
 
         if ($client != null &&  $client->isAdmin()) {
           
@@ -167,7 +200,8 @@ class KajianController extends Controller
                 'kajian.admin_view.detail_kajian', 
                 ['userkajian' => $kajian, 
                 'uploaderUsername' => $uploaderUsername,
-                'shareAbleUrl' => $shareAbleUrl
+                'shareAbleUrl' => $shareAbleUrl,
+                'diffMessage' => $diffMessage
                 ]);
 
         } elseif ($client != null &&  $client->isRegistered()) {
@@ -176,13 +210,17 @@ class KajianController extends Controller
                 'kajian.read.detail_kajian_asli_user', 
                 ['userkajian' => $kajian, 
                 'uploaderUsername' => $uploaderUsername,
-                'shareAbleUrl' => $shareAbleUrl]);
+                'shareAbleUrl' => $shareAbleUrl,
+                'diffMessage' => $diffMessage
+                ]);
 
         }
         return view('kajian.read.detail_kajian_asli_user', 
         ['userkajian' => $kajian, 
         'uploaderUsername' => $uploaderUsername,
-        'shareAbleUrl' => $shareAbleUrl]);
+        'shareAbleUrl' => $shareAbleUrl,
+        'diffMessage' => $diffMessage
+        ]);
 
 
     }
@@ -193,16 +231,22 @@ class KajianController extends Controller
     public function create_new_version(Kajian $kajian)
     {
 
-        // $userkajian = Kajian::find($id); // Contoh pengambilan data dari model Kajian
         Log::info('Creating new version for kajian with ID: '.$kajian->id);
 
-        return view('kajian.write.form_edit_user_nv', ['kajian' => $kajian]);
+        $kategori_kajian = TopikKajian::all();
+
+        $new_version = true;
+        $view = (Auth::user()->isAdmin()) ? 
+            'kajian.write.form_create_admin' : 'kajian.write.form_create_user';
+
+        return view($view, compact('kajian', 'kategori_kajian' , 'new_version'));
 
     }
 
     public function edit(Kajian $kajian)
     {
-        return view('kajian.write.form_create_user', compact('kajian'));
+        $kategori_kajian = TopikKajian::all();
+        return view('kajian.write.form_create_user', compact('kajian', 'kategori_kajian'));
     }
 
     public function update(Request $request, Kajian $kajian)
@@ -298,6 +342,22 @@ class KajianController extends Controller
         return view('user.detail_kajian_versi_baru_user', ['kajianNV' => $kajianNV]);
     }
 
+    public function show_editor_new_version(Kajian $oldKajian, VersionHistory $version, Kajian $kajian)
+    {
+
+        Log::info('Kajian: ', $kajian->toArray());
+        Log::info('Old Kajian: ', $oldKajian->toArray());
+
+        $oldFilePath = public_path('storage/'.$oldKajian->file_kajian);
+
+        $oldFileContent = is_file($oldFilePath) ? file_get_contents($oldFilePath) : '';
+    
+        // Check the old file content
+        Log::info('Old File Content: ', [$oldKajian, $oldFilePath , $oldFileContent]);
+
+        return view('kajian.write.form_editor', compact('oldFileContent', 'oldKajian', 'version', 'kajian'));
+    }
+
     public function showEditor(Kajian $kajian)
     {
         return view('kajian.write.form_editor', compact('kajian'));
@@ -313,19 +373,70 @@ class KajianController extends Controller
         Log::info('Kajian Data: ', $kajian->toArray());
     
         $slug = $kajian->slug;
-    
         
         $pathDokumen = null;
         if ($request->hasFile('val_dokumen')) {
             $extension = $request->file('val_dokumen')->getClientOriginalExtension();
-            $fileNameToStore = $slug.'_'.time().'.'.$extension;
+            $fileNameToStore = $kajian->title . '_' . $kajian->id . '.' . $extension;
             $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
         } elseif($request->has('val_konten')) {
             // save the val_konten to txt
             $konten = $request->val_konten;
-            $fileNameToStore = $slug.'_'.time().'.blade.php';
+            $fileNameToStore = $kajian->title . '_' . $kajian->id . '.blade.php';
             $pathDokumen = 'documents/'.$fileNameToStore;
             Storage::disk('public')->put($pathDokumen, $konten);
+        }
+
+        $kajian->file_kajian = $pathDokumen;
+        $kajian->save();
+
+        return redirect()->route('kajian.show', $kajian)
+            ->withSuccess('Terima kasih! Data berhasil disimpan');
+    }
+
+
+    public function update_konten_new_version(Request $request, Kajian $oldKajian, VersionHistory $version, Kajian $kajian)
+    {
+        $request->validate([
+            'val_dokumen' => 'mimes:pdf,doc,docx|max:20480',
+        ]);
+
+        Log::info('Request data: ', $request->all());
+        Log::info('Kajian Data: ', $kajian->toArray());
+    
+        $slug = $kajian->slug;
+        
+        
+        $pathDokumen = null;
+        if ($request->hasFile('val_dokumen')) {
+            $extension = $request->file('val_dokumen')->getClientOriginalExtension();
+            $fileNameToStore = $kajian->title . '_' . $kajian->id . '.' . $extension;
+            $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
+        } elseif($request->has('val_konten')) {
+            // save the val_konten to txt
+            $konten = $request->val_konten;
+            $fileNameToStore = $kajian->title . '_' . $kajian->id . '.blade.php';
+            $pathDokumen = 'documents/'.$fileNameToStore;
+            Storage::disk('public')->put($pathDokumen, $konten);
+        }
+
+        if ($version) {
+            $oldFilePath = public_path('storage/'.$oldKajian->file_kajian);
+            $newFilePath = public_path('storage/'.$pathDokumen);
+
+            $oldFileContent = is_file($oldFilePath) ? file_get_contents($oldFilePath) : '';
+            $newFileContent = is_file($newFilePath) ? file_get_contents($newFilePath) : '';
+
+            $diff = new Diff();
+            $contentDifferent = $diff->render($oldFileContent, $newFileContent);
+
+            // Save the content Different to txt
+            $fileNameToStore = $kajian->title . '_' . $kajian->id . '_diff.txt';
+            $pathDokumen = 'documents/'.$fileNameToStore;
+            Storage::disk('public')->put($pathDokumen, $contentDifferent);
+
+            $version->commit_message = $pathDokumen;
+            $version->save();
         }
 
         $kajian->file_kajian = $pathDokumen;

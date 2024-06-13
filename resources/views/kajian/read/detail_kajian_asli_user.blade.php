@@ -1,5 +1,72 @@
 @extends('layouts.layout')
 
+
+@section('style')
+    <style>
+        .diff-text del{
+            color: red;
+        }
+        .diff-text ins{
+            color: green;
+        }
+
+        .outline-box {
+            border: 1px solid #ababab; /* Change the color as needed */
+            padding: 24px; /* Adjust the padding as needed */
+            border-radius: 24px;
+        }
+
+        .reference_link {
+            color: rgb(3, 3, 39);
+            transition: 300ms
+        }
+
+        .reference_link:hover {
+            color: rgb(16, 16, 130);
+            transition: 300ms
+        }
+
+        .limited {
+            height: 300px; /* Adjust as needed */
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .limited::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px; /* Adjust as needed */
+            background: linear-gradient(to bottom, transparent, white);
+        }
+        
+        .see-more {
+            background-color: #4CAF50; /* Green background */
+            border: none; /* Remove border */
+            color: white; /* White text */
+            padding: 15px 32px; /* Padding */
+            text-align: center; /* Centered text */
+            text-decoration: none; /* Remove underline */
+            display: block;
+            font-size: 16px;
+            margin: auto;
+            cursor: pointer; /* Cursor on hover */
+            transition-duration: 0.4s; /* Transition effects */
+            border-radius: 24px;
+        }
+
+        .see-more:hover {
+            background-color: white; /* White background */
+            color: black; /* Black text */
+        }
+
+    </style>
+
+@endsection
+
 @section('content')
 <main>
     <section id="search-kajian">
@@ -160,7 +227,7 @@
                                                             <p class="username-kajian-baru">{{ $userkajian->user->username }}</p>
                                                         </div>
                                                         <div class="col-md-1 mt-3">
-                                                            <a href="{{ route('detailNv', ['id' => $version->id]) }}">
+                                                            <a href="{{ route('kajian.show', $version->kajian) }}">
                                                                 <img src="/assets_admin/assets/img/arrow-right-square.svg">
                                                             </a>
                                                         </div>
@@ -175,34 +242,60 @@
                     </div>
                 </div>
             </div>
+            @if($diffMessage)
+                <div class="card">
+                    <div class="container outline-box">
+                        <h1 class="heading3 mb-3"><strong>Perbedaan Konten Kajian</strong></h1>
+                        {{-- Real Author --}}
+                        <div class="row">
+                            <div class="col-md-2">
+                                <strong>Kajian Referensi</strong>
+                            </div>
+                            <div class="col-md-1">
+                                <strong>:</strong>
+                            </div>
+                            <div class="col-md-5">
+                                @php
+                                    $decodedData = json_decode($userkajian->current_versions->oldKajian);
+                                @endphp
+                                <p>
+                                    <strong>
+                                        <a class="reference_link" href="{{route('kajian.show', $userkajian->current_versions->oldKajian)}}">
+                                            {{ $decodedData->judul_kajian }}
+                                        </a>
+                                    </strong> 
+                                    oleh {{ $decodedData->pemateri }}
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div id="content_different" class="diff-text limited">
+                            {!! $diffMessage !!}
+                        </div>
+                        <button 
+                            id="seeMoreButton" 
+                            class="see-more"
+                            >See More</button>
+                    </div>
+                </div>
+            @endif
         </section>
     </div>
 </main>
 <script>
-$(document).ready(function() {
-    $(".dropdown").on("click", function(event) {
-        // Mencegah default behavior dari anchor tag
-        event.preventDefault();
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('seeMoreButton').addEventListener('click', function() {
+            console.log('Button was clicked'); // This will print to the console when the button is clicked
+        
+            document.getElementById('content_different').classList.remove('limited');
+            this.style.display = 'none';
+        });
 
-        // Menampilkan atau menyembunyikan dropdown
-        $(this).find(".dropdown-menu").toggle();
+        function showDeleteConfirmation() {
+            // Implement your delete logic here
+            alert("Delete option clicked!");
+        }
     });
-});
-
-document.getElementById('sharesid').addEventListener('click', function() {
-    // Buat URL yang ingin Anda bagikan
-    var urlToShare = 'https://www.instagram.com/ey_kean/'; // Ganti dengan URL yang sesuai
-
-    // Salin URL ke clipboard
-    navigator.clipboard.writeText(urlToShare).then(function() {
-        alert('Link telah disalin ke clipboard!');
-    }).catch(function(err) {
-        console.error('Tidak dapat menyalin teks: ', err);
-    });
-});
-
-function showDeleteConfirmation() {
-    // Implement your delete logic here
-    alert("Delete option clicked!");
-}
 </script>
+
+@endsection

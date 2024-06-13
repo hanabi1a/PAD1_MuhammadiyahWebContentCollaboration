@@ -147,6 +147,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/{kajian}', [KajianController::class, 'show'])->name('show');
             Route::get('/{kajian}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('show.new_version');
             Route::get('/{kajian}/create/new', [KajianController::class, 'create_new_version'])->name('edit.new_version');
+            Route::get('/{oldKajian}/create/new/{version}/{kajian}', [KajianController::class, 'show_editor_new_version'])->name('new_version.konten');
+            Route::put('/{oldKajian}/create/new/{version}/{kajian}/save', [KajianController::class, 'update_konten_new_version'])->name('new_version.konten.store');
             // Route::post('/', [KajianController::class, 'store'])->name('store');
             // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
             Route::get('/create/konten/{kajian}', [KajianController::class, 'showEditor'])->name('konten');
