@@ -149,10 +149,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/{kajian}/create/new', [KajianController::class, 'create_new_version'])->name('edit.new_version');
             Route::get('/{oldKajian}/create/new/{version}/{kajian}', [KajianController::class, 'show_editor_new_version'])->name('new_version.konten');
             Route::put('/{oldKajian}/create/new/{version}/{kajian}/save', [KajianController::class, 'update_konten_new_version'])->name('new_version.konten.store');
-            // Route::post('/', [KajianController::class, 'store'])->name('store');
-            // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
             Route::get('/create/konten/{kajian}', [KajianController::class, 'showEditor'])->name('konten');
             Route::put('/create/konten/{kajian}/save', [KajianController::class, 'update_konten'])->name('store.editor');
+            // Route::post('/', [KajianController::class, 'store'])->name('store');
+            // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
         });
 
     });
@@ -210,14 +210,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/history_download', [AdminController::class, 'show_history_download'])->name('show_history_download');
 
             // Kajian
+            Route::resource('kajian', KajianController::class);
             Route::prefix('kajian')->name('kajian.')->group(function () {
-                Route::get('/', [KajianController::class, 'index'])->name('index');
-                Route::get('/create', [KajianController::class, 'create'])->name('create');
-                Route::post('/', [KajianController::class, 'store'])->name('store');
-                Route::delete('/{kajian}', [KajianController::class, 'destroy'])->name('destroy');
                 Route::get('/{kajian}', [KajianController::class, 'show'])->name('show');
-                Route::get('/{kajian}/edit', [KajianController::class, 'edit'])->name('edit');
-                Route::put('/{kajian}', [KajianController::class, 'update'])->name('update');
+                Route::get('/{kajian}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('show.new_version');
+                Route::get('/{kajian}/create/new', [KajianController::class, 'create_new_version'])->name('edit.new_version');
+                Route::get('/{oldKajian}/create/new/{version}/{kajian}', [KajianController::class, 'show_editor_new_version'])->name('new_version.konten');
+                Route::put('/{oldKajian}/create/new/{version}/{kajian}/save', [KajianController::class, 'update_konten_new_version'])->name('new_version.konten.store');
+                Route::get('/create/konten/{kajian}', [KajianController::class, 'showEditor'])->name('konten');
+                Route::put('/create/konten/{kajian}/save', [KajianController::class, 'update_konten'])->name('store.editor');
             });
 
             // Kategori Kajian

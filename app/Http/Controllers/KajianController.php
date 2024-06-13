@@ -52,11 +52,9 @@ class KajianController extends Controller
         Log::info('Create method called');
         $kajian = null;
         $kategori_kajian = TopikKajian::all();
-        if (Auth::user()->isAdmin()) {
-            return view('kajian.write.form_create_admin'); // TODO: Not working
-        } else {
-            return view('kajian.write.form_create_user', compact('kajian', 'kategori_kajian'));
-        }
+        $view = Auth::user()->isAdmin() ? "kajian.write.form_create_admin" : "kajian.write.form_create_user";
+        
+        return view($view, compact('kajian', 'kategori_kajian'));
 
     }
 
@@ -132,9 +130,9 @@ class KajianController extends Controller
             $oldKajian = Kajian::find($old_kajian_id);
 
             if (Auth::user()->role == 'admin') {
-                return redirect()->route('data_kajian') // TODO: Untested
-                    ->withSuccess('Terima kasih! Data berhasil disimpan');
+                return redirect()->route('admin.kajian.new_version.konten', [$oldKajian, $versionHistory, $kajian]);
             }
+            
     
             return redirect()->route('kajian.new_version.konten', [$oldKajian, $versionHistory, $kajian]);
         }
@@ -142,8 +140,7 @@ class KajianController extends Controller
 
         Log::info('Redirecting to: '.(Auth::user()->role == 'admin' ? 'data_kajian' : 'kajian.show'));
         if (Auth::user()->role == 'admin') {
-            return redirect()->route('data_kajian') // TODO: Untested
-                ->withSuccess('Terima kasih! Data berhasil disimpan');
+            return redirect()->route('admin.kajian.konten', $kajian);
         }
 
         return redirect()->route('kajian.konten', $kajian);
@@ -166,7 +163,7 @@ class KajianController extends Controller
         $kajian->delete();
         if (Auth::user()->isAdmin()) {
 
-            return redirect()->route('data_kajian')->withSuccess('Kajian berhasil dihapus');
+            return redirect()->route('admin.kajian.index')->withSuccess('Kajian berhasil dihapus');
         }
 
         return redirect()->route('profile.show')->withSuccess('Kajian berhasil dihapus');
@@ -303,8 +300,7 @@ class KajianController extends Controller
 
         Log::info('Redirecting to: '.(Auth::user()->role == 'admin' ? 'data_kajian' : 'kajian.show'));
         if (Auth::user()->role == 'admin') {
-            return redirect()->route('data_kajian') // TODO: Untested
-                ->withSuccess('Terima kasih! Data berhasil disimpan');
+            return redirect()->route('admin.kajian.konten', $kajian);
         }
 
         return redirect()->route('kajian.konten', $kajian);
