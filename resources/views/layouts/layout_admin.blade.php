@@ -16,6 +16,34 @@
     <link rel="stylesheet" href="{{ asset('assets_admin/bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_admin\bootstrap-5.3.2-dist\css\bootstrap-grid.css.map') }}">
     <link rel="stylesheet" href="{{ asset('assets_admin/css/style.css') }}" rel=" stylesheet">
+
+    <style>
+
+        :root {
+            --bs-green: #04454D;
+        }
+        
+        .btn-download-share-kajian {
+            background-color: var(--bs-green);
+            border: none;
+            color: white;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 15px;
+            width: 60%;
+            padding-bottom: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn-download-share-kajian:hover {
+            background-color: #023339;
+            color: white;
+        }
+
+    </style>
+
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -84,6 +112,17 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </a>
+                        <a class="nav-link {{ request()->is('admin/kategori_kajian*') ? 'active' : '' }}"
+                            href="{{ route('admin.kategori_kajian.index')}}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tag"></i>
+                            </div>Kategori Kajian
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+
+
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
 

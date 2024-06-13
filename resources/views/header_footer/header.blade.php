@@ -33,14 +33,14 @@
                     </div>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li>
-                            <button class="dropdown-item" onclick="window.location.href = '{{ route('profile.show') }}';">
+                            <button class="dropdown-item" onclick="window.location.href = '{{ route('profile.akun_pengguna') }}';">
                                 <img src="\assets\img\icon\icon_profile_pengguna.svg"/>
                                 <span class="heading7">Profil Pengguna</span>
                             </button>
                         </li>
                         <li>
-                            <!-- TODO: route  -->
-                            <button class="dropdown-item" onclick="window.location.href = '';">
+            
+                            <button class="dropdown-item" onclick="window.location.href = '{{ route('profile.show.information') }}';">
                                 <img src="\assets\img\icon\icon_informasi_akun.svg"/>
                                 <span class="heading7">Informasi Akun</span>
                             </button>
@@ -54,7 +54,6 @@
                                     onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                     <div class="logout">
-                                        <span class="heading7">Log Out</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                              class="bi bi-person-x icon-logout" viewBox="0 0 16 16">
                                             <path
@@ -62,6 +61,7 @@
                                             <path
                                                 d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-.646-4.854.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 0 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 .708-.708Z" />
                                         </svg>
+                                        <span class="heading7">Log Out</span>
                                     </div>
                                 </a>
                             </form>

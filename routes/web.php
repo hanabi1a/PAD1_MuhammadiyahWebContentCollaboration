@@ -1,14 +1,13 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\HomeController1;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserManagement\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\KategoriKajianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +33,15 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/form_create_user', function () {
 //     return view('kajian.write.form_create_user');
 // });
+Route::get('/akun_muhammadiyah', function () {
+    return view('profile.profile_akun_muhammadiyah');
+});
+Route::get('/akun_muhammadiyah', function () {
+    return view('profile.profile_akun_muhammadiyah');
+});
+Route::get('/akun_pengguna', function () {
+    return view('profile.profile_akun_pengguna');
+});
 // Route::get('/form_create_user_nv', function () {
 //     return view('kajian.write.form_create_user_nv');
 // });
@@ -58,7 +66,6 @@ Route::view('/detail_kajian_versi_baru_user', 'kajian.read.detail_kajian_versi_b
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 });
-
 
 // Route::group([], function () {
 //     // Route::get('/', [HomeController::class, 'index']);
@@ -99,14 +106,23 @@ Route::middleware('auth')->group(function () {
         Route::patch('/', [ProfileController::class, 'update'])->name('update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
     });
-    
 
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'show_profile'])->name('show');
+        Route::get('/edit', [ProfileController::class, 'edit_profile'])->name('edit_profile');
+        Route::get('/informasi', [ProfileController::class, 'show_profile_information'])->name('show.information');
+        Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
+        Route::put('/edit/picture/update', [ProfileController::class, 'upload_profile_picture'])->name('update.picture');
+        Route::put('/edit/picture/delete', [ProfileController::class, 'delete_profile_picture'])->name('delete.picture');
+        Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
+        Route::get('/akun_pengguna', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_pengguna');
+    });
 
     /**
      * Registered middleware
      * Hanya bisa diakses oleh admin dan registered user
-     * 
-     * 
+     *
+     *
      * Referensi:
      * app/Http/Middleware/UserManagement/
      * app/Http/Controllers/UserManagement/
@@ -118,35 +134,32 @@ Route::middleware('auth')->group(function () {
     //     Route::get('/kajian/{id}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('kajian.new_version');
     //     Route::post('/kajian', [KajianController::class, 'store'])->name('kajian.store');
     //     Route::delete('/kajian/{id}', [KajianController::class, 'destroy'])->name('kajian.destroy');
-        
+
     //     Route::get('/profile', [ProfileController::class, 'show_profile'])->name('profile.show');
     //     Route::get('/profile/edit', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
     //     Route::put('/profile', [ProfileController::class, 'store_edit_profile'])->name('profile.store');
     // });
     Route::middleware('registered')->group(function () {
         Route::resource('kajian', KajianController::class)
-            ->only(['create', 'show', 'store', 'destroy']);
+            ->only(['create', 'show', 'store', 'destroy', 'edit', 'update']);
         Route::prefix('kajian')->name('kajian.')->group(function () {
             // Route::get('/create', [KajianController::class, 'create'])->name('create');
-            // Route::get('/{id}', [KajianController::class, 'show'])->name('show');
+            Route::get('/{kajian}', [KajianController::class, 'show'])->name('show');
             Route::get('/{kajian}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('show.new_version');
             Route::get('/{kajian}/create/new', [KajianController::class, 'create_new_version'])->name('edit.new_version');
             // Route::post('/', [KajianController::class, 'store'])->name('store');
             // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
+            Route::get('/create/konten/{kajian}', [KajianController::class, 'showEditor'])->name('konten');
+            Route::put('/create/konten/{kajian}/save', [KajianController::class, 'update_konten'])->name('store.editor');
         });
 
-        Route::prefix('profile')->name('profile.')->group(function () {
-            Route::get('/', [ProfileController::class, 'show_profile'])->name('show');
-            Route::get('/edit', [ProfileController::class, 'edit_profile'])->name('edit_profile');
-            Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
-        });
     });
 
     /**
      * Admin middleware
      * Hanya bisa diakses oleh admin
-     * 
-     * 
+     *
+     *
      * Referensi:
      * app/Http/Middleware/UserManagement/Admin.php
      * app/Http/Controllers/UserManagement/Admin/AdminController.php
@@ -181,13 +194,14 @@ Route::middleware('auth')->group(function () {
         Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('dashboard');
             Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-            
+
             // User
             Route::get('/users', [AdminController::class, 'show_data_user'])->name('show_data_user');
             Route::get('/users/{id}', [AdminController::class, 'show_detail_user'])->name('show_detail_user');
             Route::get('/users/{id}/edit', [AdminController::class, 'edit_user'])->name('edit_user');
             Route::put('/users/{id}', [AdminController::class, 'update_user'])->name('update_user');
             Route::delete('/users/{id}', [AdminController::class, 'delete_user'])->name('delete_user');
+            Route::put('users/{id}/verify', [AdminController::class, 'verify_user'])->name('verify_user');
 
             Route::get('/history_login', [AdminController::class, 'show_history_login'])->name('show_history_login');
             Route::get('/history_upload', [AdminController::class, 'show_history_upload'])->name('show_history_upload');
@@ -203,6 +217,9 @@ Route::middleware('auth')->group(function () {
                 Route::get('/{kajian}/edit', [KajianController::class, 'edit'])->name('edit');
                 Route::put('/{kajian}', [KajianController::class, 'update'])->name('update');
             });
+
+            // Kategori Kajian
+            Route::resource('kategori_kajian', KategoriKajianController::class);
         });
     });
 
@@ -216,7 +233,6 @@ Route::middleware('auth')->group(function () {
 //     Route::get('/kajian/download/{id}', 'downloadKajian')->name('kajian.download');
 
 // });
-
 Route::resource('kajian', KajianController::class)->only(['index', 'show']);
 Route::prefix('kajian')->name('kajian.')->group(function () {
     Route::get('/latest', [KajianController::class, 'show_kajian'])->name('show.latest');
@@ -224,4 +240,6 @@ Route::prefix('kajian')->name('kajian.')->group(function () {
     Route::get('/{id}/new_version', [KajianController::class, 'downloadNewVersion'])->name('download.new_version');
 });
 
-require __DIR__ . '/auth.php';
+
+
+require __DIR__.'/auth.php';
