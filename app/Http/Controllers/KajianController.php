@@ -186,9 +186,16 @@ class KajianController extends Controller
         if ($versionHistory) {
             $commitMessageFilePath = public_path('storage/'.$versionHistory->commit_message);
 
+            $prefix = env('FILE_DOWNLOAD_PATH', null);
+            if ($prefix) {
+                $commitMessageFilePath = $prefix.$kajian->file_kajian ;
+            } 
+            
             $commitMessageContent = is_file($commitMessageFilePath) ? file_get_contents($commitMessageFilePath) : null;
 
             $diffMessage = html_entity_decode($commitMessageContent);
+        } else {
+            Log::info('No version history found for kajian with ID: '.$kajian->id);
         }
 
         if ($client != null &&  $client->isAdmin()) {
@@ -419,6 +426,12 @@ class KajianController extends Controller
         if ($version) {
             $oldFilePath = public_path('storage/'.$oldKajian->file_kajian);
             $newFilePath = public_path('storage/'.$pathDokumen);
+
+            $prefix = env('FILE_DOWNLOAD_PATH', null);
+            if ($prefix) {
+                $oldFilePath = $prefix.$oldKajian->file_kajian ;
+                $newFilePath = $prefix.$pathDokumen;
+            } 
 
             $oldFileContent = is_file($oldFilePath) ? file_get_contents($oldFilePath) : '';
             $newFileContent = is_file($newFilePath) ? file_get_contents($newFilePath) : '';
