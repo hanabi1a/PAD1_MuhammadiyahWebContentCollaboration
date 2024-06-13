@@ -53,7 +53,7 @@ class KajianController extends Controller
         $kajian = null;
         $kategori_kajian = TopikKajian::all();
         if (Auth::user()->isAdmin()) {
-            return view('admin.form_create_admin'); // TODO: Not working
+            return view('kajian.write.form_create_admin'); // TODO: Not working
         } else {
             return view('kajian.write.form_create_user', compact('kajian', 'kategori_kajian'));
         }
