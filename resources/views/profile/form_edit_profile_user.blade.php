@@ -111,7 +111,11 @@
 
                         <div class="row">
                             <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                <img class="profile-picture" src="{{asset('storage/' . $user->foto_profile)}}" alt="profile_picture">
+                                @if($user->foto_profile == null)
+                                    <img class="profile-picture" src="/assets/img/foto_default.png" alt="profile_picture">
+                                @else
+                                    <img class="profile-picture" src="{{asset('storage/' . $user->foto_profile)}}" alt="profile_picture">
+                                @endif
                             </div>
                         
                             
@@ -301,13 +305,13 @@
                                             @if($user->foto_kta)
                                                 <img class="col foto_kta" src="{{asset('storage/'. $user->foto_kta)}}" alt="Foto KTA">
                                             @else 
-                                                <img class="col foto_kta" src="{{asset('storage/kta/default_kta.jpg')}}" alt="Foto KTA">
+                                                <img class="col foto_kta" src="/assets/img/foto_default.png" alt="Foto KTA">
                                             @endif
 
                                             <div class="col-lg-8 col-md-8 kta-wrap-container">
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="foto-kta-input"
+                                                        <input type="file" class="custom-file-input" id="foto-input"
                                                             name="foto_kta" accept=".png, .jpg, .jpeg">
                                                         <label class="custom-file-label-foto custom-file-label"
                                                             for="foto-kta-input">Choose
@@ -317,7 +321,7 @@
                                                 <p class="text-upload-foto">Pastikan untuk mengunggah foto KTA Anda dalam salah
                                                     satu format:
                                                     PNG, JPG, JPEG.</p>
-                                                <div class="drop-area" id="drop-area-foto-kta">
+                                                <div class="drop-area" id="drop-area-foto">
                                                     <i class="fa fa-cloud" style="color: #04454D;"></i><br>
                                                     Drag & Drop Gambar Disini
                                                 </div>
@@ -347,6 +351,7 @@
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <script>
         $(document).ready(function() {
             $('#val-status').change(function() {
@@ -367,13 +372,25 @@
         });
     </script>
 
-    @if (!$user->isAdmin())
+    @if ($user->isAdmin() || $user->isRegistered())
         <script>
-            $('#fnk').hide();
-            $('#fc').hide();
-            $('#fd').hide();
-            $('#fw').hide();
-            $('#fkta').hide();
+            $(document).ready(function() {
+                $('#fnk').show();
+                $('#fc').show();
+                $('#fd').show();
+                $('#fw').show();
+                $('#fkta').show();
+            });
+        </script>
+    @else
+        <script>
+            $(document).ready(function() {
+                $('#fnk').hide();
+                $('#fc').hide();
+                $('#fd').hide();
+                $('#fw').hide();
+                $('#fkta').hide();
+            });
         </script>
     @endif
 

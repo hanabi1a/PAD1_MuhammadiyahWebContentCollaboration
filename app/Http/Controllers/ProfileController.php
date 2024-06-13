@@ -79,9 +79,8 @@ class ProfileController extends Controller
     {
         $userId = auth()->id(); 
         $user = User::find($userId); 
-        $dataKajian = Kajian::where('id_user', $userId)->paginate(9); 
         
-        return view('profile.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
+        return view('profile.profile_information', ['user' => $user]);
     }
 
     public function edit_profile()
@@ -148,7 +147,7 @@ class ProfileController extends Controller
                 Storage::delete($user->foto_kta);
             }
 
-            $user->foto_profile = $path_foto_kta;
+            $user->foto_kta = $path_foto_kta;
         } 
 
         // Menyimpan perubahan data pengguna
@@ -204,7 +203,7 @@ class ProfileController extends Controller
         $user->save();
 
         // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect()->route('profile.edit_profile')->with('success', 'Foto profil berhasil diperbarui!'); // Contoh respons berhasil
+        return redirect()->back()->with('success', 'Foto profil berhasil diperbarui!'); // Contoh respons berhasil
     }
 
     public function delete_profile_picture() {
@@ -217,12 +216,12 @@ class ProfileController extends Controller
         // Menghapus foto lama jika ada
         if ($user->foto_profile) {
             Storage::delete($user->foto_profile);
-            $user->foto_profile = "/profile/default.jpg";
+            $user->foto_profile = null;
             $user->save();
         }
 
         // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect()->route('profile.edit_profile')->with('success', 'Foto profil berhasil dihapus!'); // Contoh respons berhasil
+        return redirect()->back()->with('success', 'Foto profil berhasil dihapus!'); // Contoh respons berhasil
     }
 
 }
