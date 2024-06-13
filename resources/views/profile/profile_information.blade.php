@@ -86,7 +86,11 @@
 
                         <div class="row">
                             <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                <img class="profile-picture" src="{{asset('storage/' . $user->foto_profile)}}" alt="profile_picture">
+                                @if($user->foto_profile != null)
+                                    <img class="profile-picture" src="{{asset('storage/' . $user->foto_profile)}}" alt="profile_picture">
+                                @else
+                                    <img class="profile-picture" src="/assets/img/foto_default.png" alt="profile_picture">
+                                @endif
                             </div>
                         
                             
@@ -260,7 +264,7 @@
                                 @if($user->foto_kta)
                                     <img class="col foto_kta" src="{{asset('storage/'. $user->foto_kta)}}" alt="Foto KTA">
                                 @else 
-                                    <img class="col foto_kta" src="{{asset('storage/kta/default_kta.jpg')}}" alt="Foto KTA">
+                                    <img class="col foto_kta" src="/assets/img/default_kta.png" alt="Foto KTA">
                                 @endif
                                 
                             @endif

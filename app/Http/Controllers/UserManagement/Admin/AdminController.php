@@ -8,6 +8,7 @@ use App\Models\historylogin;
 use App\Models\Kajian;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
@@ -69,8 +70,10 @@ class AdminController extends Controller
     public function edit_user(string $id)
     {
         $user = User::find($id);
+        $view = Auth::user()->isAdmin() ? 
+            'admin.data_user.form_edit_akun_user' : 'manajemen_akun.form_edit_akun_user';
 
-        return view('manajemen_akun.form_edit_akun_user', compact('user'));
+        return view($view, compact('user'));
     }
 
     public function update_user(Request $request, string $id)
@@ -122,6 +125,26 @@ class AdminController extends Controller
         $user->delete();
 
         return redirect()->route('admin.show_data_user')->withSuccess('User berhasil dihapus');
+    }
+
+    public function verify_user(Request $request, string $id)
+    {
+        $user = User::find($id);
+
+        if (! $user) {
+            return redirect()->route('admin.show_data_user')->withError('User tidak ditemukan');
+        }
+
+        $requested_role = $request->input('action');
+        if ($requested_role == 'accept') {
+            $user->role = 'registered';
+        } else {
+            $user->role = 'user';
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.show_data_user')->withSuccess('User berhasil diverifikasi');
     }
 
     /**

@@ -16,20 +16,22 @@
                         <a 
                             href="{{ route('admin.kategori_kajian.create')}}" 
                             class="btn btn-primary"
-                            >Tambah Kategori Kajian</a>
+                        >
+                            <i class="fa fa-plus"></i> Tambah Kategori Kajian
+                        </a>
                     </div>
 
                     <table id="datatablesSimple" class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>NO</th>
                                 <th>Nama</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>NO</th>
                                 <th>Nama</th>
                                 <th>Action</th>
                             </tr>
@@ -37,20 +39,27 @@
                         <tbody>
                             @foreach($topik_kajian as $topik)
                                 <tr>
-                                    <td>{{$topik->id}}</td>
+                                    <td>{{$loop->iteration}}</td>
                                     <td>{{$topik->nama}}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('admin.kategori_kajian.destroy', $topik->id) }}" method="post">
-                                            <a href="{{ route('admin.kategori_kajian.edit', $topik->id) }}" class="text-info me-2"
-                                                title="View"><i class="fa fa-pencil-alt fa-lg"></i>
+                                        <div class="row">
+                                            <a href="{{ route('admin.kategori_kajian.edit', $topik->id) }}" 
+                                                class="col text-info me-2 d-flex justify-content-center align-items-center"
+                                                title="View"><i class="col fa fa-pencil-alt fa-lg"></i>
                                             </a>
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-lin text-info" title="Delete"
-                                                onclick="return confirm('Apakah anda yakin?')">
-                                                <i class="fa fa-trash fa-lg"></i>
-                                            </button>
-                                        </form>
+    
+                                            <form action="{{ route('admin.kategori_kajian.destroy', $topik->id) }}" 
+                                                method="post"
+                                                class="col">
+                                                
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-lin text-info" title="Delete"
+                                                    onclick="return confirm('Apakah anda yakin?')">
+                                                    <i class="fa fa-trash fa-lg text-danger"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
