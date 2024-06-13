@@ -4086,6 +4086,9 @@ a:hover {
     color: white;
 }
 
+#kajian {
+    margin-top: 6%;
+}
 
 #kajian-home .tab-profile {
     padding: 10px;
@@ -4909,4 +4912,16 @@ a:hover {
     transform: translateY(-50%);
     pointer-events: none;
     /* Menghindari ikon dropdown menjadi klik target */
+}
+
+#title-kajian-muhammadiyah,
+#title-kajian-rekomendasi,
+#title-kajian-terkini,
+#video-terkini {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#kajian-muhammadiyah a {
+    color: #000;
 }

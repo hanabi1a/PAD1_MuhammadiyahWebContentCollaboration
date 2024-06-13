@@ -7,7 +7,8 @@ use App\Models\Kajian;
 use App\Models\VersionHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log; 
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -54,6 +55,20 @@ class KajianController extends Controller
         }
 
     }
+
+    // app/Http/Controllers/KajianController.php
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $kajians = Kajian::where('judul_kajian', 'LIKE', "%{$query}%")
+                        ->orWhere('pemateri', 'LIKE', "%{$query}%")
+                        ->orWhere('deskripsi_kajian', 'LIKE', "%{$query}%")
+                        ->get();
+
+        return response()->json($kajians);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
