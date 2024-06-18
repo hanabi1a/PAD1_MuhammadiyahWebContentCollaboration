@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Admin\KategoriKajianController;
 use App\Models\HistoryDownload;
 use App\Models\Kajian;
+use App\Models\RelasiTopikKajian;
 use App\Models\TopikKajian;
 use App\Models\VersionHistory;
 use FineDiff\Diff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log; 
-
+use App\Models\PersonalizeTopikKajian;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -23,23 +24,63 @@ class KajianController extends Controller
             ->except(['index', 'show' ,'show_kajian', 'downloadKajian', 'showNewVersionDetail']);
     }
 
-    public function index()
-    {
-        $kajian = Kajian::paginate(6);
-        $kajianList = Kajian::all();
+    // public function index()
+    // {
+    //     $kajian = Kajian::paginate(6);
+    //     $kajianList = Kajian::all();
+    //     $selectedCategories = [];
 
-        if (Auth::check()) {
-            Log::info('User is authenticated and is ' . Auth::user()->role . " = " . Auth::user()->isAdmin());
-            if (Auth::user()->isAdmin()) {
-                return view('kajian.admin_view.data_kajian', compact('kajian', 'kajianList'));
-            } else {
-                return view('kajian.main.kajian', compact('kajian', 'kajianList'));
-            }
-        } else {  
-            return view('kajian.main.kajian', compact('kajian', 'kajianList'));
+    //     if (Auth::check()) {
+    //         if (Auth::user()->isAdmin()) {
+    //             return view('kajian.admin_view.data_kajian', compact('kajian', 'kajianList'));
+    //         } else {
+    //             $userId = Auth::id(); 
+    //             $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
+    //                 ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
+    //                 ->select('topik_kajian.*')
+    //                 ->get();
+    //         }
+    //     }
+
+    //     return view('kajian.main.kajian', compact('kajian', 'kajianList', 'selectedCategories'));
+    // }
+    public function index()
+{
+    $selectedCategories = [];
+    $recommendedKajian = collect();
+    $userId = Auth::id();
+    
+    if (Auth::check()) {
+        if (Auth::user()->isAdmin()) {
+            // Admin view
+            $kajianList = Kajian::paginate(6); // Pagination for admin view
+            return view('kajian.admin_view.data_kajian', compact('kajianList'));
+        } else {
+            // User view
+            $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
+                ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
+                ->select('topik_kajian.*')
+                ->get();
+            
+            $selectedCategoryIds = $selectedCategories->pluck('id')->toArray();
+
+            $recommendedKajian = Kajian::whereHas('topikKajians', function ($query) use ($selectedCategoryIds) {
+                $query->whereIn('topik_kajian.id', $selectedCategoryIds);
+            })->paginate(6);
         }
+    } else {
+        // Default view for guests
+        $recommendedKajian = Kajian::where('recommended', true)->paginate(6);
     }
 
+    // Main view
+    $kajianList = Kajian::paginate(6); // Example pagination for main view
+
+    return view('kajian.main.kajian', compact('kajianList', 'selectedCategories', 'recommendedKajian'));
+}
+
+
+    
     public function show_kajian()
     {
 
@@ -49,17 +90,19 @@ class KajianController extends Controller
     }
 
     public function create()
-    {
-        Log::info('Create method called');
-        $kajian = null;
-        $kategori_kajian = TopikKajian::all();
-        $view = Auth::user()->isAdmin() ? "kajian.write.form_create_admin" : "kajian.write.form_create_user";
-        
-        return view($view, compact('kajian', 'kategori_kajian'));
+{
+    Log::info('Create method called');
+    $kajian = null;
+    $kategori_kajian = TopikKajian::all();
+    $selected_kategori = []; 
 
-    }
+    $view = Auth::user()->isAdmin() ? "kajian.write.form_create_admin" : "kajian.write.form_create_user";
+    
+    return view($view, compact('kajian', 'kategori_kajian', 'selected_kategori'));
+}
 
-    // app/Http/Controllers/KajianController.php
+
+
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -93,6 +136,7 @@ class KajianController extends Controller
             'val_tanggal' => 'required',
             'val_deskripsi' => 'required',
             'val_foto_kajian' => 'image|nullable|max:26000',
+            'kategori' => 'required', 
         ]);
 
         Log::info('Request data validated');
@@ -131,6 +175,9 @@ class KajianController extends Controller
         $kajian->slug = Str::slug($kajian->judul_kajian).'-'.$kajian->id;
         $kajian->save();
 
+        // Save the relationship to relasi_topik_kajian
+    $kajian->topikKajians()->attach($request->kategori);
+
         Log::info('Kajian created');
 
         $is_new_version = $request->is_new_version;
@@ -147,11 +194,9 @@ class KajianController extends Controller
             if (Auth::user()->role == 'admin') {
                 return redirect()->route('admin.kajian.new_version.konten', [$oldKajian, $versionHistory, $kajian]);
             }
-            
-    
+
             return redirect()->route('kajian.new_version.konten', [$oldKajian, $versionHistory, $kajian]);
         }
-
 
         Log::info('Redirecting to: '.(Auth::user()->role == 'admin' ? 'data_kajian' : 'kajian.show'));
         if (Auth::user()->role == 'admin') {
@@ -159,8 +204,8 @@ class KajianController extends Controller
         }
 
         return redirect()->route('kajian.konten', $kajian);
-
     }
+
 
     public function show_edit_konten(Kajian $kajian)
     {

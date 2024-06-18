@@ -22,6 +22,7 @@ class Kajian extends Model
         'deskripsi_kajian',
         'foto_kajian',
         'file_kajian',
+        'id_user',
         'slug',
         // tambahkan nama-nama atribut lain jika ada
     ];
@@ -39,7 +40,14 @@ class Kajian extends Model
     public function current_versions()
     {
         return $this->hasOne(VersionHistory::class, 'kajian_id');
+        
     }
+
+    public function topikKajians()
+    {
+        return $this->belongsToMany(TopikKajian::class, 'relasi_topik_kajian', 'kajian_id', 'topik_kajian_id');
+    }
+    
 
 
     // Di dalam model Kajian

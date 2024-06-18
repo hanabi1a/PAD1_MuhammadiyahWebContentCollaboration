@@ -130,85 +130,57 @@
 </div>
 
 @if (Auth::user() != null && Auth::user()->role == 'registered')
-    <section id="kajian-rekomendasi" class="default-content">
-        <div class="container">
-            <h1 id="title-kajian-rekomendasi" class="mt-3 mb-2">Kajian Rekomendasi</h1>
-            <div class="list-rekomendasi d-flex flex-wrap mb-4 mt-4">
-                <div class="kategori me-2">Sejarah   <img src="assets\img\icon\cancel.svg"></div>
-                <div class="kategori me-2">Aqidah</div>
-                <div class="kategori me-2">Akhlak</div>
-                <div class="kategori me-2">Fiqih</div>
-                <div class="kategori me-2">Al-Qur’an</div>
-                <div class="dropdown">
-                    <button class="kategori-lainnya dropdown-toggle" type="button" id="dropdownMenuButton1">
-                        Tambah Kategori
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Sejarah</a></li>
-                        <li><a class="dropdown-item" href="#">Aqidah</a></li>
-                        <li><a class="dropdown-item" href="#">Fiqih</a></li>
-                    </ul>
+<id="kajian-rekomendasi" class="default-content">
+    <div class="container">
+        <h1 id="title-kajian-rekomendasi" class="mb-2">Kajian Rekomendasi</h1>
+        <div class="list-rekomendasi d-flex flex-wrap mb-4 mt-4">
+            @foreach ($selectedCategories as $category)
+                <div class="kategori me-2">
+                    {{ $category->nama }}
+                    <img src="\assets\img\icon\cancel.svg" alt="Close Icon">
                 </div>
+            @endforeach
+
+            <div class="dropdown">
+                <button class="kategori-lainnya dropdown-toggle" type="button" id="dropdownMenuButton1">
+                    Tambah Kategori
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    @foreach ($selectedCategories as $category)
+                        <li><a class="dropdown-item" href="#">{{ $category->nama }}</a></li>
+                    @endforeach
+                </ul>
             </div>
-            @if (isset($kajian))
-                <div class="row" id="kajianRekomendasiResults">
-                    @foreach ($kajian as $item)
-                    <div class="col-md-4 mb-5 kajian-item" 
-                        data-title="{{ $item->judul_kajian }}"
-                        data-pemateri="{{ $item->pemateri }}"
-                        data-deskripsi="{{ strip_tags($item->deskripsi_kajian) }}">
-                        <div class="card box-shadow">
-                            <img src="{{ asset('storage/' . $item->foto_kajian) }}" class="img-fluid img-kajian">
-                            <div class="card-body">
-                                <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
-                                <p class="card-text">{{ $item->pemateri }}</p>
-                                <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
-                                <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
-                            </div>
+        </div>
+        <div class="row" id="kajianRekomendasiResults">
+            @foreach ($recommendedKajian as $item)
+                <div class="col-md-4 mb-5 kajian-item" 
+                    data-category="{{ $item->kategori }}" 
+                    data-title="{{ $item->judul_kajian }}"
+                    data-pemateri="{{ $item->pemateri }}"
+                    data-deskripsi="{{ strip_tags($item->deskripsi_kajian) }}"
+                    data-kategori="{{ $item->kategori }}">
+                    <div class="card box-shadow">
+                        <img src="{{ asset('storage/' . $item->foto_kajian) }}" class="img-fluid img-kajian">
+                        <div class="card-body">
+                            <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
+                            <p class="card-text">{{ $item->pemateri }}</p>
+                            <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
+                            <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                         </div>
                     </div>
-                    @endforeach
                 </div>
+            @endforeach
+        </div>
+                @if ($recommendedKajian->count())
             <div class="d-flex justify-content-center">
-                {!! $kajian->links('pagination.custom') !!}
+                {!! $recommendedKajian->links('pagination.custom') !!}
             </div>
-            @endif
-        </div>
-    </section>
-    @else
-    <section id="kajian-muhammadiyah" class="default-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1 id="title-kajian-muhammadiyah" class="mt-4 mb-4">Kajian Muhammadiyah</h1>
-                </div>
-                <div class="col-md-6 d-flex justify-content-end align-items-center">
-                    <a href="{{ route('profile.akun_muhammadiyah') }}" class="m-0 me-2"><strong>Lihat Semua</strong></a>
-                    <img src="assets/img/icon/btn_next.svg" style="width: 20px; height: 20px;" alt="Next Button">
-                </div>
-            </div>
-            <div class="row" id="kajianMuhammadiyahResults">
-            @if (isset($kajian))
-                    <div class="row">
-                        @foreach ($kajian as $item)
-                            <div class="col-md-4 mb-5">
-                                <div class="card box-shadow">
-                                    <img src="{{ asset('storage/'.$item->foto_kajian) }}" class="img-fluid img-kajian">
-                                    <div class="card-body">
-                                        <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
-                                        <p class="card-text">{{ $item->pemateri }}</p>
-                                        <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
-                                        <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-        </div>
-    </section>
-    @endif
+        @endif
+    </div>
+</id=>
+@endif
+
 
     <section id="kajian-terkini" class="default-content">
         <div class="container">
