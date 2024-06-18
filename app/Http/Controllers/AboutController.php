@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Kajian;
+use App\Models\PersonalizeTopikKajian;
+use Illuminate\Support\Facades\Auth;
 
 class AboutController extends Controller
 {
@@ -11,7 +14,10 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('about.about');
+    
+    $kajianList = Kajian::paginate(6);
+
+        return view('about.about', compact('kajianList'));
     }
 
     /**

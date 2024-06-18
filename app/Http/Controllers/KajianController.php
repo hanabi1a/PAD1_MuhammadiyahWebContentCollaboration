@@ -24,39 +24,13 @@ class KajianController extends Controller
             ->except(['index', 'show' ,'show_kajian', 'downloadKajian', 'showNewVersionDetail']);
     }
 
-    // public function index()
-    // {
-    //     $kajian = Kajian::paginate(6);
-    //     $kajianList = Kajian::all();
-    //     $selectedCategories = [];
-
-    //     if (Auth::check()) {
-    //         if (Auth::user()->isAdmin()) {
-    //             return view('kajian.admin_view.data_kajian', compact('kajian', 'kajianList'));
-    //         } else {
-    //             $userId = Auth::id(); 
-    //             $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
-    //                 ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
-    //                 ->select('topik_kajian.*')
-    //                 ->get();
-    //         }
-    //     }
-
-    //     return view('kajian.main.kajian', compact('kajian', 'kajianList', 'selectedCategories'));
-    // }
     public function index()
-{
-    $selectedCategories = [];
-    $recommendedKajian = collect();
-    $userId = Auth::id();
-    
-    if (Auth::check()) {
-        if (Auth::user()->isAdmin()) {
-            // Admin view
-            $kajianList = Kajian::paginate(6); // Pagination for admin view
-            return view('kajian.admin_view.data_kajian', compact('kajianList'));
-        } else {
-            // User view
+    {
+        $selectedCategories = collect();
+        $recommendedKajian = collect();
+        $userId = Auth::id();
+        
+        if (Auth::check() && !Auth::user()->isAdmin()) {
             $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
                 ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
                 ->select('topik_kajian.*')
@@ -67,18 +41,53 @@ class KajianController extends Controller
             $recommendedKajian = Kajian::whereHas('topikKajians', function ($query) use ($selectedCategoryIds) {
                 $query->whereIn('topik_kajian.id', $selectedCategoryIds);
             })->paginate(6);
-        }
-    } else {
-        // Default view for guests
-        $recommendedKajian = Kajian::where('recommended', true)->paginate(6);
+        } 
+
+        $kajianList = Kajian::paginate(6); 
+        $kategoriKajian = TopikKajian::all();
+        
+        return view('kajian.main.kajian', compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian'));
     }
 
-    // Main view
-    $kajianList = Kajian::paginate(6); // Example pagination for main view
+    public function updateRecommendations(Request $request)
+    {
+        $request->validate([
+            'category' => 'required|string',
+            'action' => 'required|in:add,remove',
+        ]);
 
-    return view('kajian.main.kajian', compact('kajianList', 'selectedCategories', 'recommendedKajian'));
-}
+        $categoryName = $request->input('category');
+        $action = $request->input('action');
+        $userId = Auth::id();
 
+        $category = TopikKajian::where('nama', $categoryName)->first();
+
+        if ($category) {
+            if ($action == 'remove') {
+                PersonalizeTopikKajian::where('user_id', $userId)
+                    ->where('topik_kajian_id', $category->id)
+                    ->delete();
+            } elseif ($action == 'add') {
+                PersonalizeTopikKajian::firstOrCreate([
+                    'user_id' => $userId,
+                    'topik_kajian_id' => $category->id,
+                ]);
+            }
+        }
+
+        $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
+            ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
+            ->select('topik_kajian.*')
+            ->get();
+        
+        $selectedCategoryIds = $selectedCategories->pluck('id')->toArray();
+
+        $recommendedKajian = Kajian::whereHas('topikKajians', function ($query) use ($selectedCategoryIds) {
+            $query->whereIn('topik_kajian.id', $selectedCategoryIds);
+        })->get();
+
+        return response()->json(['recommendedKajian' => $recommendedKajian]);
+    }
 
     
     public function show_kajian()
@@ -100,7 +109,6 @@ class KajianController extends Controller
     
     return view($view, compact('kajian', 'kategori_kajian', 'selected_kategori'));
 }
-
 
 
     public function search(Request $request)

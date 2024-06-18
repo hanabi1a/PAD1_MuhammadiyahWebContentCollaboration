@@ -88,6 +88,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/beranda', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+Route::post('/update-recommendations', [HomeController::class, 'updateRecommendations']);
+Route::post('/update-recommendations', [KajianController::class, 'updateRecommendations']);
+
 Route::prefix('register')->name('register.')->group(function () {
     Route::get('/', [RegisteredUserController::class, 'create'])->name('show');
     Route::get('/{page}', [RegisteredUserController::class, 'create'])->name('show');

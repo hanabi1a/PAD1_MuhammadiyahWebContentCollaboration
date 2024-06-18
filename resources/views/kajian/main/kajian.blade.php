@@ -3,14 +3,12 @@
 <section id="kajian-hero">
     <div class="container">
         <div id="kajianCarousel" class="carousel slide" data-bs-ride="carousel">
-            <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-bs-target="#kajianCarousel" data-bs-slide-to="0" class="active"></li>
                 <li data-bs-target="#kajianCarousel" data-bs-slide-to="1"></li>
                 <li data-bs-target="#kajianCarousel" data-bs-slide-to="2"></li>
             </ol>
 
-            <!-- Slides -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
@@ -80,7 +78,6 @@
             </div>
 
             <div class="control">
-                <!-- Controls -->
                 <a class="carousel-control-prev" href="#kajianCarousel" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -148,63 +145,62 @@
                     <div class="card-body">
                         <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
                         <p class="card-text">{{ $item->pemateri }}</p>
-                        <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
+                        <div class="card-title" style="color: #04454D;">
+                            {{ Str::words(strip_tags($item->deskripsi_kajian), 50, '...') }}
+                        </div>
                         <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
-        <div class="d-flex justify-content-center">
-            {!! $kajianList->links('pagination.custom') !!}
-        </div>
     </div>
 </section>
 
 
-@if (Auth::user() != null && Auth::user()->role == 'registered')
+@if (Auth::check() && Auth::user()->role == 'registered')
 <section id="kajian-rekomendasi" class="default-content">
     <div class="container">
         <h1 id="title-kajian-rekomendasi" class="mb-2">Kajian Rekomendasi</h1>
         <div class="list-rekomendasi d-flex flex-wrap mb-4 mt-4">
-            @foreach ($selectedCategories as $category)
-                <div class="kategori me-2">
-                    {{ $category->nama }}
-                    <img src="\assets\img\icon\cancel.svg" alt="Close Icon">
-                </div>
-            @endforeach
-
-            <div class="dropdown">
-                <button class="kategori-lainnya dropdown-toggle" type="button" id="dropdownMenuButton1">
-                    Tambah Kategori
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    @foreach ($selectedCategories as $category)
-                        <li><a class="dropdown-item" href="#">{{ $category->nama }}</a></li>
-                    @endforeach
-                </ul>
+        @foreach ($selectedCategories as $category)
+            <div class="kategori me-2">
+                {{ $category->nama }}
+                <img src="/assets/img/icon/cancel.svg" alt="Close Icon">
             </div>
+        @endforeach
+
+        <div class="dropdown" id="category-add-dropdown">
+            <button class="kategori-lainnya dropdown-toggle" type="button" id="dropdownMenuButton1">
+                Tambah Kategori
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                @foreach ($kategoriKajian as $item)
+                    <li><a class="dropdown-item" href="#">{{ $item->nama }}</a></li>
+                @endforeach
+            </ul>
         </div>
-        <div class="row" id="kajianRekomendasiResults">
-            @foreach ($recommendedKajian as $item)
-                <div class="col-md-4 mb-5 kajian-item" 
-                    data-category="{{ $item->kategori }}" 
-                    data-title="{{ $item->judul_kajian }}"
-                    data-pemateri="{{ $item->pemateri }}"
-                    data-deskripsi="{{ strip_tags($item->deskripsi_kajian) }}"
-                    data-kategori="{{ $item->kategori }}">
+
+        </div>
+
+        <div id="kajianRekomendasiResults" class="row">
+            @foreach ($recommendedKajian as $kajian)
+                <div class="col-md-4 mb-5 kajian-item">
                     <div class="card box-shadow">
-                        <img src="{{ asset('storage/' . $item->foto_kajian) }}" class="img-fluid img-kajian">
+                        <img src="/storage/{{ $kajian->foto_kajian }}" class="img-fluid img-kajian">
                         <div class="card-body">
-                            <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
-                            <p class="card-text">{{ $item->pemateri }}</p>
-                            <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
-                            <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
+                            <div class="card-title mt-3">{{ $kajian->judul_kajian }}</div>
+                            <p class="card-text">{{ $kajian->pemateri }}</p>
+                            <div class="card-title" style="color: #04454D;">
+                                {{ Str::words(strip_tags($kajian->deskripsi_kajian), 50, '...') }}
+                            </div>
+                            <a href="/kajian/{{ $kajian->slug }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
+
         <div class="d-flex justify-content-center">
             {!! $recommendedKajian->links('pagination.custom') !!}
         </div>
@@ -228,7 +224,9 @@
                     <div class="card-body">
                         <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
                         <p class="card-text">{{ $item->pemateri }}</p>
-                        <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
+                        <div class="card-title" style="color: #04454D;">
+                            {{ Str::words(strip_tags($item->deskripsi_kajian), 50, '...') }}
+                        </div>
                         <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                     </div>
                 </div>
@@ -244,7 +242,7 @@
 
 <section id="video-terkini" class="default-content">
     <div class="container">
-<h1 id="video-terkini" class="mb-3">Video Terkini</h1>`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+<h1 id="video-terkini" class="mb-3">Video Terkini</h1>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
         <div class="row">
             <div class="col-md-6">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
