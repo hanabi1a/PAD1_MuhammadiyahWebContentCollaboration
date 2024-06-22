@@ -140,17 +140,15 @@ class RegisteredUserController extends Controller
         return redirect()->route('register.show', ['page' => 3]);
     }
 
-    public function store_additional_3(Request $request) {
-        // Mengambil data pengguna yang akan diperbarui
+    public function store_additional_3(Request $request)
+    {
         $userId = session('tuid');
         $user = User::find($userId);
-
+    
         $categories = $request->categories;
-
-        // Remove duplicates from categories
+    
         $categories = array_unique($categories);
-
-        // if categories is not empty
+    
         if ($categories) {
             foreach ($categories as $category) {
                 PersonalizeTopikKajian::create([
@@ -158,21 +156,23 @@ class RegisteredUserController extends Controller
                     'topik_kajian_id' => $category
                 ]);
             }
+            $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
+                                ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
+                                ->select('topik_kajian.*')
+                                ->get();
         }
-
-
-
-        $user->save();
 
         // Menghapus sessino ID pengguna yang sedang mendaftar
         $request->session()->forget('tuid');
-
+    
         Auth::login($user);
-
         if ($user->isAdmin()) {
             return redirect(RouteServiceProvider::ADMIN);
         } else {
             return redirect(RouteServiceProvider::HOME);
         }
     }
+    
+    
+        
 }

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Admin\KategoriKajianController;
 use App\Models\HistoryDownload;
 use App\Models\Kajian;
+use App\Models\RelasiTopikKajian;
 use App\Models\TopikKajian;
 use App\Models\VersionHistory;
 use FineDiff\Diff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log; 
+use App\Models\PersonalizeTopikKajian;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -24,21 +26,77 @@ class KajianController extends Controller
 
     public function index()
     {
-        $kajian = Kajian::paginate(6);
-        $kajianList = Kajian::all();
+        $kajianList = Kajian::paginate(6); 
+        $kategoriKajian = TopikKajian::all();
+        $selectedCategories = collect();
+        $recommendedKajian = collect();
+        $userId = Auth::id();
 
+        $view = "kajian.main.kajian";
+        
         if (Auth::check()) {
-            Log::info('User is authenticated and is ' . Auth::user()->role . " = " . Auth::user()->isAdmin());
+
             if (Auth::user()->isAdmin()) {
-                return view('kajian.admin_view.data_kajian', compact('kajian', 'kajianList'));
+                $view = "kajian.admin_view.data_kajian";
             } else {
-                return view('kajian.main.kajian', compact('kajian', 'kajianList'));
-            }
-        } else {  
-            return view('kajian.main.kajian', compact('kajian', 'kajianList'));
+            
+                $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
+                    ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
+                    ->select('topik_kajian.*')
+                    ->get();
+            
+                $selectedCategoryIds = $selectedCategories->pluck('id')->toArray();
+    
+                $recommendedKajian = Kajian::whereHas('topikKajians', function ($query) use ($selectedCategoryIds) {
+                    $query->whereIn('topik_kajian.id', $selectedCategoryIds);
+                })->paginate(6);
+            }   
         }
+        
+        return view($view, compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian'));
     }
 
+    public function updateRecommendations(Request $request)
+    {
+        $request->validate([
+            'category' => 'required|string',
+            'action' => 'required|in:add,remove',
+        ]);
+
+        $categoryName = $request->input('category');
+        $action = $request->input('action');
+        $userId = Auth::id();
+
+        $category = TopikKajian::where('nama', $categoryName)->first();
+
+        if ($category) {
+            if ($action == 'remove') {
+                PersonalizeTopikKajian::where('user_id', $userId)
+                    ->where('topik_kajian_id', $category->id)
+                    ->delete();
+            } elseif ($action == 'add') {
+                PersonalizeTopikKajian::firstOrCreate([
+                    'user_id' => $userId,
+                    'topik_kajian_id' => $category->id,
+                ]);
+            }
+        }
+
+        $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
+            ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
+            ->select('topik_kajian.*')
+            ->get();
+        
+        $selectedCategoryIds = $selectedCategories->pluck('id')->toArray();
+
+        $recommendedKajian = Kajian::whereHas('topikKajians', function ($query) use ($selectedCategoryIds) {
+            $query->whereIn('topik_kajian.id', $selectedCategoryIds);
+        })->get();
+
+        return response()->json(['recommendedKajian' => $recommendedKajian]);
+    }
+
+    
     public function show_kajian()
     {
 
@@ -52,11 +110,26 @@ class KajianController extends Controller
         Log::info('Create method called');
         $kajian = null;
         $kategori_kajian = TopikKajian::all();
+        $selected_kategori = []; 
+    
         $view = Auth::user()->isAdmin() ? "kajian.write.form_create_admin" : "kajian.write.form_create_user";
         
-        return view($view, compact('kajian', 'kategori_kajian'));
-
+        return view($view, compact('kajian', 'kategori_kajian', 'selected_kategori'));
     }
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $kajians = Kajian::where('judul_kajian', 'LIKE', "%{$query}%")
+                        ->orWhere('pemateri', 'LIKE', "%{$query}%")
+                        ->orWhere('deskripsi_kajian', 'LIKE', "%{$query}%")
+                        ->get();
+
+        return response()->json($kajians);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -78,6 +151,7 @@ class KajianController extends Controller
             'val_tanggal' => 'required',
             'val_deskripsi' => 'required',
             'val_foto_kajian' => 'image|nullable|max:26000',
+            'kategori' => 'required', 
         ]);
 
         Log::info('Request data validated');
@@ -116,6 +190,9 @@ class KajianController extends Controller
         $kajian->slug = Str::slug($kajian->judul_kajian).'-'.$kajian->id;
         $kajian->save();
 
+        // Save the relationship to relasi_topik_kajian
+        $kajian->topikKajians()->attach($request->kategori);
+
         Log::info('Kajian created');
 
         $is_new_version = $request->is_new_version;
@@ -132,11 +209,9 @@ class KajianController extends Controller
             if (Auth::user()->role == 'admin') {
                 return redirect()->route('admin.kajian.new_version.konten', [$oldKajian, $versionHistory, $kajian]);
             }
-            
-    
+
             return redirect()->route('kajian.new_version.konten', [$oldKajian, $versionHistory, $kajian]);
         }
-
 
         Log::info('Redirecting to: '.(Auth::user()->role == 'admin' ? 'data_kajian' : 'kajian.show'));
         if (Auth::user()->role == 'admin') {
@@ -144,8 +219,8 @@ class KajianController extends Controller
         }
 
         return redirect()->route('kajian.konten', $kajian);
-
     }
+
 
     public function show_edit_konten(Kajian $kajian)
     {

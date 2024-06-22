@@ -255,36 +255,36 @@
         </div>
 </section>
 
-<section id="kajian-home">
+<section id="kajian-muhammadiyah" class="default-content mt-3">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1>Kajian Muhammadiyah</h1>
+                <h1 id="title-kajian-muhammadiyah" class="mt-4 mb-4">Kajian Muhammadiyah</h1>
             </div>
             <div class="col-md-6 d-flex justify-content-end align-items-center">
-                <a href="" class="d-flex align-items-center">
-                    <p class="m-0 me-2"><strong>Lihat Semua</strong></p>
-                    <img src="assets\img\icon\btn_next.svg" style="width: 20px; height: 20px;" alt="Next Button">
-                </a>
+                <a href="{{ route('profile.akun_muhammadiyah') }}" class="m-0 me-2"><strong>Lihat Semua</strong></a>
+                <img src="\assets/img/icon/btn_next.svg" style="width: 20px; height: 20px;" alt="Next Button">
             </div>
         </div>
-        @if (isset($kajian))
-            <div class="row">
-                @foreach ($kajian as $item)
-                    <div class="col-md-4 mb-5">
-                        <div class="card box-shadow">
-                            <img src="{{ $item->foto_kajian }}" class="img-fluid img-kajian">
-                            <div class="card-body">
-                                <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
-                                <p class="card-text">{{ $item->pemateri }}</p>
-                                <div class="card-title" style="color: #04454D;">{{ $item->deskripsi_kajian }}</div>
-                                <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                     </div>
-                 @endforeach
+        <div class="row" id="kajianMuhammadiyahResults">
+            @foreach ($kajianList as $item)
+            <div class="col-md-4 mb-5 kajian-item" 
+                data-category="muhammadiyah" 
+                data-title="{{ $item->judul_kajian }}"
+                data-pemateri="{{ $item->pemateri }}"
+                data-deskripsi="{{ strip_tags($item->deskripsi_kajian) }}"
+                data-kategori="{{ $item->kategori }}">
+                <div class="card box-shadow">
+                    <img src="{{ asset('storage/' . $item->foto_kajian) }}" class="img-fluid img-kajian">
+                    <div class="card-body">
+                        <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
+                        <p class="card-text">{{ $item->pemateri }}</p>
+                        <div class="card-title" style="color: #04454D;">{!! $item->deskripsi_kajian !!}</div>
+                        <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
+                    </div>
+                </div>
             </div>
-        @endif
+            @endforeach
         </div>
     </div>
 </section>

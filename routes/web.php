@@ -42,6 +42,11 @@ Route::get('/akun_muhammadiyah', function () {
 Route::get('/akun_pengguna', function () {
     return view('profile.profile_akun_pengguna');
 });
+
+// routes/search
+Route::get('/kajian/search', [KajianController::class, 'search'])->name('kajian.search');
+
+
 // Route::get('/form_create_user_nv', function () {
 //     return view('kajian.write.form_create_user_nv');
 // });
@@ -83,6 +88,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/beranda', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+Route::post('/update-recommendations', [HomeController::class, 'updateRecommendations']);
+Route::post('/update-recommendations', [KajianController::class, 'updateRecommendations']);
+
 Route::prefix('register')->name('register.')->group(function () {
     Route::get('/', [RegisteredUserController::class, 'create'])->name('show');
     Route::get('/{page}', [RegisteredUserController::class, 'create'])->name('show');
@@ -92,16 +100,15 @@ Route::prefix('register')->name('register.')->group(function () {
     Route::post('/4', [RegisteredUserController::class, 'store_additional_3'])->name('step4');
 });
 
-/**
- * Middleware 'auth' digunakan untuk membatasi akses ke halaman tertentu
- * Hanya bisa diakses oleh user yang sudah login
- */
+// Rute yang tidak memerlukan autentikasi
+Route::prefix('profile')->name('profile.')->group(function () {
+    Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
+    Route::get('/akun_pengguna', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_pengguna');
+});
+
+// Rute yang memerlukan autentikasi
 Route::middleware('auth')->group(function () {
-    // Breeze
-    // Route::get('/profileb', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profileb', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profileb', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::prefix('profileb')->name('profile.')->group(function () {
+    Route::prefix('profileb')->name('profileb.')->group(function () {
         Route::get('/', [ProfileController::class, 'edit'])->name('edit');
         Route::patch('/', [ProfileController::class, 'update'])->name('update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
@@ -114,8 +121,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
         Route::put('/edit/picture/update', [ProfileController::class, 'upload_profile_picture'])->name('update.picture');
         Route::put('/edit/picture/delete', [ProfileController::class, 'delete_profile_picture'])->name('delete.picture');
-        Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
-        Route::get('/akun_pengguna', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_pengguna');
     });
 
     /**

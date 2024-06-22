@@ -17,4 +17,8 @@ class TopikKajian extends Model
         'nama',
     ];
     
+    public function kajians()
+    {
+        return $this->belongsToMany(Kajian::class, 'relasi_topik_kajian', 'topik_kajian_id', 'kajian_id');
+    }
 }
