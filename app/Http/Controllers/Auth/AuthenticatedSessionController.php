@@ -9,6 +9,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -26,23 +28,49 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        // Add to history_login
-        $user = Auth::user();
-        historylogin::create([
-            'user_id' => $user->id,
-            'timestamp' => now(),
-            'user_agent' => $request->userAgent(),
+        // Panggil API eksternal untuk autentikasi
+        $response = Http::post(env('EXTERNAL_API_URL'), [
+            'email' => $request->email,
+            'password' => $request->password,
         ]);
 
-        if (Auth::user()->isAdmin()) {
-            return redirect()->intended(RouteServiceProvider::ADMIN);
-        } else {
-            return redirect()->intended(RouteServiceProvider::HOME);
+        if ($response->successful()) {
+            // Jika login berhasil, dapatkan data user dari respons API
+            $data = $response->json();
+
+            // Buat atau update user di database lokal Laravel
+            $user = \App\Models\User::updateOrCreate(
+                ['email' => $request->email],
+                ['name' => $data['name']] // Tambahkan atribut lain sesuai kebutuhan
+            );
+
+            // Loginkan user ke dalam aplikasi Laravel
+            Auth::login($user);
+
+            // Buat token Sanctum
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            // Regenerasi sesi
+            $request->session()->regenerate();
+
+            // Tambahkan ke history_login
+            historylogin::create([
+                'user_id' => $user->id,
+                'timestamp' => now(),
+                'user_agent' => $request->userAgent(),
+            ]);
+
+            // Redirect berdasarkan peran user
+            if ($user->isAdmin()) {
+                return redirect()->intended(RouteServiceProvider::ADMIN);
+            } else {
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
         }
+
+        throw ValidationException::withMessages([
+            'email' => [__('auth.failed')],
+        ]);
     }
 
     /**
