@@ -365,45 +365,45 @@ class KajianController extends Controller
     }
 
     public function update_konten(Request $request, Kajian $kajian) 
-{
-    $request->validate([
-        'val_dokumen' => 'mimes:pdf,doc,docx|max:20480',
-    ]);
-
-    Log::info('Request data: ', $request->all());
-    Log::info('Kajian Data: ', $kajian->toArray());
-
-    $slug = $kajian->slug;
+    {
+        $request->validate([
+            'val_dokumen' => 'mimes:pdf,doc,docx|max:20480',
+        ]);
     
-    $pathDokumen = null;
-    if ($request->hasFile('val_dokumen')) {
-        $extension = $request->file('val_dokumen')->getClientOriginalExtension();
-        $fileNameToStore = $kajian->title . '_' . $kajian->id . '.' . $extension;
-        $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
-    } elseif($request->has('val_konten')) {
-        // save the val_konten to txt
-        $konten = $request->val_konten;
-        $fileNameToStore = $kajian->title . '_' . $kajian->id . '.pdf';
-        $pathDokumen = 'documents/'.$fileNameToStore;
-
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($konten);
-
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        // Output the generated PDF to a file
-        $output = $dompdf->output();
-        Storage::disk('public')->put($pathDokumen, $output);
+        Log::info('Request data: ', $request->all());
+        Log::info('Kajian Data: ', $kajian->toArray());
+    
+        $slug = $kajian->slug;
+        
+        $pathDokumen = null;
+        if ($request->hasFile('val_dokumen')) {
+            $extension = $request->file('val_dokumen')->getClientOriginalExtension();
+            $fileNameToStore = $kajian->title . '_' . $kajian->id . '.' . $extension;
+            $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
+        } elseif($request->has('val_konten')) {
+            // save the val_konten to txt
+            $konten = $request->val_konten;
+            $fileNameToStore = $kajian->title . '_' . $kajian->id . '.pdf';
+            $pathDokumen = 'documents/'.$fileNameToStore;
+    
+            // instantiate and use the dompdf class
+            $dompdf = new Dompdf();
+            $dompdf->loadHtml($konten);
+    
+            // Render the HTML as PDF
+            $dompdf->render();
+    
+            // Output the generated PDF to a file
+            $output = $dompdf->output();
+            Storage::disk('public')->put($pathDokumen, $output);
+        }
+    
+        $kajian->file_kajian = $pathDokumen;
+        $kajian->save();
+    
+        return redirect()->route('kajian.show', $kajian)
+            ->withSuccess('Terima kasih! Data berhasil disimpan');
     }
-
-    $kajian->file_kajian = $pathDokumen;
-    $kajian->save();
-
-    return redirect()->route('kajian.show', $kajian)
-        ->withSuccess('Terima kasih! Data berhasil disimpan');
-}
 
 
     public function update_konten_new_version(Request $request, Kajian $oldKajian, VersionHistory $version, Kajian $kajian)
