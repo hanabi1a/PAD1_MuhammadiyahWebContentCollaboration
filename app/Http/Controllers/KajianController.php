@@ -249,10 +249,7 @@ class KajianController extends Controller
     {
         // $kajian = Kajian::find($id);
         Log::info('Showing kajian with ID: '.$kajian->id);
-        $uploaderUsername = null;
-        if ($kajian && $kajian->user) {
-            $uploaderUsername = $kajian->user->username;
-        }
+        $uploaderUsername =  $kajian->user->username ?? null;
 
         $shareAbleUrl = route('kajian.show', $kajian->slug);
 
@@ -274,32 +271,13 @@ class KajianController extends Controller
             Log::info('No version history found for kajian with ID: '.$kajian->id);
         }
 
-        if ($client != null &&  $client->isAdmin()) {
-          
-            return view(
-                'kajian.admin_view.detail_kajian', 
-                ['userkajian' => $kajian, 
-                'uploaderUsername' => $uploaderUsername,
-                'shareAbleUrl' => $shareAbleUrl,
-                'diffMessage' => $diffMessage
-                ]);
+        $view = $client && $client->isAdmin() ? 'kajian.admin_view.detail_kajian' : 'kajian.read.detail_kajian_asli_user';
 
-        } elseif ($client != null &&  $client->isRegistered()) {
-
-            return view(
-                'kajian.read.detail_kajian_asli_user', 
-                ['userkajian' => $kajian, 
-                'uploaderUsername' => $uploaderUsername,
-                'shareAbleUrl' => $shareAbleUrl,
-                'diffMessage' => $diffMessage
-                ]);
-
-        }
-        return view('kajian.read.detail_kajian_asli_user', 
-        ['userkajian' => $kajian, 
-        'uploaderUsername' => $uploaderUsername,
-        'shareAbleUrl' => $shareAbleUrl,
-        'diffMessage' => $diffMessage
+        return view($view, [
+            'userkajian' => $kajian,
+            'uploaderUsername' => $uploaderUsername,
+            'shareAbleUrl' => $shareAbleUrl,
+            'diffMessage' => $diffMessage
         ]);
 
 
@@ -404,13 +382,46 @@ class KajianController extends Controller
             'downloaded_at' => now(),
         ]);
 
+        // Prepare to download the file
+
+        $pathDokumen = $kajian->file_kajian;
+        $fileKajianPath = public_path('storage/'.$pathDokumen);
+
+
         // Logika untuk mengarahkan pengguna ke file kajian yang akan diunduh
         $prefix = env('FILE_DOWNLOAD_PATH', null);
         if ($prefix) {
-            return response()->download($prefix.$kajian->file_kajian);
-        } else {
-            return response()->download(public_path('storage/'.$kajian->file_kajian));
+            $fileKajianPath = $prefix.$pathDokumen ;
         }
+
+        $konten = is_file($fileKajianPath) ? file_get_contents($fileKajianPath) : '';
+        $fullHtmlKonten = $this->wrap_with_html($konten);
+
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($fullHtmlKonten);
+
+        $dompdf->render();
+
+        $output = $dompdf->output();
+
+        // Stream the PDF to the browser for preview
+        return response()->streamDownload(function () use ($output) {
+            echo $output;
+        }, $kajian->judul_kajian . ".pdf", ['Content-Type' => 'application/pdf']);
+    }
+
+    private function wrap_with_html($content)
+    {
+        return '<html>
+                    <head>
+                        <style>
+                            table { width: 100%; border-collapse: collapse; }
+                            th, td { border: 1px solid black; padding: 8px; }
+                        </style>
+                    </head>
+                    <body>'.$content.'</body>
+                </html>';
     }
 
     public function show_editor_new_version(Kajian $oldKajian, VersionHistory $version, Kajian $kajian)
@@ -447,30 +458,19 @@ class KajianController extends Controller
     
         Log::info('Request data: ', $request->all());
         Log::info('Kajian Data: ', $kajian->toArray());
-    
-        $slug = $kajian->slug;
         
         $pathDokumen = null;
         if ($request->hasFile('val_dokumen')) {
             $extension = $request->file('val_dokumen')->getClientOriginalExtension();
-            $fileNameToStore = $kajian->title . '_' . $kajian->id . '.' . $extension;
+            $fileNameToStore = $kajian->judul_kajian . '_' . $kajian->id . '.' . $extension;
             $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
         } elseif($request->has('val_konten')) {
             // save the val_konten to txt
             $konten = $request->val_konten;
-            $fileNameToStore = $kajian->title . '_' . $kajian->id . '.pdf';
+            $fileNameToStore = $kajian->judul_kajian . '_' . $kajian->id . '.txt';
             $pathDokumen = 'documents/'.$fileNameToStore;
     
-            // instantiate and use the dompdf class
-            $dompdf = new Dompdf();
-            $dompdf->loadHtml($konten);
-    
-            // Render the HTML as PDF
-            $dompdf->render();
-    
-            // Output the generated PDF to a file
-            $output = $dompdf->output();
-            Storage::disk('public')->put($pathDokumen, $output);
+            Storage::disk('public')->put($pathDokumen, $konten);
         }
     
         $kajian->file_kajian = $pathDokumen;
@@ -489,19 +489,17 @@ class KajianController extends Controller
 
         Log::info('Request data: ', $request->all());
         Log::info('Kajian Data: ', $kajian->toArray());
-    
-        $slug = $kajian->slug;
         
         
         $pathDokumen = null;
         if ($request->hasFile('val_dokumen')) {
             $extension = $request->file('val_dokumen')->getClientOriginalExtension();
-            $fileNameToStore = $kajian->    title . '_' . $kajian->id . '.' . $extension;
+            $fileNameToStore = $kajian->judul_kajian . '_' . $kajian->id . '.' . $extension;
             $pathDokumen = $request->file('val_dokumen')->storeAs('documents', $fileNameToStore, 'public');
         } elseif($request->has('val_konten')) {
             // save the val_konten to txt
             $konten = $request->val_konten;
-            $fileNameToStore = $kajian->title . '_' . $kajian->id . '.blade.php';
+            $fileNameToStore = $kajian->judul_kajian . '_' . $kajian->id . '.txt';
             $pathDokumen = 'documents/'.$fileNameToStore;
             Storage::disk('public')->put($pathDokumen, $konten);
         }
@@ -509,6 +507,7 @@ class KajianController extends Controller
         $kajian->file_kajian = $pathDokumen;
         $kajian->save();
 
+        // Compare the old file with the new file
         if ($version) {
             $oldFilePath = public_path('storage/'.$oldKajian->file_kajian);
             $newFilePath = public_path('storage/'.$pathDokumen);
@@ -526,11 +525,11 @@ class KajianController extends Controller
             $contentDifferent = $diff->render($oldFileContent, $newFileContent);
 
             // Save the content Different to txt
-            $fileNameToStore = $kajian->title . '_' . $kajian->id . '_diff.txt';
-            $pathDokumen = 'documents/'.$fileNameToStore;
-            Storage::disk('public')->put($pathDokumen, $contentDifferent);
+            $fileNameToStore = $kajian->judul_kajian . '_' . $kajian->id . '_diff.txt';
+            $pathDiff = 'documents/'.$fileNameToStore;
+            Storage::disk('public')->put($pathDiff, $contentDifferent);
 
-            $version->commit_message = $pathDokumen;
+            $version->commit_message = $pathDiff;
             $version->save();
         }
 
