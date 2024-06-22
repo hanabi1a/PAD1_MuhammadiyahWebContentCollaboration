@@ -30,7 +30,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach($kategoriKajian as $kajian)
+                        @foreach($kajianList as $kajian)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
@@ -58,6 +58,10 @@
                     </tbody>
 
                 </table>
+
+                <div class="d-flex justify-content-center">
+                    {!! $kajianList->links('pagination.custom') !!}
+                </div>
             </div>
         </div>
     </div>
