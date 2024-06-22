@@ -30,7 +30,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach($kajianList as $kajianItem)
+                        @foreach($kategoriKajian as $kajianItem)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
