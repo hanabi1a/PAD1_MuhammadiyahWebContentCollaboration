@@ -54,7 +54,7 @@ class KajianController extends Controller
             }   
         }
         
-        return view($view, compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian'));
+        return view($view, compact('kajianList','kategoriKajian', 'selectedCategories', 'recommendedKajian' ));
     }
 
     public function updateRecommendations(Request $request)

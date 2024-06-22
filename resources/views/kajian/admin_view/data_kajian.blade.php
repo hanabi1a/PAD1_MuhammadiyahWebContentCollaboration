@@ -30,21 +30,21 @@
                     </thead>
 
                     <tbody>
-                        @foreach($kategoriKajian as $kajianItem)
+                        @foreach($kategoriKajian as $kajian)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <img src="{{ asset('storage/' . $kajianItem->foto_kajian) }}" alt="Profile Image" width="150">
+                                <img src="{{ asset('storage/' . $kajian->foto_kajian) }}" alt="Profile Image" width="150">
                             </td>
-                            <td>{{ $kajianItem->id_user }}</td>
-                            <td>{{ $kajianItem->pemateri }}</td>
-                            <td>{{ $kajianItem->judul_kajian }}</td>
-                            <td>{{ $kajianItem->tanggal_postingan }}</td>
+                            <td>{{ $kajian->id_user }}</td>
+                            <td>{{ $kajian->pemateri }}</td>
+                            <td>{{ $kajian->judul_kajian }}</td>
+                            <td>{{ $kajian->tanggal_postingan }}</td>
                             <td class="text-center">
-                                <a href="{{ route('admin.kajian.show', $kajianItem) }}" class="text-info me-2"
+                                <a href="{{ route('admin.kajian.show', $kajian) }}" class="text-info me-2"
                                     title="View"><i class="fa fa-eye fa-lg"></i>
                                 </a>
-                                <form action="{{ route('admin.kajian.destroy', $kajianItem->id) }}" method="post">
+                                <form action="{{ route('admin.kajian.destroy', $kajian->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-lin text-info" title="Delete"
