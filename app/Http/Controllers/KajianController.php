@@ -261,7 +261,7 @@ class KajianController extends Controller
 
             $prefix = env('FILE_DOWNLOAD_PATH', null);
             if ($prefix) {
-                $commitMessageFilePath = $prefix.$kajian->file_kajian ;
+                $commitMessageFilePath = $prefix.$versionHistory->commit_message ;
             } 
             
             $commitMessageContent = is_file($commitMessageFilePath) ? file_get_contents($commitMessageFilePath) : null;
