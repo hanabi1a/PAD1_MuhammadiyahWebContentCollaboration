@@ -156,19 +156,7 @@
 
         <div id="kajianRekomendasiResults" class="row">
             @foreach ($recommendedKajian as $kajian)
-                <div class="col-md-4 mb-5 kajian-item">
-                    <div class="card box-shadow">
-                        <img src="/storage/{{ $kajian->foto_kajian }}" class="img-fluid img-kajian">
-                        <div class="card-body">
-                            <div class="card-title mt-3">{{ $kajian->judul_kajian }}</div>
-                            <p class="card-text">{{ $kajian->pemateri }}</p>
-                            <div class="card-title" style="color: #04454D;">
-                                {{ Str::words(strip_tags($kajian->deskripsi_kajian), 50, '...') }}
-                            </div>
-                            <a href="/kajian/{{ $kajian->slug }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
+                @include('kajian.components.card_kajian', ['item' => $item])
             @endforeach
         </div>
 
