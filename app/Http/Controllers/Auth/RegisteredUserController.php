@@ -141,33 +141,38 @@ class RegisteredUserController extends Controller
     }
 
     public function store_additional_3(Request $request)
-{
-    $userId = session('tuid');
-    $user = User::find($userId);
-
-    $categories = $request->categories;
-
-    $categories = array_unique($categories);
-
-    foreach ($categories as $category) {
-        PersonalizeTopikKajian::create([
-            'user_id' => $userId,
-            'topik_kajian_id' => $category
-        ]);
-    }
-    $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
-                        ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
-                        ->select('topik_kajian.*')
-                        ->get();
-
-    Auth::login($user);
-    if ($user->isAdmin()) {
-        return redirect(RouteServiceProvider::ADMIN);
-    } else {
-        return redirect(RouteServiceProvider::HOME);
-    }
-}
-
-
+    {
+        $userId = session('tuid');
+        $user = User::find($userId);
     
+        $categories = $request->categories;
+    
+        $categories = array_unique($categories);
+    
+        if ($categories) {
+            foreach ($categories as $category) {
+                PersonalizeTopikKajian::create([
+                    'user_id' => $userId,
+                    'topik_kajian_id' => $category
+                ]);
+            }
+            $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
+                                ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
+                                ->select('topik_kajian.*')
+                                ->get();
+        }
+
+        // Menghapus sessino ID pengguna yang sedang mendaftar
+        $request->session()->forget('tuid');
+    
+        Auth::login($user);
+        if ($user->isAdmin()) {
+            return redirect(RouteServiceProvider::ADMIN);
+        } else {
+            return redirect(RouteServiceProvider::HOME);
+        }
+    }
+    
+    
+        
 }
