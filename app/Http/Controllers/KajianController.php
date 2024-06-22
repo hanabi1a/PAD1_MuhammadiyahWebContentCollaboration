@@ -26,27 +26,34 @@ class KajianController extends Controller
 
     public function index()
     {
+        $kajianList = Kajian::paginate(6); 
+        $kategoriKajian = TopikKajian::all();
         $selectedCategories = collect();
         $recommendedKajian = collect();
         $userId = Auth::id();
+
+        $view = "kajian.main.kajian";
         
-        if (Auth::check() && !Auth::user()->isAdmin()) {
-            $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
-                ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
-                ->select('topik_kajian.*')
-                ->get();
+        if (Auth::check()) {
+
+            if (Auth::user()->isAdmin()) {
+                $view = "kajian.admin_view.data_kajian";
+            } else {
             
-            $selectedCategoryIds = $selectedCategories->pluck('id')->toArray();
-
-            $recommendedKajian = Kajian::whereHas('topikKajians', function ($query) use ($selectedCategoryIds) {
-                $query->whereIn('topik_kajian.id', $selectedCategoryIds);
-            })->paginate(6);
-        } 
-
-        $kajianList = Kajian::paginate(6); 
-        $kategoriKajian = TopikKajian::all();
+                $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
+                    ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
+                    ->select('topik_kajian.*')
+                    ->get();
+            
+                $selectedCategoryIds = $selectedCategories->pluck('id')->toArray();
+    
+                $recommendedKajian = Kajian::whereHas('topikKajians', function ($query) use ($selectedCategoryIds) {
+                    $query->whereIn('topik_kajian.id', $selectedCategoryIds);
+                })->paginate(6);
+            }   
+        }
         
-        return view('kajian.main.kajian', compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian'));
+        return view($view, compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian'));
     }
 
     public function updateRecommendations(Request $request)
@@ -99,16 +106,16 @@ class KajianController extends Controller
     }
 
     public function create()
-{
-    Log::info('Create method called');
-    $kajian = null;
-    $kategori_kajian = TopikKajian::all();
-    $selected_kategori = []; 
-
-    $view = Auth::user()->isAdmin() ? "kajian.write.form_create_admin" : "kajian.write.form_create_user";
+    {
+        Log::info('Create method called');
+        $kajian = null;
+        $kategori_kajian = TopikKajian::all();
+        $selected_kategori = []; 
     
-    return view($view, compact('kajian', 'kategori_kajian', 'selected_kategori'));
-}
+        $view = Auth::user()->isAdmin() ? "kajian.write.form_create_admin" : "kajian.write.form_create_user";
+        
+        return view($view, compact('kajian', 'kategori_kajian', 'selected_kategori'));
+    }
 
 
     public function search(Request $request)
@@ -184,7 +191,7 @@ class KajianController extends Controller
         $kajian->save();
 
         // Save the relationship to relasi_topik_kajian
-    $kajian->topikKajians()->attach($request->kategori);
+        $kajian->topikKajians()->attach($request->kategori);
 
         Log::info('Kajian created');
 
