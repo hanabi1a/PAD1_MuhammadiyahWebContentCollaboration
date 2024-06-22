@@ -385,6 +385,13 @@ class KajianController extends Controller
         // Prepare to download the file
 
         $pathDokumen = $kajian->file_kajian;
+
+        // remove the extension
+        $pathDokumen = preg_replace('/\\.[^.\\s]{3,4}$/', '', $pathDokumen);
+
+        // add pdf extension
+        $pathDokumen = $pathDokumen.'.pdf';
+
         $fileKajianPath = public_path('storage/'.$pathDokumen);
 
 
@@ -394,21 +401,9 @@ class KajianController extends Controller
             $fileKajianPath = $prefix.$pathDokumen ;
         }
 
-        $konten = is_file($fileKajianPath) ? file_get_contents($fileKajianPath) : '';
-        $fullHtmlKonten = $this->wrap_with_html($konten);
-
-
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($fullHtmlKonten);
-
-        $dompdf->render();
-
-        $output = $dompdf->output();
 
         // Stream the PDF to the browser for preview
-        return response()->streamDownload(function () use ($output) {
-            echo $output;
-        }, $kajian->judul_kajian . ".pdf", ['Content-Type' => 'application/pdf']);
+        return response()->download($fileKajianPath, $kajian->judul_kajian.'.pdf');
     }
 
     private function wrap_with_html($content)
@@ -471,6 +466,8 @@ class KajianController extends Controller
             $pathDokumen = 'documents/'.$fileNameToStore;
     
             Storage::disk('public')->put($pathDokumen, $konten);
+
+            $this->generatePdf($konten, $kajian);
         }
     
         $kajian->file_kajian = $pathDokumen;
@@ -478,6 +475,18 @@ class KajianController extends Controller
     
         return redirect()->route('kajian.show', $kajian)
             ->withSuccess('Terima kasih! Data berhasil disimpan');
+    }
+
+    private function generatePdf($konten, $kajian)
+    {
+        $domPdf = new Dompdf();
+        $domPdf->loadHtml($this->wrap_with_html($konten));
+        $domPdf->render();
+        $pdf = $domPdf->output();
+        $fileNameToStore = $kajian->judul_kajian . '_' . $kajian->id . '.pdf';
+        $pathDokumen = 'documents/'.$fileNameToStore;
+        Storage::disk('public')->put($pathDokumen, $pdf);
+        return $pathDokumen;
     }
 
 
@@ -502,6 +511,8 @@ class KajianController extends Controller
             $fileNameToStore = $kajian->judul_kajian . '_' . $kajian->id . '.txt';
             $pathDokumen = 'documents/'.$fileNameToStore;
             Storage::disk('public')->put($pathDokumen, $konten);
+
+            $this->generatePdf($konten, $kajian);
         }
 
         $kajian->file_kajian = $pathDokumen;
