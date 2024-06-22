@@ -47,8 +47,6 @@ class Kajian extends Model
     {
         return $this->belongsToMany(TopikKajian::class, 'relasi_topik_kajian', 'kajian_id', 'topik_kajian_id');
     }
-    
-
 
     // Di dalam model Kajian
     public function versionHistory()
