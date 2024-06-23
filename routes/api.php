@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\UserUtilityController;
 use App\Http\Controllers\Api\KajianApiController;
 use App\Http\Controllers\api\v1\KajianController;
@@ -40,11 +41,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/auth/update-password/{id}', [UserUtilityController::class, 'updatePassword']);
 
     // New Generation
-    Route::apiResource('kajian', KajianController::class);
-    Route::prefix('kajian')->group(function () {
-        Route::get('/search', [KajianController::class, 'search']);
-        Route::get('/download/{id}', [KajianController::class, 'downloadKajian']);
+    
+    Route::prefix('profile')->group(function () {
+        Route::get('', [UserUtilityController::class, 'show_detail_profile']);
+        Route::post('/basic-information', [RegisterController::class, 'store_additional_1']);
+        Route::post('/detail-information', [RegisterController::class, 'store_additional_2']);
     });
+
+
+    // Route::apiResource('kajian', KajianController::class);
+    // Route::prefix('kajian')->group(function () {
+    //     Route::get('/search', [KajianController::class, 'search']);
+    //     Route::get('/download/{id}', [KajianController::class, 'downloadKajian']);
+    // });
 });
 
 Route::post('/auth/register', \App\Http\Controllers\Api\Auth\RegisterController::class);

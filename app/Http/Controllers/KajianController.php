@@ -14,6 +14,7 @@ use App\Models\PersonalizeTopikKajian;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Http;
 
 class KajianController extends Controller
 {
