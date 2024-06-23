@@ -171,12 +171,12 @@
     <div class="container">
         <h1 id="title-kajian-terkini" class="mb-4">Kajian Terkini</h1>
         <div class="row" id="kajianTerkiniResults">
-            @foreach ($kajianList as $item)
+            @foreach ($kajianTerkini as $item)
                 @include('kajian.components.card_kajian', ['item' => $item])
             @endforeach
         </div>
         <div class="d-flex justify-content-center">
-            {!! $kajianList->links('pagination.custom') !!}
+            {!! $kajianTerkini->links('pagination.custom') !!}
         </div>
     </div>
 </section>

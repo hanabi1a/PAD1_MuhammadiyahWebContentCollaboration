@@ -143,22 +143,6 @@
 
                                     
                                     <!-- Kategori -->
-                                    <!-- <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-kategori">Kategori</label>
-                                        <div class="col-lg-8">
-                                            <div class="input-group">
-                                                <select class="form-select">
-                                                    @if ($kajian != null && $kajian->kategori != null)
-                                                        <option value="{{ $kajian->kategori }}" selected disabled>{{ $kajian->kategori }}</option>
-                                                    @endif
-                                                    <option value="" disabled>Pilih Kategori</option>
-                                                    @foreach ($kategori_kajian as $item)
-                                                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val-kategori">Kategori</label>
                                         <div class="col-lg-8">

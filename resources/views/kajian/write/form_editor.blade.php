@@ -45,21 +45,21 @@
 
                                         <!-- Document Section -->
                                         <div class="form-group row">
-    <label class="col-lg-4 col-form-label" for="val-dokumen">File Kajian</label>
-    <div class="col-lg-8">
-        <div class="input-group mb-3">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="dokumen-input" name="val_dokumen" accept=".pdf, .doc, .docx">
-                <label class="custom-file-label custom-file-label-dokumen" for="dokumen-input">Choose file</label>
-            </div>
-        </div>
-        <p class="text-upload-dokumen">Pastikan untuk mengunggah file Anda dalam salah satu format: PDF, DOC, DOCX.</p>
-        <div class="drop-area" id="drop-area-dokumen">
-            <i class="fa fa-cloud" style="color: #04454D;"></i><br>
-            Tarik & Lepas File Disini
-        </div>
-    </div>
-</div>
+                                            <label class="col-lg-4 col-form-label" for="val-dokumen">File Kajian</label>
+                                            <div class="col-lg-8">
+                                                <div class="input-group mb-3">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="dokumen-input" name="val_dokumen" accept=".pdf, .doc, .docx">
+                                                        <label class="custom-file-label custom-file-label-dokumen" for="dokumen-input">Choose file</label>
+                                                    </div>
+                                                </div>
+                                                <p class="text-upload-dokumen">Pastikan untuk mengunggah file Anda dalam salah satu format: PDF, DOC, DOCX.</p>
+                                                <div class="drop-area" id="drop-area-dokumen">
+                                                    <i class="fa fa-cloud" style="color: #04454D;"></i><br>
+                                                    Tarik & Lepas File Disini
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <hr/>
 
