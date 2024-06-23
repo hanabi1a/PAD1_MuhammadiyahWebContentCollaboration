@@ -190,6 +190,8 @@ class RegisteredUserController extends Controller
             'cabang' => 'string|max:255',
             'daerah' => 'string|max:255',
             'wilayah' => 'string|max:255',
+            'foto_profile' => 'nullable|file',
+            'foto_kta' => 'nullable|file',
         ]);
 
         // Mengambil data pengguna yang akan diperbarui
@@ -198,6 +200,24 @@ class RegisteredUserController extends Controller
 
         if (env('IS_SEPARATION', false)) {
             $client = new Client();
+
+            // Preparing multipart data, including files
+            $multipartData = [];
+            foreach ($validatedData as $key => $value) {
+                if ($request->hasFile($key)) {
+                    $multipartData[] = [
+                        'name' => $key,
+                        'contents' => fopen($value->getPathname(), 'r'),
+                        'filename' => $value->getClientOriginalName(),
+                    ];
+                } else {
+                    $multipartData[] = [
+                        'name' => $key,
+                        'contents' => $value,
+                    ];
+                }
+            }
+
             $response = $client->request(
                 'POST',
                 env('DOMAIN_SEPARATION') . "/profile/detail-information",
@@ -205,7 +225,7 @@ class RegisteredUserController extends Controller
                     'headers' => [
                         'Authorization' => 'Bearer ' . session('token')
                     ],
-                    'form_params' => $validatedData
+                    'multipart' => $multipartData,
                 ]
             );
 
