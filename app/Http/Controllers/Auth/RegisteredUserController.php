@@ -67,38 +67,19 @@ class RegisteredUserController extends Controller
 
                 $token = $responseData['data']['token'];
 
+                $userId = $responseData['data']['id'];
+
+                $user = User::create([
+                    'id' => $userId,
+                    'nama' => $request->name,
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ]);
+
                 session(['token' => $token]);
-
-                $response = $client->request(
-                    'GET',
-                    env('DOMAIN_SEPARATION') . "/profile",
-                    [
-                        'headers' => [
-                            'Authorization' => 'Bearer ' . $token
-                        ]
-                    ]
-                );
-
-                if ($response->getStatusCode() == 200) {
-                    $responseData = json_decode($response->getBody()->getContents(), true);
-
-                    $userId = $responseData['data']['id'];
-
-
-                    // create user with specific id 
-                    $user = User::create([
-                        'id' => $userId,
-                        'nama' => $request->name,
-                        'username' => $request->username,
-                        'email' => $request->email,
-                        'password' => Hash::make($request->password),
-                    ]);
-
-                    session(['tuid' => $user->id]);
-
-                } else {
-                    throw new \Exception('Failed to get user profile');
-                }
+                session(['tuid' => $user->id]);
+                
             } else {
                 throw new \Exception('Failed to get user profile');
             }
