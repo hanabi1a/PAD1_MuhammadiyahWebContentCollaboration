@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\TopikKajian;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Auth\Http;
 
 class RegisteredUserController extends Controller
 {
@@ -101,6 +102,68 @@ class RegisteredUserController extends Controller
         return redirect()->route('register.show', ['page' => 1]);
     }
 
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        $is_separation = env('IS_SEPARATION', false);
+        if ($is_separation) {
+            $client = new Client();
+            $response = $client->request(
+                'POST',
+                env('DOMAIN_SEPARATION') . "/auth/login",
+                [
+                    'form_params' => [
+                        'email' => $request->email,
+                        'password' => $request->password
+                    ]
+                ]
+            );
+
+            if ($response->getStatusCode() == 200) {
+                $rawResponse = $response->getBody()->getContents();
+                $responseData = json_decode($rawResponse, true);
+
+                Log::info("response json : " . $rawResponse);
+
+                $token = $responseData['data']['token'];
+
+                $user = User::where('email', $request->email)->first();
+
+                if (!$user) {
+                    throw new \Exception('User not found');
+                }
+
+                session(['token' => $token]);
+                session(['tuid' => $user->id]);
+
+                Auth::login($user);
+
+                return $this->redirectBasedOnRole($user);
+            } else {
+                throw new \Exception('Failed to authenticate');
+            }
+        } else {
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+
+                $user = Auth::user();
+                session(['tuid' => $user->id]);
+
+                return $this->redirectBasedOnRole($user);
+            }
+
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
+        }
+    }
     public function store_additional_1(Request $request)
     {
         $validatedData = $request->validate([
