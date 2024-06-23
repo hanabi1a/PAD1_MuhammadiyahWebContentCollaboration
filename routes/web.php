@@ -60,7 +60,7 @@ Route::get('/kajian/search', [KajianController::class, 'search'])->name('kajian.
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
-Route::view('/', 'home.homepage');
+// Route::view('/', 'home.homepage');
 Route::view('/kajian2', 'kajian2');
 Route::view('/layout_user_2', 'layout_user_2');
 Route::view('/form_create_user', 'kajian.write.form_create_user');
@@ -72,6 +72,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 });
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/beranda', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 

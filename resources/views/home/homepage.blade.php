@@ -156,7 +156,7 @@
 
         <div id="kajianRekomendasiResults" class="row">
             @foreach ($recommendedKajian as $kajian)
-                @include('kajian.components.card_kajian', ['item' => $item])
+                @include('kajian.components.card_kajian', ['item' => $kajian])
             @endforeach
         </div>
 
