@@ -27,6 +27,7 @@ class KajianController extends Controller
 
     public function index()
     {
+        $kajianTerkini = Kajian::orderBy('created_at', 'desc')->paginate(6); 
         $kajianList = Kajian::paginate(6); 
         $kategoriKajian = TopikKajian::all();
         $selectedCategories = collect();
@@ -54,7 +55,7 @@ class KajianController extends Controller
             }   
         }
         
-        return view($view, compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian'));
+        return view($view, compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian','kajianTerkini'));
     }
 
     public function updateRecommendations(Request $request)

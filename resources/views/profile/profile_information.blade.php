@@ -67,8 +67,6 @@
             margin-left: 0px;
             padding-left: -50px
         }
-
-
     </style>
 @endsection
 
@@ -81,9 +79,7 @@
                         <h1 class="mt-2 heading3" style="text-align: center"><strong>Informasi Akun</strong></h1>
                     </div>
                     <div class="card bottom">
-
                         <br>
-
                         <div class="row">
                             <div class="col-md-4 d-flex justify-content-center align-items-center">
                                 @if($user->foto_profile != null)

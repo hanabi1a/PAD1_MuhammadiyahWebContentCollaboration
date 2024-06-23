@@ -4102,7 +4102,8 @@ a:hover {
     border-radius: 4px;
     width: 100%;
     aspect-ratio: 15/16;
-    object-fit: cover; /* This will cover the area without breaking the aspect ratio */
+    object-fit: cover;
+    /* This will cover the area without breaking the aspect ratio */
     transition: transform 0.5s ease;
 }
 
@@ -4131,7 +4132,7 @@ a:hover {
     line-height: normal;
 }
 
-.card .card-kajian-body .card-kajian-text{
+.card .card-kajian-body .card-kajian-text {
     color: var(--Black, #000);
     font-family: Poppins;
     font-size: 17px;
@@ -4962,4 +4963,25 @@ a:hover {
 
 #kajian-muhammadiyah a {
     color: #000;
+}
+
+.note-editor.fullscreen {
+    background-color: white;
+}
+
+.note-editable.fullscreen {
+    background-color: white;
+}
+
+.button {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.drag-over {
+    border: 2px dashed #04454D;
 }
