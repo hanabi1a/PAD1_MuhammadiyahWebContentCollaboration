@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\VersionHistory;
 
 class User extends Authenticatable
 {
@@ -107,7 +105,7 @@ class User extends Authenticatable
 
     public function kajians()
     {
-        return $this->hasMany(Kajian::class, 'id_user'); // Sesuaikan 'user_id' dengan nama kolom foreign key di tabel 'kajian'
+        return $this->hasMany(Kajian::class, 'id_user'); // Sesuaikan 'id_user' dengan nama kolom foreign key di tabel 'kajian'
     }
 
     public function versions()

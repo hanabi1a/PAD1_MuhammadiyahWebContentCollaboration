@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $kajianTerkini = Kajian::orderBy('created_at', 'desc')->paginate(6); 
         $selectedCategories = collect();
         $recommendedKajian = collect();
         $userId = Auth::id();
@@ -32,7 +33,7 @@ class HomeController extends Controller
         $kajianList = Kajian::paginate(6);
         $kategoriKajian = TopikKajian::all(); 
 
-        return view('home.homepage', compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian'));
+        return view('home.homepage', compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian', 'kajianTerkini'));
     }
 
     public function updateRecommendations(Request $request)

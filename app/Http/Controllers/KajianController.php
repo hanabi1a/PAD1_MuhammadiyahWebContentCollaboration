@@ -26,6 +26,7 @@ class KajianController extends Controller
 
     public function index()
     {
+        $kajianTerkini = Kajian::orderBy('created_at', 'desc')->paginate(6); 
         $kajianList = Kajian::paginate(6); 
         $kategoriKajian = TopikKajian::all();
         $selectedCategories = collect();
@@ -53,7 +54,8 @@ class KajianController extends Controller
             }   
         }
         
-        return view($view, compact('kajianList','kategoriKajian', 'selectedCategories', 'recommendedKajian' ));
+        return view($view, compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian','kajianTerkini'));
+
     }
 
     public function updateRecommendations(Request $request)
@@ -198,6 +200,7 @@ class KajianController extends Controller
         $is_new_version = $request->is_new_version;
         $old_kajian_id = $request->old_kajian_id;
         if ($is_new_version != null && $is_new_version) {
+            Log::info('Creating new version for kajian with ID: '.$kajian->id);
             $versionHistory = VersionHistory::create([
                 'old_kajian_id' => $old_kajian_id,
                 'kajian_id' => $kajian->id,
@@ -206,15 +209,15 @@ class KajianController extends Controller
 
             $oldKajian = Kajian::find($old_kajian_id);
 
-            if (Auth::user()->role == 'admin') {
+            if (Auth::user()->isAdmin()) {
                 return redirect()->route('admin.kajian.new_version.konten', [$oldKajian, $versionHistory, $kajian]);
             }
 
             return redirect()->route('kajian.new_version.konten', [$oldKajian, $versionHistory, $kajian]);
         }
 
-        Log::info('Redirecting to: '.(Auth::user()->role == 'admin' ? 'data_kajian' : 'kajian.show'));
-        if (Auth::user()->role == 'admin') {
+        Log::info('Redirecting to: '.(Auth::user()->isAdmin() ? 'data_kajian' : 'kajian.show'));
+        if (Auth::user()->isAdmin()) {
             return redirect()->route('admin.kajian.konten', $kajian);
         }
 
@@ -357,8 +360,8 @@ class KajianController extends Controller
 
         Log::info('Kajian created');
 
-        Log::info('Redirecting to: '.(Auth::user()->role == 'admin' ? 'data_kajian' : 'kajian.show'));
-        if (Auth::user()->role == 'admin') {
+        Log::info('Redirecting to: '.(Auth::user()->isAdmin() ? 'data_kajian' : 'kajian.show'));
+        if (Auth::user()->isAdmin()) {
             return redirect()->route('admin.kajian.konten', $kajian);
         }
 
@@ -445,7 +448,9 @@ class KajianController extends Controller
 
     public function showEditor(Kajian $kajian)
     {
-        return view('kajian.write.form_editor', compact('kajian'));
+        $view = (Auth::user()->isAdmin()) ? 
+            'kajian.write.form_editor_admin' : 'kajian.write.form_editor';
+        return view($view, compact('kajian'));
     }
 
     public function update_konten(Request $request, Kajian $kajian) 
@@ -473,8 +478,10 @@ class KajianController extends Controller
     
         $kajian->file_kajian = $pathDokumen;
         $kajian->save();
+
+        $route_view = (Auth::user()->isAdmin()) ? 'admin.kajian.show' : 'kajian.show';
     
-        return redirect()->route('kajian.show', $kajian)
+        return redirect()->route($route_view, $kajian)
             ->withSuccess('Terima kasih! Data berhasil disimpan');
     }
 

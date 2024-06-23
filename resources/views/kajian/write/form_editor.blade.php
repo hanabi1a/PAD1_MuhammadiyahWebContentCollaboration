@@ -20,8 +20,7 @@
 @section('content')
     <main>
         <div class="container-fluid px-5 px-5 mt-sm-2 mb-sm-2">
-
-        <br/><br/>
+            <br/><br/>
             <section id="akun-user">
                 <div class="card">
                     <div class="container">
@@ -32,15 +31,15 @@
 
                                 <p>Anda dapat mengupload file atau mengetikkan konten kajian secara langsung!</p>
                                 <div class="form-validation">
-            
-                                    <form class="form-validation" 
-                                        @if(isset($oldFileContent) && $oldFileContent != null)
-                                            action="{{route('kajian.new_version.konten.store', [$oldKajian, $version, $kajian])}}" 
-                                        @else
-                                            action="{{route('kajian.store.editor', $kajian)}}"
-                                        @endif
-                                        method="POST"
-                                        enctype="multipart/form-data">
+
+                                    <form class="form-validation"
+                                          @if(isset($oldFileContent) && $oldFileContent != null)
+                                              action="{{route('kajian.new_version.konten.store', [$oldKajian, $version, $kajian])}}"
+                                          @else
+                                              action="{{route('kajian.store.editor', $kajian)}}"
+                                          @endif
+                                          method="POST"
+                                          enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
 
@@ -50,15 +49,11 @@
                                             <div class="col-lg-8">
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="dokumen-input"
-                                                            name="val_dokumen" accept=".pdf, .doc, .docx">
-                                                        <label class="custom-file-label-dokumen custom-file-label"
-                                                            for="dokumen-input">Choose file</label>
+                                                        <input type="file" class="custom-file-input" id="dokumen-input" name="val_dokumen" accept=".pdf, .doc, .docx">
+                                                        <label class="custom-file-label custom-file-label-dokumen" for="dokumen-input">Choose file</label>
                                                     </div>
                                                 </div>
-                                                <p class="text-upload-foto">Pastikan untuk mengunggah file Anda dalam salah
-                                                    satu format:
-                                                    PDF, DOC, DOCX.</p>
+                                                <p class="text-upload-dokumen">Pastikan untuk mengunggah file Anda dalam salah satu format: PDF, DOC, DOCX.</p>
                                                 <div class="drop-area" id="drop-area-dokumen">
                                                     <i class="fa fa-cloud" style="color: #04454D;"></i><br>
                                                     Tarik & Lepas File Disini
@@ -68,8 +63,8 @@
 
                                         <hr/>
 
-                                        <textarea class="form-control" id="editor" name="val_konten" 
-                                            style="resize: vertical; min-height: 100vh;">
+                                        <textarea class="form-control" id="editor" name="val_konten"
+                                                  style="resize: vertical; min-height: 100vh;">
                                             @if(isset($oldFileContent) && $oldFileContent != null)
                                                 {{$oldFileContent}}
                                             @endif
@@ -90,7 +85,6 @@
                         </div>
                     </div>
             </section>
-                     
         </div>
     </main>
 @endsection

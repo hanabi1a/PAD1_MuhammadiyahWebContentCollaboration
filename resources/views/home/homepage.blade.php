@@ -155,8 +155,8 @@
         </div>
 
         <div id="kajianRekomendasiResults" class="row">
-            @foreach ($recommendedKajian as $kajian)
-                @include('kajian.components.card_kajian', ['item' => $kajian])
+            @foreach ($recommendedKajian as $item)
+                @include('kajian.components.card_kajian', ['item' => $item])
             @endforeach
         </div>
 
@@ -167,38 +167,19 @@
 </section>
 @endif
 
-@isset($record)
-    <section id="kajian-terkini" class="default-content">
-        <div class="container">
-            <h1 id="title-kajian-terkini" class="mb-4">Kajian Terkini</h1>
-            <div class="row" id="kajianTerkiniResults">
-                @foreach ($kajianList as $item)
-                <div class="col-md-4 mb-5 kajian-item" 
-                    data-category="muhammadiyah" 
-                    data-title="{{ $item->judul_kajian }}"
-                    data-pemateri="{{ $item->pemateri }}"
-                    data-deskripsi="{{ strip_tags($item->deskripsi_kajian) }}"
-                    data-kategori="{{ $item->kategori }}">
-                    <div class="card box-shadow">
-                        <img src="{{ asset('storage/' . $item->foto_kajian) }}" class="img-fluid img-kajian">
-                        <div class="card-body">
-                            <div class="card-title mt-3">{{ $item->judul_kajian }}</div>
-                            <p class="card-text">{{ $item->pemateri }}</p>
-                            <div class="card-title" style="color: #04454D;">
-                                {{ Str::words(strip_tags($item->deskripsi_kajian), 50, '...') }}
-                            </div>
-                            <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <div class="d-flex justify-content-center">
-                {!! $kajianList->links('pagination.custom') !!}
-            </div>
+<section id="kajian-terkini" class="default-content">
+    <div class="container">
+        <h1 id="title-kajian-terkini" class="mb-4">Kajian Terkini</h1>
+        <div class="row" id="kajianTerkiniResults">
+            @foreach ($kajianTerkini as $item)
+                @include('kajian.components.card_kajian', ['item' => $item])
+            @endforeach
         </div>
-    </section>
-@endisset
+        <div class="d-flex justify-content-center">
+            {!! $kajianTerkini->links('pagination.custom') !!}
+        </div>
+    </div>
+</section>
 
 
     <section id="video-terkini" class="default-content">

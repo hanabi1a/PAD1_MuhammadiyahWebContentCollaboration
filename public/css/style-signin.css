@@ -172,6 +172,7 @@ h3 {
     height: 54px;
     padding-left: 30px;
     padding-right: 30px;
+    border-radius: 10px;
 }
 
 .btn-primary-sign-in {

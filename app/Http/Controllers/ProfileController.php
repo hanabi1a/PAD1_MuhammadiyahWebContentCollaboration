@@ -22,14 +22,26 @@ class ProfileController extends Controller
      public function show_kajian_in_profile_muhammadiyah(): View
      {
          $kajian = Kajian::paginate(9);
-         return view('profile.profile_akun_muhammadiyah', compact('kajian'));
+         $user = Auth::user(); 
+         return view('profile.profile_akun_muhammadiyah', compact('kajian', 'user'));
      }
  
      public function show_kajian_in_profile_user(): View
-     {
-         $kajian = Kajian::paginate(9);
-         return view('profile.profile_akun_pengguna', compact('kajian'));
-     }
+{
+    $user = Auth::user();
+
+    // Fetch original uploads
+    $originalKajian = Kajian::whereDoesntHave('versionHistory')->where('id_user', $user->id)->paginate(9);
+
+    // Fetch collaborative uploads
+    $collaborativeKajian = Kajian::whereHas('versionHistory')->where('id_user', $user->id)->paginate(9);
+
+    $kajianCount = $user->kajians()->count();
+
+    return view('profile.profile_akun_pengguna', compact('originalKajian', 'collaborativeKajian', 'user', 'kajianCount'));
+}
+
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -74,18 +86,8 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function show_profile()
-    {
-        $userId = auth()->id(); 
-        $user = User::find($userId); 
-        $dataKajian = Kajian::where('id_user', $userId)->paginate(9); 
-        
-        return view('profile.profile_user_2', ['user' => $user, 'dataKajian' => $dataKajian]);
-    }
-
     public function edit_profile()
     {
-
         $userId = auth()->id(); 
         $user = User::find($userId); 
 
@@ -130,8 +132,6 @@ class ProfileController extends Controller
         $user->daerah = $validatedData['daerah'];
         $user->wilayah = $validatedData['wilayah'];
         
-
-
         $path_foto_kta = null;
 
         // Mengelola unggahan foto jika ada
@@ -150,7 +150,6 @@ class ProfileController extends Controller
             $user->foto_kta = $path_foto_kta;
         } 
 
-        // Menyimpan perubahan data pengguna
         $user->save();
 
         // Redirect atau tampilkan respons sesuai kebutuhan
@@ -159,8 +158,8 @@ class ProfileController extends Controller
 
 
     public function show_profile_information() {
-        $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
-        $user = User::find($userId); // Mengambil data pengguna
+        $userId = auth()->id(); 
+        $user = User::find($userId); 
         return view('profile.profile_information', ['user' => $user]);
     }
 

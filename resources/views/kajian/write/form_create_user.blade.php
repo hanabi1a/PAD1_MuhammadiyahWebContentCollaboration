@@ -129,16 +129,11 @@
                                             @endif
                                             <div class="input-group mb-3">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="foto-input"
-                                                        name="val_foto_kajian" accept=".png, .jpg, .jpeg">
-                                                    <label class="custom-file-label-foto custom-file-label"
-                                                        for="foto-input">Choose
-                                                        file</label>
+                                                    <input type="file" class="custom-file-input" id="foto-input" name="val_foto_kajian" accept=".png, .jpg, .jpeg">
+                                                    <label class="custom-file-label custom-file-label-foto" for="foto-input">Choose file</label>
                                                 </div>
                                             </div>
-                                            <p class="text-upload-foto">Pastikan untuk mengunggah foto Anda dalam salah
-                                                satu format:
-                                                PNG, JPG, JPEG.</p>
+                                            <p class="text-upload-foto">Pastikan untuk mengunggah foto Anda dalam salah satu format: PNG, JPG, JPEG.</p>
                                             <div class="drop-area" id="drop-area-foto">
                                                 <i class="fa fa-cloud" style="color: #04454D;"></i><br>
                                                 Tarik & Lepas Foto Disini
@@ -148,22 +143,6 @@
 
                                     
                                     <!-- Kategori -->
-                                    <!-- <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-kategori">Kategori</label>
-                                        <div class="col-lg-8">
-                                            <div class="input-group">
-                                                <select class="form-select">
-                                                    @if ($kajian != null && $kajian->kategori != null)
-                                                        <option value="{{ $kajian->kategori }}" selected disabled>{{ $kajian->kategori }}</option>
-                                                    @endif
-                                                    <option value="" disabled>Pilih Kategori</option>
-                                                    @foreach ($kategori_kajian as $item)
-                                                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val-kategori">Kategori</label>
                                         <div class="col-lg-8">

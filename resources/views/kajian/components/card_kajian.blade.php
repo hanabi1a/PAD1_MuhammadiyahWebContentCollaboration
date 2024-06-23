@@ -1,6 +1,5 @@
-<div class="col-md-4 mb-5">
-    <div class="card"
-        data-category="muhammadiyah" 
+<div class="col-md-4 mb-5 kajian-item">
+    <div class="card box-shadow card-hover"
         data-title="{{ $item->judul_kajian }}"
         data-pemateri="{{ $item->pemateri }}"
         data-deskripsi="{{ strip_tags($item->deskripsi_kajian) }}"
@@ -13,11 +12,15 @@
             </p>
             <div class="card-kajian-category">
                 ##
-                @forelse($item->topikKajians as $topik)
-                    {{ $topik->nama }}
-                @empty
+                @isset($item->topikKajians)
+                    @forelse($item->topikKajians as $topik)
+                        {{ $topik->nama }}
+                    @empty
+                        Umum
+                    @endforelse
+                @else
                     Umum
-                @endforelse
+                @endisset
             </div>
             <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
         </div>

@@ -193,7 +193,12 @@
                             </div>
                         </div>
                         <div class="col-md-5 order-md-2">
+
+                        @if (Auth::user() != null && Auth::user()->isAdmin())
+                        <button type="submit" class="btn-green-submit btn-block" onclick="window.location.href = '{{ route('admin.kajian.edit.new_version', $userkajian) }}'">
+                        @else
                         <button type="submit" class="btn-green-submit btn-block" onclick="window.location.href = '{{ route('kajian.edit.new_version', $userkajian) }}'">
+                        @endif
                             <img src="/assets/img/icon/unggah-baru.svg" alt="Bagikan Icon" class="icon-img"> Unggah Kajian Versi Baru
                         </button>
                             <div class="card mt-4 col-md-12">
@@ -245,7 +250,11 @@
                                 @endphp
                                 <p>
                                     <strong>
+                                        @if (Auth::user() != null && Auth::user()->isAdmin())
+                                        <a class="reference_link" href="{{route('admin.kajian.show', $userkajian->current_versions->oldKajian)}}">
+                                        @else
                                         <a class="reference_link" href="{{route('kajian.show', $userkajian->current_versions->oldKajian)}}">
+                                        @endif
                                             {{ $decodedData->judul_kajian }}
                                         </a>
                                     </strong> 

@@ -36,12 +36,12 @@
                             <h1 class="heading4 mb-3"><strong>Data Kajian</strong></h1>
                             <div class="form-validation">
                                 @if ($kajian != null && $new_version == null)
-                                    <form class="form-valide" action="{{ route('kajian.update', $kajian) }}" method="POST"
+                                    <form class="form-valide" action="{{ route('admin.kajian.update', $kajian) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
                                 @else
-                                    <form class="form-valide" action="{{ route('kajian.store') }}" method="POST"
+                                    <form class="form-valide" action="{{ route('admin.kajian.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
 
@@ -156,13 +156,13 @@
                                         <label class="col-lg-4 col-form-label" for="val-kategori">Kategori</label>
                                         <div class="col-lg-8">
                                             <div class="input-group">
-                                                <select class="form-select">
+                                                <select class="form-select" name="kategori">
                                                     @if ($kajian != null && $kajian->kategori != null)
                                                         <option value="{{ $kajian->kategori }}" selected disabled>{{ $kajian->kategori }}</option>
                                                     @endif
                                                     <option value="" disabled>Pilih Kategori</option>
                                                     @foreach ($kategori_kajian as $item)
-                                                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

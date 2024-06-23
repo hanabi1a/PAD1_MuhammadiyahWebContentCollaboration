@@ -4934,6 +4934,11 @@ fieldset:disabled .btn {
     padding: 20px;
 }
 
+.card-hover:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
 .card>hr {
     margin-right: 0;
