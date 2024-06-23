@@ -19,27 +19,27 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
-     public function show_kajian_in_profile_muhammadiyah(): View
-     {
-         $kajian = Kajian::paginate(9);
-         $user = Auth::user(); 
-         return view('profile.profile_akun_muhammadiyah', compact('kajian', 'user'));
-     }
+    public function show_kajian_in_profile_muhammadiyah(): View
+    {
+        $kajian = Kajian::paginate(9);
+        $user = Auth::user(); 
+        return view('profile.profile_akun_muhammadiyah', compact('kajian', 'user'));
+    }
  
-     public function show_kajian_in_profile_user(): View
-{
-    $user = Auth::user();
+    public function show_kajian_in_profile_user(): View
+    {
+        $user = Auth::user();
 
-    // Fetch original uploads
-    $originalKajian = Kajian::whereDoesntHave('versionHistory')->where('id_user', $user->id)->paginate(9);
+        // Fetch original uploads
+        $originalKajian = Kajian::whereDoesntHave('versionHistory')->where('id_user', $user->id)->paginate(9);
 
-    // Fetch collaborative uploads
-    $collaborativeKajian = Kajian::whereHas('versionHistory')->where('id_user', $user->id)->paginate(9);
+        // Fetch collaborative uploads
+        $collaborativeKajian = Kajian::whereHas('versionHistory')->where('id_user', $user->id)->paginate(9);
 
-    $kajianCount = $user->kajians()->count();
+        $kajianCount = $user->kajians()->count();
 
-    return view('profile.profile_akun_pengguna', compact('originalKajian', 'collaborativeKajian', 'user', 'kajianCount'));
-}
+        return view('profile.profile_akun_pengguna', compact('originalKajian', 'collaborativeKajian', 'user', 'kajianCount'));
+    }
 
 
     public function edit(Request $request): View
@@ -153,7 +153,7 @@ class ProfileController extends Controller
         $user->save();
 
         // Redirect atau tampilkan respons sesuai kebutuhan
-        return redirect()->route('profile.show')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
+        return redirect()->route('profile.show.information')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
     }
 
 

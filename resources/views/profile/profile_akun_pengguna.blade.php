@@ -3,7 +3,7 @@
 @section('content')
     <section id="search">
         <div class="row">
-            @if (Auth::check() && Auth::user()->role == 'registered')
+            @if (Auth::check() && Auth::user()->isRegistered())
                 <div class="col-9 col-md-10 align-item-center">
                     <div class="search">
                         <input type="text" class="search-input" placeholder="Search..." name="">
