@@ -110,6 +110,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'string'],
         ]);
 
+        Log::info("Login attempt for email: " . $request->email);
+
         $credentials = $request->only('email', 'password');
 
         $is_separation = env('IS_SEPARATION', false);
@@ -130,13 +132,14 @@ class RegisteredUserController extends Controller
                 $rawResponse = $response->getBody()->getContents();
                 $responseData = json_decode($rawResponse, true);
 
-                Log::info("response json : " . $rawResponse);
+                Log::info("Response from separation domain: " . $rawResponse);
 
                 $token = $responseData['data']['token'];
 
                 $user = User::where('email', $request->email)->first();
 
                 if (!$user) {
+                    Log::error("User not found for email: " . $request->email);
                     throw new \Exception('User not found');
                 }
 
@@ -145,20 +148,27 @@ class RegisteredUserController extends Controller
 
                 Auth::login($user);
 
+                Log::info("User logged in successfully: " . $user->email);
+
                 return $this->redirectBasedOnRole($user);
             } else {
+                Log::error("Failed to authenticate with separation domain.");
                 throw new \Exception('Failed to authenticate');
             }
         } else {
+            Log::info("System is not in separation mode.");
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
 
                 $user = Auth::user();
                 session(['tuid' => $user->id]);
 
+                Log::info("User logged in successfully: " . $user->email);
+
                 return $this->redirectBasedOnRole($user);
             }
 
+            Log::warning("Failed login attempt for email: " . $request->email);
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ]);
