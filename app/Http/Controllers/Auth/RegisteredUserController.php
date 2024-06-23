@@ -113,20 +113,41 @@ class RegisteredUserController extends Controller
 
         $is_separation = env('IS_SEPARATION', false);
         if($is_separation) {
+
+            $mapData = [
+                'tempat_lahir' => $validatedData['tempat_lahir'],
+                'tanggal_lahir' => $validatedData['tanggal_lahir'],
+                'pekerjaan' => $validatedData['pekerjaan'],
+                'alamat' => $validatedData['alamat'],
+                'jenis_kelamin' => $validatedData['jenis_kelamin'],
+            ];
+
             $client = new Client();
             $response = $client->request(
                 'POST',
                 env('DOMAIN_SEPARATION') . "/profile/basic-information",
                 [
                     'headers' => [
-                        'Authorization' => 'Bearer ' . session('session')
+                        'Authorization' => 'Bearer ' . session('token')
                     ],
-                    'form_params' => $validatedData
+                    'form_params' => $mapData
                 ]
             );
 
             if ($response->getStatusCode() == 200) {
-                $responseData = json_decode($response->getBody()->getContents(), true);
+                $responseContent = $response->getBody()->getContents();
+                $responseData = json_decode($responseContent, true);
+                
+                Log::info(
+                    "form request :". 
+                        "\n\ttempat_lahir => ". $validatedData["tempat_lahir"] .
+                        "\n\ttanggal_lahir => " . $validatedData["tanggal_lahir"] .
+                        "\n\tpekerjaan => " . $validatedData["pekerjaan"].
+                        "\n\talamat => " . $validatedData["alamat"].
+                        "\n\tjenis_kelamin => " . $validatedData["jenis_kelamin"] .
+                    "\n\nresponse : " . $responseContent
+                    );
+                
                 $data = $responseData['data'];
 
                 $userId = session('tuid');
@@ -182,7 +203,7 @@ class RegisteredUserController extends Controller
                 env('DOMAIN_SEPARATION') . "/profile/detail-information",
                 [
                     'headers' => [
-                        'Authorization' => 'Bearer ' . session('session')
+                        'Authorization' => 'Bearer ' . session('token')
                     ],
                     'form_params' => $validatedData
                 ]
