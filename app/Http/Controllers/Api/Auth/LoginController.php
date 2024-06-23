@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\historylogin;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -22,6 +23,12 @@ class LoginController extends Controller
 
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
+
+            historylogin::create([
+                'user_id' => $user->id,
+                'timestamp' => now(),
+                'user_agent' => $request->userAgent(),
+            ]);
 
             return (new UserResource($user))->additional([
                 'token' => $user->createToken('myAppToken')->plainTextToken,
