@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kajian;
 use Illuminate\Http\Request;
 
-class KajianApiController extends Controller
+class KajianApiController extends Controller 
 {
     public function index(Request $request)
     {
@@ -25,7 +25,7 @@ class KajianApiController extends Controller
         // Mengambil data kajian dengan opsi paginasi
         $dataKajian = $query->paginate($perPage);
 
-        return response()->json(['status' => 200, 'message' => 'success', 'data' => $dataKajian]);
+        return ResponseBuilder::response(200, 'success', $dataKajian);
     }
 
     public function search(Request $request)
