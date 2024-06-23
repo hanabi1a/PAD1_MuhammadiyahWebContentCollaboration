@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Admin\KategoriKajianController;
 use App\Models\HistoryDownload;
 use App\Models\Kajian;
-use App\Models\RelasiTopikKajian;
 use App\Models\TopikKajian;
 use App\Models\VersionHistory;
 use FineDiff\Diff;
@@ -16,6 +14,7 @@ use App\Models\PersonalizeTopikKajian;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Http;
 
 class KajianController extends Controller
 {
@@ -56,6 +55,7 @@ class KajianController extends Controller
         }
         
         return view($view, compact('kajianList', 'selectedCategories', 'recommendedKajian', 'kategoriKajian','kajianTerkini'));
+
     }
 
     public function updateRecommendations(Request $request)
@@ -248,7 +248,6 @@ class KajianController extends Controller
 
     public function show(Kajian $kajian)
     {
-        // $kajian = Kajian::find($id);
         Log::info('Showing kajian with ID: '.$kajian->id);
         $uploaderUsername =  $kajian->user->username ?? null;
 

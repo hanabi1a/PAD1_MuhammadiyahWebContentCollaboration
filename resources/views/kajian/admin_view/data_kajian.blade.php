@@ -58,6 +58,10 @@
                     </tbody>
 
                 </table>
+
+                <div class="d-flex justify-content-center">
+                    {!! $kajianList->links('pagination.custom') !!}
+                </div>
             </div>
         </div>
     </div>

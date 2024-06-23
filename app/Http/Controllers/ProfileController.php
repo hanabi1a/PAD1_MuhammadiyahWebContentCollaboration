@@ -156,13 +156,6 @@ class ProfileController extends Controller
         return redirect()->route('profile.show')->with('success', 'Profil berhasil diperbarui!'); // Contoh respons berhasil
     }
 
-    // TODO:
-    // public function show_detail_acc(){
-    //     $userId = auth()->id(); // Mengambil ID pengguna yang sedang login
-    //     $user = User::find($userId); // Mengambil data pengguna
-    //     return view('user.detail_akun_user_non_public', ['user' => $user]);
-    //     // return view('user.detail_akun_user_public');
-    // }
 
     public function show_profile_information() {
         $userId = auth()->id(); 
