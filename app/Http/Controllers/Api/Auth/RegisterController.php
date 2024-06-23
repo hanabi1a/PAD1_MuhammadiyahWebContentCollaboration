@@ -29,7 +29,7 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'nama' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -38,6 +38,7 @@ class RegisterController extends Controller
         $token = $user->createToken('myAppToken');
 
         return ResponseBuilder::response(200, 'User successfully registered', [
+            'id' => $user->id,
             'user' => new UserResource($user),
             'token' => $token->plainTextToken,
         ]);

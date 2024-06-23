@@ -15,6 +15,8 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
 use App\Models\TopikKajian;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class RegisteredUserController extends Controller
 {
@@ -41,16 +43,60 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'nama' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $is_separation = env('IS_SEPARATION', false);
+        if($is_separation) {
+            $client = new Client();
+            $response = $client->request(
+                'POST',
+                env('DOMAIN_SEPARATION') . "/auth/register",
+                [
+                    'form_params' => [
+                        'name' => $request->name,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                        'password' => $request->password
+                    ]
+                ]
+            );
 
-        event(new Registered($user));
+            if ($response->getStatusCode() == 200) {
+                $rawResponse = $response->getBody()->getContents();
+                $responseData = json_decode($rawResponse, true);
 
-        session(['tuid' => $user->id]);
+                Log::info("response json : " . $rawResponse);
+
+                $token = $responseData['data']['token'];
+
+                $userId = $responseData['data']['id'];
+
+                $user = User::create([
+                    'id' => $userId,
+                    'nama' => $request->name,
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                session(['token' => $token]);
+                session(['tuid' => $user->id]);
+                
+            } else {
+                throw new \Exception('Failed to get user profile');
+            }
+        } else {
+            $user = User::create([
+                'nama' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+    
+            event(new Registered($user));
+    
+            
+            session(['tuid' => $user->id]);
+            
+        }
 
         return redirect()->route('register.show', ['page' => 1]);
     }
@@ -65,19 +111,52 @@ class RegisteredUserController extends Controller
             'jenis_kelamin' => 'required|in:L,P',
         ]);
 
-        // Mengambil data pengguna yang akan diperbarui
-        $userId = session('tuid');
-        $user = User::find($userId);
+        $is_separation = env('IS_SEPARATION', false);
+        if($is_separation) {
+            $client = new Client();
+            $response = $client->request(
+                'POST',
+                env('DOMAIN_SEPARATION') . "/profile/basic-information",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . session('session')
+                    ],
+                    'form_params' => $validatedData
+                ]
+            );
 
-        // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
-        $user->tempat_lahir = $validatedData['tempat_lahir'];
-        $user->tanggal_lahir = $validatedData['tanggal_lahir'];
-        $user->pekerjaan = $validatedData['pekerjaan'];
-        $user->alamat = $validatedData['alamat'];
-        $user->jenis_kelamin = $validatedData['jenis_kelamin'];
+            if ($response->getStatusCode() == 200) {
+                $responseData = json_decode($response->getBody()->getContents(), true);
+                $data = $responseData['data'];
 
-        // Menyimpan perubahan data pengguna
-        $user->save();
+                $userId = session('tuid');
+                $user = User::find($userId);
+
+                $user->tempat_lahir = $data['tempat_lahir'];
+                $user->tanggal_lahir = $data['tanggal_lahir'];
+                $user->pekerjaan = $data['pekerjaan'];
+                $user->alamat = $data['alamat'];
+                $user->jenis_kelamin = $data['jenis_kelamin'];
+
+                $user->save();
+            } else {
+                throw new \Exception('Failed to update user profile');
+            }
+        } else {
+            // Mengambil data pengguna yang akan diperbarui
+            $userId = session('tuid');
+            $user = User::find($userId);
+
+            // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
+            $user->tempat_lahir = $validatedData['tempat_lahir'];
+            $user->tanggal_lahir = $validatedData['tanggal_lahir'];
+            $user->pekerjaan = $validatedData['pekerjaan'];
+            $user->alamat = $validatedData['alamat'];
+            $user->jenis_kelamin = $validatedData['jenis_kelamin'];
+
+            // Menyimpan perubahan data pengguna
+            $user->save();
+        }
 
         // Redirect atau tampilkan respons sesuai kebutuhan
         return redirect()->route('register.show', ['page' => 2]);
@@ -95,6 +174,28 @@ class RegisteredUserController extends Controller
         // Mengambil data pengguna yang akan diperbarui
         $userId = session('tuid');
         $user = User::find($userId);
+
+        if (env('IS_SEPARATION', false)) {
+            $client = new Client();
+            $response = $client->request(
+                'POST',
+                env('DOMAIN_SEPARATION') . "/profile/detail-information",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . session('session')
+                    ],
+                    'form_params' => $validatedData
+                ]
+            );
+
+            if ($response->getStatusCode() == 200) {
+                $responseData = json_decode($response->getBody()->getContents(), true);
+                $data = $responseData['data'];
+
+            } else {
+                throw new \Exception('Failed to update user profile');
+            }
+        }
 
         // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
         $user->nomor_keanggotaan = $validatedData['nomor_keanggotaan'];

@@ -36,6 +36,47 @@ class User extends Authenticatable
         'jenis_kelamin',
     ];
 
+
+    public function __construct(array $attributes = []) {
+        parent::__construct($attributes);
+        $this->fillable = env('IS_SEPARATION', false) ? 
+        [
+            'id',
+            'nama',
+            'username',
+            'password',
+            'email',
+            'role',
+            'foto_profile',
+            'foto_kta',
+            'alamat',
+            'nomor_keanggotaan',
+            'cabang',
+            'tempat_lahir',
+            'wilayah',
+            'daerah',
+            'tanggal_lahir',
+            'jenis_kelamin',
+        ] : 
+        [
+            'nama',
+            'username',
+            'password',
+            'email',
+            'role',
+            'foto_profile',
+            'foto_kta',
+            'alamat',
+            'nomor_keanggotaan',
+            'cabang',
+            'tempat_lahir',
+            'wilayah',
+            'daerah',
+            'tanggal_lahir',
+            'jenis_kelamin',
+        ];
+    }
+
     protected $table = 'users';
 
     protected $primaryKey = 'id';
