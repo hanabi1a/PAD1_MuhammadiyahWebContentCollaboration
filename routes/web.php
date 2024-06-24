@@ -103,7 +103,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('profile')->name('profile.')->group(function () {
-        Route::get('/', [ProfileController::class, 'show_profile'])->name('show');
         Route::get('/edit', [ProfileController::class, 'edit_profile'])->name('edit_profile');
         Route::get('/informasi', [ProfileController::class, 'show_profile_information'])->name('show.information');
         Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
