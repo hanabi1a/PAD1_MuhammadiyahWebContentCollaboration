@@ -60,8 +60,8 @@
                             <td>{{ $kajian->user->username }}</td>
                             <td>{{ $kajian->id_user }}</td>
                             @if ($kajian->current_versions != null)
-                                <td>{{ $kajian->current_versions->oldKajian->judul_kajian }}</td>
-                                <td>{{ $kajian->current_versions->oldKajian->id }}</td>
+                                <td>{{ $kajian->current_versions->oldKajian?->judul_kajian }}</td>
+                                <td>{{ $kajian->current_versions->oldKajian?->id }}</td>
                                 <td>{{ $kajian->judul_kajian }}</td>
                                 <td>{{ $kajian->id }}</td>
                             @else 
