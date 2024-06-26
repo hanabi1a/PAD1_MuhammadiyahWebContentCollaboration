@@ -242,14 +242,16 @@
                                 @php
                                     $decodedData = json_decode($userkajian->current_versions->oldKajian);
                                 @endphp
-                                <p>
-                                    <strong>
-                                        <a class="reference_link" href="{{route('kajian.show', $userkajian?->current_versions?->oldKajian)}}">
-                                            {{ $decodedData->judul_kajian }}
-                                        </a>
-                                    </strong> 
-                                    oleh {{ $decodedData->pemateri }}
-                                </p>
+                                @isset($userkajian?->current_versions?->oldKajian)
+                                    <p>
+                                        <strong>
+                                            <a class="reference_link" href="{{route('kajian.show', $userkajian?->current_versions?->oldKajian)}}">
+                                                {{ $decodedData->judul_kajian }}
+                                            </a>
+                                        </strong> 
+                                        oleh {{ $decodedData->pemateri }}
+                                    </p>  
+                                @endisset
                             </div>
                         </div>
                         <hr>
