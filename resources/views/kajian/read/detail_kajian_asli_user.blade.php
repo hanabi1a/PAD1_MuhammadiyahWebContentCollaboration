@@ -258,7 +258,10 @@
                                             
                                         @endisset
                                         @endif
-                                            {{ $decodedData->judul_kajian }}
+                                        @isset($ecodedData?->judul_kajian)
+                                        {{ $decodedData->judul_kajian }}
+                                            
+                                        @endisset
                                         </a>
                                     </strong> 
                                     oleh {{ $decodedData->pemateri }}
