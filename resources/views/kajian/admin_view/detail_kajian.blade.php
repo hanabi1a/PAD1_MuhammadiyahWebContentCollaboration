@@ -244,7 +244,7 @@
                                 @endphp
                                 <p>
                                     <strong>
-                                        <a class="reference_link" href="{{route('kajian.show', $userkajian->current_versions->oldKajian)}}">
+                                        <a class="reference_link" href="{{route('kajian.show', $userkajian?->current_versions?->oldKajian)}}">
                                             {{ $decodedData->judul_kajian }}
                                         </a>
                                     </strong> 
