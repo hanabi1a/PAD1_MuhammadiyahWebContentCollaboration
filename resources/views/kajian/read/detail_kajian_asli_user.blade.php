@@ -259,12 +259,15 @@
                                         @endisset
                                         @endif
                                         @isset($ecodedData?->judul_kajian)
-                                        {{ $decodedData->judul_kajian }}
+                                            {{ $decodedData->judul_kajian }}
                                             
                                         @endisset
                                         </a>
                                     </strong> 
+                                    @isset($recordedData?->pemateri)
                                     oleh {{ $decodedData->pemateri }}
+                                        
+                                    @endisset
                                 </p>
                             </div>
                         </div>
