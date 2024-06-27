@@ -103,13 +103,20 @@ class RegisteredUserController extends Controller
 
     public function store_additional_1(Request $request)
     {
+        $message = [
+            'tempat_lahir.required' => 'Tempat lahir wajib diisi.',
+            'tanggal_lahir.before' => 'Tanggal lahir harus sebelum hari ini.',
+            'alamat.max' => 'Alamat tidak boleh lebih dari 255 karakter.',
+            'jenis_kelamin.in' => 'Jenis kelamin harus L atau P.',
+        ];
+
         $validatedData = $request->validate([
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date|before:today',
             'pekerjaan' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:L,P',
-        ]);
+        ], $message);
 
         $is_separation = env('IS_SEPARATION', false);
         if($is_separation) {

@@ -33,6 +33,9 @@
                                         <label for="tempat-lahir">Tempat Lahir</label>
                                         <input type="text" class="form-control" placeholder="Tempat Lahir"
                                             id="tempat-lahir" name="tempat_lahir">
+                                            @error('tempat_lahir')
+                                                <span class="text-danger">{{ $errorMessages }}</span>
+                                            @enderror
                                     </div>
                                     <div class="form-group col-md-12 mt-3">
                                         <label for="tanggal-lahir">Tanggal Lahir</label>
