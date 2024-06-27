@@ -246,9 +246,9 @@ class KajianController extends Controller
 
         $userId = Auth::user()->id;
         if ($kajian->id_user != $userId) {
-            return redirect()->route('profile.show')->withError('Anda berusaha menghapus kajian orang lain. Hal ini tidak diperkenankan!');
+            return redirect()->route('profile.akun_pengguna')->withError('Anda berusaha menghapus kajian orang lain. Hal ini tidak diperkenankan!');
         }
-        return redirect()->route('profile.show')->withSuccess('Kajian berhasil dihapus');
+        return redirect()->route('profile.akun_pengguna')->withSuccess('Kajian berhasil dihapus');
     }
 
     public function show(Kajian $kajian)
