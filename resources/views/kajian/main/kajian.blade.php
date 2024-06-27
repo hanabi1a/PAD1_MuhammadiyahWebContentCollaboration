@@ -99,14 +99,14 @@
             <div class="search">
                 <input type="text" class="search-input" placeholder="Search..." id="searchInput">
                 <a href="#" class="search-icon">
-                    <img src="\assets\img\icon\search-icon.svg">
+                    <img src="assets\img\icon\search-icon.svg">
                 </a>
             </div>
         </div>
         <div class="col-3 col-md-2">
             <a href="{{ route('kajian.create') }}">
                 <div class="btn btn-light unggah-kajian">
-                    <img src="\assets\img\icon\unggah.svg">Unggah Kajian
+                    <img src="assets\img\icon\unggah.svg">Unggah Kajian
                 </div>
             </a>
         </div>
@@ -114,7 +114,7 @@
         <div class="search pb-3">
             <input type="text" class="search-input" placeholder="Search..." id="searchInput">
             <a href="#" class="search-icon">
-                <img src="\assets\img\icon\search-icon.svg">
+                <img src="assets\img\icon\search-icon.svg">
             </a>
         </div>
         @endif
@@ -146,24 +146,23 @@
     <div class="container">
         <h1 id="title-kajian-rekomendasi" class="mb-2">Kajian Rekomendasi</h1>
         <div class="list-rekomendasi d-flex flex-wrap mb-4 mt-4">
-        @foreach ($selectedCategories as $category)
+            @foreach ($selectedCategories as $category)
             <div class="kategori me-2">
                 {{ $category->nama }}
                 <img src="/assets/img/icon/cancel.svg" alt="Close Icon">
             </div>
-        @endforeach
+            @endforeach
 
-        <div class="dropdown" id="category-add-dropdown">
-            <button class="kategori-lainnya dropdown-toggle" type="button" id="dropdownMenuButton1">
-                Tambah Kategori
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                @foreach ($kategoriKajian as $item)
+            <div class="dropdown" id="category-add-dropdown">
+                <button class="kategori-lainnya dropdown-toggle" type="button" id="dropdownMenuButton1">
+                    Tambah Kategori
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    @foreach ($kategoriKajian as $item)
                     <li><a class="dropdown-item" href="#">{{ $item->nama }}</a></li>
-                @endforeach
-            </ul>
-        </div>
-
+                    @endforeach
+                </ul>
+            </div>
         </div>
 
         <div id="kajianRekomendasiResults" class="row">
@@ -172,8 +171,8 @@
             @endforeach
         </div>
 
-        <div class="d-flex justify-content-center">
-            {!! $recommendedKajian->links('pagination.custom') !!}
+        <div class="d-flex justify-content-center paginationKajianRekomendasi">
+            {!! $recommendedKajian->appends(request()->except('page'))->links('pagination.custom') !!}
         </div>
     </div>
 </section>
@@ -187,8 +186,8 @@
                 @include('kajian.components.card_kajian', ['item' => $item])
             @endforeach
         </div>
-        <div class="d-flex justify-content-center">
-            {!! $kajianTerkini->links('pagination.custom') !!}
+        <div class="d-flex justify-content-center paginationKajianTerkini">
+            {!! $kajianTerkini->appends(request()->except('page'))->links('pagination.custom') !!}
         </div>
     </div>
 </section>
@@ -196,26 +195,22 @@
 
 <section id="video-terkini" class="default-content">
     <div class="container">
-<h1 id="video-terkini" class="mb-3">Video Terkini</h1>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        <h1 id="video-terkini" class="mb-3">Video Terkini</h1>
         <div class="row">
             <div class="col-md-6">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <div class="col-md-6">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-                    gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/fXTXrfw-YR4?si=UiBSTnz4288WnIiH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 </section>
-<div id="noResults" class="d-none">Tidak ada hasil ditemukan</div>
+
+<div class="container">
+    <div id="noResults" class="d-none text-center mt-3">
+        Tidak ada hasil ditemukan
+    </div>
+</div>
 
 @endsection

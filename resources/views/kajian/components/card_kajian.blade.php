@@ -2,7 +2,7 @@
     <div class="card box-shadow card-hover"
         data-title="{{ $item->judul_kajian }}"
         data-pemateri="{{ $item->pemateri }}"
-        data-deskripsi="{{ strip_tags($item->deskripsi_kajian) }}"
+        data-deskripsi="{{ htmlspecialchars(strip_tags($item->deskripsi_kajian)) }}"
         data-kategori="{{ $item->kategori }}">
         <img src="{{ asset('storage/' . $item->foto_kajian) }}" class="img-fluid img-card-kajian">
         <div class="card-kajian-body">
