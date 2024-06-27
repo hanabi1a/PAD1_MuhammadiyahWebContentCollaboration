@@ -24,7 +24,7 @@
             </div>
             <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
             @isset($showDelete)
-                <a href="{{ route('kajian.delete', ['kajian' => $item->id]) }}" class="btn btn-danger mt-2">
+                <a href="{{ route('kajian.destroy', ['kajian' => $item->id]) }}" class="btn btn-danger mt-2">
                     <i class="fa fa-trash"></i>
                 </a>
             @endisset

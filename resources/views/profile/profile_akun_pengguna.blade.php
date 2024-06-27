@@ -67,7 +67,7 @@
                         <div class="container">
                             <div class="row">
                                 @foreach ($originalKajian as $item)
-                                    @include('kajian.components.card_kajian', ['item' => $item])
+                                    @include('kajian.components.card_kajian', ['item' => $item, 'showDelete' => true])
                                 @endforeach
                             </div>
                             <div class="d-flex justify-content-center">
