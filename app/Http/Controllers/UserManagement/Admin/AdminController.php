@@ -40,7 +40,9 @@ class AdminController extends Controller
 
     public function show_history_login()
     {
-        $historis = historylogin::with('user')->get();
+        $historis = historylogin::with('user')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('admin.history_login.history_login', compact('historis'));
     }
@@ -48,14 +50,16 @@ class AdminController extends Controller
     public function show_history_upload()
     {
         // Mengambil semua kajian dari semua pengguna
-        $uploadHistory = Kajian::all();
+        $uploadHistory = Kajian::orderBy('created_at', 'desc')->get();
 
         return view('admin.history_upload.history_upload', compact('uploadHistory'));
     }
 
     public function show_history_download()
     {
-        $historyDownloads = HistoryDownload::with(['user', 'kajian'])->get();
+        $historyDownloads = HistoryDownload::with(['user', 'kajian'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('admin.history_download.history_download', compact('historyDownloads'));
     }

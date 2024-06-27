@@ -3,6 +3,11 @@
 @section('content')
 <main>
     <div class="container-fluid px-5 px-5 mt-sm-2 mb-sm-2">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <h1 class="mt-2">Manajemen Kajian</h1>
         <ol class="breadcrumb mt-2">
             <li class="text_page breadcrumb"><a href="dashboard">Dashboard /</a><a href="data_kajian"
@@ -30,9 +35,16 @@
                     </thead>
 
                     <tbody>
-                        @foreach($kajianList as $kajian)
+
+                        @php
+                            $perPage = $kajianList->perPage(); 
+                            $currentPage = $kajianList->currentPage(); 
+                            $startingIndex = ($currentPage - 1) * $perPage + 1;
+                        @endphp
+
+                        @foreach($kajianList as $index => $kajian)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $startingIndex + $index }}</td>
                             <td>
                                 <img src="{{ asset('storage/' . $kajian->foto_kajian) }}" alt="Profile Image" width="150">
                             </td>

@@ -186,10 +186,10 @@ class RegisteredUserController extends Controller
     public function store_additional_2(Request $request)
     {
         $validatedData = $request->validate([
-            'nomor_keanggotaan' => 'string|max:255',
-            'cabang' => 'string|max:255',
-            'daerah' => 'string|max:255',
-            'wilayah' => 'string|max:255',
+            'nomor_keanggotaan' => 'nullable|string|max:255',
+            'cabang' => 'nullable|string|max:255',
+            'daerah' => 'nullable|string|max:255',
+            'wilayah' => 'nullable|string|max:255',
             'foto_profile' => 'nullable|file',
             'foto_kta' => 'nullable|file',
         ]);
@@ -289,9 +289,8 @@ class RegisteredUserController extends Controller
     
         $categories = $request->categories;
     
-        $categories = array_unique($categories);
-    
         if ($categories) {
+            $categories = array_unique($categories);
             foreach ($categories as $category) {
                 PersonalizeTopikKajian::create([
                     'user_id' => $userId,

@@ -253,12 +253,21 @@
                                         @if (Auth::user() != null && Auth::user()->isAdmin())
                                         <a class="reference_link" href="{{route('admin.kajian.show', $userkajian->current_versions->oldKajian)}}">
                                         @else
+                                        @isset($userkajian?->current_versions?->oldKajian)
                                         <a class="reference_link" href="{{route('kajian.show', $userkajian->current_versions->oldKajian)}}">
+                                            
+                                        @endisset
                                         @endif
+                                        @isset($ecodedData?->judul_kajian)
                                             {{ $decodedData->judul_kajian }}
+                                            
+                                        @endisset
                                         </a>
                                     </strong> 
+                                    @isset($recordedData?->pemateri)
                                     oleh {{ $decodedData->pemateri }}
+                                        
+                                    @endisset
                                 </p>
                             </div>
                         </div>
