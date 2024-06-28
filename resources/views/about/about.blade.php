@@ -304,4 +304,10 @@
     </div>
 </section>
 
+<div class="container">
+    <div id="noResults" class="d-none text-center mt-3">
+        Tidak ada hasil ditemukan
+    </div>
+</div>
+
 @endsection

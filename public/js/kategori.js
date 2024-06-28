@@ -55,6 +55,19 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error:', error));
     }
 
+    function truncateText(text, wordLimit, ellipsis) {
+        const words = text.split(' ');
+        if (words.length > wordLimit) {
+            return words.slice(0, wordLimit).join(' ') + ellipsis;
+        }
+        return text;
+    }
+
+    function stripTags(html) {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        return doc.body.textContent || "";
+    }
+
     function attachCancelEventListeners() {
         document.querySelectorAll('.kategori img').forEach(function (cancelIcon) {
             cancelIcon.addEventListener('click', function () {
@@ -97,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function stripWords(str, limit) {
         const words = str.split(' '); // Split the string into an array of words
         if (words.length > limit) {
-            return words.slice(0, limit).join(' ') + '...'; // Join the first 'limit' words and append '...'
+            return truncateText(stripTags(item.deskripsi_kajian), limit, '...'); // Join the first 'limit' words and append '...'
         }
         return str; // Return the original string if it's within the limit
     }
