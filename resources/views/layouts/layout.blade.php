@@ -52,9 +52,10 @@
     <script src="{{ asset('/js/logout.js') }}"></script>
     <script src="{{ asset('/js/dropdown.js') }}"></script>
     <script src="{{ asset('/js/content-loaded-kategori-dropdown.js') }}"></script>
-    <script src="{{ asset('/js/content-loaded-search.js') }}"></script>
+    <script src="{{ asset('/js/search-input-homepage.js') }}"></script>
     <script src="{{ asset('/js/tab-profil.js') }}"></script>
-    <script src="{{ asset('/js/search-input.js') }}"></script>
+    <script src="{{ asset('/js/search-input-kajian.js') }}"></script>
+    <script src="{{ asset('/js/search-input-about.js') }}"></script>
     <script src="{{ asset('/js/upload/drag-and-drop-document.js') }}"></script>
     <script src="js/swiper-bundle.min.js"></script>
 

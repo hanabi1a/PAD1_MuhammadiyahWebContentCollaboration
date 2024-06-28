@@ -44,7 +44,12 @@ Route::get('/akun_pengguna', function () {
 });
 
 // routes/search
-Route::get('/kajian/search', [KajianController::class, 'search'])->name('kajian.search');
+// Route::get('/kajian/search', [KajianController::class, 'search'])->name('kajian.search');
+Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/search-kajian', [KajianController::class, 'search'])->name('search');
+Route::get('/search-about', [AboutController::class, 'search'])->name('search');
+
+
 
 
 // Route::get('/form_create_user_nv', function () {
