@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
     public function show_kajian_in_profile_muhammadiyah(): View
     {
-        $kajian = Kajian::paginate(9);
+        $kajian = Kajian::orderBy('created_at', 'desc')->paginate(9);
         $user = Auth::user(); 
         return view('profile.profile_akun_muhammadiyah', compact('kajian', 'user'));
     }
@@ -214,6 +214,17 @@ class ProfileController extends Controller
 
         // Redirect atau tampilkan respons sesuai kebutuhan
         return redirect()->back()->with('success', 'Foto profil berhasil dihapus!'); // Contoh respons berhasil
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $results = Kajian::where('judul_kajian', 'like', "%$query%")
+                        ->orWhere('pemateri', 'like', "%$query%")
+                        ->get();
+
+        return response()->json($results);
     }
 
 }

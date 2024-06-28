@@ -1,5 +1,5 @@
 <div class="col-md-4 mb-5 kajian-item"> 
-        <!-- <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="card-kajian"> -->
+    <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="card-kajian">
         <div class="card card-hover"
             data-title="{{ $item->judul_kajian }}"
             data-pemateri="{{ $item->pemateri }}"
@@ -25,7 +25,7 @@
                 </div>
                 <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                 @isset($showDelete)
-                    @if ($showDelete)
+                    @if ($showDelete && Auth::user()->id == $item->id_user)
                         <form action="{{ route('kajian.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                             @csrf
                             @method('DELETE')
@@ -34,8 +34,8 @@
                             </button>
                         </form>
                     @endif
-               @endisset
+                @endisset
             </div>
         </div>
-    <!-- </a> -->
-    </div>
+    </a>
+</div>
