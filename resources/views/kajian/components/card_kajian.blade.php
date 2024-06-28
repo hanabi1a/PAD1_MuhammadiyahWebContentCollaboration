@@ -1,6 +1,6 @@
 <div class="col-md-4 mb-5 kajian-item"> 
         <!-- <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="card-kajian"> -->
-        <div class="card card-hover"
+        <div class="card box-shadow card-hover"
             data-title="{{ $item->judul_kajian }}"
             data-pemateri="{{ $item->pemateri }}"
             data-deskripsi="{{ htmlspecialchars(strip_tags($item->deskripsi_kajian)) }}"

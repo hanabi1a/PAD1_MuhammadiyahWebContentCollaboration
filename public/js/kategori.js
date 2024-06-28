@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
             resultsContainer.innerHTML = ''; 
 
             data.recommendedKajian.forEach(item => {
+                const truncatedDescription = truncateText(stripTags(item.deskripsi_kajian), 12, '...');
+
                 const kajianItem = document.createElement('div');
                 kajianItem.className = 'col-md-4 mb-5 kajian-item';
                 kajianItem.innerHTML = `
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="card-body">
                             <div class="card-title mt-3">${item.judul_kajian}</div>
                             <p class="card-text">${item.pemateri}</p>
-                            <div class="card-title" style="color: #04454D;">${item.deskripsi_kajian}</div>
+                            <div class="card-title" style="color: #04454D;">${truncatedDescription}</div>
                             <a href="/kajian/${item.slug}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                         </div>
                     </div>
@@ -35,6 +37,19 @@ document.addEventListener('DOMContentLoaded', function () {
             attachCancelEventListeners();
         })
         .catch(error => console.error('Error:', error));
+    }
+
+    function truncateText(text, wordLimit, ellipsis) {
+        const words = text.split(' ');
+        if (words.length > wordLimit) {
+            return words.slice(0, wordLimit).join(' ') + ellipsis;
+        }
+        return text;
+    }
+
+    function stripTags(html) {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        return doc.body.textContent || "";
     }
 
     function attachCancelEventListeners() {
