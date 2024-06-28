@@ -67,7 +67,7 @@
                         <div class="container">
                             <div class="row">
                                 @foreach ($originalKajian as $item)
-                                    @include('kajian.components.card_kajian', ['item' => $item])
+                                    @include('kajian.components.card_kajian', ['item' => $item, 'showDelete' => true])
                                 @endforeach
                             </div>
                             <div class="d-flex justify-content-center">
@@ -78,7 +78,7 @@
                     <div class="tab-pane fade mt-4" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
                         <div class="row">
                             @foreach ($collaborativeKajian as $item)
-                                @include('kajian.components.card_kajian', ['item' => $item])
+                                @include('kajian.components.card_kajian', ['item' => $item, 'showDelete' => true])
                             @endforeach
                         </div>
                         <div class="d-flex justify-content-center">

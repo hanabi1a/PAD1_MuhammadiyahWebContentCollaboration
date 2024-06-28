@@ -63,6 +63,16 @@
             color: black; /* Black text */
         }
 
+        .tanggal-postingan {
+            font-size: 12px;
+            color: #4A5A67;
+        }
+
+        .ellipsis {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 
 @endsection
@@ -204,17 +214,25 @@
                             <div class="card mt-4 col-md-12">
                                 <div class="bungkus-card">
                                     <div class="card-body-user">
-                                        <div class="row mb-4">
-                                            <h1 class="heading3 mb-3"><strong>Kajian Versi Baru</strong></h1>
+                                        <div class="row my-3 mx-2">
+                                            <h1 class="heading3 mb-4"><strong>Kajian Versi Baru</strong></h1>
+
+                                            @if ($userkajian->versions->isEmpty())
+                                                <p>Belum ada versi baru</p>
+                                            @endif
+
                                             @foreach($userkajian->versions as $version)
                                                 <div class="col-md-3">
                                                     <img src="{{ asset('storage/' . $userkajian->user->foto_profile) }}"
                                                         alt="" style="border-radius: 50%; width: 60px; height: 60px;">
                                                 </div>
                                                 <div class="postingan col-md-9">
-                                                    <div class="row">
-                                                        <div class="col-md-10 mt-3">
-                                                            <p class="username-kajian-baru">{{ $userkajian->user->username }}</p>
+                                                    <div class="row mb-4">
+                                                        <div class="col-md-10 ellipsis">
+                                                            <p class="username-kajian-baru ellipsis">
+                                                                {{ $userkajian->user->username }} | {{$userkajian->judul_kajian}}
+                                                            </p>
+                                                            <p class="tanggal-postingan">{{ \Carbon\Carbon::parse($version->created_at)->format('F d, Y H:i') }}</p>
                                                         </div>
                                                         <div class="col-md-1 mt-3">
                                                             <a href="{{ route('kajian.show', $version->kajian) }}">
@@ -250,27 +268,52 @@
                                 @endphp
                                 <p>
                                     <strong>
-                                        @if (Auth::user() != null && Auth::user()->isAdmin())
-                                        <a class="reference_link" href="{{route('admin.kajian.show', $userkajian->current_versions->oldKajian)}}">
-                                        @else
-                                        @isset($userkajian?->current_versions?->oldKajian)
-                                        <a class="reference_link" href="{{route('kajian.show', $userkajian->current_versions->oldKajian)}}">
-                                            
+                                        @isset($decodedData?->judul_kajian)
+                                            @if (Auth::user() != null && Auth::user()->isAdmin())
+                                                <a class="reference_link" href="{{route('admin.kajian.show', $userkajian->current_versions->oldKajian)}}">
+                                            @else
+                                            @isset($userkajian?->current_versions?->oldKajian)
+                                                <a class="reference_link" href="{{route('kajian.show', $userkajian->current_versions->oldKajian)}}">  
+                                            @endisset
+                                            @endif
+                                                {{ $decodedData->judul_kajian }} 
+                                            </a>
                                         @endisset
-                                        @endif
-                                        @isset($ecodedData?->judul_kajian)
-                                            {{ $decodedData->judul_kajian }}
-                                            
-                                        @endisset
-                                        </a>
                                     </strong> 
-                                    @isset($recordedData?->pemateri)
-                                    oleh {{ $decodedData->pemateri }}
-                                        
+                                    @isset($decodedData?->pemateri)
+                                        oleh {{ $decodedData->pemateri }}
+                                    @endisset
+                                    @isset($decodedData?->created_at)
+                                        <br>
+                                        <strong>
+                                            {{ \Carbon\Carbon::parse($decodedData->created_at)->format('F d, Y H:i') }}
+                                        </strong>
                                     @endisset
                                 </p>
                             </div>
                         </div>
+                        <div class="row">
+                            {{-- Current Author --}}
+                            <div class="col-md-2">
+                                <strong>Kajian Saat Ini</strong>
+                            </div>
+                            <div class="col-md-1">
+                                <strong>:</strong>
+                            </div>
+                            <div class="col-md-5">
+                                <p>
+                                    <strong>
+                                        {{ $userkajian->judul_kajian }}
+                                    </strong>
+                                    oleh {{ $userkajian->pemateri }}
+                                    <br>
+                                    <strong>
+                                        {{ \Carbon\Carbon::parse($userkajian->created_at)->format('F d, Y H:i') }}
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+
                         <hr>
                         <div id="content_different" class="diff-text limited">
                             {!! $diffMessage !!}

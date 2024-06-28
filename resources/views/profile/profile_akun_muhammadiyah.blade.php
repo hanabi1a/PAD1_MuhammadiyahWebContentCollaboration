@@ -54,7 +54,7 @@
             <div class="row" id="kajianMuhammadiyahProfile">
                 @if (isset($kajian))
                     @foreach ($kajian as $item)
-                        @include('kajian.components.card_kajian', ['item' => $item])
+                        @include('kajian.components.card_kajian', ['item' => $item, 'showDelete' => true])
                     @endforeach
                 @endif
             </div>
