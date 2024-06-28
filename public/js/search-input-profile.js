@@ -1,23 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('searchInput');
-    const kajianMuhammadiyahContainer = document.getElementById('kajianMuhammadiyahContainer');
+    const kajianMuhammadiyahProfile = document.getElementById('kajianMuhammadiyahProfile');
     const noResults = document.getElementById('noResults');
-    const aboutSection = document.getElementById('about');
 
     if (searchInput) {
         searchInput.addEventListener('input', function () {
             const query = this.value.toLowerCase().trim(); 
 
-            if (query) {
-                aboutSection.style.display = 'none';
-            } else {
-                aboutSection.style.display = '';
-            }
-
             fetch(`/search?query=${encodeURIComponent(query)}`) 
                 .then(response => response.json())
                 .then(data => {
-                    kajianMuhammadiyahContainer.innerHTML = '';
+                    kajianMuhammadiyahProfile.innerHTML = '';
 
                     if (data.length > 0) {
                         noResults.classList.add('d-none');
@@ -38,16 +31,14 @@ document.addEventListener('DOMContentLoaded', function () {
                                         </div>
                                     </div>
                                 </div>`;
-                            kajianMuhammadiyahContainer.innerHTML += kajianItem;
+                            kajianMuhammadiyahProfile.innerHTML += kajianItem;
                         });
+
+                        
                     } else {
                         noResults.classList.remove('d-none');
                     }
                 })
-                .catch(error => {
-                    console.error('Error fetching search results:', error);
-                    noResults.classList.remove('d-none');
-                });
         });
     } else {
         console.error('Element with ID searchInput not found.');

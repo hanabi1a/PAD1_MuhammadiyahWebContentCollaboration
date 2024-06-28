@@ -48,6 +48,7 @@ Route::get('/akun_pengguna', function () {
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/search-kajian', [KajianController::class, 'search'])->name('search');
 Route::get('/search-about', [AboutController::class, 'search'])->name('search');
+Route::get('/search-profile', [ProfileController::class, 'search'])->name('search');
 
 
 

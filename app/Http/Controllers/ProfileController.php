@@ -216,4 +216,15 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Foto profil berhasil dihapus!'); // Contoh respons berhasil
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $results = Kajian::where('judul_kajian', 'like', "%$query%")
+                        ->orWhere('pemateri', 'like', "%$query%")
+                        ->get();
+
+        return response()->json($results);
+    }
+
 }
