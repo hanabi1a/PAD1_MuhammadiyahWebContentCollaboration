@@ -25,7 +25,7 @@
                 </div>
                 <a href="{{ route('kajian.show', ['kajian' => $item->slug]) }}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                 @isset($showDelete)
-                    @if ($showDelete)
+                    @if ($showDelete && Auth::user()->id == $item->id_user)
                         <form action="{{ route('kajian.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                             @csrf
                             @method('DELETE')
