@@ -51,13 +51,16 @@
                     <p class="heading4">Kajian Muhammadiyah</p>
                 </div>
             </div>
-            <div class="row" id="kajianMuhammadiyahProfile">
-                @if (isset($kajian))
+            @if (isset($kajian))
+                <div class="row" id="kajianMuhammadiyahProfile">
                     @foreach ($kajian as $item)
                         @include('kajian.components.card_kajian', ['item' => $item, 'showDelete' => true])
                     @endforeach
-                @endif
-            </div>
+                </div>
+                <div class="d-flex justify-content-center paginationKajianTerkini">
+                    {!! $kajian->appends(request()->except('page'))->links('pagination.custom') !!}
+                </div>
+            @endif
         </div>
     </section>
 </div>

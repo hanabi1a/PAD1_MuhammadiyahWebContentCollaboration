@@ -282,6 +282,10 @@ class RegisteredUserController extends Controller
             $user->foto_kta = $path;
         }
 
+        if ($user != null && $user->nomor_keanggotaan != null && $user->cabang != null && $user->daerah != null && $user->wilayah != null && $user->foto_profile != null && $user->foto_kta != null) {
+            $user->role = "pending_registered";
+        }
+
 
         // Menyimpan perubahan data pengguna
         $user->save();

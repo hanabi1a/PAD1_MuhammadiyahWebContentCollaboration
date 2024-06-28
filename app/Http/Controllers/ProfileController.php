@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
     public function show_kajian_in_profile_muhammadiyah(): View
     {
-        $kajian = Kajian::paginate(9);
+        $kajian = Kajian::orderBy('created_at', 'desc')->paginate(9);
         $user = Auth::user(); 
         return view('profile.profile_akun_muhammadiyah', compact('kajian', 'user'));
     }

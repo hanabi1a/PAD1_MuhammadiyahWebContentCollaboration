@@ -223,21 +223,23 @@
 
                                             @foreach($userkajian->versions as $version)
                                                 <div class="col-md-3">
-                                                    <img src="{{ asset('storage/' . $userkajian->user->foto_profile) }}"
+                                                    <img src="{{ asset('storage/' . $version->kajian->user->foto_profile) }}"
                                                         alt="" style="border-radius: 50%; width: 60px; height: 60px;">
                                                 </div>
                                                 <div class="postingan col-md-9">
                                                     <div class="row mb-4">
                                                         <div class="col-md-10 ellipsis">
                                                             <p class="username-kajian-baru ellipsis">
-                                                                {{ $userkajian->user->username }} | {{$userkajian->judul_kajian}}
+                                                                {{ $version->kajian?->user?->username }} | {{$version->kajian?->judul_kajian}}
                                                             </p>
                                                             <p class="tanggal-postingan">{{ \Carbon\Carbon::parse($version->created_at)->format('F d, Y H:i') }}</p>
                                                         </div>
                                                         <div class="col-md-1 mt-3">
-                                                            <a href="{{ route('kajian.show', $version->kajian) }}">
-                                                                <img src="/assets_admin/assets/img/arrow-right-square.svg">
-                                                            </a>
+                                                            @isset($version->kajian)
+                                                                <a href="{{ route('kajian.show', $version->kajian) }}">
+                                                                    <img src="/assets_admin/assets/img/arrow-right-square.svg">
+                                                                </a>
+                                                            @endisset
                                                         </div>
                                                     </div>
                                                 </div>
