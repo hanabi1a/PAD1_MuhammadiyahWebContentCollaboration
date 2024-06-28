@@ -123,14 +123,13 @@ class KajianController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $kajians = Kajian::where('judul_kajian', 'LIKE', "%{$query}%")
-                        ->orWhere('pemateri', 'LIKE', "%{$query}%")
-                        ->orWhere('deskripsi_kajian', 'LIKE', "%{$query}%")
+
+        $results = Kajian::where('judul_kajian', 'like', "%$query%")
+                        ->orWhere('pemateri', 'like', "%$query%")
                         ->get();
 
-        return response()->json($kajians);
+        return response()->json($results);
     }
-
 
 
     /**

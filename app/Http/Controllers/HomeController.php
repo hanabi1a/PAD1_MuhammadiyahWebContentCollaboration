@@ -76,4 +76,16 @@ class HomeController extends Controller
         return response()->json(['recommendedKajian' => $recommendedKajian]);
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $results = Kajian::where('judul_kajian', 'like', "%$query%")
+                        ->orWhere('pemateri', 'like', "%$query%")
+                        ->get();
+
+        return response()->json($results);
+    }
+    
+
 }
