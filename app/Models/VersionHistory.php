@@ -15,6 +15,7 @@ class VersionHistory extends Model
 
     protected $fillable = [
         'kajian_id', // ID kajian yang terhubung
+        'old_kajian_id', // ID kajian sebelumnya, jika ada
         'user_id',   // ID pengguna yang mengunggah versi
         'version_number', // Nomor versi
         'file_path',  // Path ke file kajian
@@ -43,5 +44,10 @@ class VersionHistory extends Model
     public function kajian()
     {
         return $this->belongsTo(Kajian::class, 'kajian_id');
+    }
+
+    public function oldKajian()
+    {
+        return $this->belongsTo(Kajian::class, 'old_kajian_id');
     }
 }

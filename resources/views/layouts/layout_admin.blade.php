@@ -43,6 +43,8 @@
 
     </style>
 
+    @yield('style')
+
 
 </head>
 

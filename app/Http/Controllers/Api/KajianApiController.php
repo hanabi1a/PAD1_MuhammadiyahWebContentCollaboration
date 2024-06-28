@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kajian;
 use Illuminate\Http\Request;
 
-class KajianApiController extends Controller
+class KajianApiController extends Controller 
 {
     public function index(Request $request)
     {
@@ -25,7 +25,7 @@ class KajianApiController extends Controller
         // Mengambil data kajian dengan opsi paginasi
         $dataKajian = $query->paginate($perPage);
 
-        return response()->json(['status' => 200, 'message' => 'success', 'data' => $dataKajian]);
+        return ResponseBuilder::response(200, 'success', $dataKajian);
     }
 
     public function search(Request $request)
@@ -89,6 +89,8 @@ class KajianApiController extends Controller
             'lokasi_kajian' => 'required',
             'tanggal_postingan' => 'required|date',
             'deskripsi_kajian' => 'required',
+            'kategori' => 'required',
+            'konten' => 'required',
         ]);
 
         // Buat instance baru dari Kajian dan isi dengan data request
@@ -98,13 +100,18 @@ class KajianApiController extends Controller
         $kajian->lokasi_kajian = $validatedData['lokasi_kajian'];
         $kajian->tanggal_postingan = $validatedData['tanggal_postingan'];
         $kajian->deskripsi_kajian = $validatedData['deskripsi_kajian'];
+        $kajian->kategori = $validatedData['kategori'];
+        $kajian->konten = $validatedData['konten'];
         $kajian->id_user = $user->id; // Sertakan id_user dari pengguna yang sedang login
 
         // Simpan kajian ke dalam database
-        $kajian->save();
-
-        // Kirim response
-        return response()->json(['status' => 200, 'message' => 'Kajian successfully created', 'data' => $kajian]);
+        if ($kajian->save()) {
+            // Jika berhasil disimpan
+            return response()->json(['status' => 200, 'message' => 'Kajian successfully created', 'data' => $kajian]);
+        } else {
+            // Jika gagal disimpan
+            return response()->json(['status' => 500, 'message' => 'Failed to create Kajian']);
+        }
     }
 
     public function destroy($id)
@@ -147,6 +154,8 @@ class KajianApiController extends Controller
             'lokasi_kajian' => 'required',
             'tanggal_postingan' => 'required|date',
             'deskripsi_kajian' => 'required',
+            'kategori' => 'required',
+            'konten' => 'required',
         ]);
 
         $kajian->judul_kajian = $validatedData['judul_kajian'];
@@ -154,6 +163,8 @@ class KajianApiController extends Controller
         $kajian->lokasi_kajian = $validatedData['lokasi_kajian'];
         $kajian->tanggal_postingan = $validatedData['tanggal_postingan'];
         $kajian->deskripsi_kajian = $validatedData['deskripsi_kajian'];
+        $kajian->kategori = $validatedData['kategori'];
+        $kajian->konten = $validatedData['konten'];
 
         $kajian->save();
 

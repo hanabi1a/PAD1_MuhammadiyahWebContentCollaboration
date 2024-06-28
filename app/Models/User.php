@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\VersionHistory;
 
 class User extends Authenticatable
 {
@@ -35,6 +33,47 @@ class User extends Authenticatable
         'tanggal_lahir',
         'jenis_kelamin',
     ];
+
+
+    public function __construct(array $attributes = []) {
+        parent::__construct($attributes);
+        $this->fillable = env('IS_SEPARATION', false) ? 
+        [
+            'id',
+            'nama',
+            'username',
+            'password',
+            'email',
+            'role',
+            'foto_profile',
+            'foto_kta',
+            'alamat',
+            'nomor_keanggotaan',
+            'cabang',
+            'tempat_lahir',
+            'wilayah',
+            'daerah',
+            'tanggal_lahir',
+            'jenis_kelamin',
+        ] : 
+        [
+            'nama',
+            'username',
+            'password',
+            'email',
+            'role',
+            'foto_profile',
+            'foto_kta',
+            'alamat',
+            'nomor_keanggotaan',
+            'cabang',
+            'tempat_lahir',
+            'wilayah',
+            'daerah',
+            'tanggal_lahir',
+            'jenis_kelamin',
+        ];
+    }
 
     protected $table = 'users';
 
@@ -66,7 +105,7 @@ class User extends Authenticatable
 
     public function kajians()
     {
-        return $this->hasMany(Kajian::class, 'id_user'); // Sesuaikan 'user_id' dengan nama kolom foreign key di tabel 'kajian'
+        return $this->hasMany(Kajian::class, 'id_user'); // Sesuaikan 'id_user' dengan nama kolom foreign key di tabel 'kajian'
     }
 
     public function versions()
@@ -74,9 +113,24 @@ class User extends Authenticatable
         return $this->hasMany(VersionHistory::class, 'user_id');
     }
 
+    public function isNonRegistered(): bool
+    {
+        return $this->role === 'not_login';
+    }
+
+    public function isUser(): bool
+    {
+        return $this->role === 'user';
+    }
+
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
+    }
+
+    public function isPendingRegistered(): bool
+    {
+        return $this->role === 'pending_registered';
     }
 
     public function isRegistered(): bool
