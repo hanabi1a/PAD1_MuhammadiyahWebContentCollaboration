@@ -4096,6 +4096,13 @@ a:hover {
 
 .card-kajian {
     margin-top: 40px;
+    transition: ease 0.5s;
+}
+
+.card-kajian:hover {
+    transform: scale(1.05);
+    transition: ease 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .img-card-kajian {
@@ -4105,11 +4112,6 @@ a:hover {
     object-fit: cover;
     /* This will cover the area without breaking the aspect ratio */
     transition: transform 0.5s ease;
-}
-
-.img-card-kajian:hover {
-    transform: scale(1.05);
-    transition: transform 0.5s;
 }
 
 .card .card-kajian-body .card-kajian-title {

@@ -16,18 +16,36 @@ document.addEventListener('DOMContentLoaded', function () {
             resultsContainer.innerHTML = ''; 
 
             data.recommendedKajian.forEach(item => {
+                const generateCategoryContent = (item) => {
+                    try {
+                        if (item.topikKajians && item.topikKajians.length > 0) {
+                            return item.topikKajians.map(topik => topik.nama).join(', ');
+                        }
+                        return 'Umum';
+                    } catch (error) {
+                        return 'Umum';
+                    }
+                    
+                };
+                
                 const kajianItem = document.createElement('div');
                 kajianItem.className = 'col-md-4 mb-5 kajian-item';
                 kajianItem.innerHTML = `
-                    <div class="card box-shadow">
-                        <img src="/storage/${item.foto_kajian}" class="img-fluid img-kajian">
-                        <div class="card-body">
-                            <div class="card-title mt-3">${item.judul_kajian}</div>
-                            <p class="card-text">${item.pemateri}</p>
-                            <div class="card-title" style="color: #04454D;">${item.deskripsi_kajian}</div>
+                <a href="/kajian/${item.slug}" class="card-kajian">
+                    <div class="card card-hover">
+                        <img src="/storage/${item.foto_kajian}" class="img-fluid img-card-kajian">
+                        <div class="card-kajian-body">
+                            <div class="card-kajian-title mt-3">${item.judul_kajian}</div>
+                            <p class="card-kajian-text">
+                                ${stripWords(item.deskripsi_kajian, 10)}
+                            </p>
+                            <div class="card-kajian-category">
+                                ##${generateCategoryContent(item)}
+                            </div>
                             <a href="/kajian/${item.slug}" class="btn btn-view mt-2">Lihat Selengkapnya</a>
                         </div>
                     </div>
+                </a>
                 `;
                 resultsContainer.appendChild(kajianItem);
             });
@@ -75,4 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
             updateRecommendations(categoryName, 'add');
         });
     });
+
+    function stripWords(str, limit) {
+        const words = str.split(' '); // Split the string into an array of words
+        if (words.length > limit) {
+            return words.slice(0, limit).join(' ') + '...'; // Join the first 'limit' words and append '...'
+        }
+        return str; // Return the original string if it's within the limit
+    }
 });
