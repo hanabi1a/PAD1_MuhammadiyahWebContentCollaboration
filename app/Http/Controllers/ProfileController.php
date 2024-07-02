@@ -77,17 +77,17 @@ class ProfileController extends Controller
 
     public function show_profile()
     {
-        $userId = auth()->id(); 
-        $user = User::find($userId); 
-        
+        $userId = auth()->id();
+        $user = User::find($userId);
+
         return view('profile.profile_information', ['user' => $user]);
     }
 
     public function edit_profile()
     {
 
-        $userId = auth()->id(); 
-        $user = User::find($userId); 
+        $userId = auth()->id();
+        $user = User::find($userId);
 
         return view('profile.form_edit_profile_user', ['user' => $user]);
     }
@@ -98,8 +98,8 @@ class ProfileController extends Controller
             'username' => 'required|string|max:255',
             'nama' => 'required|string|max:255',
             'tempat_lahir' => 'string|max:255',
-            'tanggal_lahir' => 'date',
-            'pekerjaan' => 'string|max:255',
+            'tanggal_lahir' => 'date|before_or_equal:today',
+            'pekerjaan' => 'string|max:255|regex:/^[a-zA-Z\s]*$/',
             'alamat' => 'string|max:255',
             'jenis_kelamin' => 'required|in:L,P',
             'status' => 'string|max:255',
@@ -129,7 +129,7 @@ class ProfileController extends Controller
         $user->cabang = $validatedData['cabang'];
         $user->daerah = $validatedData['daerah'];
         $user->wilayah = $validatedData['wilayah'];
-        
+
 
 
         $path_foto_kta = null;
@@ -148,7 +148,7 @@ class ProfileController extends Controller
             }
 
             $user->foto_kta = $path_foto_kta;
-        } 
+        }
 
         // Menyimpan perubahan data pengguna
         $user->save();
@@ -197,7 +197,7 @@ class ProfileController extends Controller
             }
 
             $user->foto_profile = $path;
-        } 
+        }
 
         // Menyimpan perubahan data pengguna
         $user->save();
