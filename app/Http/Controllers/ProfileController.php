@@ -22,10 +22,10 @@ class ProfileController extends Controller
     public function show_kajian_in_profile_muhammadiyah(): View
     {
         $kajian = Kajian::orderBy('created_at', 'desc')->paginate(9);
-        $user = Auth::user(); 
+        $user = Auth::user();
         return view('profile.profile_akun_muhammadiyah', compact('kajian', 'user'));
     }
- 
+
     public function show_kajian_in_profile_user(): View
     {
         $user = Auth::user();
@@ -86,10 +86,19 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
+    public function show_profile()
+    {
+        $userId = auth()->id();
+        $user = User::find($userId);
+
+        return view('profile.profile_information', ['user' => $user]);
+    }
+
     public function edit_profile()
     {
-        $userId = auth()->id(); 
-        $user = User::find($userId); 
+
+        $userId = auth()->id();
+        $user = User::find($userId);
 
         return view('profile.form_edit_profile_user', ['user' => $user]);
     }
@@ -100,8 +109,8 @@ class ProfileController extends Controller
             'username' => 'required|string|max:255',
             'nama' => 'required|string|max:255',
             'tempat_lahir' => 'string|max:255',
-            'tanggal_lahir' => 'date',
-            'pekerjaan' => 'string|max:255',
+            'tanggal_lahir' => 'date|before_or_equal:today',
+            'pekerjaan' => 'string|max:255|regex:/^[a-zA-Z\s]*$/',
             'alamat' => 'string|max:255',
             'jenis_kelamin' => 'required|in:L,P',
             'status' => 'string|max:255',
@@ -131,7 +140,9 @@ class ProfileController extends Controller
         $user->cabang = $validatedData['cabang'];
         $user->daerah = $validatedData['daerah'];
         $user->wilayah = $validatedData['wilayah'];
-        
+
+
+
         $path_foto_kta = null;
 
         // Mengelola unggahan foto jika ada
@@ -148,7 +159,7 @@ class ProfileController extends Controller
             }
 
             $user->foto_kta = $path_foto_kta;
-        } 
+        }
 
         $user->save();
 
@@ -158,8 +169,8 @@ class ProfileController extends Controller
 
 
     public function show_profile_information() {
-        $userId = auth()->id(); 
-        $user = User::find($userId); 
+        $userId = auth()->id();
+        $user = User::find($userId);
         return view('profile.profile_information', ['user' => $user]);
     }
 
@@ -189,7 +200,7 @@ class ProfileController extends Controller
             }
 
             $user->foto_profile = $path;
-        } 
+        }
 
         // Menyimpan perubahan data pengguna
         $user->save();

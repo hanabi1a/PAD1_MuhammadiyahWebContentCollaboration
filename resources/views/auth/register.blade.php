@@ -245,7 +245,7 @@
 
                         @endswitch
 
-                            <p class="text-center">Telah memiliki akun? <a href="login">Masuk di sini</a></p>
+                            <p class="text-center">Telah memiliki akun? <a href="{{route('login')}}">Masuk di sini</a></p>
                         </div>
 
                     </div>

@@ -45,7 +45,7 @@
 
         .card {
             mask-clip: initial;
-            
+
             background-color: #FFF;
             filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
         }
@@ -95,7 +95,7 @@
                 <div class="container">
 
 
-                    
+
                     <div class="card top">
                         <a href="{{ url()->previous() }}" class="back-button">
                             <span class="material-symbols-outlined">
@@ -117,8 +117,8 @@
                                     <img class="profile-picture" src="{{asset('storage/' . $user->foto_profile)}}" alt="profile_picture">
                                 @endif
                             </div>
-                        
-                            
+
+
                             <div class="col-md-6">
                                 <p style="margin-bottom: 8pt">Email Pengguna</p>
                                 <p><strong>{{$user->email}}</strong></p>
@@ -139,16 +139,25 @@
                                             Hapus Foto Profil
                                         </button>
                                     </form>
-                                    
+
                                 </div>
                             </div>
                         </div>
 
-                        
+
+
 
                         @if($errors->any())
-                            {{ implode('', $errors->all('<div>:message</div>')) }}
+                            <div class="alert alert-danger">
+                                <div>Terjadi Kesalahan</div>
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
+
 
 
                         <div class="card-body">
@@ -160,7 +169,7 @@
                             <div class="form-validation">
 
                             <form class="form-valide" action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
-                                @method('put')        
+                                @method('put')
                                 @csrf
 
                                     <div class="form-group">
@@ -180,7 +189,7 @@
                                                 id="val-nama" name="nama" placeholder="Nama">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label class="row col-form-label" for="val-tempat-lahir">Tempat Lahir
                                         </label>
@@ -189,7 +198,7 @@
                                                 id="val-tempat-lahir" name="tempat_lahir" placeholder="Tempat Lahir">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label class="row col-form-label" for="val-tanggal-lahir">Tanggal Lahir
                                         </label>
@@ -255,7 +264,7 @@
                                                 @elseif ($user->role == 'registered')
                                                     <option value="registered" selected>Anggota</option>
                                                     <option value="user">Pengguna Biasa</option>
-                                                @else 
+                                                @else
                                                     <option value="pending_registered">Anggota</option>
                                                     <option value="user" selected>Non Anggota</option>
                                                 @endif
@@ -304,7 +313,7 @@
 
                                             @if($user->foto_kta)
                                                 <img class="col foto_kta" src="{{asset('storage/'. $user->foto_kta)}}" alt="Foto KTA">
-                                            @else 
+                                            @else
                                                 <img class="col foto_kta" src="/assets/img/foto_default.png" alt="Foto KTA">
                                             @endif
 
@@ -339,7 +348,7 @@
                             </div>
                         </div>
 
-                        
+
 
                     </div> <!-- End Container -->
                     <!-- End Form Validation -->
@@ -351,7 +360,7 @@
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+
     <script>
         $(document).ready(function() {
             $('#val-status').change(function() {
