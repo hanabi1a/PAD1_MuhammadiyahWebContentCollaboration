@@ -42,6 +42,17 @@ Route::get('/akun_muhammadiyah', function () {
 Route::get('/akun_pengguna', function () {
     return view('profile.profile_akun_pengguna');
 });
+
+// routes/search
+// Route::get('/kajian/search', [KajianController::class, 'search'])->name('kajian.search');
+Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/search-kajian', [KajianController::class, 'search'])->name('search');
+Route::get('/search-about', [AboutController::class, 'search'])->name('search');
+Route::get('/search-profile', [ProfileController::class, 'search'])->name('search');
+
+
+
+
 // Route::get('/form_create_user_nv', function () {
 //     return view('kajian.write.form_create_user_nv');
 // });
@@ -55,7 +66,7 @@ Route::get('/akun_pengguna', function () {
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
-Route::view('/', 'home.homepage');
+// Route::view('/', 'home.homepage');
 Route::view('/kajian2', 'kajian2');
 Route::view('/layout_user_2', 'layout_user_2');
 Route::view('/form_create_user', 'kajian.write.form_create_user');
@@ -67,21 +78,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 });
 
-// Route::group([], function () {
-//     // Route::get('/', [HomeController::class, 'index']);
-//     Route::get('/beranda', [HomeController::class, 'index'])->name('home');
-//     Route::get('/about', [AboutController::class, 'index'])->name('about');
-
-//     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-//     Route::get('/register/{page}', [RegisteredUserController::class, 'create'])->name('register.show');
-//     Route::post('/register/1', [RegisteredUserController::class, 'store'])->name('register.step1');
-//     Route::post('/register/2', [RegisteredUserController::class, 'store_additional_1'])->name('register.step2');
-//     Route::post('/register/3', [RegisteredUserController::class, 'store_additional_2'])->name('register.step3');
-//     Route::post('/register/4', [RegisteredUserController::class, 'store_additional_3'])->name('register.step4');
-// });
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/beranda', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+Route::post('/update-recommendations', [HomeController::class, 'updateRecommendations']);
+Route::post('/update-recommendations', [KajianController::class, 'updateRecommendations']);
 
 Route::prefix('register')->name('register.')->group(function () {
     Route::get('/', [RegisteredUserController::class, 'create'])->name('show');
@@ -92,30 +94,26 @@ Route::prefix('register')->name('register.')->group(function () {
     Route::post('/4', [RegisteredUserController::class, 'store_additional_3'])->name('step4');
 });
 
-/**
- * Middleware 'auth' digunakan untuk membatasi akses ke halaman tertentu
- * Hanya bisa diakses oleh user yang sudah login
- */
+// Rute yang tidak memerlukan autentikasi
+Route::prefix('profile')->name('profile.')->group(function () {
+    Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
+    Route::get('/akun_pengguna', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_pengguna');
+});
+
+// Rute yang memerlukan autentikasi
 Route::middleware('auth')->group(function () {
-    // Breeze
-    // Route::get('/profileb', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profileb', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profileb', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::prefix('profileb')->name('profile.')->group(function () {
+    Route::prefix('profileb')->name('profileb.')->group(function () {
         Route::get('/', [ProfileController::class, 'edit'])->name('edit');
         Route::patch('/', [ProfileController::class, 'update'])->name('update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('profile')->name('profile.')->group(function () {
-        Route::get('/', [ProfileController::class, 'show_profile'])->name('show');
         Route::get('/edit', [ProfileController::class, 'edit_profile'])->name('edit_profile');
         Route::get('/informasi', [ProfileController::class, 'show_profile_information'])->name('show.information');
         Route::put('/', [ProfileController::class, 'store_edit_profile'])->name('store');
         Route::put('/edit/picture/update', [ProfileController::class, 'upload_profile_picture'])->name('update.picture');
         Route::put('/edit/picture/delete', [ProfileController::class, 'delete_profile_picture'])->name('delete.picture');
-        Route::get('/akun_muhammadiyah', [ProfileController::class, 'show_kajian_in_profile_muhammadiyah'])->name('akun_muhammadiyah');
-        Route::get('/akun_pengguna', [ProfileController::class, 'show_kajian_in_profile_user'])->name('akun_pengguna');
     });
 
     /**
@@ -127,18 +125,6 @@ Route::middleware('auth')->group(function () {
      * app/Http/Middleware/UserManagement/
      * app/Http/Controllers/UserManagement/
      */
-
-    // Route::middleware('registered')->group(function () {
-    //     Route::get('/kajian/create', [KajianController::class, 'create'])->name('kajian.create');
-    //     Route::get('/kajian/{id}', [KajianController::class, 'show'])->name('kajian.show');
-    //     Route::get('/kajian/{id}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('kajian.new_version');
-    //     Route::post('/kajian', [KajianController::class, 'store'])->name('kajian.store');
-    //     Route::delete('/kajian/{id}', [KajianController::class, 'destroy'])->name('kajian.destroy');
-
-    //     Route::get('/profile', [ProfileController::class, 'show_profile'])->name('profile.show');
-    //     Route::get('/profile/edit', [ProfileController::class, 'edit_profile'])->name('profile.edit_profile');
-    //     Route::put('/profile', [ProfileController::class, 'store_edit_profile'])->name('profile.store');
-    // });
     Route::middleware('registered')->group(function () {
         Route::resource('kajian', KajianController::class)
             ->only(['create', 'show', 'store', 'destroy', 'edit', 'update']);
@@ -147,10 +133,12 @@ Route::middleware('auth')->group(function () {
             Route::get('/{kajian}', [KajianController::class, 'show'])->name('show');
             Route::get('/{kajian}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('show.new_version');
             Route::get('/{kajian}/create/new', [KajianController::class, 'create_new_version'])->name('edit.new_version');
-            // Route::post('/', [KajianController::class, 'store'])->name('store');
-            // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
+            Route::get('/{oldKajian}/create/new/{version}/{kajian}', [KajianController::class, 'show_editor_new_version'])->name('new_version.konten');
+            Route::put('/{oldKajian}/create/new/{version}/{kajian}/save', [KajianController::class, 'update_konten_new_version'])->name('new_version.konten.store');
             Route::get('/create/konten/{kajian}', [KajianController::class, 'showEditor'])->name('konten');
             Route::put('/create/konten/{kajian}/save', [KajianController::class, 'update_konten'])->name('store.editor');
+            // Route::post('/', [KajianController::class, 'store'])->name('store');
+            // Route::delete('/{id}', [KajianController::class, 'destroy'])->name('destroy');
         });
 
     });
@@ -164,32 +152,6 @@ Route::middleware('auth')->group(function () {
      * app/Http/Middleware/UserManagement/Admin.php
      * app/Http/Controllers/UserManagement/Admin/AdminController.php
      */
-    // Route::middleware('admin')->group(function () {
-    //     Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
-    //     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
-    //     // User
-    //     Route::get('admin/users', [AdminController::class, 'show_data_user'])->name('admin.show_data_user');
-    //     Route::get('admin/users/{id}', [AdminController::class, 'show_detail_user'])->name('admin.show_detail_user');
-    //     Route::get('admin/users/{id}/edit', [AdminController::class, 'edit_user'])->name('admin.edit_user');
-    //     Route::put('admin/users/{id}', [AdminController::class, 'update_user'])->name('admin.update_user');
-    //     Route::delete('admin/users/{id}', [AdminController::class, 'delete_user'])->name('admin.delete_user');
-
-    //     Route::get('admin/history_login', [AdminController::class, 'show_history_login'])->name('admin.show_history_login');
-    //     Route::get('admin/history_upload', [AdminController::class, 'show_history_upload'])->name('admin.show_history_upload');
-    //     Route::get('admin/history_download', [AdminController::class, 'show_history_download'])->name('admin.show_history_download');
-
-    //     // Kajian
-    //     Route::get('admin/kajian', [KajianController::class, 'index'])->name('admin.kajian.index');
-    //     Route::get('admin/kajian/create', [KajianController::class, 'create'])->name('admin.kajian.create');
-    //     Route::post('admin/kajian', [KajianController::class, 'store'])->name('admin.kajian.store');
-    //     Route::delete('admin/kajian/{id}', [KajianController::class, 'destroy'])->name('admin.kajian.destroy');
-    //     Route::get('admin/kajian/{id}', [KajianController::class, 'show'])->name('admin.kajian.show');
-    //     Route::get('admin/kajian/{id}/edit', [KajianController::class, 'edit'])->name('admin.kajian.edit');
-    //     Route::put('admin/kajian/{id}', [KajianController::class, 'update'])->name('admin.kajian.update');
-
-    // });
-
     Route::middleware('admin')->group(function () {
         Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('dashboard');
@@ -208,14 +170,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/history_download', [AdminController::class, 'show_history_download'])->name('show_history_download');
 
             // Kajian
+            Route::resource('kajian', KajianController::class);
             Route::prefix('kajian')->name('kajian.')->group(function () {
-                Route::get('/', [KajianController::class, 'index'])->name('index');
-                Route::get('/create', [KajianController::class, 'create'])->name('create');
-                Route::post('/', [KajianController::class, 'store'])->name('store');
-                Route::delete('/{kajian}', [KajianController::class, 'destroy'])->name('destroy');
                 Route::get('/{kajian}', [KajianController::class, 'show'])->name('show');
-                Route::get('/{kajian}/edit', [KajianController::class, 'edit'])->name('edit');
-                Route::put('/{kajian}', [KajianController::class, 'update'])->name('update');
+                Route::get('/{kajian}/new-version', [KajianController::class, 'showNewVersionDetail'])->name('show.new_version');
+                Route::get('/{kajian}/create/new', [KajianController::class, 'create_new_version'])->name('edit.new_version');
+                Route::get('/{oldKajian}/create/new/{version}/{kajian}', [KajianController::class, 'show_editor_new_version'])->name('new_version.konten');
+                Route::put('/{oldKajian}/create/new/{version}/{kajian}/save', [KajianController::class, 'update_konten_new_version'])->name('new_version.konten.store');
+                Route::get('/create/konten/{kajian}', [KajianController::class, 'showEditor'])->name('konten');
+                Route::put('/create/konten/{kajian}/save', [KajianController::class, 'update_konten'])->name('store.editor');
             });
 
             // Kategori Kajian
@@ -224,15 +187,7 @@ Route::middleware('auth')->group(function () {
     });
 
 });
-// Route::controller(KajianController::class)->group(function () {
-//     Route::get('/data_kajian', 'index')->name('data_kajian');
-//     Route::get('/kajian', 'show_kajian')->name('kajian.show');
-//     Route::get('/kajian/{id}', 'show')->name('kajian.detail');
-//     Route::get('/kajian/create', 'create')->name('kajian.create');
-//     Route::get('/kajian/{id}/create_new', 'edit')->name('kajian.edit.new_version');
-//     Route::get('/kajian/download/{id}', 'downloadKajian')->name('kajian.download');
 
-// });
 Route::resource('kajian', KajianController::class)->only(['index', 'show']);
 Route::prefix('kajian')->name('kajian.')->group(function () {
     Route::get('/latest', [KajianController::class, 'show_kajian'])->name('show.latest');

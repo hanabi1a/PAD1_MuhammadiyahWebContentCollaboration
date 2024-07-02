@@ -4,6 +4,7 @@ namespace App\Http\Middleware\UserManagement;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Admin
@@ -15,7 +16,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role == 'admin') {
+        if (Auth::user()->isAdmin()) {
             return $next($request);
         }
         abort(403, 'Akses ditolak. Anda tidak memiliki akses untuk mengakses halaman ini.');

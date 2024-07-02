@@ -8,6 +8,7 @@ use App\Models\historylogin;
 use App\Models\Kajian;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
@@ -39,7 +40,9 @@ class AdminController extends Controller
 
     public function show_history_login()
     {
-        $historis = historylogin::with('user')->get();
+        $historis = historylogin::with('user')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('admin.history_login.history_login', compact('historis'));
     }
@@ -47,14 +50,16 @@ class AdminController extends Controller
     public function show_history_upload()
     {
         // Mengambil semua kajian dari semua pengguna
-        $uploadHistory = Kajian::all();
+        $uploadHistory = Kajian::orderBy('created_at', 'desc')->get();
 
         return view('admin.history_upload.history_upload', compact('uploadHistory'));
     }
 
     public function show_history_download()
     {
-        $historyDownloads = HistoryDownload::with(['user', 'kajian'])->get();
+        $historyDownloads = HistoryDownload::with(['user', 'kajian'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('admin.history_download.history_download', compact('historyDownloads'));
     }
@@ -69,8 +74,10 @@ class AdminController extends Controller
     public function edit_user(string $id)
     {
         $user = User::find($id);
+        $view = Auth::user()->isAdmin() ? 
+            'admin.data_user.form_edit_akun_user' : 'manajemen_akun.form_edit_akun_user';
 
-        return view('manajemen_akun.form_edit_akun_user', compact('user'));
+        return view($view, compact('user'));
     }
 
     public function update_user(Request $request, string $id)

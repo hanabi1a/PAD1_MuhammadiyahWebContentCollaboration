@@ -34,21 +34,33 @@
                                         <label for="tempat-lahir">Tempat Lahir</label>
                                         <input type="text" class="form-control" placeholder="Tempat Lahir"
                                             id="tempat-lahir" name="tempat_lahir">
+                                            @error('tempat-lahir')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                     </div>
                                     <div class="form-group col-md-12 mt-3">
                                         <label for="tanggal-lahir">Tanggal Lahir</label>
                                         <input type="date" class="form-control" placeholder="Tanggal Lahir"
                                             id="tanggal-lahir" name="tanggal_lahir">
+                                            @error('tanggal-lahir')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                     </div>
                                     <div class="form-group col-md-12 mt-3">
                                         <label for="pekerjaan">Pekerjaan</label>
                                         <input type="text" class="form-control" placeholder="Pekerjaan" id="pekerjaan"
                                             name="pekerjaan">
+                                            @error('pekerjaan')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                     </div>
                                     <div class="form-group col-md-12 mt-3">
                                         <label for="alamat">Alamat</label>
                                         <input type="text" class="form-control" placeholder="Alamat" id="val-alamat"
                                             name="alamat" placeholder="Alamat">
+                                            @error('alamat')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                     </div>
                                     <div class="form-group col-md-3 mt-3">
                                         <label for="jenis_kelamin">Jenis Kelamin</label>
@@ -86,21 +98,33 @@
                                         <label for="nomor_keanggotaan">Nomor Anggota</label>
                                         <input type="text" class="form-control" placeholder="Nomor Anggota"
                                             id="nomor_keanggotaan" name="nomor_keanggotaan">
+                                            @error('nomor_keanggotaan')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                     </div>
                                     <div class="form-group col-md-12 mt-3">
                                         <label for="cabang">Cabang</label>
                                         <input type="text" class="form-control" placeholder="Cabang" id="cabang"
                                             name="cabang">
+                                            @error('cabang')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                     </div>
                                     <div class="form-group col-md-12 mt-3">
                                         <label for="daerah">Daerah</label>
                                         <input type="text" class="form-control" placeholder="Daerah" id="daerah"
                                             name="daerah">
+                                            @error('daerah')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                     </div>
                                     <div class="form-group col-md-12 mt-3">
                                         <label for="wilayah">Wilayah</label>
                                         <input type="text" class="form-control" placeholder="Wilayah" id="wilayah"
                                             name="wilayah">
+                                            @error('wilayah')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                     </div>
                                     <div class="form-group col-md-12 mt-3">
                                         <label for="foto_kta">Foto KTA</label>

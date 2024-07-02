@@ -15,6 +15,8 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
 use App\Models\TopikKajian;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class RegisteredUserController extends Controller
 {
@@ -41,43 +43,148 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'nama' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $is_separation = env('IS_SEPARATION', false);
+        if($is_separation) {
+            $client = new Client();
+            $response = $client->request(
+                'POST',
+                env('DOMAIN_SEPARATION') . "/auth/register",
+                [
+                    'form_params' => [
+                        'name' => $request->name,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                        'password' => $request->password
+                    ]
+                ]
+            );
 
-        event(new Registered($user));
+            if ($response->getStatusCode() == 200) {
+                $rawResponse = $response->getBody()->getContents();
+                $responseData = json_decode($rawResponse, true);
 
-        session(['tuid' => $user->id]);
+                Log::info("response json : " . $rawResponse);
+
+                $token = $responseData['data']['token'];
+
+                $userId = $responseData['data']['id'];
+
+                $user = User::create([
+                    'id' => $userId,
+                    'nama' => $request->name,
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                session(['token' => $token]);
+                session(['tuid' => $user->id]);
+                
+            } else {
+                throw new \Exception('Failed to get user profile');
+            }
+        } else {
+            $user = User::create([
+                'nama' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+    
+            event(new Registered($user));
+    
+            
+            session(['tuid' => $user->id]);
+            
+        }
 
         return redirect()->route('register.show', ['page' => 1]);
     }
 
     public function store_additional_1(Request $request)
     {
+        $message = [
+            'tempat_lahir.required' => 'Tempat lahir wajib diisi.',
+            'tanggal_lahir.before' => 'Tanggal lahir harus sebelum hari ini.',
+            'alamat.max' => 'Alamat tidak boleh lebih dari 255 karakter.',
+            'jenis_kelamin.in' => 'Jenis kelamin harus L atau P.',
+        ];
+
         $validatedData = $request->validate([
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date|before:today',
             'pekerjaan' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:L,P',
-        ]);
+        ], $message);
 
-        // Mengambil data pengguna yang akan diperbarui
-        $userId = session('tuid');
-        $user = User::find($userId);
+        $is_separation = env('IS_SEPARATION', false);
+        if($is_separation) {
 
-        // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
-        $user->tempat_lahir = $validatedData['tempat_lahir'];
-        $user->tanggal_lahir = $validatedData['tanggal_lahir'];
-        $user->pekerjaan = $validatedData['pekerjaan'];
-        $user->alamat = $validatedData['alamat'];
-        $user->jenis_kelamin = $validatedData['jenis_kelamin'];
+            $mapData = [
+                'tempat_lahir' => $validatedData['tempat_lahir'],
+                'tanggal_lahir' => $validatedData['tanggal_lahir'],
+                'pekerjaan' => $validatedData['pekerjaan'],
+                'alamat' => $validatedData['alamat'],
+                'jenis_kelamin' => $validatedData['jenis_kelamin'],
+            ];
 
-        // Menyimpan perubahan data pengguna
-        $user->save();
+            $client = new Client();
+            $response = $client->request(
+                'POST',
+                env('DOMAIN_SEPARATION') . "/profile/basic-information",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . session('token')
+                    ],
+                    'form_params' => $mapData
+                ]
+            );
+
+            if ($response->getStatusCode() == 200) {
+                $responseContent = $response->getBody()->getContents();
+                $responseData = json_decode($responseContent, true);
+                
+                Log::info(
+                    "form request :". 
+                        "\n\ttempat_lahir => ". $validatedData["tempat_lahir"] .
+                        "\n\ttanggal_lahir => " . $validatedData["tanggal_lahir"] .
+                        "\n\tpekerjaan => " . $validatedData["pekerjaan"].
+                        "\n\talamat => " . $validatedData["alamat"].
+                        "\n\tjenis_kelamin => " . $validatedData["jenis_kelamin"] .
+                    "\n\nresponse : " . $responseContent
+                    );
+                
+                $data = $responseData['data'];
+
+                $userId = session('tuid');
+                $user = User::find($userId);
+
+                $user->tempat_lahir = $data['tempat_lahir'];
+                $user->tanggal_lahir = $data['tanggal_lahir'];
+                $user->pekerjaan = $data['pekerjaan'];
+                $user->alamat = $data['alamat'];
+                $user->jenis_kelamin = $data['jenis_kelamin'];
+
+                $user->save();
+            } else {
+                throw new \Exception('Failed to update user profile');
+            }
+        } else {
+            // Mengambil data pengguna yang akan diperbarui
+            $userId = session('tuid');
+            $user = User::find($userId);
+
+            // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
+            $user->tempat_lahir = $validatedData['tempat_lahir'];
+            $user->tanggal_lahir = $validatedData['tanggal_lahir'];
+            $user->pekerjaan = $validatedData['pekerjaan'];
+            $user->alamat = $validatedData['alamat'];
+            $user->jenis_kelamin = $validatedData['jenis_kelamin'];
+
+            // Menyimpan perubahan data pengguna
+            $user->save();
+        }
 
         // Redirect atau tampilkan respons sesuai kebutuhan
         return redirect()->route('register.show', ['page' => 2]);
@@ -86,15 +193,57 @@ class RegisteredUserController extends Controller
     public function store_additional_2(Request $request)
     {
         $validatedData = $request->validate([
-            'nomor_keanggotaan' => 'string|max:255',
-            'cabang' => 'string|max:255',
-            'daerah' => 'string|max:255',
-            'wilayah' => 'string|max:255',
+            'nomor_keanggotaan' => 'nullable|string|max:255',
+            'cabang' => 'nullable|string|max:255',
+            'daerah' => 'nullable|string|max:255',
+            'wilayah' => 'nullable|string|max:255',
+            'foto_profile' => 'nullable|file',
+            'foto_kta' => 'nullable|file',
         ]);
 
         // Mengambil data pengguna yang akan diperbarui
         $userId = session('tuid');
         $user = User::find($userId);
+
+        if (env('IS_SEPARATION', false)) {
+            $client = new Client();
+
+            // Preparing multipart data, including files
+            $multipartData = [];
+            foreach ($validatedData as $key => $value) {
+                if ($request->hasFile($key)) {
+                    $multipartData[] = [
+                        'name' => $key,
+                        'contents' => fopen($value->getPathname(), 'r'),
+                        'filename' => $value->getClientOriginalName(),
+                    ];
+                } else {
+                    $multipartData[] = [
+                        'name' => $key,
+                        'contents' => $value,
+                    ];
+                }
+            }
+
+            $response = $client->request(
+                'POST',
+                env('DOMAIN_SEPARATION') . "/profile/detail-information",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . session('token')
+                    ],
+                    'multipart' => $multipartData,
+                ]
+            );
+
+            if ($response->getStatusCode() == 200) {
+                $responseData = json_decode($response->getBody()->getContents(), true);
+                $data = $responseData['data'];
+
+            } else {
+                throw new \Exception('Failed to update user profile');
+            }
+        }
 
         // Memperbarui data pengguna berdasarkan data yang diterima dari formulir
         $user->nomor_keanggotaan = $validatedData['nomor_keanggotaan'];
@@ -133,6 +282,10 @@ class RegisteredUserController extends Controller
             $user->foto_kta = $path;
         }
 
+        if ($user != null && $user->nomor_keanggotaan != null && $user->cabang != null && $user->daerah != null && $user->wilayah != null && $user->foto_profile != null && $user->foto_kta != null) {
+            $user->role = "pending_registered";
+        }
+
 
         // Menyimpan perubahan data pengguna
         $user->save();
@@ -140,39 +293,38 @@ class RegisteredUserController extends Controller
         return redirect()->route('register.show', ['page' => 3]);
     }
 
-    public function store_additional_3(Request $request) {
-        // Mengambil data pengguna yang akan diperbarui
+    public function store_additional_3(Request $request)
+    {
         $userId = session('tuid');
         $user = User::find($userId);
-
+    
         $categories = $request->categories;
-
-        // Remove duplicates from categories
-        $categories = array_unique($categories);
-
-        // if categories is not empty
+    
         if ($categories) {
+            $categories = array_unique($categories);
             foreach ($categories as $category) {
                 PersonalizeTopikKajian::create([
                     'user_id' => $userId,
                     'topik_kajian_id' => $category
                 ]);
             }
+            $selectedCategories = PersonalizeTopikKajian::where('user_id', $userId)
+                                ->join('topik_kajian', 'personalize_topik_kajian.topik_kajian_id', '=', 'topik_kajian.id')
+                                ->select('topik_kajian.*')
+                                ->get();
         }
-
-
-
-        $user->save();
 
         // Menghapus sessino ID pengguna yang sedang mendaftar
         $request->session()->forget('tuid');
-
+    
         Auth::login($user);
-
         if ($user->isAdmin()) {
             return redirect(RouteServiceProvider::ADMIN);
         } else {
             return redirect(RouteServiceProvider::HOME);
         }
     }
+    
+    
+        
 }

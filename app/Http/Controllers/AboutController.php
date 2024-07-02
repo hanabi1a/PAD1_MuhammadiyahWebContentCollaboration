@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Kajian;
+use App\Models\PersonalizeTopikKajian;
+use Illuminate\Support\Facades\Auth;
 
 class AboutController extends Controller
 {
@@ -11,7 +14,10 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('about.about');
+    
+    $kajianList = Kajian::paginate(6);
+
+        return view('about.about', compact('kajianList'));
     }
 
     /**
@@ -60,5 +66,16 @@ class AboutController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $results = Kajian::where('judul_kajian', 'like', "%$query%")
+                        ->orWhere('pemateri', 'like', "%$query%")
+                        ->get();
+
+        return response()->json($results);
     }
 }

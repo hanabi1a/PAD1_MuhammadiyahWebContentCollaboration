@@ -4086,6 +4086,9 @@ a:hover {
     color: white;
 }
 
+#kajian {
+    margin-top: 6%;
+}
 
 #kajian-home .tab-profile {
     padding: 10px;
@@ -4093,16 +4096,57 @@ a:hover {
 
 .card-kajian {
     margin-top: 40px;
+    transition: ease 0.5s;
+}
+
+.card-kajian:hover {
+    transform: scale(1.05);
+    transition: ease 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .img-card-kajian {
+    border-radius: 4px;
     width: 100%;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    aspect-ratio: 15/16;
+    object-fit: cover;
+    /* This will cover the area without breaking the aspect ratio */
+    transition: transform 0.5s ease;
 }
 
-.body-card-kajian {
-    padding: 16px;
+.card .card-kajian-body .card-kajian-title {
+    margin-top: 10px;
+    color: var(--Black, #000);
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+}
+
+.card .card-kajian-body .card-kajian-category {
+    color: #04454D;
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.card .card-kajian-body .card-kajian-text {
+    color: var(--Black, #000);
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 14px;
+    margin-bottom: 18px;
+}
+
+.card-kajian-body {
+    padding: 16px 0;
 }
 
 .title-card-kajian h4 {
@@ -4909,4 +4953,46 @@ a:hover {
     transform: translateY(-50%);
     pointer-events: none;
     /* Menghindari ikon dropdown menjadi klik target */
+}
+
+#title-kajian-muhammadiyah,
+#title-kajian-rekomendasi,
+#title-kajian-terkini,
+#video-terkini {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#kajian-muhammadiyah a {
+    color: #000;
+}
+
+.note-editor.fullscreen {
+    background-color: white;
+}
+
+.note-editable.fullscreen {
+    background-color: white;
+}
+
+.button {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.drag-over {
+    border: 2px dashed #04454D;
+}
+
+#noResults {
+    background-color: var(--extra);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 300px;
 }

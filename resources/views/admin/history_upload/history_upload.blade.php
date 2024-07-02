@@ -59,18 +59,17 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $kajian->user->username }}</td>
                             <td>{{ $kajian->id_user }}</td>
-                            <td>{{ $kajian->judul_kajian }}</td>
-                            <td>{{ $kajian->id }}</td>
-                            <td>{{ $kajian->judul_kajian }}</td>
-                            <td>
-                                @if($kajian->versionHistory()->exists())
-                                {{ $kajian->versionHistory->count()}}
-                                <!-- Menampilkan ID dari versi baru jika ada -->
-                                @else
-                                -
-                                <!-- Jika tidak ada versi baru -->
-                                @endif
-                            </td>
+                            @if ($kajian->current_versions != null)
+                                <td>{{ $kajian->current_versions->oldKajian?->judul_kajian }}</td>
+                                <td>{{ $kajian->current_versions->oldKajian?->id }}</td>
+                                <td>{{ $kajian->judul_kajian }}</td>
+                                <td>{{ $kajian->id }}</td>
+                            @else 
+                                <td>{{ $kajian->judul_kajian }}</td>
+                                <td>{{ $kajian->id }}</td>
+                                <td>-</td>
+                                <td>-</td>
+                            @endif
                             <td>{{ $kajian->created_at }}</td>
                         </tr>
 

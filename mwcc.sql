@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 12, 2024 at 12:57 PM
+-- Generation Time: Jun 13, 2024 at 01:58 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.19
 
@@ -119,7 +119,11 @@ INSERT INTO `history_login` (`id`, `user_id`, `timestamp`, `user_agent`, `create
 (7, 2, '2024-06-09 20:21:06', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', '2024-06-09 20:21:06', '2024-06-09 20:21:06'),
 (8, 2, '2024-06-09 20:47:32', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', '2024-06-09 20:47:32', '2024-06-09 20:47:32'),
 (9, 2, '2024-06-12 04:19:32', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', '2024-06-12 04:19:32', '2024-06-12 04:19:32'),
-(10, 3, '2024-06-12 04:38:16', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', '2024-06-12 04:38:16', '2024-06-12 04:38:16');
+(10, 3, '2024-06-12 04:38:16', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', '2024-06-12 04:38:16', '2024-06-12 04:38:16'),
+(11, 2, '2024-06-12 06:45:19', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', '2024-06-12 06:45:19', '2024-06-12 06:45:19'),
+(12, 1, '2024-06-12 06:47:51', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', '2024-06-12 06:47:51', '2024-06-12 06:47:51'),
+(13, 2, '2024-06-12 06:56:54', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', '2024-06-12 06:56:54', '2024-06-12 06:56:54'),
+(14, 1, '2024-06-12 09:41:12', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', '2024-06-12 09:41:12', '2024-06-12 09:41:12');
 
 -- --------------------------------------------------------
 
@@ -165,7 +169,12 @@ INSERT INTO `kajian` (`id`, `slug`, `id_user`, `id_file_kajian`, `pemateri`, `ju
 (14, 'kajian-perdana-sampeyan-pradana-14', 1, NULL, 'Joko Anwar 2', 'Kajian Perdana Sampeyan Pradana', NULL, '<p>Halo <b>bang </b>messi</p>', '2024-06-14', 'Baciro', NULL, 'kajian/RAW_1717737491.png', '2024-06-06 22:18:11', '2024-06-06 22:18:11'),
 (15, 'kajian-perdana-kusuma-15', 1, NULL, 'Joko Anwar', 'Kajian Perdana Kusuma', NULL, '<p>Halo <b>abang</b></p>', '2024-06-13', 'Auditorium MHJBS', NULL, 'kajian/FIB_1717737735.png', '2024-06-06 22:22:15', '2024-06-06 22:22:15'),
 (16, 'kajian-biji-tunggal-16', 1, NULL, 'Mark Lee', 'Kajian Biji Tunggal', 'documents/kajian-biji-tunggal-16_1717737974.blade.php', '<p><b>Manusia </b>kuat</p>', '2024-06-13', 'Auditorium MHJBS', NULL, 'kajian/FIB_1717737958.png', '2024-06-06 22:25:58', '2024-06-06 22:26:14'),
-(17, 'ini-adalah-kajian-yang-benar-ya-17', 1, NULL, 'Joko Anwar', 'Ini adalah Kajian Yang Benar Ya', NULL, '<p>Halo <b>abangku </b>sayang</p>', '2024-06-07', 'Auditorium MHJBS', NULL, 'kajian/FIB_1717738118.png', '2024-06-06 22:28:38', '2024-06-06 22:50:39');
+(17, 'ini-adalah-kajian-yang-benar-ya-17', 1, NULL, 'Joko Anwar', 'Ini adalah Kajian Yang Benar Ya', NULL, '<p>Halo <b>abangku </b>sayang</p>', '2024-06-07', 'Auditorium MHJBS', NULL, 'kajian/FIB_1717738118.png', '2024-06-06 22:28:38', '2024-06-06 22:50:39'),
+(18, 'kajian-perdana-18', 1, NULL, 'Joko Anwar', 'Kajian Perdana', NULL, '<p>Abc</p>', '2024-06-07', 'Auditorium MHJBS', NULL, NULL, '2024-06-12 09:41:56', '2024-06-12 09:41:57'),
+(19, 'track-changes-must-working-19', 1, NULL, 'Joko Anwar', 'Track Changes Must Working', NULL, '<p>Abc</p>', '2024-06-07', 'Auditorium MHJBS', NULL, NULL, '2024-06-12 09:48:18', '2024-06-12 09:48:18'),
+(20, 'kajian-perdana-versi-baru-20', 1, NULL, 'Joko Anwar', 'Kajian Perdana Versi Baru', NULL, '<p>Aku anak sehat <b>tubuhku </b>kuat</p>', '2024-06-07', 'Auditorium MHJBS', NULL, NULL, '2024-06-12 10:06:20', '2024-06-12 10:06:20'),
+(21, 'kajian-asli-mas-bro-21', 1, NULL, 'Joko Anwar', 'Kajian Asli Mas Bro', 'documents/_21.blade.php', 'Halo udin, nama saya <b>Joko</b>', '2024-06-13', 'Baciro', NULL, 'kajian/Merge_1718212525.png', '2024-06-12 10:15:25', '2024-06-12 10:17:20'),
+(22, 'kajian-versi-baru-mas-bro-22', 1, NULL, 'Joko Anwar', 'Kajian Versi Baru Mas Bro', 'documents/_22_diff.txt', 'Halo udin, nama saya <b>Joko</b>', '2024-06-13', 'Baciro', NULL, NULL, '2024-06-12 10:17:43', '2024-06-12 10:23:22');
 
 -- --------------------------------------------------------
 
@@ -201,7 +210,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2019_03_19_000000_create_document_templates_table', 2),
 (16, '2019_03_20_000000_create_editable_templates_table', 2),
 (17, '2019_06_13_104114_add_subject_field_to_document_templates_table', 2),
-(18, '2019_06_14_000000_change_editable_template_content_field_type', 2);
+(18, '2019_06_14_000000_change_editable_template_content_field_type', 2),
+(19, '2024_06_12_142849_add_kajian_id_to_version_histories_table', 3);
 
 -- --------------------------------------------------------
 
@@ -342,6 +352,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `email_verified_at`,
 CREATE TABLE `version_history` (
   `id` bigint UNSIGNED NOT NULL,
   `kajian_id` bigint UNSIGNED NOT NULL,
+  `old_kajian_id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
   `version_number` int DEFAULT NULL,
   `file_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -349,6 +360,13 @@ CREATE TABLE `version_history` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `version_history`
+--
+
+INSERT INTO `version_history` (`id`, `kajian_id`, `old_kajian_id`, `user_id`, `version_number`, `file_path`, `commit_message`, `created_at`, `updated_at`) VALUES
+(4, 22, 21, 1, 1, NULL, 'documents/_22_diff.txt', '2024-06-12 10:17:43', '2024-06-12 10:23:22');
 
 --
 -- Indexes for dumped tables
@@ -486,19 +504,19 @@ ALTER TABLE `history_downloads`
 -- AUTO_INCREMENT for table `history_login`
 --
 ALTER TABLE `history_login`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `kajian`
 --
 ALTER TABLE `kajian`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `personalize_topik_kajian`
@@ -534,7 +552,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `version_history`
 --
 ALTER TABLE `version_history`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

@@ -13,7 +13,7 @@
             <li class="text_page breadcrumb"><a href="dashboard">Dashboard /</a><a href="data_user"
                     class="active_title"> Data User</a></li>
         </ol>
-        
+
         <div class="card mb-4">
             <div class="card-body">
                 <table id="datatablesSimple" class="table">
@@ -42,7 +42,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/' . $user->foto_profile) }}" alt="Profile Image" width="150">
+                                    <img src="{{ $user->foto_profile ? asset('storage/' . $user->foto_profile) : asset('assets/img/user-default-profile.png') }}" alt="Profile Image" width="50">
                                 </td>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->username }}</td>
@@ -62,7 +62,7 @@
                                 <td class="text-center">
                                     @if($user->role != 'not_login')
                                         <div class="row">
-                                            <a href="{{ route('admin.show_detail_user', $user->id) }}" 
+                                            <a href="{{ route('admin.show_detail_user', $user->id) }}"
                                                 class="col text-info me-2 d-flex justify-content-center align-items-center" title="View">
                                                 <i class="fa fa-eye fa-lg"></i>
                                             </a>
@@ -80,7 +80,7 @@
                                             @endif
                                         </div>
                                     @endif
-                                    
+
                                 </td>
                             </tr>
                         @endforeach
