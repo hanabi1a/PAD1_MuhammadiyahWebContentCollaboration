@@ -28,8 +28,13 @@
                     <div class="dropdown-toggle btn-login text-light" id="dropdownMenu2" data-bs-toggle="dropdown"
                         aria-expanded="true">
                         {{ Auth::user()->username }}
+                        @if($user->foto_profile != null)
                         <img src="{{ asset('storage/' . Auth::user()->foto_profile) }}" alt="" width="30px" height="30px"
                             style="border-radius: 50%;" class="ms-2">
+                        @else
+                        <img src="/assets/img/foto_default.png" alt="profile_picture" width="30px" height="30px"
+                        style="border-radius: 50%;" class="ms-2">
+                        @endif
                     </div>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li>
@@ -39,7 +44,7 @@
                             </button>
                         </li>
                         <li>
-            
+
                             <button class="dropdown-item" onclick="window.location.href = '{{ route('profile.show.information') }}';">
                                 <img src="\assets\img\icon\icon_informasi_akun.svg"/>
                                 <span class="heading7">Informasi Akun</span>
@@ -49,7 +54,7 @@
                             <!-- Authentication -->
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-    
+
                                 <a class="dropdown-item" href="route('logout')"
                                     onclick="event.preventDefault();
                                                     this.closest('form').submit();">
@@ -67,7 +72,7 @@
                             </form>
                         </li>
                     </ul>
-                </div>        
+                </div>
             @else
             <div class="collapse navbar-collapse order-lg-last">
                     <div class="d-flex order-lg-last akun">
